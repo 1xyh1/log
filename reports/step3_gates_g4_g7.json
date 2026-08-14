@@ -1,7 +1,7 @@
 {
   "init": {
     "snapshot": "step3_6ch_rgb_equiv_init.pt",
-    "snapshot_sha256": "34f7c3d99cccd95cd784558a06fb5e48d0ba061912e12953b1cc9cae7bca4a9c",
+    "snapshot_sha256": "594e175482716e9e1ed2385d894a6817dca759a154d7d54eb39d9920ab6ce129",
     "source_stem_sha256": "25d9e6b87ced7c9ccd24d946fd0ff5d3a986f0a0054c0df146e7dc3460798ff6",
     "channel_semantics": [
       "R",
@@ -35,6 +35,17 @@
       "aux_part_max_abs": 0.0,
       "passed": true
     },
+    "input_conv_in_channels": 6,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ],
+    "model_nc": 12,
+    "head_nc": 12,
+    "snapshot_meta_nc": 12,
+    "snapshot_meta_init_seed": 2026081200,
+    "source_stem_sha_matches": true,
     "o2m": true,
     "forward_ok": true,
     "passed": true
@@ -45,6 +56,20 @@
     "m6_yaml": false,
     "m6_model": false,
     "m6_head": false,
+    "ref3_nc_attr": 12,
+    "ref3_head_nc_attr": 12,
+    "ref3_head_physical": [
+      12,
+      12,
+      12
+    ],
+    "m6_nc_attr": 12,
+    "m6_head_nc_attr": 12,
+    "m6_head_physical": [
+      12,
+      12,
+      12
+    ],
     "passed": true
   },
   "G6a_model_equiv": {
@@ -65,24 +90,24 @@
   },
   "G6b_rgb_pipeline_equiv": {
     "n_images": 17,
-    "max_abs_diff_vs_stock_pipeline": 0.0,
+    "max_abs_diff_vs_official_letterbox": 0.0,
     "passed": true
   },
   "G7": {
     "C0-N": {
       "group": "C0-N",
       "grad_l2_per_channel": [
-        27.18012237548828,
-        25.987438201904297,
-        30.114086151123047,
+        10.66423225402832,
+        12.115392684936523,
+        12.310198783874512,
         0.0,
         0.0,
         0.0
       ],
       "relative_to_mean_rgb": [
-        0.979092,
-        0.936128,
-        1.08478,
+        0.911737,
+        1.035804,
+        1.052459,
         0.0,
         0.0,
         0.0
@@ -99,18 +124,18 @@
     "C1-I": {
       "group": "C1-I",
       "grad_l2_per_channel": [
-        27.18012237548828,
-        25.987438201904297,
-        30.114086151123047,
-        70.98284912109375,
+        10.66423225402832,
+        12.115392684936523,
+        12.310198783874512,
+        18.078723907470703,
         0.0,
         0.0
       ],
       "relative_to_mean_rgb": [
-        0.979092,
-        0.936128,
-        1.08478,
-        2.556969,
+        0.911737,
+        1.035804,
+        1.052459,
+        1.545638,
         0.0,
         0.0
       ],
@@ -126,20 +151,20 @@
     "C2-D": {
       "group": "C2-D",
       "grad_l2_per_channel": [
-        27.18012237548828,
-        25.987438201904297,
-        30.114086151123047,
+        10.66423225402832,
+        12.115392684936523,
+        12.310198783874512,
         0.0,
-        93.59984588623047,
-        139.12290954589844
+        23.894845962524414,
+        24.328969955444336
       ],
       "relative_to_mean_rgb": [
-        0.979092,
-        0.936128,
-        1.08478,
+        0.911737,
+        1.035804,
+        1.052459,
         0.0,
-        3.371686,
-        5.011533
+        2.042887,
+        2.080002
       ],
       "checks": {
         "I": true,
