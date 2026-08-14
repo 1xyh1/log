@@ -152,7 +152,7 @@ class TriModalDataset(Dataset):
             "img": img,
             "cls": cls.reshape(-1, 1),  # (N,1): validator indexes with a 2D bool mask
             "bboxes": bboxes,
-            "batch_idx": np.zeros((len(cls), 1), dtype=np.float32),
+            "batch_idx": np.zeros(len(cls), dtype=np.float32),  # 1D (N,): validator masks with it
             "im_file": str(rgb_p),
             "ori_shape": (h, w),
             "ratio_pad": ratio_pad,
