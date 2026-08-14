@@ -1,0 +1,188 @@
+{
+  "generated_at_local": "2026-08-14T14:34:49.974962+08:00",
+  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
+  "files": {
+    "docs/STEP3_IMPLEMENTATION_LOG.md": {
+      "sha256": "a8ed0ceec3893b23ff8ca3e73b073e6f8cfdcbefa54bbfee6ee4c598e8a3ceff",
+      "size_bytes": 19740,
+      "mtime_ns": 1786687484299773300
+    },
+    "reports/step3_gates_g1_g2_g3.json": {
+      "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
+      "size_bytes": 3968,
+      "mtime_ns": 1786688322600550900
+    },
+    "reports/step3_gates_g4_g7.json": {
+      "sha256": "5b4d3659f355f11c31fedd84b80483b5536e4a538ed08450dad31fabb570e351",
+      "size_bytes": 3268,
+      "mtime_ns": 1786679273923655900
+    },
+    "scripts/audit_dataset.py": {
+      "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
+      "size_bytes": 540,
+      "mtime_ns": 1785970094000000000
+    },
+    "scripts/audit_step3_data.py": {
+      "sha256": "f633b5cef610fb70d9243da794d86b72f56042ebd0aaef5e6552f420baf47d01",
+      "size_bytes": 5173,
+      "mtime_ns": 1786680950181497600
+    },
+    "scripts/build_step2_modality_datasets.py": {
+      "sha256": "ba0058f9a2fc84cc0205430a7912c71c79da0996ecbf3d9375dce2850162beaf",
+      "size_bytes": 14411,
+      "mtime_ns": 1786634174849724700
+    },
+    "scripts/inspect_weights_safe.py": {
+      "sha256": "1c8db987f4a8f6a096504d8565a80c0283ab5aee8dbf04d4c2011c736ba0a822",
+      "size_bytes": 1098,
+      "mtime_ns": 1785970550000000000
+    },
+    "scripts/local_checkpoint_smoke.py": {
+      "sha256": "8579a6350030500919566c5ccfecba311355ffe2572a3d985b9c07ffb1517e98",
+      "size_bytes": 2866,
+      "mtime_ns": 1785970438000000000
+    },
+    "scripts/make_group_split.py": {
+      "sha256": "01d8bdf06e902e8d7075350d1f9e5ae3118eb95be27cec6cd5f9bb1bf3ff31ad",
+      "size_bytes": 1271,
+      "mtime_ns": 1785970210000000000
+    },
+    "scripts/make_overfit_split.py": {
+      "sha256": "4d5545c27438f038e26276fa3df2aaaa8849f8ad1d18ff2baf943dbe7acad22b",
+      "size_bytes": 1316,
+      "mtime_ns": 1786473837730060200
+    },
+    "scripts/predict_submit.py": {
+      "sha256": "556a87210b1ff416d2c99d60227c90261662eb7880eb8dbcf042c4f400e23a8b",
+      "size_bytes": 4224,
+      "mtime_ns": 1786501857792602100
+    },
+    "scripts/prepare_single_modality_baseline.py": {
+      "sha256": "94bdbaa010b6266dc87a5b42f2b02a6d0c8825c6a7e6947e80763073703206fc",
+      "size_bytes": 2927,
+      "mtime_ns": 1785970370000000000
+    },
+    "scripts/run_step1_rgb_baselines.py": {
+      "sha256": "99e2d5e845805469f1b9725b194f7e529c7b1bd6217f83e1977a7abe2293a706",
+      "size_bytes": 37870,
+      "mtime_ns": 1786635093690918900
+    },
+    "scripts/summarize_step1_rgb.py": {
+      "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
+      "size_bytes": 6816,
+      "mtime_ns": 1786635943303950300
+    },
+    "scripts/train.py": {
+      "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
+      "size_bytes": 592,
+      "mtime_ns": 1785969942000000000
+    },
+    "scripts/train_official_baseline.py": {
+      "sha256": "a871c5b6d335c439c632b8d59bb6a138abd403d1fe87687e1fb12e588783b0a9",
+      "size_bytes": 734,
+      "mtime_ns": 1785970370000000000
+    },
+    "scripts/verify_cloud_runtime.py": {
+      "sha256": "0e013b348c464acbc89d77d54ea822d4effe87122619ddba9c4ab42091020075",
+      "size_bytes": 5560,
+      "mtime_ns": 1786474743814824000
+    },
+    "src/multimodal/__init__.py": {
+      "sha256": "31832a50c5d990b46be95f0edad6d222ab4f48af0de2c9e5fafd3682e0f50b33",
+      "size_bytes": 68,
+      "mtime_ns": 1786677889955302600
+    },
+    "src/multimodal/early_fusion_yolo26.py": {
+      "sha256": "e7015aec60d8bb3e57f59246171cd4def9cfb94ab7051062194338066b92ec8b",
+      "size_bytes": 15205,
+      "mtime_ns": 1786688950289874900
+    },
+    "src/multimodal/modality_preprocess.py": {
+      "sha256": "92569ba363131762d2365438ee39dd444b8cad3f7a6ea5e3bdaeebb4298e302e",
+      "size_bytes": 5580,
+      "mtime_ns": 1786681255353500000
+    },
+    "src/multimodal/raw_sample_index.py": {
+      "sha256": "df8d60df5ae3cc8e17cb71e9e022cbee78a444562d7b57f6e593ffb0f64b7e71",
+      "size_bytes": 10230,
+      "mtime_ns": 1786688343153394100
+    },
+    "src/multimodal/trimodal_dataset.py": {
+      "sha256": "9222463c404f0c7d321e7aca01a74bfe3293b38424b5e209d03aa60bd8aed279",
+      "size_bytes": 6958,
+      "mtime_ns": 1786679885962914600
+    },
+    "tests/test_checkpoint.py": {
+      "sha256": "62ac9efef4f7ef9846be60c44715439c4fbd2cd242fbf7c5b344db5e3b284ced",
+      "size_bytes": 2808,
+      "mtime_ns": 1786502234979388700
+    },
+    "tests/test_config.py": {
+      "sha256": "b6a9c9eab12b270095b9155b7de28f4c6200b6b0a5b9eec54c583f90e016f648",
+      "size_bytes": 1580,
+      "mtime_ns": 1786473621934892700
+    },
+    "tests/test_data.py": {
+      "sha256": "982d54f968c12750b65bcd0cefff8e34b2a884a8cf6a3505fb3059ca3ce8a5da",
+      "size_bytes": 4506,
+      "mtime_ns": 1786474556864759500
+    },
+    "tests/test_inference.py": {
+      "sha256": "c53aa66a3e57935810c5708ab869aa9d610211b29643824a1f2510eaf34845a0",
+      "size_bytes": 5863,
+      "mtime_ns": 1786473258908626800
+    },
+    "tests/test_metrics_submission.py": {
+      "sha256": "b64f9e52deef45cfbb03c3883067063db6d9a04ebde39c4d2f8d94752f950c27",
+      "size_bytes": 1281,
+      "mtime_ns": 1786501860383280600
+    },
+    "tests/test_modules.py": {
+      "sha256": "5a7d770300b99b127fc32e77d2d104b5183d91bc4c8ff7b771cf56a82e6c6465",
+      "size_bytes": 4598,
+      "mtime_ns": 1786473596653087100
+    },
+    "tests/test_overfit_split.py": {
+      "sha256": "e1a27ce5b385051c7926a511b08ca20e82d540b2f6a285c9ad402dec09404b43",
+      "size_bytes": 942,
+      "mtime_ns": 1786473844295846400
+    },
+    "tests/test_reproducibility.py": {
+      "sha256": "026ee717395c6efa4b1d46c0bde066a89aabd031c30f8247c154491465efc107",
+      "size_bytes": 724,
+      "mtime_ns": 1786473624058697400
+    }
+  },
+  "changed_in_this_sync": [
+    "docs/STEP3_IMPLEMENTATION_LOG.md",
+    "reports/step3_gates_g1_g2_g3.json",
+    "reports/step3_gates_g4_g7.json",
+    "scripts/audit_dataset.py",
+    "scripts/audit_step3_data.py",
+    "scripts/build_step2_modality_datasets.py",
+    "scripts/inspect_weights_safe.py",
+    "scripts/local_checkpoint_smoke.py",
+    "scripts/make_group_split.py",
+    "scripts/make_overfit_split.py",
+    "scripts/predict_submit.py",
+    "scripts/prepare_single_modality_baseline.py",
+    "scripts/run_step1_rgb_baselines.py",
+    "scripts/summarize_step1_rgb.py",
+    "scripts/train.py",
+    "scripts/train_official_baseline.py",
+    "scripts/verify_cloud_runtime.py",
+    "src/multimodal/__init__.py",
+    "src/multimodal/early_fusion_yolo26.py",
+    "src/multimodal/modality_preprocess.py",
+    "src/multimodal/raw_sample_index.py",
+    "src/multimodal/trimodal_dataset.py",
+    "tests/test_checkpoint.py",
+    "tests/test_config.py",
+    "tests/test_data.py",
+    "tests/test_inference.py",
+    "tests/test_metrics_submission.py",
+    "tests/test_modules.py",
+    "tests/test_overfit_split.py",
+    "tests/test_reproducibility.py"
+  ]
+}

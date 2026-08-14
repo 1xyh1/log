@@ -1,0 +1,211 @@
+{
+  "G1_data_contract": {
+    "raw": 18,
+    "usable": 17,
+    "excluded": {
+      "00000008": {
+        "reason": "non-metric depth visualization",
+        "rgb_format": "360x640 3ch uint8 JPG",
+        "ir_format": "360x640 3ch uint8 JPG",
+        "depth_format": "3-channel uint8 JPG (not uint16 metric)",
+        "observed_rgb_shape_dtype": [
+          360,
+          640,
+          3,
+          "uint8"
+        ],
+        "observed_depth_shape_dtype": [
+          360,
+          640,
+          3,
+          "uint8"
+        ],
+        "n_gt_boxes": 9
+      }
+    },
+    "classes_present": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      11
+    ],
+    "classes_absent": [
+      1,
+      7,
+      10
+    ],
+    "class_support": {
+      "train": {
+        "2": 6,
+        "3": 7,
+        "0": 35,
+        "6": 4,
+        "9": 1,
+        "4": 4,
+        "8": 2,
+        "5": 1
+      },
+      "val": {
+        "5": 2,
+        "11": 1,
+        "4": 3,
+        "6": 1,
+        "2": 4,
+        "0": 5,
+        "3": 1
+      },
+      "all17": {
+        "5": 3,
+        "11": 1,
+        "4": 7,
+        "6": 5,
+        "2": 10,
+        "3": 8,
+        "0": 40,
+        "9": 1,
+        "8": 2
+      }
+    },
+    "format_gate_passed": true,
+    "passed": true
+  },
+  "G2_split": {
+    "grouping_rule": "first_id_field_proxy_v1",
+    "train_groups": [
+      "000005",
+      "000008",
+      "000014",
+      "000017"
+    ],
+    "val_groups": [
+      "000003",
+      "000004",
+      "000016"
+    ],
+    "intersection": [],
+    "split_relations": {
+      "sample_overlap_empty": true,
+      "group_proxy_overlap_empty": true,
+      "split_union_equals_usable": true,
+      "missing_from_split": [],
+      "train_count": 11,
+      "val_count": 6,
+      "unique_count": 17
+    },
+    "passed": true
+  },
+  "G3_float_input_semantics": {
+    "C0-N": {
+      "group": "C0-N",
+      "n_images": 17,
+      "shape": [
+        17,
+        6,
+        640,
+        640
+      ],
+      "finite": true,
+      "rgb_range": [
+        0.0,
+        1.0
+      ],
+      "rgb_pad_value_present": true,
+      "i_range": [
+        0.0,
+        0.0
+      ],
+      "d_range": [
+        0.0,
+        0.0
+      ],
+      "m_unique": [
+        0.0
+      ],
+      "m_binary": true,
+      "m0_implies_d0": true,
+      "aux_pad_I_max_abs": 0.0,
+      "aux_pad_D_max_abs": 0.0,
+      "aux_pad_M_max_abs": 0.0,
+      "aux_strictly_zero": true,
+      "passed": true
+    },
+    "C1-I": {
+      "group": "C1-I",
+      "n_images": 17,
+      "shape": [
+        17,
+        6,
+        640,
+        640
+      ],
+      "finite": true,
+      "rgb_range": [
+        0.0,
+        1.0
+      ],
+      "rgb_pad_value_present": true,
+      "i_range": [
+        0.0,
+        1.0
+      ],
+      "d_range": [
+        0.0,
+        0.0
+      ],
+      "m_unique": [
+        0.0
+      ],
+      "m_binary": true,
+      "m0_implies_d0": true,
+      "aux_pad_I_max_abs": 0.0,
+      "aux_pad_D_max_abs": 0.0,
+      "aux_pad_M_max_abs": 0.0,
+      "i_nonzero": true,
+      "d_m_zero": true,
+      "passed": true
+    },
+    "C2-D": {
+      "group": "C2-D",
+      "n_images": 17,
+      "shape": [
+        17,
+        6,
+        640,
+        640
+      ],
+      "finite": true,
+      "rgb_range": [
+        0.0,
+        1.0
+      ],
+      "rgb_pad_value_present": true,
+      "i_range": [
+        0.0,
+        0.0
+      ],
+      "d_range": [
+        0.0,
+        1.0
+      ],
+      "m_unique": [
+        0.0,
+        1.0
+      ],
+      "m_binary": true,
+      "m0_implies_d0": true,
+      "aux_pad_I_max_abs": 0.0,
+      "aux_pad_D_max_abs": 0.0,
+      "aux_pad_M_max_abs": 0.0,
+      "i_zero": true,
+      "d_nonzero": true,
+      "m_nonzero": true,
+      "passed": true
+    }
+  },
+  "all_passed": true
+}

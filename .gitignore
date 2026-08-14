@@ -1,0 +1,15 @@
+*.pt
+*.pth
+*.onnx
+*.engine
+*.zip
+*.png
+*.jpg
+*.jpeg
+runs/
+datasets/
+data/
+.venv/
+__pycache__/
+*.pyc
+.env

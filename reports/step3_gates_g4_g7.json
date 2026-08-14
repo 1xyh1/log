@@ -1,0 +1,155 @@
+{
+  "init": {
+    "snapshot": "step3_6ch_rgb_equiv_init.pt",
+    "snapshot_sha256": "34f7c3d99cccd95cd784558a06fb5e48d0ba061912e12953b1cc9cae7bca4a9c",
+    "source_stem_sha256": "25d9e6b87ced7c9ccd24d946fd0ff5d3a986f0a0054c0df146e7dc3460798ff6",
+    "channel_semantics": [
+      "R",
+      "G",
+      "B",
+      "IR_scalar",
+      "log_depth",
+      "valid_mask"
+    ]
+  },
+  "G4": {
+    "shape": [
+      32,
+      6,
+      3,
+      3
+    ],
+    "rgb_part_bitwise_equal_source": true,
+    "aux_part_max_abs": 0.0,
+    "passed": true
+  },
+  "G4b": {
+    "reload_g4": {
+      "shape": [
+        32,
+        6,
+        3,
+        3
+      ],
+      "rgb_part_bitwise_equal_source": true,
+      "aux_part_max_abs": 0.0,
+      "passed": true
+    },
+    "o2m": true,
+    "forward_ok": true,
+    "passed": true
+  },
+  "G5": {
+    "ref3_yaml": false,
+    "ref3_model": false,
+    "m6_yaml": false,
+    "m6_model": false,
+    "m6_head": false,
+    "passed": true
+  },
+  "G6a_model_equiv": {
+    "raw_conv": {
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0
+    },
+    "conv_bn_act": {
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0
+    },
+    "final_detector": {
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0
+    },
+    "threshold": 1e-05,
+    "passed": true
+  },
+  "G6b_rgb_pipeline_equiv": {
+    "n_images": 17,
+    "max_abs_diff_vs_stock_pipeline": 0.0,
+    "passed": true
+  },
+  "G7": {
+    "C0-N": {
+      "group": "C0-N",
+      "grad_l2_per_channel": [
+        27.18012237548828,
+        25.987438201904297,
+        30.114086151123047,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "relative_to_mean_rgb": [
+        0.979092,
+        0.936128,
+        1.08478,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "checks": {
+        "I": true,
+        "D": true,
+        "M": true,
+        "rgb": true
+      },
+      "note": "connectivity sanity only; NO cross-channel magnitude comparison",
+      "passed": true
+    },
+    "C1-I": {
+      "group": "C1-I",
+      "grad_l2_per_channel": [
+        27.18012237548828,
+        25.987438201904297,
+        30.114086151123047,
+        70.98284912109375,
+        0.0,
+        0.0
+      ],
+      "relative_to_mean_rgb": [
+        0.979092,
+        0.936128,
+        1.08478,
+        2.556969,
+        0.0,
+        0.0
+      ],
+      "checks": {
+        "I": true,
+        "D": true,
+        "M": true,
+        "rgb": true
+      },
+      "note": "connectivity sanity only; NO cross-channel magnitude comparison",
+      "passed": true
+    },
+    "C2-D": {
+      "group": "C2-D",
+      "grad_l2_per_channel": [
+        27.18012237548828,
+        25.987438201904297,
+        30.114086151123047,
+        0.0,
+        93.59984588623047,
+        139.12290954589844
+      ],
+      "relative_to_mean_rgb": [
+        0.979092,
+        0.936128,
+        1.08478,
+        0.0,
+        3.371686,
+        5.011533
+      ],
+      "checks": {
+        "I": true,
+        "D": true,
+        "M": true,
+        "rgb": true
+      },
+      "note": "connectivity sanity only; NO cross-channel magnitude comparison",
+      "passed": true
+    }
+  },
+  "all_passed": true
+}
