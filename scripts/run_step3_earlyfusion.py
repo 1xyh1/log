@@ -57,18 +57,10 @@ class Step3ValidatorMixin:
     """DetectionValidator overrides for float32 6ch (no /255) + trimodal dataset."""
 
     def build_dataset(self, img_path, mode="val", batch=None):
-        print(f"DEBUG Step3Validator.build_dataset: img_path={img_path!r}")
         return TriModalDataset(self.step3_contract, split="val", group=self.step3_group,
                                imgsz=self.args.imgsz, seed=self.args.seed,
                                fliplr=self.args.fliplr if hasattr(self.args, "fliplr") else 0.0,
                                augment=False)
-
-    def get_dataloader(self, dataset_path, batch_size):
-        from ultralytics.data.build import build_dataloader
-        dataset = self.build_dataset(dataset_path, batch=batch_size, mode="val")
-        loader = build_dataloader(dataset, batch_size, self.args.workers, shuffle=False, rank=-1)
-        print(f"DEBUG Step3Validator.get_dataloader -> {type(loader).__name__}")
-        return loader
 
     def preprocess(self, batch):
         batch["img"] = batch["img"].to(self.device, non_blocking=True)
@@ -138,8 +130,10 @@ def main():
             return batch
 
         def get_validator(self):
-            print("DEBUG Step3Trainer.get_validator called")
-            v = Step3Validator(args=self.args, dataloader=None, save_dir=self.save_dir)
+            # training-time validation: BaseValidator.__call__ in the training branch does
+            # NOT rebuild the dataloader; the loader must be passed at construction
+            # (stock passes self.test_loader, built from our val TriModalDataset).
+            v = Step3Validator(self.test_loader, save_dir=self.save_dir, args=self.args)
             v.step3_group = self.step3_group
             v.step3_contract = self.step3_contract
             return v

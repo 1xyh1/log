@@ -150,7 +150,7 @@ class TriModalDataset(Dataset):
         img = np.ascontiguousarray(img, dtype=np.float32)
         return {
             "img": img,
-            "cls": cls,
+            "cls": cls.reshape(-1, 1),  # (N,1): validator indexes with a 2D bool mask
             "bboxes": bboxes,
             "batch_idx": np.zeros((len(cls), 1), dtype=np.float32),
             "im_file": str(rgb_p),
