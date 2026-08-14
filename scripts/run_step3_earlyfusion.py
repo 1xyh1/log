@@ -138,6 +138,13 @@ def main():
             v.step3_contract = self.step3_contract
             return v
 
+        def final_eval(self):
+            # stock final_eval runs AutoBackend on a 3-channel data contract (data["channels"]
+            # defaults to 3) -> warmup crash on the 6ch model, and its stock RGB val dataset
+            # would be wrong anyway. Our post-hoc eval (eval_step3_causality) replaces it;
+            # keep optimizer states in checkpoints (torch.load weights_only=False handles it).
+            print(f"[{a.group}] final_eval skipped (post-hoc eval_step3_causality replaces it)")
+
     kw = dict(R3_KW)
     kw.update(epochs=a.epochs, batch=a.batch, seed=a.seed,
               project=a.project, name=a.group, device=a.device,
