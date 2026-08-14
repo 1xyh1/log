@@ -1,0 +1,25 @@
+{
+  "schema": "step3-run-manifest-v2",
+  "group": "C0-N",
+  "physical_run_name": "C0-N-r1",
+  "run_kind": "recovery",
+  "expected_epochs": 80,
+  "snapshot": "step3_6ch_rgb_equiv_init.pt",
+  "initial_checkpoint_sha256": "a422584502e94afb6ae94b279de96929b4cf00b94071ec2cee5a71441dccc430",
+  "contract": "D:\\pycharm\\Python Develop\\YOLO_1\\step3_data_contract.json",
+  "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+  "recipe": "R3-causal-earlyfusion-sample",
+  "requested_batch": 4,
+  "seed": 20260812,
+  "channel_semantics": [
+    "R",
+    "G",
+    "B",
+    "IR_scalar",
+    "log_depth",
+    "valid_mask"
+  ],
+  "g8_evidence": "actual_dataloader_yield_v2",
+  "ultralytics_version": "8.4.56",
+  "created_at": "2026-08-15T00:29:57.472419+08:00"
+}

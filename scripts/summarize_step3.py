@@ -1,109 +1,136 @@
 #!/usr/bin/env python3
-"""Step 3-A summary: G8 cross-group check + Δ framework + four-status verdict.
-
-Primary axis = last.pt NORMAL/ZERO/SHUFFLE (protocol); best.pt diagnostic only.
-No +0.02 thresholds; interpretation boundary: Step 3-A negative != modality useless.
-"""
+"""Step-3 summary that refuses mixed/stale formal artifacts."""
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
-GROUPS = ("C0-N", "C1-I", "C2-D")
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 
 
-def g8_check(project: Path) -> dict:
-    traces = {}
-    for g in GROUPS:
-        lines = (project / g / "step3_g8_trace.jsonl").read_text().strip().splitlines()
-        traces[g] = [json.loads(l) for l in lines]
-    n = min(len(t) for t in traces.values())
-    order_ok = flip_ok = True
-    mism = []
+def _read_jsonl(path: Path):
+    return [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
+
+
+def g8_check(run_dirs: dict[str, Path]) -> dict:
+    traces = {g: _read_jsonl(p / "step3_g8_trace.jsonl") for g, p in run_dirs.items()}
+    n = min(len(x) for x in traces.values())
+    all_actual = all(
+        "actual_order_sha256" in traces[g][e] and "actual_flip_sha256" in traces[g][e]
+        for g in traces for e in range(n)
+    )
+    mismatches = []
     for e in range(n):
-        orders = {traces[g][e]["sample_order_sha256"] for g in GROUPS}
-        flips = {traces[g][e]["flip_schedule_sha256"] for g in GROUPS}
-        if len(orders) > 1 or len(flips) > 1:
-            order_ok, flip_ok = False, False
-            mism.append(e)
-    return {"epochs_compared": n, "sample_order_all_epochs_match": order_ok,
-            "flip_schedule_all_epochs_match": flip_ok,
-            "mismatched_epochs": mism, "passed": bool(order_ok and flip_ok)}
+        if all_actual:
+            orders = {traces[g][e]["actual_order_sha256"] for g in traces}
+            flips = {traces[g][e]["actual_flip_sha256"] for g in traces}
+        else:
+            # Preserved C1/C2 traces are legacy planned evidence.  New runner keeps
+            # these compatible fields in addition to stronger actual-yield fields.
+            orders = {traces[g][e].get("sample_order_sha256") for g in traces}
+            flips = {traces[g][e].get("flip_schedule_sha256") for g in traces}
+        if len(orders) != 1 or None in orders or len(flips) != 1 or None in flips:
+            mismatches.append(e)
+    return {
+        "epochs_compared": n,
+        "order_and_flip_hashes_match": not mismatches,
+        "mismatched_epochs": mismatches,
+        "evidence_level": "actual" if all_actual else "legacy_planned_or_mixed",
+        "passed": not mismatches,
+    }
 
 
-def verdict(group: str, cand: dict, c0: dict, growth: list) -> dict:
-    def v(ck, variant, split="val"):
-        return ck["last.pt"][variant][split]["map50_95"]
+def verdict(cand: dict, c0: dict, growth: list[dict]) -> dict:
+    def val(obj, variant):
+        return obj["last.pt"][variant]["val"]["map50_95"]
 
-    n = v(cand, "NORMAL")
-    z = v(cand, "ZERO")
-    s = v(cand, "SHUFFLE")
-    c0n = v(c0, "NORMAL")
-    late10 = cand["late10"]["median"]
-    best = cand["best.pt"]["NORMAL"]["val"]["map50_95"]
-    last_q = growth[-1] if growth else {}
-    used_q = max(last_q.get("qI", 0), last_q.get("qD", 0), last_q.get("qM", 0))
+    n, z, s = val(cand, "NORMAL"), val(cand, "ZERO"), val(cand, "SHUFFLE")
+    c0n = val(c0, "NORMAL")
+    q = max((growth[-1].get(k, 0.0) for k in ("qI", "qD", "qM")), default=0.0) if growth else 0.0
     loo = cand.get("val6_loo", {})
-    deltas = loo.get("deltas", [])
-    d = {"normal": n, "zero": z, "shuffle": s, "c0_normal": c0n,
-         "late10_median": late10, "best_pt_normal": best, "final_aux_q": used_q}
-    over_c0 = n > c0n
-    over_ablation = n > z and n > s
-    aux_used = used_q > 1e-4
-    unstable = (late10 is not None and late10 < 0.5 * best and best > 0.05) or \
-               (loo.get("positive_folds") is not None and loo["positive_folds"] <= 1)
-    if over_c0 and over_ablation and not unstable:
-        d["status"] = "COMPLEMENTARY-CANDIDATE"
-    elif over_ablation and not over_c0:
-        d["status"] = "MODEL-USES-AUX-BUT-NO-BENEFIT"
-    elif not aux_used and abs(n - z) < 0.01 and abs(n - s) < 0.01:
-        d["status"] = "NO-AUX-USAGE"
+    late = cand["late10"].get("median")
+    best = cand["best.pt"]["NORMAL"]["val"]["map50_95"]
+    unstable = bool(late is not None and best > 0.05 and late < 0.5 * best)
+    if loo.get("status") == "DIAGNOSTIC_ONLY" and loo.get("positive_folds") is not None:
+        unstable |= loo["positive_folds"] <= 1
+
+    if n > c0n and n > z and n > s and not unstable:
+        status = "COMPLEMENTARY-CANDIDATE"
+    elif n > z and n > s and not (n > c0n):
+        status = "MODEL-USES-AUX-BUT-NO-BENEFIT"
+    elif q <= 1e-4 and abs(n - z) < 0.01 and abs(n - s) < 0.01:
+        status = "NO-AUX-USAGE"
     elif unstable:
-        d["status"] = "UNSTABLE"
+        status = "UNSTABLE"
     else:
-        d["status"] = "MIXED-EVIDENCE"
-    d["note"] = ("interpretation boundary: NEGATIVE here only means shared-backbone early "
-                 "fusion showed no complementarity evidence; IR/Depth learnability was "
-                 "already proven in Step 2. No significance claims on 6-val.")
-    return d
+        status = "MIXED-EVIDENCE"
+    return {
+        "normal": n,
+        "zero": z,
+        "shuffle": s,
+        "c0_normal": c0n,
+        "late10_median": late,
+        "best_pt_normal": best,
+        "final_aux_q": q,
+        "status": status,
+        "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless.",
+    }
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--project", default="runs/step3_earlyfusion")
+    p.add_argument("--c0-run", required=True)
+    p.add_argument("--c1-run", default="C1-I")
+    p.add_argument("--c2-run", default="C2-D")
+    p.add_argument("--expected-epochs", type=int, default=80)
     a = p.parse_args()
+
     project = Path(a.project)
-    evals = {}
-    for g in GROUPS:
-        evals[g] = json.loads((project / g / "eval_step3_causality.json").read_text(encoding="utf-8"))
-        growth = [json.loads(l) for l in
-                  (project / g / "step3_kernel_growth.jsonl").read_text().strip().splitlines()]
-        evals[g]["_growth"] = growth
-    summary = {"g8": g8_check(project), "groups": {}}
-    for g in ("C1-I", "C2-D"):
-        summary["groups"][g] = verdict(g, evals[g], evals["C0-N"], evals[g]["_growth"])
-    summary["groups"]["C0-N"] = {
-        "role": "null-path control (aux channels all-zero)",
-        "last_normal_val": evals["C0-N"]["last.pt"]["NORMAL"]["val"]["map50_95"],
-        "late10_median": evals["C0-N"]["late10"]["median"],
-        "final_aux_q": max(summary["groups"].get("C1-I", {}).get("final_aux_q", 0), 0) or None,
+    physical = {"C0-N": a.c0_run, "C1-I": a.c1_run, "C2-D": a.c2_run}
+    run_dirs = {g: project / name for g, name in physical.items()}
+
+    integrity = {
+        g: inspect_step3_run(path, a.expected_epochs, require_weights=True).to_dict()
+        for g, path in run_dirs.items()
     }
-    # C0-N kernel growth must stay exactly 0
-    c0_growth = evals["C0-N"]["_growth"]
-    c0_max = max((max(g["wI_norm"], g["wD_norm"], g["wM_norm"]) for g in c0_growth), default=0)
-    summary["C0N_aux_weights_strictly_zero"] = bool(c0_max == 0.0)
-    out = project / "_summary_step3.json"
-    out.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"G8: passed={summary['g8']['passed']} epochs={summary['g8']['epochs_compared']} "
-          f"mismatches={summary['g8']['mismatched_epochs']}")
-    print(f"C0-N aux weights strictly zero: {summary['C0N_aux_weights_strictly_zero']} "
-          f"(max={c0_max})")
+    failures = {g: r for g, r in integrity.items() if not r["passed"]}
+    if failures:
+        print(json.dumps(failures, indent=2, ensure_ascii=False))
+        raise RuntimeError("REFUSE_SUMMARY_WITH_INCOHERENT_RUNS")
+
+    evals = {}
+    for g, path in run_dirs.items():
+        eval_path = path / "eval_step3_causality.json"
+        evals[g] = json.loads(eval_path.read_text(encoding="utf-8"))
+        if evals[g].get("schema") != "step3-stock-validator-semantics-v2":
+            raise RuntimeError(f"{g}: evaluator schema is not the repaired authoritative v2")
+
+    summary = {
+        "schema": "step3-summary-v2",
+        "physical_runs": physical,
+        "integrity": integrity,
+        "g8": g8_check(run_dirs),
+        "groups": {},
+    }
+    c0 = evals["C0-N"]
+    summary["groups"]["C0-N"] = {
+        "role": "null-path control",
+        "last_normal_val": c0["last.pt"]["NORMAL"]["val"]["map50_95"],
+        "late10_median": c0["late10"].get("median"),
+    }
     for g in ("C1-I", "C2-D"):
-        d = summary["groups"][g]
-        print(f"{g}: N={d['normal']:.4f} Z={d['zero']:.4f} S={d['shuffle']:.4f} "
-              f"C0={d['c0_normal']:.4f} late10={d['late10_median']} best={d['best_pt_normal']:.4f} "
-              f"q={d['final_aux_q']:.4f} -> {d['status']}")
+        growth = _read_jsonl(run_dirs[g] / "step3_kernel_growth.jsonl")
+        summary["groups"][g] = verdict(evals[g], c0, growth)
+
+    out = project / "_summary_step3_v2.json"
+    out.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
     print("->", out)
 
 

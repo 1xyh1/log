@@ -496,3 +496,24 @@ def gate_g6b(contract: dict) -> dict:
 **P-C：因果评估当前输出全 0**——需在上述观察完成后区分"评估脚本残余 bug"与"模型真未学习"（C1-I/C2-D 的完整 80-epoch 权重仍可用来验证评估脚本）。
 
 **下一步（观察优先，未获指令不擅自改协议）**：用 C1-I/C2-D 完整权重验证评估脚本非零性；取 C1-I/C2-D results.csv 全 loss 轨迹；C0-N 重训恢复产物（或用 C1-I/C2-D 先行分析）；然后把观察结论报审阅者，由审阅者决定 R3 配方是否调整（任何 recipe 变化都需重新冻结）。
+
+---
+
+## 2026-08-15 · 板块 11：Recovery 完成 — 修复版评估器验证 + C0-r1 恢复 + 最终判级
+
+### 审阅者修复包执行（E:\google\step3_step4_reference_patch_20260814.zip，SHA256 校验一致）
+
+1. 补丁应用（备份 `_hotfix_backup_reference_20260815_001759`）；一处本地兼容修复：`reference_fusion_blocks.inspect_yolo26_backbone_taps` 兼容裸 DetectionModel（快照）与 YOLO 包装两种结构。
+2. 测试：test_step3_recovery_contract + test_reference_fusion_blocks + test_step3_contract **18 passed**。
+3. `validate_step3_run.py`：**C0-N FAIL（混合产物）、C1-I/C2-D PASS + legacy 警告** —— 与审阅者预期完全一致。
+4. **修复版 evaluator（schema v2，stock validator 语义）结果**：
+   - C1-I last.pt：NORMAL 0.2582 / ZERO 0.2653 / SHUFFLE 0.2427（train 0.973，all17 0.712，late10 median 0.2464）
+   - C2-D last.pt：NORMAL 0.2239 / ZERO 0.2260 / SHUFFLE 0.2426（train 0.993，all17 0.711，late10 median 0.2103）
+   - **与训练 validator 同量级 ✓ —— 旧评估器 0.0 确系 xywh→xyxy 手写转换 bug（P0-evaluator 修复有效）**
+5. **C0-N-r1 recovery 重训**（新 runner：formal/recovery 目录不可覆盖门禁 + actual-yield G8）：last.pt NORMAL 0.1968（N=Z=S 0.1968，符合零 aux 语义），late10 median 0.2035，integrity PASS。
+6. **`_summary_step3_v2.json` 最终判级**（C0 = C0-N-r1）：
+   - G8：80 epochs order/flip 全匹配（evidence_level=legacy_planned_or_mixed，C1/C2 为 legacy 轨迹）
+   - C0-N：null-path control，last NORMAL 0.1968
+   - C1-I：**MIXED-EVIDENCE**（N 0.258 > C0 0.197，但 N < Z 0.265；q=0.0106）
+   - C2-D：**MIXED-EVIDENCE**（N 0.224 > C0 0.197，N ≈ Z 0.226，N < S 0.243；q=0.0134）
+7. 解释边界（报告口径）：**Step 3-A 阴性 ≠ IR/Depth 无用**。当前证据说明共享 backbone 的 6ch early fusion 未挖出正确配对的互补增益（N 不优于 Z/S）；IR/Depth 可学性已由 Step 2 证明。下一步由审阅者裁决：进 Step 4（modality-specific encoder / feature-level fusion，参考模块 reference_fusion_blocks.py 已隔离就绪）或补 seed。

@@ -144,13 +144,13 @@ def stage_whitelist():
 
     注意：git add 多路径中任一不存在会整体中止，必须过滤为实际存在的路径。
     """
-    specs = ["src/multimodal", "scripts", "tests", "docs", "reports",
+    specs = ["src/multimodal", "scripts", "tests", "docs", "reports", "runs",
              MANIFEST_NAME, "watch_step3_source_mirror.py",
              "start_step3_source_mirror.bat", ".gitignore", "README.md"]
     existing = [s for s in specs if (MIRROR_REPO / s).exists()]
     if existing:
         git("add", "--", *existing, check=False)
-    tracked_dirs = [s for s in ("src/multimodal", "scripts", "tests", "docs", "reports")
+    tracked_dirs = [s for s in ("src/multimodal", "scripts", "tests", "docs", "reports", "runs")
                     if (MIRROR_REPO / s).exists()]
     if tracked_dirs:
         git("add", "-u", "--", *tracked_dirs, check=False)

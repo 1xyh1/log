@@ -1,0 +1,131 @@
+{
+  "schema": "step3-summary-v2",
+  "physical_runs": {
+    "C0-N": "C0-N-r1",
+    "C1-I": "C1-I",
+    "C2-D": "C2-D"
+  },
+  "integrity": {
+    "C0-N": {
+      "run_dir": "runs\\step3_earlyfusion\\C0-N-r1",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "C0-N-r1",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": "recovery",
+        "manifest_expected_epochs": 80,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "f0effc36ba8b8daef053b9ac905675ccb4b5a2256cb44a0c52e6884eaefd67ea",
+          "args_sha256": "86483f46560b65ba671fb9a0af3b02253410f1683d8626a1a6c88ad5c6e2ee3c",
+          "last_pt_sha256": "2dd16aeb1d6ffcee2ef9e06ff8acdf663531b3c0a66bda7052ac8ef2618cf8ba",
+          "best_pt_sha256": "58f83722985dd2d28e2d95b5a987405d6ea7937e5cf2f41df2b2e7b86ecb3150"
+        }
+      }
+    },
+    "C1-I": {
+      "run_dir": "runs\\step3_earlyfusion\\C1-I",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [
+        "LEGACY_MANIFEST_WITHOUT_RUN_KIND"
+      ],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "C1-I",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": null,
+        "manifest_expected_epochs": null,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "323d62a322c4d69002625098fdb5ddae3326cba8426439a69685e1c1f53699a2",
+          "args_sha256": "8860482bf62655c1b06a4d868a9c6bdb48418f965cb9395ce24ad87e19b5a03b",
+          "last_pt_sha256": "5b2122a16fdf392e9cdd5cb4d28aa2c08641e7d0f85902b33e4c064d9f7d8c35",
+          "best_pt_sha256": "53bcfb3485a9acd397c93e852b759908868da21057f5b91c24e957e975f8588f"
+        }
+      }
+    },
+    "C2-D": {
+      "run_dir": "runs\\step3_earlyfusion\\C2-D",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [
+        "LEGACY_MANIFEST_WITHOUT_RUN_KIND"
+      ],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "C2-D",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": null,
+        "manifest_expected_epochs": null,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "5656402d8e081c610b8b98b5bad7006529da9daefa0ccd5b9687d79c25cba2b7",
+          "args_sha256": "19749447a47dda22d7a88b9cc8ead80cbfe96f3ae28728b428682072935e88ed",
+          "last_pt_sha256": "6ff8cb707c6f6b415e2ef3761a538aa8e323dfc3b3daa21e210753c527980f37",
+          "best_pt_sha256": "6a282eba0ccf7bd399e378a50224056eb4455052473fe63ac2fecaa05474d3df"
+        }
+      }
+    }
+  },
+  "g8": {
+    "epochs_compared": 80,
+    "order_and_flip_hashes_match": true,
+    "mismatched_epochs": [],
+    "evidence_level": "legacy_planned_or_mixed",
+    "passed": true
+  },
+  "groups": {
+    "C0-N": {
+      "role": "null-path control",
+      "last_normal_val": 0.19682467532467532,
+      "late10_median": 0.2035
+    },
+    "C1-I": {
+      "normal": 0.2581785714285714,
+      "zero": 0.26525000000000004,
+      "shuffle": 0.24265816326530612,
+      "c0_normal": 0.19682467532467532,
+      "late10_median": 0.24639,
+      "best_pt_normal": 0.26615816326530606,
+      "final_aux_q": 0.010609452469482479,
+      "status": "MIXED-EVIDENCE",
+      "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless."
+    },
+    "C2-D": {
+      "normal": 0.22391428571428573,
+      "zero": 0.22603571428571428,
+      "shuffle": 0.24262142857142857,
+      "c0_normal": 0.19682467532467532,
+      "late10_median": 0.21031,
+      "best_pt_normal": 0.2482214285714286,
+      "final_aux_q": 0.013385602773476255,
+      "status": "MIXED-EVIDENCE",
+      "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless."
+    }
+  }
+}

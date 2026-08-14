@@ -1,16 +1,36 @@
 {
-  "generated_at_local": "2026-08-14T16:35:35.978895+08:00",
+  "generated_at_local": "2026-08-15T00:43:03.679143+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
+    "docs/PROBLEM_DIAGNOSIS.md": {
+      "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
+      "size_bytes": 2537,
+      "mtime_ns": 1786724234815732900
+    },
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
-      "sha256": "5bc6686604ca751e7babfad52d13cc380521eae9dd0e98f6fc7f53143cb1f7e0",
-      "size_bytes": 27332,
-      "mtime_ns": 1786696381108005000
+      "sha256": "28849a7498c0c6b1c8660374f75397b8d575baa05271d7da4a985fe24fa89562",
+      "size_bytes": 29492,
+      "mtime_ns": 1786725736580928400
+    },
+    "docs/STEP3_RECOVERY_RUNBOOK.md": {
+      "sha256": "34b79ac05a08e0df22ab091e913ede74c68b223adffd1bbedb8348c0bc603ac2",
+      "size_bytes": 4231,
+      "mtime_ns": 1786724234815732900
+    },
+    "docs/STEP4_REFERENCE_GUIDED_DESIGN.md": {
+      "sha256": "eb79ca4e8f40f44a78e80989f43f09e45cfb1a49e14e17cc973b74bfdfd45f56",
+      "size_bytes": 3893,
+      "mtime_ns": 1786724234815732900
+    },
+    "docs/reference_implementation_notes.md": {
+      "sha256": "f8235e2f5b385ba31ac1d70ef3984920310c12ae3efde5439a2686468221b4ca",
+      "size_bytes": 17895,
+      "mtime_ns": 1786724234841428600
     },
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786695614024692000
+      "mtime_ns": 1786725486833714900
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -21,6 +41,51 @@
       "sha256": "200cd8df3cf183290df1eb272effdc5fc7eb550d73434e46f21d12fdb7377b6d",
       "size_bytes": 3772,
       "mtime_ns": 1786694003556477000
+    },
+    "runs/step3_earlyfusion/C0-N-r1/args.yaml": {
+      "sha256": "86483f46560b65ba671fb9a0af3b02253410f1683d8626a1a6c88ad5c6e2ee3c",
+      "size_bytes": 1933,
+      "mtime_ns": 1786724997408910400
+    },
+    "runs/step3_earlyfusion/C0-N-r1/eval_step3_causality.json": {
+      "sha256": "a8ad2c8d4a63e19c244006333e530bf095a4f3cf6b1dc73a404b23e2152b8a86",
+      "size_bytes": 20654,
+      "mtime_ns": 1786725536158177100
+    },
+    "runs/step3_earlyfusion/C0-N-r1/manifest.json": {
+      "sha256": "c1ff4c10cee9f9daa22a47aa06b756453613eeda06bb4cdfd3a5f7c39d6e63b7",
+      "size_bytes": 809,
+      "mtime_ns": 1786724997472419100
+    },
+    "runs/step3_earlyfusion/C0-N-r1/results.csv": {
+      "sha256": "f0effc36ba8b8daef053b9ac905675ccb4b5a2256cb44a0c52e6884eaefd67ea",
+      "size_bytes": 12165,
+      "mtime_ns": 1786725304960111200
+    },
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786725486838208300
+    },
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786725486833714900
+    },
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786725486833714900
+    },
+    "runs/step3_earlyfusion/C0-N-r1/step3_g8_trace.jsonl": {
+      "sha256": "991ab989c3f69a19bdc8087decc08059097826d4b022e563ae02ee87b05faec3",
+      "size_bytes": 42710,
+      "mtime_ns": 1786725303943849600
+    },
+    "runs/step3_earlyfusion/C0-N-r1/step3_kernel_growth.jsonl": {
+      "sha256": "199029a0a2136248ac0de99f2432d50ce10dfdf974a010ee16bc8444aabdeb1a",
+      "size_bytes": 8631,
+      "mtime_ns": 1786725303944898800
     },
     "runs/step3_earlyfusion/C0-N/args.yaml": {
       "sha256": "69de3004d2bd3385b90159c6212ca317a482a2ecd447ef42456cd93df7f7d20c",
@@ -73,9 +138,9 @@
       "mtime_ns": 1786694167769039700
     },
     "runs/step3_earlyfusion/C1-I/eval_step3_causality.json": {
-      "sha256": "23650c5311da6a3a1e0a739dda3a99fff9db99b0c34fb47f7f9839f145916f81",
-      "size_bytes": 17659,
-      "mtime_ns": 1786695439156898300
+      "sha256": "94cd0bca2bb1fc8b3f8c9fd667b056228fd8715fef5e36328b5d6b2c1836a6eb",
+      "size_bytes": 20689,
+      "mtime_ns": 1786724891605605600
     },
     "runs/step3_earlyfusion/C1-I/manifest.json": {
       "sha256": "54851c8770c5c260682baacdfaf359eac00bf8ec03a45fd7349d86a843c38caa",
@@ -93,9 +158,9 @@
       "mtime_ns": 1786694819621164000
     },
     "runs/step3_earlyfusion/C1-I/shuffle_map_train.json": {
-      "sha256": "a7b396ea8a48d964b811309124e9240a38ac7f698b6cfef504ed6b1e028a8664",
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
       "size_bytes": 566,
-      "mtime_ns": 1786694819621164000
+      "mtime_ns": 1786724845583960200
     },
     "runs/step3_earlyfusion/C1-I/shuffle_map_val.json": {
       "sha256": "a503b81ac8dcf236173afbec4d130ad242aad0414de7b61c25d5579ad74814be",
@@ -118,9 +183,9 @@
       "mtime_ns": 1786694466001217800
     },
     "runs/step3_earlyfusion/C2-D/eval_step3_causality.json": {
-      "sha256": "575e9514cab5e5def7fae7da3f1834def761fa4c9aed0ce1c7e0b69a8b59d620",
-      "size_bytes": 17523,
-      "mtime_ns": 1786695493592925500
+      "sha256": "18a57adc8dbdbd8eeac0dd3f14d70f7fdb936c98438e235ccea07dc6ef49b248",
+      "size_bytes": 20602,
+      "mtime_ns": 1786724940560861400
     },
     "runs/step3_earlyfusion/C2-D/manifest.json": {
       "sha256": "96a01e523fc8ad25286b9c4b7cf1e77f7f7bca0f8dfac3f4cd6d1d2e76aca11a",
@@ -138,9 +203,9 @@
       "mtime_ns": 1786694823440250000
     },
     "runs/step3_earlyfusion/C2-D/shuffle_map_train.json": {
-      "sha256": "a7b396ea8a48d964b811309124e9240a38ac7f698b6cfef504ed6b1e028a8664",
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
       "size_bytes": 566,
-      "mtime_ns": 1786694823440250000
+      "mtime_ns": 1786724895624690800
     },
     "runs/step3_earlyfusion/C2-D/shuffle_map_val.json": {
       "sha256": "a503b81ac8dcf236173afbec4d130ad242aad0414de7b61c25d5579ad74814be",
@@ -157,6 +222,11 @@
       "size_bytes": 13829,
       "mtime_ns": 1786694762395360500
     },
+    "runs/step3_earlyfusion/_summary_step3_v2.json": {
+      "sha256": "3daf7d90875dfa131a1942896b296af4f682958ca336e6165af2d3cc0e46521c",
+      "size_bytes": 4558,
+      "mtime_ns": 1786725573623339100
+    },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
       "size_bytes": 540,
@@ -172,10 +242,15 @@
       "size_bytes": 14411,
       "mtime_ns": 1786634174849724700
     },
+    "scripts/diagnose_step3_training.py": {
+      "sha256": "1e44f97b899419636bb1dab897bf4424b452c6c15fc940ff1976890af3ef46ce",
+      "size_bytes": 2696,
+      "mtime_ns": 1786724234820117200
+    },
     "scripts/eval_step3_causality.py": {
-      "sha256": "a3d70648a83e0133184280db9da2f861eeddd4e79c1c156a4abb9408e4fbe3c4",
-      "size_bytes": 10928,
-      "mtime_ns": 1786695256038250100
+      "sha256": "2fd55cb342e34a2eb47c232bc6edcecfc19f6ad71d8f17938a6a6b0b57ede97c",
+      "size_bytes": 10913,
+      "mtime_ns": 1786724234820117200
     },
     "scripts/inspect_weights_safe.py": {
       "sha256": "1c8db987f4a8f6a096504d8565a80c0283ab5aee8dbf04d4c2011c736ba0a822",
@@ -213,9 +288,9 @@
       "mtime_ns": 1786635093690918900
     },
     "scripts/run_step3_earlyfusion.py": {
-      "sha256": "4b0aaa2421d107106b6863117a486c7b5feb921c71b9e8b6ec846299c7e8ac8d",
-      "size_bytes": 11066,
-      "mtime_ns": 1786695648215080200
+      "sha256": "1db6b4a8d642cdba919ecce306157ee6ccc86277e11df72e961d7d53c168d014",
+      "size_bytes": 13974,
+      "mtime_ns": 1786724234824578000
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -223,9 +298,9 @@
       "mtime_ns": 1786635943303950300
     },
     "scripts/summarize_step3.py": {
-      "sha256": "abbb0c18e3de88aebe01f7bd6c2901bf665efa83c675b342dd8e77faab08b5ec",
-      "size_bytes": 4831,
-      "mtime_ns": 1786693218477381900
+      "sha256": "ccd20749568e567237ffa9ef1bb2df663249affd8a0ae004817794a91c633a82",
+      "size_bytes": 5183,
+      "mtime_ns": 1786724234824578000
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -236,6 +311,11 @@
       "sha256": "a871c5b6d335c439c632b8d59bb6a138abd403d1fe87687e1fb12e588783b0a9",
       "size_bytes": 734,
       "mtime_ns": 1785970370000000000
+    },
+    "scripts/validate_step3_run.py": {
+      "sha256": "0330a3d51196dd8085a0c9bc445815368b284c980dcfc5d3bb098582b88f1511",
+      "size_bytes": 1045,
+      "mtime_ns": 1786724234825876400
     },
     "scripts/verify_cloud_runtime.py": {
       "sha256": "0e013b348c464acbc89d77d54ea822d4effe87122619ddba9c4ab42091020075",
@@ -262,10 +342,45 @@
       "size_bytes": 11451,
       "mtime_ns": 1786693893289839000
     },
+    "src/multimodal/reference_fusion_blocks.py": {
+      "sha256": "521140d0c32bb958452a3bf4b7862ce3193763685115c38479093425a7bb13d8",
+      "size_bytes": 12884,
+      "mtime_ns": 1786724553375159200
+    },
+    "src/multimodal/run_integrity.py": {
+      "sha256": "392ac51e77e8ddfc34951829916390eb6e5346fdeceb2a0f7e1050f3fc8eb9a4",
+      "size_bytes": 7127,
+      "mtime_ns": 1786724234828403600
+    },
+    "src/multimodal/step3_eval_utils.py": {
+      "sha256": "387eaa50a982ed61bdd21cbe3a07268880e08295ad1ba688d4f8180a321e864c",
+      "size_bytes": 6678,
+      "mtime_ns": 1786724234828403600
+    },
+    "src/multimodal/trainability.py": {
+      "sha256": "2360f7fa03838c3c5aa446210f1ea1b9e8d8fda597e7451c4653f887f4cb7fc0",
+      "size_bytes": 1685,
+      "mtime_ns": 1786724234832899300
+    },
     "src/multimodal/trimodal_dataset.py": {
-      "sha256": "eb81551609f26053cdcc4f0b307330ede57d4ad463342866637e30b7d8d23e11",
-      "size_bytes": 7982,
-      "mtime_ns": 1786692818103746700
+      "sha256": "4a2623a7baa5a888003b756236b40011f55a5fa92ccbdcf6bf222d83256cecbf",
+      "size_bytes": 6919,
+      "mtime_ns": 1786724234832899300
+    },
+    "tests/.pytest_cache/CACHEDIR.TAG": {
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191,
+      "mtime_ns": 1786724234832899300
+    },
+    "tests/.pytest_cache/README.md": {
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302,
+      "mtime_ns": 1786724234835819600
+    },
+    "tests/.pytest_cache/v/cache/nodeids": {
+      "sha256": "ade84d1f77f1bd757eccedda1f3c94b67ee3ded1062746011cea66da8eee7cba",
+      "size_bytes": 1123,
+      "mtime_ns": 1786724234837327400
     },
     "tests/test_checkpoint.py": {
       "sha256": "62ac9efef4f7ef9846be60c44715439c4fbd2cd242fbf7c5b344db5e3b284ced",
@@ -302,6 +417,11 @@
       "size_bytes": 942,
       "mtime_ns": 1786473844295846400
     },
+    "tests/test_reference_fusion_blocks.py": {
+      "sha256": "68bbb8054e1d79cd200d5065d73ecd1d460bbedf9d2df69deda74db7d30df43f",
+      "size_bytes": 4296,
+      "mtime_ns": 1786724234837327400
+    },
     "tests/test_reproducibility.py": {
       "sha256": "026ee717395c6efa4b1d46c0bde066a89aabd031c30f8247c154491465efc107",
       "size_bytes": 724,
@@ -311,37 +431,47 @@
       "sha256": "520e2fd50f2ba437ad9beca2bb791599b657c967a3c36411e13c6212419c301e",
       "size_bytes": 5334,
       "mtime_ns": 1786694170191312000
+    },
+    "tests/test_step3_recovery_contract.py": {
+      "sha256": "836caa468882656c3f27e1b9ee073e5e845ef2bdee01212258a4e7e8793e7a4b",
+      "size_bytes": 3853,
+      "mtime_ns": 1786724234841428600
     }
   },
   "changed_in_this_sync": [
+    "docs/PROBLEM_DIAGNOSIS.md",
     "docs/STEP3_IMPLEMENTATION_LOG.md",
-    "runs/step3_earlyfusion/C0-N/args.yaml",
-    "runs/step3_earlyfusion/C0-N/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C0-N/manifest.json",
-    "runs/step3_earlyfusion/C0-N/results.csv",
-    "runs/step3_earlyfusion/C0-N/shuffle_map_all17.json",
-    "runs/step3_earlyfusion/C0-N/shuffle_map_train.json",
-    "runs/step3_earlyfusion/C0-N/shuffle_map_val.json",
-    "runs/step3_earlyfusion/C0-N/step3_g8_trace.jsonl",
-    "runs/step3_earlyfusion/C0-N/step3_kernel_growth.jsonl",
-    "runs/step3_earlyfusion/C1-I/args.yaml",
+    "docs/STEP3_RECOVERY_RUNBOOK.md",
+    "docs/STEP4_REFERENCE_GUIDED_DESIGN.md",
+    "docs/reference_implementation_notes.md",
+    "runs/step3_earlyfusion/C0-N-r1/args.yaml",
+    "runs/step3_earlyfusion/C0-N-r1/eval_step3_causality.json",
+    "runs/step3_earlyfusion/C0-N-r1/manifest.json",
+    "runs/step3_earlyfusion/C0-N-r1/results.csv",
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_all17.json",
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_train.json",
+    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_val.json",
+    "runs/step3_earlyfusion/C0-N-r1/step3_g8_trace.jsonl",
+    "runs/step3_earlyfusion/C0-N-r1/step3_kernel_growth.jsonl",
     "runs/step3_earlyfusion/C1-I/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C1-I/manifest.json",
-    "runs/step3_earlyfusion/C1-I/results.csv",
-    "runs/step3_earlyfusion/C1-I/shuffle_map_all17.json",
     "runs/step3_earlyfusion/C1-I/shuffle_map_train.json",
-    "runs/step3_earlyfusion/C1-I/shuffle_map_val.json",
-    "runs/step3_earlyfusion/C1-I/step3_g8_trace.jsonl",
-    "runs/step3_earlyfusion/C1-I/step3_kernel_growth.jsonl",
-    "runs/step3_earlyfusion/C2-D/args.yaml",
     "runs/step3_earlyfusion/C2-D/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C2-D/manifest.json",
-    "runs/step3_earlyfusion/C2-D/results.csv",
-    "runs/step3_earlyfusion/C2-D/shuffle_map_all17.json",
     "runs/step3_earlyfusion/C2-D/shuffle_map_train.json",
-    "runs/step3_earlyfusion/C2-D/shuffle_map_val.json",
-    "runs/step3_earlyfusion/C2-D/step3_g8_trace.jsonl",
-    "runs/step3_earlyfusion/C2-D/step3_kernel_growth.jsonl",
-    "scripts/run_step3_earlyfusion.py"
+    "runs/step3_earlyfusion/_summary_step3_v2.json",
+    "scripts/diagnose_step3_training.py",
+    "scripts/eval_step3_causality.py",
+    "scripts/run_step3_earlyfusion.py",
+    "scripts/summarize_step3.py",
+    "scripts/validate_step3_run.py",
+    "src/multimodal/reference_fusion_blocks.py",
+    "src/multimodal/run_integrity.py",
+    "src/multimodal/step3_eval_utils.py",
+    "src/multimodal/trainability.py",
+    "src/multimodal/trimodal_dataset.py",
+    "tests/.pytest_cache/CACHEDIR.TAG",
+    "tests/.pytest_cache/README.md",
+    "tests/.pytest_cache/v/cache/nodeids",
+    "tests/test_reference_fusion_blocks.py",
+    "tests/test_step3_recovery_contract.py"
   ]
 }

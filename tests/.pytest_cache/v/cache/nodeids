@@ -1,0 +1,15 @@
+[
+  "test_reference_fusion_blocks.py::test_decorrelation_zero_input_finite",
+  "test_reference_fusion_blocks.py::test_frozen_rgb_bn_stats_unchanged_after_outer_train",
+  "test_reference_fusion_blocks.py::test_identity_concat_aux_kernel_gets_gradient",
+  "test_reference_fusion_blocks.py::test_identity_concat_is_exact_rgb_identity",
+  "test_reference_fusion_blocks.py::test_missing_modality_zero_is_finite",
+  "test_reference_fusion_blocks.py::test_residual_prompt_identity_initialization",
+  "test_reference_fusion_blocks.py::test_soft_gate_weights_sum_to_one_and_quality_prior_monotonic",
+  "test_reference_fusion_blocks.py::test_strict_projection_identical_and_orthogonal_cases",
+  "test_reference_fusion_blocks.py::test_yolo26_backbone_taps_are_p3_p4_p5_if_snapshot_available",
+  "test_step3_recovery_contract.py::test_eval_gt_conversion_matches_stock_prepare_batch",
+  "test_step3_recovery_contract.py::test_eval_perfect_prediction_scores_perfect_iou",
+  "test_step3_recovery_contract.py::test_run_integrity_rejects_overwritten_formal",
+  "test_step3_recovery_contract.py::test_run_integrity_rejects_stale_eval_hash"
+]

@@ -1,14 +1,7 @@
-"""Step 3-A TriModalDataset: float32 6ch [R,G,B,I,D,M] + labels + validator metadata.
+"""Step 3-A TriModalDataset: float32 6ch [R,G,B,I,D,M] + labels + audit metadata.
 
-Group channel masking (the ONLY content difference between groups):
-    C0-N [R,G,B,0,0,0]   C1-I [R,G,B,I,0,0]   C2-D [R,G,B,0,D,M]
-Sample dict contract (validator-compatible):
-    img (6,H,W) float32 [0,1] / cls (N,) / bboxes (N,4) normalized xywh
-    [cx,cy,w,h] in the FINAL 640x640 letterboxed space (loss/validator apply
-    xywh2xyxy internally) / batch_idx / im_file / ori_shape (h,w) /
-    ratio_pad ((r,r),(left,top)) / sample_id
-Deterministic epoch sampler: permutation = PRNG(seed + epoch), precomputed per epoch
-by set_epoch so the trainer can record the actual yielded order hash (G8).
+This patch keeps the frozen representation unchanged.  The only protocol addition is
+`flip_applied`, which lets G8 hash the transform actually seen by the training loader.
 """
 from __future__ import annotations
 
@@ -21,7 +14,6 @@ import torch
 from torch.utils.data import Dataset, Sampler
 
 from multimodal import modality_preprocess as mp
-from multimodal import raw_sample_index as rsi
 
 GROUPS = {
     "C0-N": {"I": False, "D": False, "M": False},
@@ -31,27 +23,25 @@ GROUPS = {
 
 
 class DeterministicEpochSampler(Sampler):
-    """permutation = torch.randperm(generator=manual_seed(seed+epoch)); precomputed in set_epoch."""
+    """Permutation = torch.randperm(generator=manual_seed(seed + epoch))."""
 
     def __init__(self, n: int, seed: int, shuffle: bool = True):
-        self.n = n
-        self.seed = seed
-        self.shuffle = shuffle
+        self.n = int(n)
+        self.seed = int(seed)
+        self.shuffle = bool(shuffle)
         self.epoch = 0
-        self.perm = list(range(n))
+        self.perm = list(range(self.n))
 
     def set_epoch(self, epoch: int):
-        self.epoch = epoch
+        self.epoch = int(epoch)
         if self.shuffle:
-            g = torch.Generator().manual_seed(self.seed + epoch)
+            g = torch.Generator().manual_seed(self.seed + self.epoch)
             self.perm = torch.randperm(self.n, generator=g).tolist()
         else:
             self.perm = list(range(self.n))
 
     def order_sha256(self) -> str:
-        h = hashlib.sha256()
-        h.update(json.dumps(self.perm).encode("utf-8"))
-        return h.hexdigest()
+        return hashlib.sha256(json.dumps(self.perm).encode("utf-8")).hexdigest()
 
     def __iter__(self):
         return iter(self.perm)
@@ -62,9 +52,7 @@ class DeterministicEpochSampler(Sampler):
 
 def _read_labels(path: Path, r: float, left: int, top: int, new_unpad: tuple,
                  imgsz: int) -> tuple[np.ndarray, np.ndarray]:
-    """Label txt -> cls (N,) int64 + bboxes (N,4) normalized xywh [cx,cy,w,h] in the
-    FINAL letterboxed 640x640 space (what v8DetectionLoss / validator expect: they
-    apply xywh2xyxy internally). Flip later only maps cx -> 1 - cx."""
+    """YOLO label txt -> cls (N,1), bboxes normalized xywh in final letterbox space."""
     lines = path.read_text(encoding="utf-8").strip().splitlines()
     cls, boxes = [], []
     new_h, new_w = new_unpad
@@ -79,8 +67,8 @@ def _read_labels(path: Path, r: float, left: int, top: int, new_unpad: tuple,
         cls.append(int(c))
         boxes.append([cx_lb, cy_lb, w_lb, h_lb])
     if not cls:
-        return np.zeros((0,), dtype=np.int64), np.zeros((0, 4), dtype=np.float32)
-    return np.asarray(cls, dtype=np.int64), np.asarray(boxes, dtype=np.float32)
+        return np.zeros((0, 1), dtype=np.float32), np.zeros((0, 4), dtype=np.float32)
+    return np.asarray(cls, dtype=np.float32).reshape(-1, 1), np.asarray(boxes, dtype=np.float32)
 
 
 class TriModalDataset(Dataset):
@@ -88,31 +76,28 @@ class TriModalDataset(Dataset):
                  imgsz: int = 640, seed: int = 20260812, fliplr: float = 0.30393,
                  augment: bool = True, aux_id_map: dict | None = None,
                  aux_zero: bool = False):
-        """aux_id_map: {sample_id: donor_id} for SHUFFLE causality (aux planes come from
-        the donor, geometry/labels from the sample); aux_zero: force I/D/M planes to 0
-        (ZERO causality) - applied AFTER group masking, so active channels become 0."""
         if group not in GROUPS:
             raise ValueError(f"unknown group {group!r}")
         self.contract = contract
         self.split = split
         self.group = group
         self.mask = GROUPS[group]
-        self.imgsz = imgsz
-        self.seed = seed
-        self.fliplr = fliplr
-        self.augment = augment
+        self.imgsz = int(imgsz)
+        self.seed = int(seed)
+        self.fliplr = float(fliplr)
+        self.augment = bool(augment)
         self.aux_id_map = aux_id_map or {}
-        self.aux_zero = aux_zero
+        self.aux_zero = bool(aux_zero)
         self.epoch = 0
         self.raw_dir = Path(contract["_raw_dir"])
-        self.ids = contract[f"{split}_ids"]
-        self.label_files = {sid: Path(contract["_labels_dir"]) / f"{sid}.txt"
-                            for sid in self.ids}
-        # epoch sampler (train only)
-        self.sampler = DeterministicEpochSampler(len(self.ids), seed, shuffle=augment)
+        self.ids = list(contract[f"{split}_ids"])
+        self.label_files = {
+            sid: Path(contract["_labels_dir"]) / f"{sid}.txt" for sid in self.ids
+        }
+        self.sampler = DeterministicEpochSampler(len(self.ids), self.seed, shuffle=self.augment)
 
     def set_epoch(self, epoch: int):
-        self.epoch = epoch
+        self.epoch = int(epoch)
         self.sampler.set_epoch(epoch)
 
     def __len__(self):
@@ -127,11 +112,13 @@ class TriModalDataset(Dataset):
 
     def __getitem__(self, index: int):
         sid = self.ids[index]
-        rgb_p, ir_p, dep_p = self._paths(sid)
+        rgb_p, _, _ = self._paths(sid)
         lab_p = self.label_files[sid]
-        # SHUFFLE causality: aux planes come from the donor; geometry/labels stay with sid
+
+        # SHUFFLE causality: auxiliary planes come from donor; geometry/labels stay sid.
         aux_sid = self.aux_id_map.get(sid, sid)
         _, ir_aux_p, dep_aux_p = self._paths(aux_sid)
+
         ori = mp.load_rgb_rgb(str(rgb_p))
         h, w = ori.shape[:2]
         r, left, top, new_unpad = mp.letterbox_geometry(h, w, self.imgsz)
@@ -142,18 +129,22 @@ class TriModalDataset(Dataset):
         d_raw, m_raw = mp.depth_physical(str(dep_aux_p))
         d_plane, m_plane = mp.valid_aware_resize(d_raw, m_raw, self.imgsz)
 
-        if self.augment and mp.should_flip(self.seed, self.epoch, sid, self.fliplr):
+        flip_applied = bool(
+            self.augment and mp.should_flip(self.seed, self.epoch, sid, self.fliplr)
+        )
+        if flip_applied:
             rgb, i_plane, d_plane, m_plane = mp.apply_flip(
-                [rgb, i_plane, d_plane, m_plane], bboxes)
+                [rgb, i_plane, d_plane, m_plane], bboxes
+            )
 
-        # group channel masking (the ONLY content difference between groups)
         if not self.mask["I"]:
             i_plane = np.zeros_like(i_plane)
         if not self.mask["D"]:
             d_plane = np.zeros_like(d_plane)
         if not self.mask["M"]:
             m_plane = np.zeros_like(m_plane)
-        if self.aux_zero:  # ZERO causality: force active aux channels to 0
+
+        if self.aux_zero:
             if self.mask["I"]:
                 i_plane = np.zeros_like(i_plane)
             if self.mask["D"]:
@@ -161,35 +152,38 @@ class TriModalDataset(Dataset):
             if self.mask["M"]:
                 m_plane = np.zeros_like(m_plane)
 
-        img = np.stack([rgb[..., 0], rgb[..., 1], rgb[..., 2],
-                        i_plane, d_plane, m_plane], axis=0)  # (6, H, W) float32 [0,1]
+        img = np.stack(
+            [rgb[..., 0], rgb[..., 1], rgb[..., 2], i_plane, d_plane, m_plane],
+            axis=0,
+        )
         img = np.ascontiguousarray(img, dtype=np.float32)
         return {
             "img": img,
-            "cls": cls.reshape(-1, 1),  # (N,1): validator indexes with a 2D bool mask
-            "bboxes": bboxes,
-            "batch_idx": np.zeros(len(cls), dtype=np.float32),  # 1D (N,): validator masks with it
+            "cls": cls,  # (N,1)
+            "bboxes": bboxes,  # normalized xywh in final letterbox space
+            "batch_idx": np.zeros(len(cls), dtype=np.float32),  # stock contract: (N,)
             "im_file": str(rgb_p),
             "ori_shape": (h, w),
             "ratio_pad": ratio_pad,
             "sample_id": sid,
+            "aux_sample_id": aux_sid,
+            "flip_applied": flip_applied,
         }
 
     @staticmethod
     def collate_fn(batch):
-        """Locked copy of stock YOLODataset.collate_fn semantics (img stack, cls/bboxes cat,
-        unknown keys -> tuple), adapted for numpy sample tensors. img is float32 [0,1];
-        stock preprocess /255 is NOT applied to Step-3 batches (Trainer/Validator override)."""
+        """Stock-like YOLO collate semantics, preserving custom metadata as tuples."""
         new_batch = {}
         keys = batch[0].keys()
         values = list(zip(*[list(b.values()) for b in batch]))
-        for i, k in enumerate(keys):
-            v = values[i]
-            if k == "img":
-                v = torch.stack([torch.as_tensor(x) for x in v], 0)
-            elif k in {"cls", "bboxes"}:
-                v = torch.cat([torch.as_tensor(x) for x in v], 0)
-            new_batch[k] = v
+        for i, key in enumerate(keys):
+            value = values[i]
+            if key == "img":
+                value = torch.stack([torch.as_tensor(x) for x in value], 0)
+            elif key in {"cls", "bboxes"}:
+                value = torch.cat([torch.as_tensor(x) for x in value], 0)
+            new_batch[key] = value
+
         bidx = [torch.as_tensor(x) + i for i, x in enumerate(new_batch["batch_idx"])]
         new_batch["batch_idx"] = torch.cat(bidx, 0)
         return new_batch
