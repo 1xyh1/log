@@ -125,6 +125,7 @@ def main():
                 if isinstance(v, torch.Tensor):
                     batch[k] = v.to(self.device, non_blocking=self.device.type == "cuda")
             batch["img"] = batch["img"].half() if self.args.half else batch["img"].float()
+            print(f"DEBUG preprocess: img={tuple(batch['img'].shape)}")
             # NO /255: input is already float32 [0,1]
             return batch
 
@@ -147,6 +148,8 @@ def main():
     growth = []
 
     def on_epoch_start(trainer):
+        print(f"DEBUG on_epoch_start: model={type(trainer.model).__name__} "
+              f"stem={tuple(trainer.model.model[0].conv.weight.shape)}")
         ds = getattr(trainer, "_epoch_dataset", None)
         if ds is not None:
             ds.set_epoch(trainer.epoch)  # RANK=-1: stock never calls set_epoch
