@@ -25,6 +25,8 @@ EXCLUDED = {
         "depth_format": "3-channel uint8 JPG (not uint16 metric)",
     }
 }
+CLASS_NAMES = {0: "person", 1: "boat", 2: "animal", 3: "seat", 4: "sign", 5: "bicycle",
+               6: "car", 7: "ball", 8: "light", 9: "garbage can", 10: "uav", 11: "tricycle"}
 GROUPING_RULE = "first_id_field_proxy_v1"
 RAW_DEFAULT = "D:/pycharm/Python Develop/YOLO_1/sample_multimodal"
 SPLIT_DEFAULT = "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample"
@@ -53,7 +55,8 @@ def read_label_classes(path: Path) -> list[int]:
 
 METRIC_RGB_SHAPE = (1080, 1920)
 EXCLUDED_EXPECTED = {"00000008": {"rgb": (360, 640, 3), "ir": (360, 640, 3),
-                                  "depth": (360, 640, 3)}}
+                                  "depth": (360, 640, 3)},
+                    "dtypes": {"rgb": "uint8", "ir": "uint8", "depth": "uint8"}}
 
 
 def audit_raw_format(raw: Path, sid: str) -> dict:
