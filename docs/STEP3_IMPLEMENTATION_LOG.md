@@ -418,3 +418,19 @@ def gate_g6b(contract: dict) -> dict:
 3. 三个 roundtrip 测试（head_nc12 / bbox overlay / ratio_pad roundtrip）
 4. Runner（float 直通 Trainer/Validator、plots=False/cls_pw=0、batch fail-fast）+ G8 真实接管
 5. 三组 1-epoch smoke → seed12 × 80
+
+---
+
+## 2026-08-14 · 板块 7：修正后 G1–G7 全部重跑 PASS（旧 nc80 结果作废）
+
+修复链：`DetectionModel.load` 需完整 ckpt dict（非裸 state_dict）；8.4.56 的 DetectionModel 构建时**不设 .nc/.args 属性**（由训练时 set_model_attributes 设置）→ 构建 reference 时显式 `m.nc = nc; m.names = ...` 使快照自描述；G1a 格式审计兼容 ultralytics-patched cv2（IMREAD_UNCHANGED 可能返回 (H,W,1)，squeeze 处理）。
+
+**G4-G7 最终结果（reports/step3_gates_g4_g7.json）**：
+- G4：RGB 部分与 source stem 逐位相等、aux 部分 max_abs=0.0 ✓
+- G4b：reload 后 input_conv_in_channels=6、physical_head_nc=[12,12,12]、model/head nc=12、meta nc=12、init_seed=2026081200、source stem sha 一致、O2M、forward OK ✓
+- G5：ref3 与 m6 的 yaml/model/head end2end 全 False；nc 属性 12；**物理 cls-head 三尺度 out_channels = [12,12,12]** ✓
+- G6a：raw conv / conv+BN+SiLU / 最终 detector 输出 max_abs_diff **全为 0.0**（≤1e-5）✓
+- G6b：17 张全测，与官方 LetterBox transform 逐像素一致（max_abs_diff=0.0）✓
+- G7：C0-N rel=[0.912, 1.036, 1.052, **0, 0, 0**]；C1-I rel=[..., **1.546**, 0, 0]；C2-D rel=[..., 0, **2.043, 2.080**] —— inactive 通道梯度精确 0、active 通道为正 ✓
+- 快照：`step3_6ch_rgb_equiv_init.pt`，SHA256=594e1754...；source stem SHA256=25d9e6b8...
+- G1/G2/G3（板块 5 强化后）：all17 全 17 张三组语义全过、aux pad band 严格 0、18→17 格式审计与集合关系全过 ✓
