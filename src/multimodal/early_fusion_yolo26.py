@@ -60,6 +60,10 @@ def build_reference_3ch(weights: str = WEIGHTS_DEFAULT, nc: int = 12):
     m = DetectionModel(d, ch=3, nc=nc)
     ckpt = torch.load(weights, map_location="cpu", weights_only=False)
     m.load(ckpt)  # DetectionModel.load takes the full ckpt dict (reads weights["model"])
+    # 8.4.56 DetectionModel does NOT set .nc/.args in __init__ (trainer sets them via
+    # set_model_attributes); set explicitly so the snapshot is self-describing.
+    m.nc = nc
+    m.names = {i: str(i) for i in range(nc)}
     m.eval()
     return m
 

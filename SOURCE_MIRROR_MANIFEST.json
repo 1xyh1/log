@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-14T14:34:49.974962+08:00",
+  "generated_at_local": "2026-08-14T14:46:27.426578+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
@@ -93,9 +93,9 @@
       "mtime_ns": 1786677889955302600
     },
     "src/multimodal/early_fusion_yolo26.py": {
-      "sha256": "e7015aec60d8bb3e57f59246171cd4def9cfb94ab7051062194338066b92ec8b",
-      "size_bytes": 15205,
-      "mtime_ns": 1786688950289874900
+      "sha256": "599285ff98fe6b62916b52ec2702d101a25b450a291c447f869ff12e8e3b0c57",
+      "size_bytes": 15430,
+      "mtime_ns": 1786689940277385000
     },
     "src/multimodal/modality_preprocess.py": {
       "sha256": "92569ba363131762d2365438ee39dd444b8cad3f7a6ea5e3bdaeebb4298e302e",
@@ -154,35 +154,6 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/STEP3_IMPLEMENTATION_LOG.md",
-    "reports/step3_gates_g1_g2_g3.json",
-    "reports/step3_gates_g4_g7.json",
-    "scripts/audit_dataset.py",
-    "scripts/audit_step3_data.py",
-    "scripts/build_step2_modality_datasets.py",
-    "scripts/inspect_weights_safe.py",
-    "scripts/local_checkpoint_smoke.py",
-    "scripts/make_group_split.py",
-    "scripts/make_overfit_split.py",
-    "scripts/predict_submit.py",
-    "scripts/prepare_single_modality_baseline.py",
-    "scripts/run_step1_rgb_baselines.py",
-    "scripts/summarize_step1_rgb.py",
-    "scripts/train.py",
-    "scripts/train_official_baseline.py",
-    "scripts/verify_cloud_runtime.py",
-    "src/multimodal/__init__.py",
-    "src/multimodal/early_fusion_yolo26.py",
-    "src/multimodal/modality_preprocess.py",
-    "src/multimodal/raw_sample_index.py",
-    "src/multimodal/trimodal_dataset.py",
-    "tests/test_checkpoint.py",
-    "tests/test_config.py",
-    "tests/test_data.py",
-    "tests/test_inference.py",
-    "tests/test_metrics_submission.py",
-    "tests/test_modules.py",
-    "tests/test_overfit_split.py",
-    "tests/test_reproducibility.py"
+    "src/multimodal/early_fusion_yolo26.py"
   ]
 }
