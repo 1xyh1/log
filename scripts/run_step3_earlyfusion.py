@@ -160,7 +160,7 @@ def main():
 
     def on_epoch_end(trainer):
         w = trainer.model.model[0].conv.weight.detach().cpu().float()
-        rgb_mean = w[:, 0:3].norm(dim=(1, 2, 3)).mean().item()
+        rgb_mean = sum(float(w[:, c].norm()) for c in range(3)) / 3.0
         growth.append({"epoch": trainer.epoch + 1,
                        "wI_norm": float(w[:, 3].norm()),
                        "wD_norm": float(w[:, 4].norm()),
