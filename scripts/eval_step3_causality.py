@@ -84,6 +84,8 @@ def eval_set(model, dataset, device, names) -> dict:
             out = model._predict_once(img)
             if isinstance(out, dict):
                 out = out["one2many"]
+            elif isinstance(out, (tuple, list)):
+                out = out[0]  # eval-mode Detect returns (y, x)
             preds = non_max_suppression(out, conf_thres=0.001, iou_thres=0.7,
                                         nc=int(model.model[-1].nc), max_det=100)[0]
             gt_cls = torch.as_tensor(sample["cls"], dtype=torch.float32).squeeze(-1)
