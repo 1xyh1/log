@@ -32,7 +32,7 @@ def match_predictions(pred_classes, true_classes, iou, iouv):
     """Copy of BaseValidator.match_predictions semantics (ultralytics 8.4.56,
     engine/validator.py) — 10-threshold greedy per-image matching."""
     correct = np.zeros((pred_classes.shape[0], iouv.shape[0])).astype(bool)
-    correct_class = true_classes[:, None] == pred_classes
+    correct_class = (true_classes[:, None] == pred_classes).cpu().numpy()
     for i in range(len(iouv)):
         x = torch.where(iou >= iouv[i])
         if x[0].shape[0]:
@@ -138,6 +138,8 @@ def main():
     a = p.parse_args()
 
     contract = build_contract(out_path=a.contract)
+    a.device = ("cuda:0" if a.device in {"0", "cuda"} and torch.cuda.is_available()
+                else ("cpu" if a.device in {"0", "cuda"} else a.device))
     import yaml as _yaml
     names = _yaml.safe_load(Path(
         "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml")
@@ -161,7 +163,9 @@ def main():
                "late10": late10(run_dir)}
     for ck_name in ("last.pt", "best.pt"):
         ck = torch.load(run_dir / "weights" / ck_name, map_location="cpu", weights_only=False)
-        model = ck["model"]
+        # 8.4.56 saves the nn.Module-passed model under "ema" (ckpt["model"] is None);
+        # EMA weights are also the standard evaluation choice (validator uses ema).
+        model = (ck.get("ema") or ck.get("model")).float()  # trainer saves ema in half
         model.eval()
         model = model.to(a.device)
         results[ck_name] = {}
@@ -180,11 +184,11 @@ def main():
 
     # val6 leave-one-out sensitivity (last.pt, NORMAL; diagnostic only)
     if a.group != "C0-N":
-        base_ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu",
-                             weights_only=False)["model"].eval().to(a.device)
+        _bc = torch.load(run_dir / "weights" / "last.pt", map_location="cpu", weights_only=False)
+        base_ck = (_bc.get("ema") or _bc.get("model")).float().eval().to(a.device)
         c0_dir = Path(a.project) / "C0-N"
-        c0_ck = torch.load(c0_dir / "weights" / "last.pt", map_location="cpu",
-                           weights_only=False)["model"].eval().to(a.device)
+        _c0 = torch.load(c0_dir / "weights" / "last.pt", map_location="cpu", weights_only=False)
+        c0_ck = (_c0.get("ema") or _c0.get("model")).float().eval().to(a.device)
         val_ids = contract["val_ids"]
         deltas = []
         fold_support = []
