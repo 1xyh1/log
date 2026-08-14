@@ -1,7 +1,7 @@
 {
   "init": {
     "snapshot": "step3_6ch_rgb_equiv_init.pt",
-    "snapshot_sha256": "594e175482716e9e1ed2385d894a6817dca759a154d7d54eb39d9920ab6ce129",
+    "snapshot_sha256": "a422584502e94afb6ae94b279de96929b4cf00b94071ec2cee5a71441dccc430",
     "source_stem_sha256": "25d9e6b87ced7c9ccd24d946fd0ff5d3a986f0a0054c0df146e7dc3460798ff6",
     "channel_semantics": [
       "R",

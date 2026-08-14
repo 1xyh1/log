@@ -54,6 +54,7 @@ def build_reference_3ch(weights: str = WEIGHTS_DEFAULT, nc: int = 12):
     transfer - standard COCO->12-class fine-tuning.
     """
     from ultralytics.nn.tasks import DetectionModel, yaml_model_load
+    from multimodal.raw_sample_index import CLASS_NAMES
     d = yaml_model_load("yolo26s.yaml")
     d["nc"] = nc
     d["end2end"] = False
@@ -63,7 +64,7 @@ def build_reference_3ch(weights: str = WEIGHTS_DEFAULT, nc: int = 12):
     # 8.4.56 DetectionModel does NOT set .nc/.args in __init__ (trainer sets them via
     # set_model_attributes); set explicitly so the snapshot is self-describing.
     m.nc = nc
-    m.names = {i: str(i) for i in range(nc)}
+    m.names = {i: CLASS_NAMES[i] for i in range(nc)}  # real 12-class names
     m.eval()
     return m
 
@@ -81,6 +82,7 @@ def build_6ch(reference, weights: str = WEIGHTS_DEFAULT, save_snapshot: str = SN
         new_conv.weight.zero_()
         new_conv.weight[:, 0:3].copy_(src_stem)
     first.conv = new_conv
+    m6.yaml["channels"] = 6  # keep YAML metadata in sync with the physical 6ch structure
     m6.eval()
     snapshot = Path(save_snapshot)
     torch.save({"model": m6, "meta": {
@@ -150,6 +152,7 @@ def _compare(a, b) -> dict:
 
 def gate_g6a(ref3, m6) -> dict:
     """Model equivalence: same constructed RGB tensor, aux=0. raw conv / conv+bn+act / final."""
+    rng_state = torch.random.get_rng_state()  # gates must not pollute RNG (frozen protocol)
     torch.manual_seed(0)
     x3 = torch.rand(1, 3, 640, 640)
     x6 = torch.cat([x3, torch.zeros(1, 3, 640, 640)], dim=1)
@@ -178,6 +181,7 @@ def gate_g6a(ref3, m6) -> dict:
             raise RuntimeError(f"final output tensor count mismatch: {len(t3)} vs {len(t6)}")
         g_final = max((_compare(a, b) for a, b in zip(t3, t6)),
                       key=lambda d: d["max_abs_diff"])
+    torch.random.set_rng_state(rng_state)  # restore: gates must not pollute RNG
     thr = 1e-5
     passed = g_conv["max_abs_diff"] <= thr and g_block["max_abs_diff"] <= thr \
         and g_final["max_abs_diff"] <= thr

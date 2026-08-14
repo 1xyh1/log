@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-14T15:49:57.730525+08:00",
+  "generated_at_local": "2026-08-14T15:56:58.556164+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
@@ -7,15 +7,20 @@
       "size_bytes": 24827,
       "mtime_ns": 1786692569499495900
     },
+    "reports/step3_data_contract.json": {
+      "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+      "size_bytes": 23438,
+      "mtime_ns": 1786694175414105200
+    },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
       "size_bytes": 3968,
       "mtime_ns": 1786688322600550900
     },
     "reports/step3_gates_g4_g7.json": {
-      "sha256": "32b26f192e8b2a90fedd34c1a3fad2d92600d2c283e7a74f691decf91f7de0c1",
+      "sha256": "200cd8df3cf183290df1eb272effdc5fc7eb550d73434e46f21d12fdb7377b6d",
       "size_bytes": 3772,
-      "mtime_ns": 1786690119884039000
+      "mtime_ns": 1786694003556477000
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -33,9 +38,9 @@
       "mtime_ns": 1786634174849724700
     },
     "scripts/eval_step3_causality.py": {
-      "sha256": "78c41dcf614eabbf46ff4e37077323bda96914eec610b3e8ce14264f3899eb17",
-      "size_bytes": 10361,
-      "mtime_ns": 1786693752602030500
+      "sha256": "615d2686381a612f435755b3c6d29a17b454fd818fc7bc7e3490d53d7aeee540",
+      "size_bytes": 10367,
+      "mtime_ns": 1786693835962799200
     },
     "scripts/inspect_weights_safe.py": {
       "sha256": "1c8db987f4a8f6a096504d8565a80c0283ab5aee8dbf04d4c2011c736ba0a822",
@@ -73,9 +78,9 @@
       "mtime_ns": 1786635093690918900
     },
     "scripts/run_step3_earlyfusion.py": {
-      "sha256": "ed241f17333b45c614907426c84e42a6a0e189c94b92cf80ec9afc9a40d0fdde",
-      "size_bytes": 10719,
-      "mtime_ns": 1786692479080948800
+      "sha256": "2eb6e43b68799a98bc0eda8951b0a234149f8e67253a2ccca1ffe47d577236f8",
+      "size_bytes": 10894,
+      "mtime_ns": 1786693857918507300
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -108,9 +113,9 @@
       "mtime_ns": 1786677889955302600
     },
     "src/multimodal/early_fusion_yolo26.py": {
-      "sha256": "599285ff98fe6b62916b52ec2702d101a25b450a291c447f869ff12e8e3b0c57",
-      "size_bytes": 15430,
-      "mtime_ns": 1786689940277385000
+      "sha256": "ad0c23523c37791c32524a73029a108e43ac406d0e834ba79eaeecbe8f149f3b",
+      "size_bytes": 15781,
+      "mtime_ns": 1786693890778646900
     },
     "src/multimodal/modality_preprocess.py": {
       "sha256": "92569ba363131762d2365438ee39dd444b8cad3f7a6ea5e3bdaeebb4298e302e",
@@ -118,9 +123,9 @@
       "mtime_ns": 1786681255353500000
     },
     "src/multimodal/raw_sample_index.py": {
-      "sha256": "84cea329831162b868bb676e16c092210d897664edea15b1de2938259f9a3c04",
-      "size_bytes": 11131,
-      "mtime_ns": 1786693796792087700
+      "sha256": "9ce1c2bd9658f7091c9ccf13f5fb4615de988a4a0eb72c574d5256f04f13bce4",
+      "size_bytes": 11451,
+      "mtime_ns": 1786693893289839000
     },
     "src/multimodal/trimodal_dataset.py": {
       "sha256": "eb81551609f26053cdcc4f0b307330ede57d4ad463342866637e30b7d8d23e11",
@@ -166,10 +171,20 @@
       "sha256": "026ee717395c6efa4b1d46c0bde066a89aabd031c30f8247c154491465efc107",
       "size_bytes": 724,
       "mtime_ns": 1786473624058697400
+    },
+    "tests/test_step3_contract.py": {
+      "sha256": "520e2fd50f2ba437ad9beca2bb791599b657c967a3c36411e13c6212419c301e",
+      "size_bytes": 5334,
+      "mtime_ns": 1786694170191312000
     }
   },
   "changed_in_this_sync": [
+    "reports/step3_data_contract.json",
+    "reports/step3_gates_g4_g7.json",
     "scripts/eval_step3_causality.py",
-    "src/multimodal/raw_sample_index.py"
+    "scripts/run_step3_earlyfusion.py",
+    "src/multimodal/early_fusion_yolo26.py",
+    "src/multimodal/raw_sample_index.py",
+    "tests/test_step3_contract.py"
   ]
 }

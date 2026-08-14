@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from multimodal.raw_sample_index import build_contract, group_of, OUT_DEFAULT  # noqa: E402
 from multimodal.trimodal_dataset import GROUPS, TriModalDataset  # noqa: E402
 from ultralytics.utils.metrics import DetMetrics, box_iou  # noqa: E402
-from ultralytics.ops import non_max_suppression  # noqa: E402
+from ultralytics.utils.nms import non_max_suppression  # noqa: E402
 
 IOUV = torch.linspace(0.5, 0.95, 10)  # stock iouv
 

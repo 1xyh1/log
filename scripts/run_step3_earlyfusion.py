@@ -92,6 +92,8 @@ def main():
     a = p.parse_args()
 
     contract = json.loads(Path(a.contract).read_text(encoding="utf-8"))
+    a.project = str(Path(a.project).resolve())  # stock resolves relative project under
+    # settings.runs_dir (runs/detect) which forks the run dir away from our pre-checks
     model = load_snapshot(a.snapshot)
     model.nc = 12
     model.names = {int(k): v for k, v in contract["_names"].items()} if "_names" in contract \

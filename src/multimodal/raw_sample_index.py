@@ -110,10 +110,20 @@ def build_contract(raw_dir: str = RAW_DEFAULT, split_src: str = SPLIT_DEFAULT,
     for sid in EXCLUDED:
         f = raw_format_audit[sid]
         expected = EXCLUDED_EXPECTED[sid]
+        dtypes = EXCLUDED_EXPECTED["dtypes"]
         if not (f["rgb"]["shape"] == list(expected["rgb"])
                 and f["ir"]["shape"] == list(expected["ir"])
                 and f["depth"]["shape"] == list(expected["depth"])):
             raise RuntimeError(f"excluded {sid} observed format changed: {f} vs {expected}")
+        for mod in ("rgb", "ir", "depth"):
+            if f[mod]["dtype"] != dtypes[mod]:
+                raise RuntimeError(f"excluded {sid} {mod} dtype {f[mod]['dtype']} != "
+                                   f"expected {dtypes[mod]}")
+    excluded_uav_counts = {sid: read_label_classes(raw / "labels" / f"{sid}.txt").count(10)
+                           for sid in EXCLUDED}
+    for sid, n_uav in excluded_uav_counts.items():
+        if n_uav != 3:
+            raise RuntimeError(f"excluded {sid} UAV(10) GT count {n_uav} != 3 (contract)")
     bad_metric = sorted(sid for sid, ok in metric_ok.items()
                         if not ok and sid not in EXCLUDED)
     if bad_metric:
@@ -189,6 +199,7 @@ def build_contract(raw_dir: str = RAW_DEFAULT, split_src: str = SPLIT_DEFAULT,
             "observed_rgb_shape_dtype": [*v.shape, str(v.dtype)],
             "observed_depth_shape_dtype": [*d.shape, str(d.dtype)],
             "n_gt_boxes": len(read_label_classes(raw / "labels" / f"{sid}.txt")),
+            "n_uav_gt": excluded_uav_counts[sid],
         }
 
     contract = {
@@ -223,6 +234,10 @@ def build_contract(raw_dir: str = RAW_DEFAULT, split_src: str = SPLIT_DEFAULT,
     }
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     Path(out_path).write_text(json.dumps(contract, indent=2, ensure_ascii=False), encoding="utf-8")
+    # mirror copy into the repo reports/ so the review mirror sees the data contract
+    mirror = Path(__file__).resolve().parents[2] / "reports" / "step3_data_contract.json"
+    mirror.parent.mkdir(parents=True, exist_ok=True)
+    mirror.write_text(json.dumps(contract, indent=2, ensure_ascii=False), encoding="utf-8")
     return contract
 
 
