@@ -79,7 +79,10 @@ class Step3ValidatorMixin:
         return batch
 
 
-class Step3Validator(DetectionValidator, Step3ValidatorMixin):
+class Step3Validator(Step3ValidatorMixin, DetectionValidator):
+    """Mixin FIRST in MRO so our build_dataset/get_dataloader/preprocess overrides
+    actually win over DetectionValidator's (observed: reversed order silently shadowed
+    them and stock /255 + stock dataset ran on val)."""
     pass
 
 
@@ -135,6 +138,7 @@ def main():
             return batch
 
         def get_validator(self):
+            print("DEBUG Step3Trainer.get_validator called")
             v = Step3Validator(args=self.args, dataloader=None, save_dir=self.save_dir)
             v.step3_group = self.step3_group
             v.step3_contract = self.step3_contract
