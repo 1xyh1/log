@@ -29,6 +29,9 @@ from multimodal.early_fusion_yolo26 import (  # noqa: E402
     SNAPSHOT_DEFAULT, load_snapshot, sha256_file)
 from multimodal.raw_sample_index import build_contract, OUT_DEFAULT  # noqa: E402
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
+from ultralytics.models.yolo.detect.train import DetectionTrainer  # noqa: E402
+from ultralytics.models.yolo.detect.val import DetectionValidator  # noqa: E402
+from ultralytics.data.build import InfiniteDataLoader  # noqa: E402
 
 # R3-causal-earlyfusion-sample (frozen): R2-core optimizer/loss + augmentation off
 R3_KW = dict(
@@ -68,7 +71,7 @@ class Step3ValidatorMixin:
         return batch
 
 
-class Step3Validator(Step3ValidatorMixin):
+class Step3Validator(DetectionValidator, Step3ValidatorMixin):
     pass
 
 
@@ -90,11 +93,6 @@ def main():
     model.nc = 12
     model.names = {int(k): v for k, v in contract["_names"].items()} if "_names" in contract \
         else model.names
-
-    from ultralytics import YOLO
-    from ultralytics.models.yolo.detect.train import DetectionTrainer
-    from ultralytics.models.yolo.detect.val import DetectionValidator
-    from ultralytics.data.build import InfiniteDataLoader, _RepeatSampler
 
     class Step3Trainer(DetectionTrainer):
         def __init__(self, *args, **kwargs):
@@ -125,7 +123,6 @@ def main():
                 if isinstance(v, torch.Tensor):
                     batch[k] = v.to(self.device, non_blocking=self.device.type == "cuda")
             batch["img"] = batch["img"].half() if self.args.half else batch["img"].float()
-            print(f"DEBUG preprocess: img={tuple(batch['img'].shape)}")
             # NO /255: input is already float32 [0,1]
             return batch
 
@@ -140,49 +137,48 @@ def main():
               project=a.project, name=a.group, device=a.device,
               data=a.data_yaml, exist_ok=True)
 
-    y = YOLO("yolo26s.yaml")
-    y.model = model
-    y.trainer = None
+    # NOTE: bypass the YOLO wrapper entirely — YOLO.train() would build a STOCK
+    # DetectionTrainer and silently drop our Step3Trainer overrides (observed:
+    # stock preprocess /255 ran, 3ch model was rebuilt). Instantiate directly.
+    trainer = Step3Trainer(overrides=kw)
+    trainer.model = model
+    trainer.model.nc = 12
+    trainer.model.args = trainer.args  # v8DetectionLoss lazy-inits from model.args
 
     trace = []
     growth = []
 
-    def on_epoch_start(trainer):
-        print(f"DEBUG on_epoch_start: model={type(trainer.model).__name__} "
-              f"stem={tuple(trainer.model.model[0].conv.weight.shape)}")
-        ds = getattr(trainer, "_epoch_dataset", None)
+    def on_epoch_start(tr):
+        ds = getattr(tr, "_epoch_dataset", None)
         if ds is not None:
-            ds.set_epoch(trainer.epoch)  # RANK=-1: stock never calls set_epoch
+            ds.set_epoch(tr.epoch)  # RANK=-1: stock never calls set_epoch
             ordered_ids = [ds.ids[i] for i in ds.sampler.perm]
-            flip_bits = "".join("1" if mp.should_flip(ds.seed, trainer.epoch, sid, ds.fliplr)
+            flip_bits = "".join("1" if mp.should_flip(ds.seed, tr.epoch, sid, ds.fliplr)
                                 else "0" for sid in ordered_ids)
-            trace.append({"epoch": trainer.epoch,
+            trace.append({"epoch": tr.epoch,
                           "sample_order_sha256": ds.sampler.order_sha256(),
                           "flip_schedule_sha256": sha256_text(flip_bits),
-                          "batch": int(trainer.args.batch)})
+                          "batch": int(tr.args.batch)})
 
-    def on_epoch_end(trainer):
-        print(f"DEBUG on_epoch_end: model={type(trainer.model).__name__} "
-              f"stem={tuple(trainer.model.model[0].conv.weight.shape)} "
-              f"has_ema={trainer.ema is not None}")
-        w = trainer.model.model[0].conv.weight.detach().cpu().float()
+    def on_epoch_end(tr):
+        w = tr.model.model[0].conv.weight.detach().cpu().float()
         rgb_mean = sum(float(w[:, c].norm()) for c in range(3)) / 3.0
-        growth.append({"epoch": trainer.epoch + 1,
+        growth.append({"epoch": tr.epoch + 1,
                        "wI_norm": float(w[:, 3].norm()),
                        "wD_norm": float(w[:, 4].norm()),
                        "wM_norm": float(w[:, 5].norm()),
                        "qI": float(w[:, 3].norm()) / (rgb_mean + 1e-12),
                        "qD": float(w[:, 4].norm()) / (rgb_mean + 1e-12),
                        "qM": float(w[:, 5].norm()) / (rgb_mean + 1e-12),
-                       "batch": int(trainer.args.batch)})
-        if trainer.args.batch != trainer.step3_requested_batch:
+                       "batch": int(tr.args.batch)})
+        if tr.args.batch != tr.step3_requested_batch:
             raise RuntimeError(
-                f"ABORT_RESOURCE_PROFILE_CHANGED: requested batch={trainer.step3_requested_batch} "
-                f"but trainer batch={trainer.args.batch} (auto-reduction). All groups must "
+                f"ABORT_RESOURCE_PROFILE_CHANGED: requested batch={tr.step3_requested_batch} "
+                f"but trainer batch={tr.args.batch} (auto-reduction). All groups must "
                 f"retrain uniformly at batch=2/nbs=4.")
 
-    y.add_callback("on_train_epoch_start", on_epoch_start)
-    y.add_callback("on_train_epoch_end", on_epoch_end)
+    trainer.add_callback("on_train_epoch_start", on_epoch_start)
+    trainer.add_callback("on_train_epoch_end", on_epoch_end)
 
     run_dir = Path(a.project) / a.group
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -197,7 +193,7 @@ def main():
     (run_dir / "manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    y.train(**kw)
+    trainer.train()
 
     (run_dir / "step3_g8_trace.jsonl").write_text(
         "\n".join(json.dumps(t) for t in trace) + "\n", encoding="utf-8")
