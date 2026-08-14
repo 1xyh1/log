@@ -434,3 +434,11 @@ def gate_g6b(contract: dict) -> dict:
 - G7：C0-N rel=[0.912, 1.036, 1.052, **0, 0, 0**]；C1-I rel=[..., **1.546**, 0, 0]；C2-D rel=[..., 0, **2.043, 2.080**] —— inactive 通道梯度精确 0、active 通道为正 ✓
 - 快照：`step3_6ch_rgb_equiv_init.pt`，SHA256=594e1754...；source stem SHA256=25d9e6b8...
 - G1/G2/G3（板块 5 强化后）：all17 全 17 张三组语义全过、aux pad band 严格 0、18→17 格式审计与集合关系全过 ✓
+
+---
+
+## 2026-08-14 · 板块 8：Step 1/2 checkpoint 物理 head 实测审计（纠正板块 4 的错误推断）
+
+**实测结果（runs/step2_modality/step2_head_nc_audit.json）**：B0-D / B0-G / B1-A / B1-B / B2-A / B2-B 六个 last.pt 全部 **model_nc=12、head_nc=12、物理 cls-head 三尺度 out_channels=[12,12,12]**。
+
+**纠正**：板块 4 中"Step 1 (B0-*) trained 80-class physical heads"是从 Trainer 源码推断的表述，**实测不成立**——Ultralytics 8.4.56 在 YOLO 对象训练流程中实际重建了 12 类物理 head。Step 3 的 nc=12 快照构建方式（DetectionModel yaml nc 覆盖 + 显式 m.nc）与实测的 Step-1/2 检查点状态一致，P0-A 修正仍然正确（防御性显式构建），但"Step 1 是 80 类"的说法作废。结论口径：**Step 1/2 与 Step 3 全部为 12 类物理 head**。
