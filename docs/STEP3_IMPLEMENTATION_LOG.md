@@ -442,3 +442,33 @@ def gate_g6b(contract: dict) -> dict:
 **实测结果（runs/step2_modality/step2_head_nc_audit.json）**：B0-D / B0-G / B1-A / B1-B / B2-A / B2-B 六个 last.pt 全部 **model_nc=12、head_nc=12、物理 cls-head 三尺度 out_channels=[12,12,12]**。
 
 **纠正**：板块 4 中"Step 1 (B0-*) trained 80-class physical heads"是从 Trainer 源码推断的表述，**实测不成立**——Ultralytics 8.4.56 在 YOLO 对象训练流程中实际重建了 12 类物理 head。Step 3 的 nc=12 快照构建方式（DetectionModel yaml nc 覆盖 + 显式 m.nc）与实测的 Step-1/2 检查点状态一致，P0-A 修正仍然正确（防御性显式构建），但"Step 1 是 80 类"的说法作废。结论口径：**Step 1/2 与 Step 3 全部为 12 类物理 head**。
+
+---
+
+## 2026-08-14 · 板块 9：Runner 实现 + 三组 1-epoch smoke 全过 + G8 验证
+
+### `scripts/run_step3_earlyfusion.py`（新建）
+
+关键实现决策（全部经实证调试）：
+1. **绕过 YOLO 包装**：`YOLO.train()` 内部构建 stock DetectionTrainer，会静默丢弃自定义 Trainer 覆盖（实测：stock preprocess /255 运行、3ch 模型被重建）。改为直接实例化 `Step3Trainer(overrides=kw)`；`args.model` 必须传路径字符串占位（BaseTrainer.__init__ 的 check_model_file_from_stem 会对 args.model 做 Path()），构造后 `trainer.model = model`（setup_model 对 nn.Module 直接 return，不重建）。
+2. **float 直通**：`Step3Trainer.preprocess_batch` 与 `Step3Validator.preprocess` 搬设备/转 float，**不 /255**。
+3. **Validator MRO**：`class Step3Validator(Step3ValidatorMixin, DetectionValidator)` —— Mixin 必须在前，否则 DetectionValidator 的同名方法遮蔽覆盖（实测反序时 stock /255 与 stock 数据集在 val 上运行）。
+4. **训练内验证的 dataloader**：`BaseValidator.__call__` 的训练分支不重建 dataloader，必须由 `get_validator` 以 `self.test_loader` 构造参数传入（stock 行为）。
+5. **final_eval 覆盖为空**：stock final_eval 用 AutoBackend 按 data["channels"]=3 warmup → 6ch 模型崩溃；后置评估由 eval_step3_causality 接管，checkpoint 保留 optimizer 状态（weights_only=False 加载）。
+6. **Dataset 形状契约**（validator 兼容）：`cls` 为 (N,1)、`batch_idx` 为 (N,) 一维（validator 用其做布尔掩码索引 (N,4) 的 bboxes）。
+7. **G8**：`get_dataloader` 注入 DeterministicEpochSampler（shuffle=False + sampler=），`on_train_epoch_start` 显式 `dataset.set_epoch(epoch)`（RANK=-1 时 stock 不调）；每 epoch 记录 sample_order_sha256 + flip_schedule_sha256 + batch。
+8. **batch fail-fast**：on_train_epoch_end 检查 trainer.args.batch != requested → ABORT_RESOURCE_PROFILE_CHANGED。
+9. plots=False / cls_pw=0.0（stock plot_training_labels 会访问 dataset.labels）。
+10. kernel growth：每 epoch 记录 ‖W_I‖/‖W_D‖/‖W_M‖ + q 相对量（C0-N 必须恒 0）。
+
+### Smoke 结果（三组 × 1 epoch，seed 20260812）
+
+- C0-N：DONE epochs=1 batch_final=4；wI/wD/wM = **0.0**（aux 权重恒零 ✓）；训练内 val mAP 正常输出
+- C1-I：DONE batch_final=4；C2-D：DONE batch_final=4
+- **G8 epoch-0 三组一致 PASS**：order d849c57f...、flip db3dd74c... 完全相同
+- 显存：batch=4 时 GPU 仅 ~1.3GB，无需 batch=2 预案
+
+### 待办
+- eval_step3_causality.py / summarize_step3.py
+- 三组 × 80 epochs 正式训练
+- 四路因果 + LOO + 四类判级 + 打包
