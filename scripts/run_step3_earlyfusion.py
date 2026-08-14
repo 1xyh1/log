@@ -159,6 +159,9 @@ def main():
                           "batch": int(trainer.args.batch)})
 
     def on_epoch_end(trainer):
+        print(f"DEBUG on_epoch_end: model={type(trainer.model).__name__} "
+              f"stem={tuple(trainer.model.model[0].conv.weight.shape)} "
+              f"has_ema={trainer.ema is not None}")
         w = trainer.model.model[0].conv.weight.detach().cpu().float()
         rgb_mean = sum(float(w[:, c].norm()) for c in range(3)) / 3.0
         growth.append({"epoch": trainer.epoch + 1,
