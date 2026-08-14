@@ -140,6 +140,10 @@ def main():
     # NOTE: bypass the YOLO wrapper entirely — YOLO.train() would build a STOCK
     # DetectionTrainer and silently drop our Step3Trainer overrides (observed:
     # stock preprocess /255 ran, 3ch model was rebuilt). Instantiate directly.
+    # args.model must be a path string for BaseTrainer.__init__ (check_model_file_from_stem);
+    # the real 6ch model is injected right after construction (setup_model early-returns
+    # for nn.Module, so no yaml rebuild happens).
+    kw["model"] = "yolo26s.yaml"
     trainer = Step3Trainer(overrides=kw)
     trainer.model = model
     trainer.model.nc = 12
