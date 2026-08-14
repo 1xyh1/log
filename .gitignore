@@ -6,7 +6,6 @@
 *.png
 *.jpg
 *.jpeg
-runs/
 datasets/
 data/
 .venv/

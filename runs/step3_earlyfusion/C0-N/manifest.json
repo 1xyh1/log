@@ -1,0 +1,16 @@
+{
+  "group": "C0-N",
+  "snapshot": "step3_6ch_rgb_equiv_init.pt",
+  "initial_checkpoint_sha256": "a422584502e94afb6ae94b279de96929b4cf00b94071ec2cee5a71441dccc430",
+  "recipe": "R3-causal-earlyfusion-sample",
+  "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+  "requested_batch": 4,
+  "channel_semantics": [
+    "R",
+    "G",
+    "B",
+    "IR_scalar",
+    "log_depth",
+    "valid_mask"
+  ]
+}
