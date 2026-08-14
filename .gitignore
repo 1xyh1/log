@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Models / large outputs
+*.pt
+*.pth
+*.onnx
+*.engine
+*.zip
+
+runs/
+datasets/
+data/
+sample_multimodal/
+
+# Generated reports that may be large
+*.png
+*.jpg
+*.jpeg
+
+# Temporary
+*.tmp
+*.log
