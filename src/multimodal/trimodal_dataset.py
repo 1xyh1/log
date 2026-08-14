@@ -86,7 +86,11 @@ def _read_labels(path: Path, r: float, left: int, top: int, new_unpad: tuple,
 class TriModalDataset(Dataset):
     def __init__(self, contract: dict, split: str, group: str = "C1-I",
                  imgsz: int = 640, seed: int = 20260812, fliplr: float = 0.30393,
-                 augment: bool = True):
+                 augment: bool = True, aux_id_map: dict | None = None,
+                 aux_zero: bool = False):
+        """aux_id_map: {sample_id: donor_id} for SHUFFLE causality (aux planes come from
+        the donor, geometry/labels from the sample); aux_zero: force I/D/M planes to 0
+        (ZERO causality) - applied AFTER group masking, so active channels become 0."""
         if group not in GROUPS:
             raise ValueError(f"unknown group {group!r}")
         self.contract = contract
@@ -97,6 +101,8 @@ class TriModalDataset(Dataset):
         self.seed = seed
         self.fliplr = fliplr
         self.augment = augment
+        self.aux_id_map = aux_id_map or {}
+        self.aux_zero = aux_zero
         self.epoch = 0
         self.raw_dir = Path(contract["_raw_dir"])
         self.ids = contract[f"{split}_ids"]
@@ -123,14 +129,17 @@ class TriModalDataset(Dataset):
         sid = self.ids[index]
         rgb_p, ir_p, dep_p = self._paths(sid)
         lab_p = self.label_files[sid]
+        # SHUFFLE causality: aux planes come from the donor; geometry/labels stay with sid
+        aux_sid = self.aux_id_map.get(sid, sid)
+        _, ir_aux_p, dep_aux_p = self._paths(aux_sid)
         ori = mp.load_rgb_rgb(str(rgb_p))
         h, w = ori.shape[:2]
         r, left, top, new_unpad = mp.letterbox_geometry(h, w, self.imgsz)
         cls, bboxes = _read_labels(lab_p, r, left, top, new_unpad, self.imgsz)
 
         rgb, ratio_pad = mp.letterbox_rgb(ori, self.imgsz)
-        i_plane = mp.letterbox_scalar(mp.ir_median(str(ir_p)), self.imgsz)
-        d_raw, m_raw = mp.depth_physical(str(dep_p))
+        i_plane = mp.letterbox_scalar(mp.ir_median(str(ir_aux_p)), self.imgsz)
+        d_raw, m_raw = mp.depth_physical(str(dep_aux_p))
         d_plane, m_plane = mp.valid_aware_resize(d_raw, m_raw, self.imgsz)
 
         if self.augment and mp.should_flip(self.seed, self.epoch, sid, self.fliplr):
@@ -144,6 +153,13 @@ class TriModalDataset(Dataset):
             d_plane = np.zeros_like(d_plane)
         if not self.mask["M"]:
             m_plane = np.zeros_like(m_plane)
+        if self.aux_zero:  # ZERO causality: force active aux channels to 0
+            if self.mask["I"]:
+                i_plane = np.zeros_like(i_plane)
+            if self.mask["D"]:
+                d_plane = np.zeros_like(d_plane)
+            if self.mask["M"]:
+                m_plane = np.zeros_like(m_plane)
 
         img = np.stack([rgb[..., 0], rgb[..., 1], rgb[..., 2],
                         i_plane, d_plane, m_plane], axis=0)  # (6, H, W) float32 [0,1]
