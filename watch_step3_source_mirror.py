@@ -36,13 +36,18 @@ SYNC_PREFIXES = (
     "reports/step2_closing",
 )
 
+# 结果目录：只同步文本与必要图（results.png = val 曲线）
+RESULTS_PREFIX = "runs/step3_earlyfusion/"
+RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
+RESULTS_FIGURE_NAMES = {"results.png"}
+
 # 明确屏蔽
 BLOCK_SUFFIXES = {
     ".pt", ".pth", ".onnx", ".engine", ".zip", ".png", ".jpg", ".jpeg",
     ".pyc", ".log", ".tmp",
 }
 BLOCK_NAMES = {".env", "token", "key", "secret"}
-BLOCK_PATH_PARTS = {".venv", "__pycache__", ".git", "runs", "sample_multimodal",
+BLOCK_PATH_PARTS = {".venv", "__pycache__", ".git", "sample_multimodal",
                     "datasets", "data", "images", "labels"}
 
 MANIFEST_NAME = "SOURCE_MIRROR_MANIFEST.json"
@@ -73,17 +78,21 @@ def sha256(path: Path) -> str:
 
 def is_allowed(rel: Path) -> bool:
     s = rel.as_posix()
-    if not any(s == p.rstrip("/") or s.startswith(p) for p in SYNC_PREFIXES):
-        return False
     parts = set(rel.parts)
     if parts & BLOCK_PATH_PARTS:
-        return False
-    if rel.suffix.lower() in BLOCK_SUFFIXES:
         return False
     low = rel.name.lower()
     if any(low.startswith(b) for b in BLOCK_NAMES):
         return False
     if rel.name.startswith("."):
+        return False
+    if s.startswith(RESULTS_PREFIX):
+        if rel.suffix.lower() in RESULTS_TEXT_SUFFIXES:
+            return True
+        return rel.name in RESULTS_FIGURE_NAMES
+    if not any(s == p.rstrip("/") or s.startswith(p) for p in SYNC_PREFIXES):
+        return False
+    if rel.suffix.lower() in BLOCK_SUFFIXES:
         return False
     return True
 

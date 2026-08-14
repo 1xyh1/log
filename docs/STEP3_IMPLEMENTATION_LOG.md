@@ -472,3 +472,27 @@ def gate_g6b(contract: dict) -> dict:
 - eval_step3_causality.py / summarize_step3.py
 - 三组 × 80 epochs 正式训练
 - 四路因果 + LOO + 四类判级 + 打包
+
+---
+
+## 2026-08-14 · 板块 10：80-epoch 正式训练与因果评估 — 当前问题状态（观察中，未解决）
+
+### 已完成
+- 三组（C0-N/C1-I/C2-D）× 80 epochs 正式训练完成（batch=4、R3-causal-earlyfusion-sample、6ch 快照、G8 轨迹与 kernel growth 逐 epoch 记录）
+- eval_step3_causality.py / summarize_step3.py 实现；tests/test_step3_contract.py 5 项契约测试全过（trainer contract / head nc12 / ratio_pad roundtrip <1px / bbox overlay / matched schedule）
+- 评估脚本调试链（已修）：ckpt 模型在 `ema` 键（`ckpt["model"]` 为 None）且为 half → `.float()`；device "0"→"cuda:0"；match_predictions 的 numpy/cuda 混用；eval 模式 Detect 输出为 tuple `(y, x)` → 取 `out[0]`
+
+### 当前问题（观察中）
+
+**P-A：R3 配方（关闭 mosaic/几何增强）在 17 图上疑似不收敛。**
+- 证据（C0-N 重训 results.csv，epoch 1 vs epoch 80）：train/Loss 1.79 → 1.5x；**val mAP50-95 0.0386 (epoch1) → 0.00034 (epoch80)**，即训练使模型退化而非收敛
+- 对照：Step-2 B0-G（R2-neutral，mosaic=0.99 + mixup=0.05 + scale/translate）同预算 80 epochs 达到 0.237——增强是 11 张图 × 240 iterations 下训练信号的主要来源
+- 第一层回归 logits 训练后 max≈671（爆量），类置信度 max≈0.012
+- 输入管线已排除：preprocess_batch 实测 img max=1.0（无 /255 问题）；G6a epoch-0 等价 0.0 diff；G1-G7 全 PASS
+- 待观察/验证：train/Loss 全轨迹（C0-N csv 已被调试 smoke 覆盖，仅存 C1-I/C2-D 完整曲线）；EMA 参与验证的影响；epoch-1 的 0.039 是"预训练+随机头运气"还是"训练即刻破坏"
+
+**P-B：C0-N 的 80-epoch 产物被 1-epoch 调试 smoke 覆盖**（exist_ok=True 重跑导致 results.csv 只剩 1 行、weights 为 1-epoch 检查点）。C1-I/C2-D 产物完整。**纪律教训：正式 run 目录不可被 smoke 复用，smoke 必须用独立 --name。**
+
+**P-C：因果评估当前输出全 0**——需在上述观察完成后区分"评估脚本残余 bug"与"模型真未学习"（C1-I/C2-D 的完整 80-epoch 权重仍可用来验证评估脚本）。
+
+**下一步（观察优先，未获指令不擅自改协议）**：用 C1-I/C2-D 完整权重验证评估脚本非零性；取 C1-I/C2-D results.csv 全 loss 轨迹；C0-N 重训恢复产物（或用 C1-I/C2-D 先行分析）；然后把观察结论报审阅者，由审阅者决定 R3 配方是否调整（任何 recipe 变化都需重新冻结）。

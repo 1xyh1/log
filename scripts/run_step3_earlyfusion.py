@@ -128,6 +128,8 @@ def main():
                 if isinstance(v, torch.Tensor):
                     batch[k] = v.to(self.device, non_blocking=self.device.type == "cuda")
             batch["img"] = batch["img"].half() if self.args.half else batch["img"].float()
+            print(f"DEBUG preprocess img: shape={tuple(batch['img'].shape)} "
+                  f"max={float(batch['img'].max()):.4f} min={float(batch['img'].min()):.4f}")
             # NO /255: input is already float32 [0,1]
             return batch
 

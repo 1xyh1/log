@@ -1,16 +1,16 @@
 {
-  "generated_at_local": "2026-08-14T16:14:56.466467+08:00",
+  "generated_at_local": "2026-08-14T16:35:35.978895+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
-      "sha256": "9dfd01d54e2d3770c1540dd284cac647aee25a29f319478aa26045113e7fd28c",
-      "size_bytes": 24827,
-      "mtime_ns": 1786692569499495900
+      "sha256": "5bc6686604ca751e7babfad52d13cc380521eae9dd0e98f6fc7f53143cb1f7e0",
+      "size_bytes": 27332,
+      "mtime_ns": 1786696381108005000
     },
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786695241919562600
+      "mtime_ns": 1786695614024692000
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -21,6 +21,141 @@
       "sha256": "200cd8df3cf183290df1eb272effdc5fc7eb550d73434e46f21d12fdb7377b6d",
       "size_bytes": 3772,
       "mtime_ns": 1786694003556477000
+    },
+    "runs/step3_earlyfusion/C0-N/args.yaml": {
+      "sha256": "69de3004d2bd3385b90159c6212ca317a482a2ecd447ef42456cd93df7f7d20c",
+      "size_bytes": 1926,
+      "mtime_ns": 1786695653918079200
+    },
+    "runs/step3_earlyfusion/C0-N/eval_step3_causality.json": {
+      "sha256": "64951fe1a6878d299b25a1af0f19983c03536c935971462171dd932ef4359fa1",
+      "size_bytes": 15959,
+      "mtime_ns": 1786695375385978100
+    },
+    "runs/step3_earlyfusion/C0-N/manifest.json": {
+      "sha256": "d4bb6057acdb3c31b295ba1d48eb4b446ae3e12c09d2e4b025b5d85c259c31a0",
+      "size_bytes": 445,
+      "mtime_ns": 1786695653969226100
+    },
+    "runs/step3_earlyfusion/C0-N/results.csv": {
+      "sha256": "9e5dcd0b16d1fe83db2d0d5fa72f4a09bb81ba272940f22eff79089035da7281",
+      "size_bytes": 285,
+      "mtime_ns": 1786695659201528500
+    },
+    "runs/step3_earlyfusion/C0-N/shuffle_map_all17.json": {
+      "sha256": "27b049a56f334cfdff749e4293fc2b8f917475a5326aae0af2ab8421a32689c4",
+      "size_bytes": 846,
+      "mtime_ns": 1786693844430200800
+    },
+    "runs/step3_earlyfusion/C0-N/shuffle_map_train.json": {
+      "sha256": "a7b396ea8a48d964b811309124e9240a38ac7f698b6cfef504ed6b1e028a8664",
+      "size_bytes": 566,
+      "mtime_ns": 1786693844426176000
+    },
+    "runs/step3_earlyfusion/C0-N/shuffle_map_val.json": {
+      "sha256": "a503b81ac8dcf236173afbec4d130ad242aad0414de7b61c25d5579ad74814be",
+      "size_bytes": 283,
+      "mtime_ns": 1786693844430200800
+    },
+    "runs/step3_earlyfusion/C0-N/step3_g8_trace.jsonl": {
+      "sha256": "552248ce35b92d577803823a58aa7a306e286f05dc1a4d792112ec4f7e954a77",
+      "size_bytes": 209,
+      "mtime_ns": 1786695659786410300
+    },
+    "runs/step3_earlyfusion/C0-N/step3_kernel_growth.jsonl": {
+      "sha256": "4a2bd0194c4b0932c2b98db48a0150f4305f92d2ef0ee5173e5a91aa580a30eb",
+      "size_bytes": 107,
+      "mtime_ns": 1786695659786410300
+    },
+    "runs/step3_earlyfusion/C1-I/args.yaml": {
+      "sha256": "8860482bf62655c1b06a4d868a9c6bdb48418f965cb9395ce24ad87e19b5a03b",
+      "size_bytes": 1927,
+      "mtime_ns": 1786694167769039700
+    },
+    "runs/step3_earlyfusion/C1-I/eval_step3_causality.json": {
+      "sha256": "23650c5311da6a3a1e0a739dda3a99fff9db99b0c34fb47f7f9839f145916f81",
+      "size_bytes": 17659,
+      "mtime_ns": 1786695439156898300
+    },
+    "runs/step3_earlyfusion/C1-I/manifest.json": {
+      "sha256": "54851c8770c5c260682baacdfaf359eac00bf8ec03a45fd7349d86a843c38caa",
+      "size_bytes": 445,
+      "mtime_ns": 1786694167816157100
+    },
+    "runs/step3_earlyfusion/C1-I/results.csv": {
+      "sha256": "323d62a322c4d69002625098fdb5ddae3326cba8426439a69685e1c1f53699a2",
+      "size_bytes": 12159,
+      "mtime_ns": 1786694460547224000
+    },
+    "runs/step3_earlyfusion/C1-I/shuffle_map_all17.json": {
+      "sha256": "27b049a56f334cfdff749e4293fc2b8f917475a5326aae0af2ab8421a32689c4",
+      "size_bytes": 846,
+      "mtime_ns": 1786694819621164000
+    },
+    "runs/step3_earlyfusion/C1-I/shuffle_map_train.json": {
+      "sha256": "a7b396ea8a48d964b811309124e9240a38ac7f698b6cfef504ed6b1e028a8664",
+      "size_bytes": 566,
+      "mtime_ns": 1786694819621164000
+    },
+    "runs/step3_earlyfusion/C1-I/shuffle_map_val.json": {
+      "sha256": "a503b81ac8dcf236173afbec4d130ad242aad0414de7b61c25d5579ad74814be",
+      "size_bytes": 283,
+      "mtime_ns": 1786694819621164000
+    },
+    "runs/step3_earlyfusion/C1-I/step3_g8_trace.jsonl": {
+      "sha256": "44b864e0a6f770e219a0f0c327d60ea2ad3e61531619cdb35b59f9892a3032ad",
+      "size_bytes": 16790,
+      "mtime_ns": 1786694460976839700
+    },
+    "runs/step3_earlyfusion/C1-I/step3_kernel_growth.jsonl": {
+      "sha256": "993de7dd2c0fe1dcf280d4fba11e83676c8de403d5fbb21cb39a6326b037c049",
+      "size_bytes": 11267,
+      "mtime_ns": 1786694460976839700
+    },
+    "runs/step3_earlyfusion/C2-D/args.yaml": {
+      "sha256": "19749447a47dda22d7a88b9cc8ead80cbfe96f3ae28728b428682072935e88ed",
+      "size_bytes": 1927,
+      "mtime_ns": 1786694466001217800
+    },
+    "runs/step3_earlyfusion/C2-D/eval_step3_causality.json": {
+      "sha256": "575e9514cab5e5def7fae7da3f1834def761fa4c9aed0ce1c7e0b69a8b59d620",
+      "size_bytes": 17523,
+      "mtime_ns": 1786695493592925500
+    },
+    "runs/step3_earlyfusion/C2-D/manifest.json": {
+      "sha256": "96a01e523fc8ad25286b9c4b7cf1e77f7f7bca0f8dfac3f4cd6d1d2e76aca11a",
+      "size_bytes": 445,
+      "mtime_ns": 1786694466050507900
+    },
+    "runs/step3_earlyfusion/C2-D/results.csv": {
+      "sha256": "5656402d8e081c610b8b98b5bad7006529da9daefa0ccd5b9687d79c25cba2b7",
+      "size_bytes": 12181,
+      "mtime_ns": 1786694761893661000
+    },
+    "runs/step3_earlyfusion/C2-D/shuffle_map_all17.json": {
+      "sha256": "27b049a56f334cfdff749e4293fc2b8f917475a5326aae0af2ab8421a32689c4",
+      "size_bytes": 846,
+      "mtime_ns": 1786694823440250000
+    },
+    "runs/step3_earlyfusion/C2-D/shuffle_map_train.json": {
+      "sha256": "a7b396ea8a48d964b811309124e9240a38ac7f698b6cfef504ed6b1e028a8664",
+      "size_bytes": 566,
+      "mtime_ns": 1786694823440250000
+    },
+    "runs/step3_earlyfusion/C2-D/shuffle_map_val.json": {
+      "sha256": "a503b81ac8dcf236173afbec4d130ad242aad0414de7b61c25d5579ad74814be",
+      "size_bytes": 283,
+      "mtime_ns": 1786694823440250000
+    },
+    "runs/step3_earlyfusion/C2-D/step3_g8_trace.jsonl": {
+      "sha256": "44b864e0a6f770e219a0f0c327d60ea2ad3e61531619cdb35b59f9892a3032ad",
+      "size_bytes": 16790,
+      "mtime_ns": 1786694762395360500
+    },
+    "runs/step3_earlyfusion/C2-D/step3_kernel_growth.jsonl": {
+      "sha256": "36c5acc41e5801a14d7b1296e1775555746009bbaeaf29af67eb7eb1ac3b5c0a",
+      "size_bytes": 13829,
+      "mtime_ns": 1786694762395360500
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -78,9 +213,9 @@
       "mtime_ns": 1786635093690918900
     },
     "scripts/run_step3_earlyfusion.py": {
-      "sha256": "2eb6e43b68799a98bc0eda8951b0a234149f8e67253a2ccca1ffe47d577236f8",
-      "size_bytes": 10894,
-      "mtime_ns": 1786693857918507300
+      "sha256": "4b0aaa2421d107106b6863117a486c7b5feb921c71b9e8b6ec846299c7e8ac8d",
+      "size_bytes": 11066,
+      "mtime_ns": 1786695648215080200
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -179,6 +314,34 @@
     }
   },
   "changed_in_this_sync": [
-    "scripts/eval_step3_causality.py"
+    "docs/STEP3_IMPLEMENTATION_LOG.md",
+    "runs/step3_earlyfusion/C0-N/args.yaml",
+    "runs/step3_earlyfusion/C0-N/eval_step3_causality.json",
+    "runs/step3_earlyfusion/C0-N/manifest.json",
+    "runs/step3_earlyfusion/C0-N/results.csv",
+    "runs/step3_earlyfusion/C0-N/shuffle_map_all17.json",
+    "runs/step3_earlyfusion/C0-N/shuffle_map_train.json",
+    "runs/step3_earlyfusion/C0-N/shuffle_map_val.json",
+    "runs/step3_earlyfusion/C0-N/step3_g8_trace.jsonl",
+    "runs/step3_earlyfusion/C0-N/step3_kernel_growth.jsonl",
+    "runs/step3_earlyfusion/C1-I/args.yaml",
+    "runs/step3_earlyfusion/C1-I/eval_step3_causality.json",
+    "runs/step3_earlyfusion/C1-I/manifest.json",
+    "runs/step3_earlyfusion/C1-I/results.csv",
+    "runs/step3_earlyfusion/C1-I/shuffle_map_all17.json",
+    "runs/step3_earlyfusion/C1-I/shuffle_map_train.json",
+    "runs/step3_earlyfusion/C1-I/shuffle_map_val.json",
+    "runs/step3_earlyfusion/C1-I/step3_g8_trace.jsonl",
+    "runs/step3_earlyfusion/C1-I/step3_kernel_growth.jsonl",
+    "runs/step3_earlyfusion/C2-D/args.yaml",
+    "runs/step3_earlyfusion/C2-D/eval_step3_causality.json",
+    "runs/step3_earlyfusion/C2-D/manifest.json",
+    "runs/step3_earlyfusion/C2-D/results.csv",
+    "runs/step3_earlyfusion/C2-D/shuffle_map_all17.json",
+    "runs/step3_earlyfusion/C2-D/shuffle_map_train.json",
+    "runs/step3_earlyfusion/C2-D/shuffle_map_val.json",
+    "runs/step3_earlyfusion/C2-D/step3_g8_trace.jsonl",
+    "runs/step3_earlyfusion/C2-D/step3_kernel_growth.jsonl",
+    "scripts/run_step3_earlyfusion.py"
   ]
 }
