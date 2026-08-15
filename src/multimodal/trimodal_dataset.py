@@ -75,7 +75,7 @@ class TriModalDataset(Dataset):
     def __init__(self, contract: dict, split: str, group: str = "C1-I",
                  imgsz: int = 640, seed: int = 20260812, fliplr: float = 0.30393,
                  augment: bool = True, aux_id_map: dict | None = None,
-                 aux_zero: bool = False):
+                 aux_zero: bool = False, exclude_ids: set[str] | None = None):
         if group not in GROUPS:
             raise ValueError(f"unknown group {group!r}")
         self.contract = contract
@@ -91,6 +91,10 @@ class TriModalDataset(Dataset):
         self.epoch = 0
         self.raw_dir = Path(contract["_raw_dir"])
         self.ids = list(contract[f"{split}_ids"])
+        if exclude_ids:
+            # Step-4 LOO: leave-one-out folds reuse the frozen contract; excluded
+            # ids drop out of the ANCHOR set only (donors stay available on disk).
+            self.ids = [sid for sid in self.ids if sid not in exclude_ids]
         self.label_files = {
             sid: Path(contract["_labels_dir"]) / f"{sid}.txt" for sid in self.ids
         }
