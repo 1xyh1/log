@@ -32,11 +32,24 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from multimodal import step3_eval_utils as evu  # noqa: E402
-from multimodal.raw_sample_index import build_contract, OUT_DEFAULT  # noqa: E402
+from multimodal.causality_interventions import assert_valid_shuffle_map  # noqa: E402
+from multimodal.raw_sample_index import CLASS_NAMES, build_contract, OUT_DEFAULT  # noqa: E402
 from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
 
 DATASET_GROUP = {"F0-C0": "C0-N", "F0-I": "C1-I", "F0-D": "C2-D"}
+
+# Execution-semantics dependencies whose provenance must be frozen alongside the
+# LOO numbers (reviewer P1): evaluator core, dataset, and the model class chain
+# that torch pickle needs to load the checkpoints.
+DEPENDENCY_SOURCES = {
+    "step3_eval_utils": "src/multimodal/step3_eval_utils.py",
+    "trimodal_dataset": "src/multimodal/trimodal_dataset.py",
+    "step4_f0_model": "src/multimodal/step4_f0_model.py",
+    "aux_encoder": "src/multimodal/aux_encoder.py",
+    "feature_fusion": "src/multimodal/feature_fusion.py",
+    "trainability": "src/multimodal/trainability.py",
+}
 
 
 def sha256(path: Path) -> str:
@@ -75,11 +88,9 @@ def main():
     device = evu._as_device(a.device)
 
     contract = build_contract(out_path=a.contract)
-    import yaml as _yaml
-    names = _yaml.safe_load(Path(
-        "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml")
-        .read_text(encoding="utf-8"))["names"]
-    names = {int(k): v for k, v in names.items()}
+    # Class names come from the frozen contract constant (CLASS_NAMES), not from
+    # a machine-local dataset.yaml — keeps the LOO rerunnable from the repo alone.
+    names = dict(CLASS_NAMES)
 
     project = Path(a.project)
     run_dirs = {"C0": project / a.c0_run, "IR": project / a.ir_run,
@@ -96,8 +107,16 @@ def main():
     models = {tag: load_last_model(rd, device) for tag, rd in run_dirs.items()}
     val_ids = list(contract["val_ids"])
     assert len(val_ids) == 6, val_ids
-    shuffle_map = json.loads(
-        (run_dirs["IR"] / "shuffle_map_val.json").read_text(encoding="utf-8"))
+    # Shuffle maps: each group uses its OWN map; both are re-validated here as
+    # bijective no-self derangements and asserted byte-equal (they come from the
+    # same deterministic derangement of val6).
+    shuffle_maps = {}
+    for tag in ("IR", "D"):
+        fp = run_dirs[tag] / "shuffle_map_val.json"
+        m = json.loads(fp.read_text(encoding="utf-8"))
+        assert assert_valid_shuffle_map(m, val_ids), f"{tag} shuffle map invalid"
+        shuffle_maps[tag] = m
+    assert shuffle_maps["IR"] == shuffle_maps["D"], "IR/D shuffle maps differ"
 
     # folds: None = full val6; otherwise one excluded id
     folds = [None] + val_ids
@@ -116,9 +135,15 @@ def main():
                "folds": {}}
     results["provenance"]["contract_sha256"] = sha256(Path(a.contract))
     results["provenance"]["loo_source_sha256"] = sha256(Path(__file__))
+    for dep, rel in DEPENDENCY_SOURCES.items():
+        results["provenance"][f"dep_{dep}_sha256"] = sha256(ROOT / rel)
+    results["provenance"]["ir_shuffle_map_val_sha256"] = sha256(
+        run_dirs["IR"] / "shuffle_map_val.json")
+    results["provenance"]["d_shuffle_map_val_sha256"] = sha256(
+        run_dirs["D"] / "shuffle_map_val.json")
 
     n_done = 0
-    total = 7 + 21 + 21
+    total = 7 * 3  # one printed line per fold x group (IR/D lines run 3 variants)
     for fold in folds:
         fold_key = "full" if fold is None else fold
         fold_res = {}
@@ -136,7 +161,7 @@ def main():
                     aux_zero=True)
                 variants["SHUFFLE"] = evaluate_fold(
                     models[tag], contract, group, fold, device, names,
-                    aux_id_map=shuffle_map)
+                    aux_id_map=shuffle_maps[tag])
                 copied = False
             fold_res[tag] = {v: round(x, 6) for v, x in variants.items()}
             fold_res[tag]["copy_of_normal"] = copied
