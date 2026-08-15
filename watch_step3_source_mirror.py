@@ -35,8 +35,9 @@ SYNC_PREFIXES = (
     "reports/step",
 )
 
-# 结果目录：只同步文本与必要图（results.png = val 曲线）
-RESULTS_PREFIX = "runs/"
+# 结果目录：只同步文本与必要图（results.png = val 曲线）。
+# 收窄到 Step3/Step4（避免历史 step1/step2 结果淹没 log 仓库）。
+RESULTS_PREFIXES = ("runs/step3_earlyfusion/", "runs/step4_f0/")
 RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
 RESULTS_FIGURE_NAMES = {"results.png"}
 
@@ -85,7 +86,7 @@ def is_allowed(rel: Path) -> bool:
         return False
     if rel.name.startswith("."):
         return False
-    if s.startswith(RESULTS_PREFIX):
+    if any(s.startswith(p) for p in RESULTS_PREFIXES):
         if rel.suffix.lower() in RESULTS_TEXT_SUFFIXES:
             return True
         return rel.name in RESULTS_FIGURE_NAMES

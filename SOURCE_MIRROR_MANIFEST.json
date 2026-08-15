@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T13:39:33.208010+08:00",
+  "generated_at_local": "2026-08-15T13:42:18.286750+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -1008,29 +1008,29 @@
       "mtime_ns": 1786756755933704700
     },
     "runs/step4_f0/smoke-F0-I-e1/args.yaml": {
-      "sha256": "369797c35b10cf00fd2818bf68f92f710428610a2cdd53ba71c740c9ab3114e4",
-      "size_bytes": 1926,
-      "mtime_ns": 1786772298703563000
+      "sha256": "1f5f9748f7602117d64e91475534ecab7120aa04fcb5cb295dbd96b2fe6c1494",
+      "size_bytes": 1927,
+      "mtime_ns": 1786772414306292000
     },
     "runs/step4_f0/smoke-F0-I-e1/manifest.json": {
-      "sha256": "c8ba8e0bc08413833ba349462a83b39a2793509ee852e07707f8c7ede2188fe2",
+      "sha256": "4d3acf5ff7ddfe6ff65ddf0d72d1b7828c3277d2d446d7901e219ab6f349f6e0",
       "size_bytes": 1031,
-      "mtime_ns": 1786772298789235300
+      "mtime_ns": 1786772414382996700
     },
     "runs/step4_f0/smoke-F0-I-e1/results.csv": {
-      "sha256": "2d1be88d687a48490f3cbb6bd25666a72f0af1e30ba4b29d2aac82eb3cc8bedc",
-      "size_bytes": 286,
-      "mtime_ns": 1786772305168087700
+      "sha256": "b090e8cb5515bbc4a7b5a65c3374b20b514abec0d1e42a0be5d184bc00097d6e",
+      "size_bytes": 287,
+      "mtime_ns": 1786772419188592000
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786772306108235700
+      "mtime_ns": 1786772420040364500
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_growth.jsonl": {
-      "sha256": "93c206d3a1a6b8b1f6b511ae60bc687ff2be26826d44b48bb8e4885447588c6a",
-      "size_bytes": 126,
-      "mtime_ns": 1786772306108740000
+      "sha256": "c1c957f84ce829ffbac07f7651b50ad10eb6f52e0b93b7f8688058c6ff3fb850",
+      "size_bytes": 176,
+      "mtime_ns": 1786772420040364500
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -1063,9 +1063,9 @@
       "mtime_ns": 1786756245359421900
     },
     "scripts/eval_step4_causality.py": {
-      "sha256": "50143912c0078ddd7a0cfd8be82d47b2c255ce7dcea7f3c28d6c50cf9bb94e1d",
-      "size_bytes": 5483,
-      "mtime_ns": 1786756222465468000
+      "sha256": "22291457eabdaf212d6128f7f65ef06ced3e5b62164dbc60468d6bc4d5c9071e",
+      "size_bytes": 6260,
+      "mtime_ns": 1786772535632810800
     },
     "scripts/inspect_weights_safe.py": {
       "sha256": "1c8db987f4a8f6a096504d8565a80c0283ab5aee8dbf04d4c2011c736ba0a822",
@@ -1108,9 +1108,9 @@
       "mtime_ns": 1786724234824578000
     },
     "scripts/run_step4_f0.py": {
-      "sha256": "811c51c70d7020554dcd81bc4f13cc8d271da1710834c1a14de6b601961ce59a",
-      "size_bytes": 13269,
-      "mtime_ns": 1786772269224426300
+      "sha256": "9c675f2308b15eb5eecf5a8774ab90ed062246cccd7d050e41d85f424385a0a6",
+      "size_bytes": 15916,
+      "mtime_ns": 1786772465505108200
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -1278,9 +1278,9 @@
       "mtime_ns": 1786724234841428600
     },
     "tests/test_step4_f0.py": {
-      "sha256": "50aa4ef9dc2cf2abce247a508963674d673df8a703bf34e52b04137eaae07138",
-      "size_bytes": 4545,
-      "mtime_ns": 1786755226281413100
+      "sha256": "aaa015e48394def6b84701e26212883f66d25dcb4e3fb5fd28f33bf32eee475f",
+      "size_bytes": 4061,
+      "mtime_ns": 1786772490851361700
     },
     "tests/test_step4_f0_review_fixes.py": {
       "sha256": "81b62e7a2c852a22c355624cd50de570330886fd57ab84b2438ad7539b0e91a7",
@@ -1289,6 +1289,11 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f0/smoke-F0-I-e1/results.csv"
+    "runs/step4_f0/smoke-F0-I-e1/args.yaml",
+    "runs/step4_f0/smoke-F0-I-e1/manifest.json",
+    "runs/step4_f0/smoke-F0-I-e1/results.csv",
+    "runs/step4_f0/smoke-F0-I-e1/step4_growth.jsonl",
+    "scripts/run_step4_f0.py",
+    "tests/test_step4_f0.py"
   ]
 }

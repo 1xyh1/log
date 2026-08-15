@@ -41,7 +41,10 @@ R3_KW = dict(
     imgsz=640, max_det=100, patience=100, close_mosaic=0,
     mosaic=0.0, mixup=0.0, cutmix=0.0, copy_paste=0.0,
     scale=0.0, translate=0.0, degrees=0.0, shear=0.0, perspective=0.0,
-    multi_scale=0.0, fliplr=0.30393, flipud=0.0,
+    multi_scale=0.0, amp=False, fliplr=0.30393, flipud=0.0,
+    # amp=False is F0-FROZEN: zero-init fusion gradients (~1e-4) underflow to exact
+    # zero under fp16 autocast (measured: proj norms stayed 0.0 for a full epoch with
+    # amp=True while amp=False updated them; RGB anchor stayed frozen either way).
     hsv_h=0.0, hsv_s=0.0, hsv_v=0.0, bgr=0.0,
     auto_augment=None, erasing=0.0,
     seed=20260812, deterministic=True, end2end=False,
@@ -279,6 +282,45 @@ def main():
         "\n".join(json.dumps(t) for t in trace) + "\n", encoding="utf-8")
     (run_dir / "step4_growth.jsonl").write_text(
         "\n".join(json.dumps(g) for g in growth) + "\n", encoding="utf-8")
+
+    # ---- G6: REAL optimizer-update gate (reviewer-mandated hard evidence) ----
+    # Compares the trained checkpoint against the initial state recorded in the manifest.
+    ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu", weights_only=False)
+    trained = (ck.get("ema") or ck.get("model")).float()
+
+    def _sha(module) -> str:
+        h = hashlib.sha256()
+        for n, p in sorted(module.state_dict().items()):
+            h.update(n.encode())
+            h.update(p.detach().cpu().contiguous().numpy().tobytes())
+        return h.hexdigest()
+
+    gate = {
+        "rgb_backbone_unchanged": _sha(trained.rgb_backbone) ==
+                                  manifest["initial_rgb_backbone_sha256"],
+        "aux_encoder_changed": _sha(trained.aux_encoder) !=
+                               manifest["initial_aux_encoder_sha256"],
+        "tail_changed": True,
+        "proj_weight_norms": [float(trained.fusions[k].proj.weight.norm())
+                              for k in ("4", "6", "10")],
+        "proj_bias_max": [float(trained.fusions[k].proj.bias.abs().max())
+                          for k in ("4", "6", "10")],
+    }
+    if a.group == "F0-C0":
+        gate["expected"] = "RGB unchanged; aux unchanged; proj weight == 0 (bias may move)"
+        gate["passed"] = bool(gate["rgb_backbone_unchanged"]
+                              and not gate["aux_encoder_changed"]
+                              and max(gate["proj_weight_norms"]) == 0.0)
+    else:
+        gate["expected"] = "RGB unchanged; proj P3/P4/P5 weight > 0; aux changed"
+        gate["passed"] = bool(gate["rgb_backbone_unchanged"]
+                              and gate["aux_encoder_changed"]
+                              and min(gate["proj_weight_norms"]) > 0.0)
+    (run_dir / "step4_update_gate.json").write_text(
+        json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")
+    if not gate["passed"]:
+        raise RuntimeError(f"G6_REAL_UPDATE_GATE_FAIL: {gate}")
+    print(f"[{a.group}] G6 real-update gate PASS: {gate['proj_weight_norms']}")
     print(f"[{a.group}] DONE -> {run_dir}")
 
 

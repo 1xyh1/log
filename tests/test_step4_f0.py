@@ -88,33 +88,17 @@ def test_gradient_flow():
     assert sum(1 for p in model.rgb_backbone.parameters() if p.requires_grad) == 0
 
 
-def _derangement(ids):
-    from multimodal.raw_sample_index import group_of
-    groups = {}
-    for sid in ids:
-        groups.setdefault(group_of(sid), []).append(sid)
-    donors = {sid: [d for g, ds in groups.items() if g != group_of(sid) for d in ds]
-              for sid in ids}
-    result = {}
-    remaining = set(ids)
-    while remaining:
-        # most-constrained first: fewest available cross-group donors
-        best = min(remaining,
-                   key=lambda s: len([d for d in donors[s] if d in remaining and d != s]))
-        pool = [d for d in donors[best] if d in remaining and d != best] or \
-               [d for d in ids if d != best]  # donors may be reused (protocol: only no self-match)
-        result[best] = pool[0]
-        remaining.remove(best)
-    return result
-
-
 def test_shuffle_consistency():
-    contract = build_contract(out_path=OUT_DEFAULT)
-    ids = contract["val_ids"]
-    m1 = _derangement(ids)
-    m2 = _derangement(ids)
-    assert m1 == m2  # deterministic across calls
-    assert all(m1[s] != s for s in m1)  # no self-match
-    # group-aware where feasible: donor group differs from rgb group
+    # The shared, reviewer-approved implementation (single source of truth):
+    # bijective, no-self, cross-group matching — no local duplicate.
+    from multimodal.causality_interventions import (
+        assert_valid_shuffle_map, bijective_derangement)
     from multimodal.raw_sample_index import group_of
-    assert all(group_of(m1[s]) != group_of(s) for s in m1)
+    contract = build_contract(out_path=OUT_DEFAULT)
+    for split in ("train", "val", "all17"):
+        ids = contract[f"{split}_ids"]
+        m1 = bijective_derangement(ids)
+        m2 = bijective_derangement(ids)
+        assert m1 == m2  # deterministic across calls
+        assert assert_valid_shuffle_map(m1, ids)  # bijection + no self-match
+        assert all(group_of(m1[s]) != group_of(s) for s in m1)  # cross-group
