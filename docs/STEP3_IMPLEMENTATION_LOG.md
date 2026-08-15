@@ -602,3 +602,18 @@ zero-init 下 **dL/dA = Wᵀ·dL/dF = 0**（step1 编码器梯度精确为 0）�
 - 测试：Step4 9 项 + 审阅回归 8 项 + Step3 契约全过；audit 四门禁 all PASSED
 
 **状态**：真实训练链（Dataset→model→loss→backward→optimizer.step）闭环证据齐全，等待审阅者批准 3×80 epoch。
+
+---
+
+## 2026-08-15 · 板块 16：审阅者正式批准 3×80 epoch（附批准清单与两项 P1 收尾）
+
+### 批准状态（审阅者裁决原文要点）
+Step4-F0 architecture / P3P4P5 routing / matched initialization / RGB Trainer-lifecycle freeze / G5 optimizer membership / G6 real optimizer update / actual-yield G8 / bijective SHUFFLE / batch=4 smoke 全部 PASS，OOM none → **3 × 80 epoch formal APPROVED**。AMP=False FROZEN for Step4-F0；exact AMP failure mechanism UNRESOLVED / non-blocking。
+
+### 批准附带收尾（已落实）
+- AMP 根因表述降级为"AMP-path incompatibility / projection-update suppression（机制未完全定因）"（日志与代码注释同步）。
+- P1：G6 增加稳定指标 `aux_encoder_global_rel_l2` 与 `aux_encoder_max_abs_change`（逐元素 max_rel 在初始参数≈0 时爆炸、无物理意义，仅留作 diagnostic；门禁条件改用 global_rel_l2 <1e-5 / >1e-5）。
+- P1：`run_integrity.inspect_step3_run` 增加 `eval_name` 参数（stale-eval 检查可指向 eval_step4_causality.json，供 summarize_step4 复用）。
+
+### 正式训练执行约束（冻结）
+三组必须全部 amp=False、batch=4、seed=20260812、R3 其余参数一致、actual-yield G8；目录全新 formal `runs/step4_f0/F0-C0|F0-I|F0-D`；顺序 F0-C0 → F0-I → F0-D；任一组 G5/G6/G8 报错即整体停止。跑完后审阅者将检查：80 行 G8、80 行 growth、RGB SHA、projection growth 曲线、late10、三个 last.pt 的 NORMAL/ZERO/SHUFFLE。
