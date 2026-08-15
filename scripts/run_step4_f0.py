@@ -150,6 +150,31 @@ def main():
             batch["img"] = batch["img"].half() if self.args.half else batch["img"].float()
             return batch
 
+        def _build_train_pipeline(self):
+            # Reviewer P0: stock _setup_train re-enables requires_grad on non-stock
+            # freeze-pattern params (our names are rgb_backbone.*, freeze: null).
+            # Re-freeze AFTER the unfreeze loop and BEFORE the optimizer is built.
+            from multimodal.trainability import freeze_module
+            freeze_module(self.model.rgb_backbone, freeze_bn_stats=True)
+            super()._build_train_pipeline()
+            # G5 hard gate: optimizer membership + frozen anchor (reviewer-mandated)
+            opt_ids = {id(p) for grp in self.optimizer.param_groups for p in grp["params"]}
+            missing = []
+            for name, module in (("fusions", self.model.fusions),
+                                 ("aux_encoder", self.model.aux_encoder),
+                                 ("tail", self.model.tail)):
+                for p in module.parameters():
+                    if not p.requires_grad or id(p) not in opt_ids:
+                        missing.append(name)
+            frozen_violation = any(p.requires_grad for p in
+                                   self.model.rgb_backbone.parameters())
+            if missing or frozen_violation:
+                raise RuntimeError(
+                    f"G5_OPTIMIZER_MEMBERSHIP_FAIL: missing={sorted(set(missing))} "
+                    f"rgb_trainable={frozen_violation}")
+            print(f"[{a.group}] G5 optimizer membership PASS: "
+                  f"fusions+aux+tail in optimizer, RGB frozen")
+
         def get_validator(self):
             v = Step4Validator(self.test_loader, save_dir=self.save_dir, args=self.args)
             return v
