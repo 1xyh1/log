@@ -572,3 +572,33 @@ zero-init 下 **dL/dA = Wᵀ·dL/dF = 0**（step1 编码器梯度精确为 0）�
 **验证**：Step4 12 项测试全过；Step3 测试（contract+recovery）9 项全过（共享 derangement 重构无回归）；audit 四门禁 all PASSED；三组 smoke 全 DONE（actual-yield G8 轨迹）。
 
 **状态**：5 P0 + 2 P1 全部关闭，等待审阅者批准 3×80 epoch。
+
+---
+
+## 2026-08-15 · 板块 15：Step 4-F0 Trainer 生命周期 P0 修复轮（真实训练链闭环）
+
+审阅者从真实 smoke 抓出两个 Trainer-level P0（standalone audit 无法覆盖），本轮全部关闭：
+
+### 根因 1：AMP fp16 梯度下溢（proj 一整个 epoch 精确为 0 的真正原因）
+- 实测：amp=True 时 F0-I/F0-D 的 proj weight/bias 在真实 Trainer 一整个 epoch 后精确为 0（连 bias 都不动），aux encoder 只有 BN 微动；手动 MuSGD 复刻分组 3 步即更新 proj（max≈0.0009）→ 排除优化器分组问题。
+- 诊断：`amp=False` 后 proj norms 0.0043/0.0045/0.0087 正常更新——零初始化融合层梯度 ~1e-4 量级，fp16 最小正规数 ~6e-5，**梯度在 autocast 路径下下溢归零**。
+- 修复：F0 执行配置冻结 `amp=False`（注释写明证据与理由；RGB anchor 在两种精度下都保持冻结）。R3 的优化器/增强/预算不变。
+- 附带发现：EMA 存档为 half 精度，C0 的 bias 微更新（~1e-5）会存成 0——G6 门禁改读**训练后内存中的 fp32 原模型**。
+
+### 根因 2：C0 的"aux 参数不变"在权重衰减下物理不成立
+- SGD 对零梯度参数仍执行 wd 收缩（~1e-7/步）→ 精确 SHA 必变。G6 改为**相对变化阈值**：C0 要求 max_rel < 1e-4（仅衰减尺度）；F0-I/F0-D 要求 max_rel > 1e-4（真学习）。proj weight 因 0·(1-ε)=0 仍保持**精确 0**。
+
+### Trainer 生命周期修复（审阅者处方逐条落实）
+1. `Step4Trainer._build_train_pipeline()`：stock `_setup_train` 会把非 stock-freeze 模式的 requires_grad=False 参数重新打开——在 unfreeze 循环之后、优化器构建之前**重新 freeze RGB**（OOM 重建 pipeline 时同样生效），随后 assert。
+2. **G5 optimizer membership 硬门禁**：优化器构建后检查 fusions/aux_encoder/tail 全部在 optimizer 且 requires_grad=True、RGB 全部冻结——smoke 实测 PASS。
+3. **G6 真实更新门禁**：训练后按组比对（见上阈值设计），写入 step4_update_gate.json，不满足即 ABORT。
+4. P1：旧测试的本地 _derangement 删除、统一调用 causality_interventions 共享实现；watcher runs/ 前缀收窄为 step3_earlyfusion + step4_f0；eval provenance 补 results/args/last/best/manifest/contract/评估器源码七个 SHA。
+
+### 最终 smoke 证据（三组 × 1 epoch，amp=False）
+- F0-C0：RGB 不变；aux 仅衰减尺度（rel<1e-4）；proj weight 精确 [0,0,0]；bias 微动 ✓
+- F0-I：RGB 不变；proj [0.0043, 0.0045, 0.0087] > 0；aux 真学习 ✓
+- F0-D：RGB 不变；proj [0.0046, 0.0050, 0.0095] > 0；aux 真学习 ✓
+- 三组 G5 PASS、G8 actual-yield matched、batch=4 无 OOM
+- 测试：Step4 9 项 + 审阅回归 8 项 + Step3 契约全过；audit 四门禁 all PASSED
+
+**状态**：真实训练链（Dataset→model→loss→backward→optimizer.step）闭环证据齐全，等待审阅者批准 3×80 epoch。
