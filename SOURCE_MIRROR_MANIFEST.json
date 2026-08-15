@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T15:23:13.121064+08:00",
+  "generated_at_local": "2026-08-15T15:24:24.098942+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -35,7 +35,7 @@
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786778541083762600
+      "mtime_ns": 1786778650675433800
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -962,6 +962,11 @@
       "size_bytes": 1918,
       "mtime_ns": 1786778129891449100
     },
+    "runs/step4_f0/F0-C0-r1/eval_step4_causality.json": {
+      "sha256": "ed096b2c22582ece20ce5ad31d40cdd2ce05e854aa8dfd39c854bfa41a6cbc76",
+      "size_bytes": 19883,
+      "mtime_ns": 1786778592351471400
+    },
     "runs/step4_f0/F0-C0-r1/manifest.json": {
       "sha256": "3b2274dff0b61ee9185ba0fd218a9ba1e5724e9faec48356dc93829a88490436",
       "size_bytes": 1138,
@@ -1047,6 +1052,21 @@
       "size_bytes": 12173,
       "mtime_ns": 1786778089716432700
     },
+    "runs/step4_f0/F0-D/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786778650706750300
+    },
+    "runs/step4_f0/F0-D/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786778650704443100
+    },
+    "runs/step4_f0/F0-D/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786778650705447100
+    },
     "runs/step4_f0/F0-D/step4_g8_trace.jsonl": {
       "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
       "size_bytes": 50070,
@@ -1067,6 +1087,11 @@
       "size_bytes": 1910,
       "mtime_ns": 1786777346002227400
     },
+    "runs/step4_f0/F0-I/eval_step4_causality.json": {
+      "sha256": "71f854f188361cf26e4d891a7d0ede26be38d36cfca6c1a7f8fe5acc71791857",
+      "size_bytes": 19956,
+      "mtime_ns": 1786778646046791500
+    },
     "runs/step4_f0/F0-I/manifest.json": {
       "sha256": "10a509e83fc90268438125ded588f55f07b8159b941c908c9e1956cdc7c00f4b",
       "size_bytes": 1131,
@@ -1076,6 +1101,21 @@
       "sha256": "c3c4cd21cdd71db46c6ea6e35a2b1ad7c0beb86be4c73fc10ee02838e1873717",
       "size_bytes": 12169,
       "mtime_ns": 1786777722801963100
+    },
+    "runs/step4_f0/F0-I/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786778596539706600
+    },
+    "runs/step4_f0/F0-I/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786778596538199500
+    },
+    "runs/step4_f0/F0-I/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786778596539706600
     },
     "runs/step4_f0/F0-I/step4_g8_trace.jsonl": {
       "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
@@ -1439,31 +1479,10 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f0/F0-C0-r1/args.yaml",
-    "runs/step4_f0/F0-C0-r1/manifest.json",
-    "runs/step4_f0/F0-C0-r1/results.csv",
-    "runs/step4_f0/F0-C0-r1/shuffle_map_all17.json",
-    "runs/step4_f0/F0-C0-r1/shuffle_map_train.json",
-    "runs/step4_f0/F0-C0-r1/shuffle_map_val.json",
-    "runs/step4_f0/F0-C0-r1/step4_g8_trace.jsonl",
-    "runs/step4_f0/F0-C0-r1/step4_growth.jsonl",
-    "runs/step4_f0/F0-C0-r1/step4_update_gate.json",
-    "runs/step4_f0/F0-C0/results.csv",
-    "runs/step4_f0/F0-C0/step4_g8_trace.jsonl",
-    "runs/step4_f0/F0-C0/step4_growth.jsonl",
-    "runs/step4_f0/F0-C0/step4_update_gate.json",
-    "runs/step4_f0/F0-D/args.yaml",
-    "runs/step4_f0/F0-D/manifest.json",
-    "runs/step4_f0/F0-D/results.csv",
-    "runs/step4_f0/F0-D/step4_g8_trace.jsonl",
-    "runs/step4_f0/F0-D/step4_growth.jsonl",
-    "runs/step4_f0/F0-D/step4_update_gate.json",
-    "runs/step4_f0/F0-I/args.yaml",
-    "runs/step4_f0/F0-I/manifest.json",
-    "runs/step4_f0/F0-I/results.csv",
-    "runs/step4_f0/F0-I/step4_g8_trace.jsonl",
-    "runs/step4_f0/F0-I/step4_growth.jsonl",
-    "runs/step4_f0/F0-I/step4_update_gate.json",
-    "scripts/run_step4_f0.py"
+    "runs/step4_f0/F0-C0-r1/eval_step4_causality.json",
+    "runs/step4_f0/F0-I/eval_step4_causality.json",
+    "runs/step4_f0/F0-I/shuffle_map_all17.json",
+    "runs/step4_f0/F0-I/shuffle_map_train.json",
+    "runs/step4_f0/F0-I/shuffle_map_val.json"
   ]
 }
