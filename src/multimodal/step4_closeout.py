@@ -191,9 +191,13 @@ def g8_check(run_dirs: dict[str, Path], expected_epochs: int) -> dict:
     all_actual = all(
         "actual_order_sha256" in r and "actual_flip_sha256" in r
         for t in traces.values() for r in t)
-    file_shas = {g: sha256_file(rd / "step4_g8_trace.jsonl")
-                 for g, rd in run_dirs.items()}
-    byte_identical = len(set(file_shas.values())) == 1
+    file_shas = {}
+    for g, rd in run_dirs.items():
+        fp = rd / "step4_g8_trace.jsonl"
+        if fp.exists():
+            file_shas[g] = sha256_file(fp)
+    byte_identical = (len(file_shas) == len(run_dirs)
+                      and len(set(file_shas.values())) == 1)
     return {
         "epochs_compared": n,
         "row_counts": row_counts,
