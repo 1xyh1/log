@@ -75,6 +75,7 @@ def inspect_step3_run(
     check_eval_provenance: bool = True,
     trace_name: str = "step3_g8_trace.jsonl",
     growth_name: str = "step3_kernel_growth.jsonl",
+    eval_name: str = "eval_step3_causality.json",
 ) -> RunIntegrityReport:
     """Inspect one Step-3 run directory.
 
@@ -155,7 +156,7 @@ def inspect_step3_run(
         if not best_pt.exists():
             errors.append("BEST_PT_MISSING")
 
-    eval_path = p / "eval_step3_causality.json"
+    eval_path = p / eval_name
     if check_eval_provenance and eval_path.exists():
         try:
             eval_obj = json.loads(eval_path.read_text(encoding="utf-8"))
