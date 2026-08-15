@@ -533,3 +533,26 @@ def gate_g6b(contract: dict) -> dict:
 
 ### Step 3-A 定稿结论
 > 在统一 YOLO26 6ch 参数化下，IR/Depth 通过第一层 6ch stem 的 early fusion **没有证明"正确配对的辅助模态带来有益因果增益"**（NORMAL 不优于 ZERO；C2-D 的 NORMAL 甚至低于 SHUFFLE）。但 aux kernel 确有学习（q>0）、LOO 6/6 显示 NORMAL>C0 方向稳定——**阴性证据指向"当前融合方式不当"，而非"模态无用"**（Step 2 已证可学性）。不补 seed13/14、不改 R3。下一步：Step 4（RGB anchor + lightweight aux encoders + P3/P4/P5 feature fusion，F0=IdentityConcat[I,0,0] + F0-C0 matched control + epoch0 等价门禁），参考文档 docs/STEP4_REFERENCE_GUIDED_DESIGN.md + reference_implementation_notes.md。
+
+---
+
+## 2026-08-15 · 板块 13：Step 4-F0 实现完成（模型+门禁+训练/评估脚本+测试+文档，交付包已打包）
+
+### 设计（冻结）
+RGB Anchor + Zero-init Residual Feature Injection：YOLO26 RGB backbone 冻结（BN 恒 eval，`model.train()` 覆盖保持不变量）；共享 2ch 轻量 aux pyramid encoder（F0-C0=[0,0] / F0-I=[I,0] / F0-D=[D,M]，三组参数完全一致）；P3/P4/P5 `F_i = R_i + P_i(A_i)`，P_i=Conv1x1(bias=True) **weight=bias=0**；原 neck/head 可训练。**不用 IdentityConcat**（concat 改变 neck 输入维度与 BN 统计，破坏 RGB anchor）。**复用 Step-3 修复版 6ch 数据契约**：模型 `_split_input` 按 aux_mode 拆分 6ch batch，训练器/评估器零改动继承（stock validator 语义、no-/255、G8、formal 目录门禁）。
+
+### 关键数学事实（实测并写入门禁）
+zero-init 下 **dL/dA = Wᵀ·dL/dF = 0**（step1 编码器梯度精确为 0），但 **dL/dW = A·dL/dF > 0** 一步 SGD 后即解锁编码器（step2 > 0）——比 α 门控温和（α 无自解锁通道）。Gate3 按此两步定义；F0-C0 的权重梯度精确 0（bias 截距梯度合法非零）。
+
+### 门禁与测试结果
+- audit_step4_f0.py 四门禁 **all PASSED**（G1 RGB 等价 ≤1e-5 用同一 reference 对比；G2 proj 全零；G3 两步梯度流；G4 冻结锚点）
+- tests/test_step4_f0.py **4/4 通过**（rgb 等价 / zero-init / 梯度流 / shuffle 一致性——derangement 改最受限优先贪心，全跨组解存在性验证通过）
+- 三组 1-epoch smoke **全 DONE**（F0-C0/F0-I/F0-D，batch=4 无 OOM）
+
+### 产物
+- 交付包：`E:\google\step4_f0_package_20260815.zip`（src/multimodal 3 文件 + scripts 3 文件 + tests 1 文件 + STEP4_IMPLEMENTATION_PLAN.md）
+- 门禁报告：`reports/step4_f0_audit.json`
+- 计划文档：`docs/STEP4_IMPLEMENTATION_PLAN.md`（含 F1-F4 后续路线）；`reference_implementation_notes.md` 已补 Step 3 教训段
+
+### 下一步（等审阅者批准后）
+三组 × 80 epochs formal 训练 → 三路因果（期望证据 normal > zero-aux > shuffle）→ LOO → 四类判级。

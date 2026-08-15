@@ -541,3 +541,17 @@ H. 只有 Step3 结论冻结后，才启动 Step4 F0
 ```
 
 这条顺序的核心是：**先把实验事实修正，再让参考论文影响下一阶段架构；不要用架构升级掩盖一个 evaluator/provenance bug。**
+
+---
+
+## Step 3 教训（追加，2026-08-15）
+
+> **Early fusion negative result does not imply modality useless.**
+
+Reason: input-level fusion forces RGB and auxiliary information into the same
+low-level representation before modality-specific abstraction. Step 3-A's
+MODEL-USES-AUX-BUT-NO-BENEFIT verdict (NORMAL not better than ZERO/SHUFFLE while
+aux kernels did learn, LOO 6/6 stable) is evidence about the FUSION LEVEL, not the
+modality. Step 4 therefore introduces lightweight modality-specific encoders
+(IR/D/M -> shared 2ch pyramid -> P3/P4/P5 residual injection), keeping the frozen
+pretrained RGB backbone as the anchor (RDTTrack freeze discipline).
