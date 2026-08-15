@@ -645,3 +645,26 @@ best.pt（辅助）：F0-I N=0.3176 > C0 0.3067、>Z、>S（3/3）；F0-D N=0.30
 - F0-I：**paired_vs_zero +0.0415 是清晰的干预符号**（正确配对的 IR 相对"无 aux"有收益）；paired_vs_shuffle +0.0055 为正；vs control -0.0018 在 6-val 噪声内。三个符号中两个为正，一个为近似零。
 - F0-D：三个符号均弱/为负（paired_vs_zero +0.0015、paired_vs_shuffle -0.0049、vs control -0.0150）——feature-level Depth 注入在 F0 结构下未显示收益。
 - 待审阅者检查：80 行 G8、80 行 growth、RGB SHA、projection growth 曲线、late10。
+
+### Step 4-F0 closeout（2026-08-16 冻结，verdict_frozen=true）
+
+**审阅者裁定**：3×80 训练有效、G8 full PASS（三份 trace 逐字节一致）、RGB anchor 冻结确认、F0-I paired causal usage 成立但净收益未超 control；需补 LOO + summarizer 后冻结。
+
+**LOO（val6 leave-one-out，不重训，`runs/step4_f0/step4_loo.json` schema v2）**：
+- 折叠语义：被剔除图只离开 anchor 集；SHUFFLE donor 池保持全 val6 derangement（donor 文件直接从 raw_dir 读，不随 fold 收缩）。
+- IR−C0：full −0.0018，LOO **mixed_signs 2正4负**，median −0.0021，被 000016_042_suppl_00000164 单图主导（剔除后 delta −0.0273，占 48% 绝对值；去掉它其余 5 图净 +0.0254）。
+- IR N−Z：**6/6 全正**，median +0.0340 —— paired usage 在任意单图剔除下稳定。
+- D−C0：**6/6 全负**，median −0.0164 —— Depth 在 F0 配置下是稳定负扰。
+
+**最终判级（四类协议）**：
+- F0-I → MODEL-USES-AUX-BUT-NO-BENEFIT（STRONG_PAIRED_IR_USAGE / NEAR_CONTROL / BEST_PT_PASSES_ALL_3 / LOO_MIXED_SIGNS_pos2/6）
+- F0-D → MODEL-USES-AUX-BUT-NO-BENEFIT（AUX_LEARNED / WEAK_OR_NONGENERALIZING_DEPTH_USAGE / LOO_STABLE_NEGATIVE_pos0/6）
+
+**closeout 门禁补丁（审阅者 P1 三项）**：
+- `src/multimodal/step4_closeout.py`（torch-free 共享模块）：12 依赖 SHA 清单（LOO 执行路径 import 传递闭包，含自身——改清单/改任何依赖即强制重跑 LOO）、`compute_deltas` 单一实现（生产/校验/测试三处共用，精确 == 比对不上 epsilon，含有限性与 [0,1] 值域检查挡 inf/NaN）、`validate_loo_payload`（folds 重算 + C0 copy_of_normal 不变量）、`g8_check`（逐行 expected==actual + flag 全 true + epoch 严格位置连续 + 三组字节一致）、`loo_provenance_check`（25 项：schema v2/checkpoint/五 SHA/12 依赖/2 shuffle map/groups 路径 resolve 归一化/3 交叉）、`load_validated_shuffle_maps`（各组用自己 map + 双射重验 + IR/D 相等断言）。
+- `summarize_step4.py` v2：先 validate_loo_payload 再 loo_provenance_check，任一失败 REFUSE；summary 钉死 `loo_file_sha256` 与 `summarize_source_sha256`；分母全动态化。
+- G6 阈值统一：active aux 由 >1e-5 改 **>1e-3**（1e-5 低于 control decay scale 2.05e-4 会误判衰减噪声；实测 IR 6.30e-3 / D 6.28e-3 约 30 倍于 decay scale，本次结果不受影响）。
+- 对抗测试 `tests/test_step4_closeout.py` 30 项全过（篡改 delta / 79 行 G8 / epoch 跳号 / false flag / 字节分歧 / 陈旧依赖 SHA / 非法 shuffle map 等）。
+- LOO 重跑三次数值逐位一致（确定性回归）；重跑前提：`OUT_DEFAULT` 指向本机 contract（D:\pycharm\Python Develop\YOLO_1\step3_data_contract.json）。
+
+**下一步**：F1 IR soft/reliability gate（CSSA soft reliability / EvaNet quality prior 方向）；**不上** RDTTrack-style D–IR orthogonal projection（D 连 F0 val paired benefit 都没站稳）。
