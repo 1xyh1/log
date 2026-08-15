@@ -1,0 +1,335 @@
+{
+  "provisional": true,
+  "note": "17-image sample probe (11 train/6 val, 9 classes present). FIXED (last.pt epoch-80) is the primary axis: 6-val best.pt selection is unstable. train11 = fit check; all17 = pipeline sanity only. Single-seed stats are null. Not a competition baseline; rerun on full 2000-image set.",
+  "groups": {
+    "B0-G": {
+      "head": "o2m",
+      "recipe": "checkpoint-neutral",
+      "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": {
+        "mean": 0.725,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.7249900994935194
+        }
+      },
+      "val_mAP50-95_fixed": {
+        "mean": 0.2368,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.23680425170068026
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5553,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.5552732038268791
+        }
+      },
+      "train11_mAP50-95_bestpt": {
+        "mean": 0.2772,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.277177861884361
+        }
+      },
+      "val_mAP50-95_bestpt": {
+        "mean": 0.3754,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.37535714285714294
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.2735,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.27345833339566716
+        }
+      }
+    },
+    "B1-A": {
+      "head": "o2m",
+      "recipe": "checkpoint-neutral",
+      "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": {
+        "mean": 0.3598,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.35976736724918046
+        }
+      },
+      "val_mAP50-95_fixed": {
+        "mean": 0.0672,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.06724910620670689
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.2702,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.27022997739643156
+        }
+      },
+      "train11_mAP50-95_bestpt": {
+        "mean": 0.0012,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.001158521768989981
+        }
+      },
+      "val_mAP50-95_bestpt": {
+        "mean": 0.0945,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.09451979512735327
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.0277,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.027663787799822842
+        }
+      }
+    },
+    "B1-B": {
+      "head": "o2m",
+      "recipe": "checkpoint-neutral",
+      "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": {
+        "mean": 0.3616,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.3616188397914223
+        }
+      },
+      "val_mAP50-95_fixed": {
+        "mean": 0.0503,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.050311858379715524
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.2701,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.2701237656391306
+        }
+      },
+      "train11_mAP50-95_bestpt": {
+        "mean": 0.3629,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.3628806653123618
+        }
+      },
+      "val_mAP50-95_bestpt": {
+        "mean": 0.0911,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.09106926406926408
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.2732,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.2731638382016245
+        }
+      }
+    },
+    "B2-A": {
+      "head": "o2m",
+      "recipe": "checkpoint-neutral",
+      "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": {
+        "mean": 0.1983,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.19828844072487567
+        }
+      },
+      "val_mAP50-95_fixed": {
+        "mean": 0.0193,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.019321428571428573
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.1479,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.14794267035565548
+        }
+      },
+      "train11_mAP50-95_bestpt": {
+        "mean": 0.0834,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.08336229182803073
+        }
+      },
+      "val_mAP50-95_bestpt": {
+        "mean": 0.1382,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.13823809523809522
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.0955,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.09550462550361942
+        }
+      }
+    },
+    "B2-B": {
+      "head": "o2m",
+      "recipe": "checkpoint-neutral",
+      "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": {
+        "mean": 0.2644,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.26436709082565246
+        }
+      },
+      "val_mAP50-95_fixed": {
+        "mean": 0.0002,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.00020340660987199798
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.1851,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.18513133169122117
+        }
+      },
+      "train11_mAP50-95_bestpt": {
+        "mean": 0.1475,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.14748163730431468
+        }
+      },
+      "val_mAP50-95_bestpt": {
+        "mean": 0.149,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.14897755102040816
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.2095,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.20947623681739708
+        }
+      }
+    }
+  },
+  "winner_fixed": {
+    "group": "B0-G",
+    "head": "o2m",
+    "recipe": "checkpoint-neutral",
+    "val_mAP50-95_mean": 0.2368,
+    "note": "PROVISIONAL Step-1 winner on 17-image probe (FIXED last.pt axis). Rerun on full data.",
+    "runner_up": "B1-A",
+    "margin_vs_runnerup": 0.1696,
+    "direction_consistent": null,
+    "wins_all_paired_seeds": null,
+    "mean_gap_exceeds_combined_std": null
+  },
+  "winner_bestpt": {
+    "group": "B0-G",
+    "head": "o2m",
+    "recipe": "checkpoint-neutral",
+    "val_mAP50-95_mean": 0.3754,
+    "note": "PROVISIONAL Step-1 winner on 17-image probe (BEST best.pt axis). Rerun on full data.",
+    "runner_up": "B2-B",
+    "margin_vs_runnerup": 0.2264,
+    "direction_consistent": null,
+    "wins_all_paired_seeds": null,
+    "mean_gap_exceeds_combined_std": null
+  },
+  "step2_closing": {
+    "note": "late10 = last 10 epochs of metrics/mAP50-95(B). close_mosaic switch at zero-based epoch 70 (csv epoch 71). B2-B: late-training instability, temporally associated with mosaic switch, causality not established.",
+    "groups": {
+      "B0-G": {
+        "best_epoch": 20,
+        "best_val": 0.3726,
+        "pre_switch_mean": 0.242,
+        "switch_epoch_val": 0.2437,
+        "post_switch_mean": 0.2517,
+        "late10_mean": 0.2509,
+        "late10_median": 0.2534,
+        "late10_std": 0.0087,
+        "late10_min": 0.2392,
+        "late10_max": 0.2604
+      },
+      "B1-A": {
+        "best_epoch": 7,
+        "best_val": 0.1087,
+        "pre_switch_mean": 0.0498,
+        "switch_epoch_val": 0.0486,
+        "post_switch_mean": 0.0594,
+        "late10_mean": 0.0583,
+        "late10_median": 0.0585,
+        "late10_std": 0.0146,
+        "late10_min": 0.0396,
+        "late10_max": 0.0807
+      },
+      "B1-B": {
+        "best_epoch": 78,
+        "best_val": 0.0902,
+        "pre_switch_mean": 0.0454,
+        "switch_epoch_val": 0.081,
+        "post_switch_mean": 0.0696,
+        "late10_mean": 0.0707,
+        "late10_median": 0.0724,
+        "late10_std": 0.0118,
+        "late10_min": 0.0503,
+        "late10_max": 0.0902
+      },
+      "B2-A": {
+        "best_epoch": 39,
+        "best_val": 0.1382,
+        "pre_switch_mean": 0.029,
+        "switch_epoch_val": 0.0056,
+        "post_switch_mean": 0.0068,
+        "late10_mean": 0.0066,
+        "late10_median": 0.0049,
+        "late10_std": 0.0049,
+        "late10_min": 0.0022,
+        "late10_max": 0.0193
+      },
+      "B2-B": {
+        "best_epoch": 40,
+        "best_val": 0.1497,
+        "pre_switch_mean": 0.0077,
+        "switch_epoch_val": 0.1317,
+        "post_switch_mean": 0.0044,
+        "late10_mean": 0.0171,
+        "late10_median": 0.0052,
+        "late10_std": 0.0404,
+        "late10_min": 0.0002,
+        "late10_max": 0.1317
+      }
+    }
+  }
+}

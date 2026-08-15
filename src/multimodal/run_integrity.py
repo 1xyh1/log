@@ -73,6 +73,8 @@ def inspect_step3_run(
     *,
     require_weights: bool = True,
     check_eval_provenance: bool = True,
+    trace_name: str = "step3_g8_trace.jsonl",
+    growth_name: str = "step3_kernel_growth.jsonl",
 ) -> RunIntegrityReport:
     """Inspect one Step-3 run directory.
 
@@ -113,8 +115,8 @@ def inspect_step3_run(
     if last_epoch is not None and abs(last_epoch - expected_epochs) > 1e-6:
         errors.append(f"RESULTS_LAST_EPOCH_MISMATCH:{last_epoch}!={expected_epochs}")
 
-    g8_count = _jsonl_count(p / "step3_g8_trace.jsonl")
-    growth_count = _jsonl_count(p / "step3_kernel_growth.jsonl")
+    g8_count = _jsonl_count(p / trace_name)
+    growth_count = _jsonl_count(p / growth_name)
     observed["g8_rows"] = g8_count
     observed["kernel_growth_rows"] = growth_count
     if g8_count is None:

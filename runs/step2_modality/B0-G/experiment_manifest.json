@@ -1,0 +1,324 @@
+{
+  "release_name": "v0.3.1",
+  "group": "B0-G",
+  "head": "o2m",
+  "recipe": "checkpoint-neutral",
+  "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+  "seed": 20260812,
+  "ultralytics": "8.4.56",
+  "torch": "2.5.1+cu121",
+  "weights_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "dataset_yaml_sha256": "a20ee77454db9196d3c275219a63799c2b3ee6625aa3547f94a50570fd7c3f9c",
+  "train_ids_sha256": "054ab18cb1cfcc8bdc7bd13a7981d1352a29d1218c6b73ce70a9be01eff5fe3c",
+  "val_ids_sha256": "c4a2d31271dff38dbd189c74c0c01b6f2c9722d881e1ce322d982de14f5a5d3b",
+  "transfer_audit": {
+    "transferred_tensors": 708,
+    "transferred_params": 10047882,
+    "skipped_shape_mismatch": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "backbone_transferred_params": 5458760,
+    "neck_transferred_params": 3586342,
+    "detect_transferred_params": 1002780,
+    "backbone_sd_hash": "b928e4ec27534c8a27f038005eb76ae934b7858af32a9f8f60a0192e988823a3",
+    "neck_sd_hash": "06a5bff929d40b077723d6d9e47deb1c80441cb4ff2bf77ab22e5326c8a5cca1"
+  },
+  "head_check_before_train": {
+    "requested_head": false,
+    "yaml.end2end": false,
+    "model.end2end": false,
+    "detect_head.end2end": false
+  },
+  "config_sha256": "1a40ca96020b0ea573c184b48c7c34492b1956aa07b50ae68c408a808787061e",
+  "eval_sets": {
+    "checkpoint": "best.pt",
+    "train": {
+      "map50": 0.41327325290642025,
+      "map50_95": 0.277177861884361,
+      "per_class": {
+        "0": {
+          "ap50": 0.9238,
+          "ap50_95": 0.5841
+        },
+        "2": {
+          "ap50": 0.9223,
+          "ap50_95": 0.6144
+        },
+        "3": {
+          "ap50": 0.8263,
+          "ap50_95": 0.5836
+        },
+        "4": {
+          "ap50": 0.0395,
+          "ap50_95": 0.025
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.5944,
+          "ap50_95": 0.4103
+        },
+        "8": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "val": {
+      "map50": 0.4685714285714286,
+      "map50_95": 0.37535714285714294,
+      "per_class": {
+        "0": {
+          "ap50": 0.545,
+          "ap50_95": 0.44
+        },
+        "2": {
+          "ap50": 0.745,
+          "ap50_95": 0.3965
+        },
+        "3": {
+          "ap50": 0.995,
+          "ap50_95": 0.8955
+        },
+        "4": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.995,
+          "ap50_95": 0.8955
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.39098029057433364,
+      "map50_95": 0.27345833339566716,
+      "per_class": {
+        "0": {
+          "ap50": 0.8684,
+          "ap50_95": 0.5563
+        },
+        "2": {
+          "ap50": 0.8117,
+          "ap50_95": 0.5071
+        },
+        "3": {
+          "ap50": 0.8474,
+          "ap50_95": 0.6107
+        },
+        "4": {
+          "ap50": 0.0207,
+          "ap50_95": 0.0127
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.4732,
+          "ap50_95": 0.3266
+        },
+        "8": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.4975,
+          "ap50_95": 0.4477
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "eval_sets_last": {
+    "checkpoint": "last.pt",
+    "train": {
+      "map50": 0.9933911064425771,
+      "map50_95": 0.7249900994935194,
+      "per_class": {
+        "0": {
+          "ap50": 0.9821,
+          "ap50_95": 0.7386
+        },
+        "2": {
+          "ap50": 0.995,
+          "ap50_95": 0.8297
+        },
+        "3": {
+          "ap50": 0.995,
+          "ap50_95": 0.8748
+        },
+        "4": {
+          "ap50": 0.995,
+          "ap50_95": 0.7458
+        },
+        "5": {
+          "ap50": 0.995,
+          "ap50_95": 0.199
+        },
+        "6": {
+          "ap50": 0.995,
+          "ap50_95": 0.8205
+        },
+        "8": {
+          "ap50": 0.995,
+          "ap50_95": 0.7955
+        },
+        "9": {
+          "ap50": 0.995,
+          "ap50_95": 0.796
+        }
+      }
+    },
+    "val": {
+      "map50": 0.3303928571428571,
+      "map50_95": 0.23680425170068026,
+      "per_class": {
+        "0": {
+          "ap50": 0.445,
+          "ap50_95": 0.3041
+        },
+        "2": {
+          "ap50": 0.745,
+          "ap50_95": 0.5205
+        },
+        "3": {
+          "ap50": 0.995,
+          "ap50_95": 0.796
+        },
+        "4": {
+          "ap50": 0.1277,
+          "ap50_95": 0.0371
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.7269692713165365,
+      "map50_95": 0.5552732038268791,
+      "per_class": {
+        "0": {
+          "ap50": 0.9204,
+          "ap50_95": 0.6892
+        },
+        "2": {
+          "ap50": 0.8424,
+          "ap50_95": 0.6756
+        },
+        "3": {
+          "ap50": 0.995,
+          "ap50_95": 0.8631
+        },
+        "4": {
+          "ap50": 0.665,
+          "ap50_95": 0.4556
+        },
+        "5": {
+          "ap50": 0.335,
+          "ap50_95": 0.067
+        },
+        "6": {
+          "ap50": 0.795,
+          "ap50_95": 0.6555
+        },
+        "8": {
+          "ap50": 0.995,
+          "ap50_95": 0.7955
+        },
+        "9": {
+          "ap50": 0.995,
+          "ap50_95": 0.796
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "head_check_after_trainer": {
+    "requested_head": false,
+    "yaml.end2end": false,
+    "model.end2end": false,
+    "trainer.args.end2end": false,
+    "detect_head.end2end": false
+  },
+  "head_check_after_checkpoint_reload": {
+    "best.pt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    },
+    "last.pt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "checkpoint_reload_integrity": {
+    "expected_stem_shape": [
+      32,
+      3,
+      3,
+      3
+    ],
+    "best.pt": {
+      "stem_shape_ok": true,
+      "stem_tensor_matches_checkpoint": true,
+      "stem_sha256_matches": true,
+      "forward_ok": true,
+      "reload_stem_shape": [
+        32,
+        3,
+        3,
+        3
+      ]
+    },
+    "last.pt": {
+      "stem_shape_ok": true,
+      "stem_tensor_matches_checkpoint": true,
+      "stem_sha256_matches": true,
+      "forward_ok": true,
+      "reload_stem_shape": [
+        32,
+        3,
+        3,
+        3
+      ]
+    }
+  }
+}

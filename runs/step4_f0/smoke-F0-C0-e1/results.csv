@@ -1,0 +1,2 @@
+epoch,time,train/Loss,metrics/precision(B),metrics/recall(B),metrics/mAP50(B),metrics/mAP50-95(B),val/Loss,lr/pg0,lr/pg1,lr/pg2,lr/pg3,lr/pg4,lr/pg5,lr/pg6,lr/pg7
+1,4.55302,1.87891,0.07637,0.03571,0.0429,0.03861,0.93769,0.00114,0.00038,0.00114,0.00038,0.00114,0.00038,0.00114,0.00038

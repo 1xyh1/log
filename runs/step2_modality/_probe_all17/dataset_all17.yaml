@@ -1,0 +1,16 @@
+path: C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3/runs/step2_modality/_probe_all17
+train: images
+val: images
+names:
+  0: person
+  1: boat
+  2: animal
+  3: seat
+  4: sign
+  5: bicycle
+  6: car
+  7: ball
+  8: light
+  9: garbage can
+  10: uav
+  11: tricycle

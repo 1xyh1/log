@@ -87,22 +87,14 @@ def _perfect_cross_group_matching(ids: list[str]) -> dict[str, str] | None:
 
 
 def build_group_aware_derangement(ids: list[str]) -> dict[str, str]:
-    """Bijective, no-self donor map; cross-group everywhere when mathematically possible."""
+    """Bijective, no-self donor map; cross-group everywhere when mathematically possible.
+
+    Shared implementation (reviewer requirement): both Step 3 and Step 4 call the same
+    function in src/multimodal/causality_interventions.py.
+    """
+    from multimodal.causality_interventions import bijective_derangement
     ids = list(ids)
-    cross = _perfect_cross_group_matching(ids)
-    if cross is not None:
-        result = cross
-    else:
-        # Deterministic cyclic fallback, search rotations until no self match.
-        ordered = sorted(ids)
-        result = None
-        for shift in range(1, len(ordered)):
-            cand = {sid: ordered[(i + shift) % len(ordered)] for i, sid in enumerate(ordered)}
-            if all(s != d for s, d in cand.items()):
-                result = cand
-                break
-        if result is None:
-            raise RuntimeError("cannot build derangement")
+    result = bijective_derangement(ids)
 
     if set(result) != set(ids) or set(result.values()) != set(ids):
         raise RuntimeError("shuffle map is not a bijection")

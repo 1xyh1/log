@@ -1,0 +1,56 @@
+{
+  "B0-D": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  },
+  "B0-G": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  },
+  "B1-A": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  },
+  "B1-B": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  },
+  "B2-A": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  },
+  "B2-B": {
+    "model_nc": 12,
+    "head_nc": 12,
+    "physical_head_nc": [
+      12,
+      12,
+      12
+    ]
+  }
+}

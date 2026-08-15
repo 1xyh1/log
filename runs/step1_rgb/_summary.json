@@ -1,0 +1,242 @@
+{
+  "provisional": true,
+  "note": "17-image sample probe (11 train/6 val, 9 classes present). FIXED (last.pt epoch-80) is the primary axis: 6-val best.pt selection is unstable. train11 = fit check; all17 = pipeline sanity only. Single-seed stats are null. Not a competition baseline; rerun on full 2000-image set.",
+  "groups": {
+    "B0-A": {
+      "head": "e2e",
+      "recipe": "default",
+      "recipe_source": "R0-sample-resolved (explicit)",
+      "n_seeds": 3,
+      "train11_mAP50-95_fixed": null,
+      "val_mAP50-95_fixed": {
+        "mean": 0.0494,
+        "std": 0.0044,
+        "per_seed": {
+          "20260812": 0.045369787045252886,
+          "20260813": 0.04874675324675326,
+          "20260814": 0.05417332667332667
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5725,
+        "std": 0.0131,
+        "per_seed": {
+          "20260812": 0.5638341608873827,
+          "20260813": 0.5661483751549171,
+          "20260814": 0.5876116429865638
+        }
+      },
+      "train11_mAP50-95_bestpt": null,
+      "val_mAP50-95_bestpt": {
+        "mean": 0.0847,
+        "std": 0.0163,
+        "per_seed": {
+          "20260812": 0.10329139784946237,
+          "20260813": 0.07816011337868481,
+          "20260814": 0.07275420024420028
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.0409,
+        "std": 0.0436,
+        "per_seed": {
+          "20260812": 0.09055558438385623,
+          "20260813": 0.008889612251841978,
+          "20260814": 0.02319433934608888
+        }
+      }
+    },
+    "B0-B": {
+      "head": "o2m",
+      "recipe": "default",
+      "recipe_source": "R0-sample-resolved (explicit)",
+      "n_seeds": 3,
+      "train11_mAP50-95_fixed": null,
+      "val_mAP50-95_fixed": {
+        "mean": 0.0419,
+        "std": 0.0049,
+        "per_seed": {
+          "20260812": 0.04524567099567099,
+          "20260813": 0.03633429282160625,
+          "20260814": 0.044197278911564615
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5837,
+        "std": 0.019,
+        "per_seed": {
+          "20260812": 0.6041557799094618,
+          "20260813": 0.5667578310102134,
+          "20260814": 0.5800574738949408
+        }
+      },
+      "train11_mAP50-95_bestpt": null,
+      "val_mAP50-95_bestpt": {
+        "mean": 0.1587,
+        "std": 0.0918,
+        "per_seed": {
+          "20260812": 0.05288082368082369,
+          "20260813": 0.21717857142857144,
+          "20260814": 0.20610714285714288
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.2196,
+        "std": 0.3233,
+        "per_seed": {
+          "20260812": 0.5929082031577361,
+          "20260813": 0.03641922804154728,
+          "20260814": 0.02947516339869281
+        }
+      }
+    },
+    "B0-C": {
+      "head": "o2m",
+      "recipe": "small-data",
+      "recipe_source": "R1-sample-small (R0 + lr0=0.001, mosaic=0.5)",
+      "n_seeds": 1,
+      "train11_mAP50-95_fixed": null,
+      "val_mAP50-95_fixed": {
+        "mean": 0.0404,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.04040510531135531
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5169,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.5169061957082336
+        }
+      },
+      "train11_mAP50-95_bestpt": null,
+      "val_mAP50-95_bestpt": {
+        "mean": 0.064,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.06404824561403508
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.0342,
+        "std": null,
+        "per_seed": {
+          "20260812": 0.034240722561868
+        }
+      }
+    },
+    "B0-D": {
+      "head": "o2m",
+      "recipe": "checkpoint",
+      "recipe_source": "R2-sample-ckpt-public (whitelist extraction)",
+      "n_seeds": 3,
+      "train11_mAP50-95_fixed": null,
+      "val_mAP50-95_fixed": {
+        "mean": 0.2829,
+        "std": 0.0433,
+        "per_seed": {
+          "20260812": 0.25954358974358976,
+          "20260813": 0.2562095238095238,
+          "20260814": 0.3328551020408163
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5387,
+        "std": 0.0156,
+        "per_seed": {
+          "20260812": 0.5207316482849866,
+          "20260813": 0.5476736988732133,
+          "20260814": 0.547831965581982
+        }
+      },
+      "train11_mAP50-95_bestpt": null,
+      "val_mAP50-95_bestpt": {
+        "mean": 0.3625,
+        "std": 0.0259,
+        "per_seed": {
+          "20260812": 0.37427878348686083,
+          "20260813": 0.3805,
+          "20260814": 0.3328551020408163
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.3578,
+        "std": 0.2399,
+        "per_seed": {
+          "20260812": 0.4373902547757336,
+          "20260813": 0.08829669883109156,
+          "20260814": 0.547831965581982
+        }
+      }
+    },
+    "B0-F": {
+      "head": "e2e",
+      "recipe": "checkpoint",
+      "recipe_source": "R2-sample-ckpt-public (whitelist extraction)",
+      "n_seeds": 3,
+      "train11_mAP50-95_fixed": null,
+      "val_mAP50-95_fixed": {
+        "mean": 0.1624,
+        "std": 0.0767,
+        "per_seed": {
+          "20260812": 0.2372618863846866,
+          "20260813": 0.16597293452099782,
+          "20260814": 0.08400815914244486
+        }
+      },
+      "all17_mAP50-95_fixed": {
+        "mean": 0.5278,
+        "std": 0.0261,
+        "per_seed": {
+          "20260812": 0.5133517443549833,
+          "20260813": 0.5120502509504387,
+          "20260814": 0.5579265042736263
+        }
+      },
+      "train11_mAP50-95_bestpt": null,
+      "val_mAP50-95_bestpt": {
+        "mean": 0.2584,
+        "std": 0.0362,
+        "per_seed": {
+          "20260812": 0.2602261904761904,
+          "20260813": 0.22123808117853683,
+          "20260814": 0.2936259278798944
+        }
+      },
+      "all17_mAP50-95_bestpt": {
+        "mean": 0.3573,
+        "std": 0.1604,
+        "per_seed": {
+          "20260812": 0.36494695163443935,
+          "20260813": 0.5136533652608339,
+          "20260814": 0.19319824976338337
+        }
+      }
+    }
+  },
+  "winner_fixed": {
+    "group": "B0-D",
+    "head": "o2m",
+    "recipe": "checkpoint",
+    "val_mAP50-95_mean": 0.2829,
+    "note": "PROVISIONAL Step-1 winner on 17-image probe (FIXED last.pt axis). Rerun on full data.",
+    "runner_up": "B0-F",
+    "margin_vs_runnerup": 0.1205,
+    "direction_consistent": true,
+    "wins_all_paired_seeds": "3/3",
+    "mean_gap_exceeds_combined_std": true
+  },
+  "winner_bestpt": {
+    "group": "B0-D",
+    "head": "o2m",
+    "recipe": "checkpoint",
+    "val_mAP50-95_mean": 0.3625,
+    "note": "PROVISIONAL Step-1 winner on 17-image probe (BEST best.pt axis). Rerun on full data.",
+    "runner_up": "B0-F",
+    "margin_vs_runnerup": 0.1041,
+    "direction_consistent": true,
+    "wins_all_paired_seeds": "3/3",
+    "mean_gap_exceeds_combined_std": true
+  }
+}

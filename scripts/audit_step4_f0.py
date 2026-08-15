@@ -19,7 +19,8 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from multimodal.early_fusion_yolo26 import build_reference_3ch, r3_hyp  # noqa: E402
+from multimodal.early_fusion_yolo26 import (  # noqa: E402
+    MODEL_INIT_SEED, build_reference_3ch, r3_hyp)
 from multimodal.raw_sample_index import build_contract, OUT_DEFAULT  # noqa: E402
 from multimodal.step4_f0_model import Step4F0Model  # noqa: E402
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
@@ -161,9 +162,20 @@ def main():
     report = {"G1_rgb_equivalence": gate1(reference, model),
               "G2_zero_init_proj": None, "G3_gradient_flow": {}, "G4_frozen_anchor": None}
     report["G2_zero_init_proj"] = gate2(model)
-    for g in GROUPS:
-        report["G3_gradient_flow"][g] = gate3(model, sample, g)
     report["G4_frozen_anchor"] = gate4(model)
+    # P0-2 fix: each group gets a PRISTINE model and ITS OWN dataset content.
+    # (Previously one shared model was mutated by successive SGD steps and all three
+    # groups used a C1-I sample whose D/M planes are zeroed -> fake F0-D pass.)
+    dataset_group = {"F0-C0": "C0-N", "F0-I": "C1-I", "F0-D": "C2-D"}
+    for g in GROUPS:
+        torch.manual_seed(MODEL_INIT_SEED)
+        ref_g = build_reference_3ch()
+        model_g = Step4F0Model(ref_g, aux_mode=GROUPS[g])
+        assert all(f.assert_zero_init() for f in model_g.fusions.values()), \
+            f"{g}: pristine model must start from zero-init projections"
+        sample_g = TriModalDataset(contract, split="train", group=dataset_group[g],
+                                   augment=False)[0]
+        report["G3_gradient_flow"][g] = gate3(model_g, sample_g, g)
     report["all_passed"] = bool(
         report["G1_rgb_equivalence"]["passed"] and report["G2_zero_init_proj"]["passed"]
         and all(v["passed"] for v in report["G3_gradient_flow"].values())

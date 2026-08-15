@@ -1,0 +1,62 @@
+{
+  "B0-G": {
+    "best_epoch": 20,
+    "best_val": 0.3726,
+    "pre_switch_mean": 0.242,
+    "switch_epoch_val": 0.2437,
+    "post_switch_mean": 0.2517,
+    "late10_mean": 0.2509,
+    "late10_median": 0.2534,
+    "late10_std": 0.0087,
+    "late10_min": 0.2392,
+    "late10_max": 0.2604
+  },
+  "B1-A": {
+    "best_epoch": 7,
+    "best_val": 0.1087,
+    "pre_switch_mean": 0.0498,
+    "switch_epoch_val": 0.0486,
+    "post_switch_mean": 0.0594,
+    "late10_mean": 0.0583,
+    "late10_median": 0.0585,
+    "late10_std": 0.0146,
+    "late10_min": 0.0396,
+    "late10_max": 0.0807
+  },
+  "B1-B": {
+    "best_epoch": 78,
+    "best_val": 0.0902,
+    "pre_switch_mean": 0.0454,
+    "switch_epoch_val": 0.081,
+    "post_switch_mean": 0.0696,
+    "late10_mean": 0.0707,
+    "late10_median": 0.0724,
+    "late10_std": 0.0118,
+    "late10_min": 0.0503,
+    "late10_max": 0.0902
+  },
+  "B2-A": {
+    "best_epoch": 39,
+    "best_val": 0.1382,
+    "pre_switch_mean": 0.029,
+    "switch_epoch_val": 0.0056,
+    "post_switch_mean": 0.0068,
+    "late10_mean": 0.0066,
+    "late10_median": 0.0049,
+    "late10_std": 0.0049,
+    "late10_min": 0.0022,
+    "late10_max": 0.0193
+  },
+  "B2-B": {
+    "best_epoch": 40,
+    "best_val": 0.1497,
+    "pre_switch_mean": 0.0077,
+    "switch_epoch_val": 0.1317,
+    "post_switch_mean": 0.0044,
+    "late10_mean": 0.0171,
+    "late10_median": 0.0052,
+    "late10_std": 0.0404,
+    "late10_min": 0.0002,
+    "late10_max": 0.1317
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "G1_rgb_equivalence": {
+    "threshold": 1e-05,
+    "max_abs_diff": 0.0,
+    "passed": true
+  },
+  "G2_zero_init_proj": {
+    "all_proj_exactly_zero": true,
+    "passed": true
+  },
+  "G3_gradient_flow": {
+    "F0-C0": {
+      "step1_loss": 27.45287322998047,
+      "step2_loss": 27.452871322631836,
+      "fusion_proj_grad_step1": 8.668866939842701e-07,
+      "fusion_weight_grad_step1": 0.0,
+      "aux_encoder_grad_step1": 0.0,
+      "aux_encoder_grad_step2": 0.0,
+      "rgb_backbone_trainable_params": 0,
+      "expected": "aux weight grads exactly zero (zero input); bias intercept may move",
+      "passed": true
+    },
+    "F0-I": {
+      "step1_loss": 27.45287322998047,
+      "step2_loss": 27.415918350219727,
+      "fusion_proj_grad_step1": 1.4589183330535889,
+      "fusion_weight_grad_step1": 1.4589183330535889,
+      "aux_encoder_grad_step1": 0.0,
+      "aux_encoder_grad_step2": 0.619731605052948,
+      "rgb_backbone_trainable_params": 0,
+      "expected": "proj grad > 0 at step 1; aux encoder grad == 0 at step 1 (W=0 math) and > 0 at step 2",
+      "passed": true
+    },
+    "F0-D": {
+      "step1_loss": 27.45287322998047,
+      "step2_loss": 27.97419548034668,
+      "fusion_proj_grad_step1": 0.8674771189689636,
+      "fusion_weight_grad_step1": 0.8674771189689636,
+      "aux_encoder_grad_step1": 0.0,
+      "aux_encoder_grad_step2": 0.04626236855983734,
+      "rgb_backbone_trainable_params": 0,
+      "expected": "proj grad > 0 at step 1; aux encoder grad == 0 at step 1 (W=0 math) and > 0 at step 2",
+      "passed": true
+    }
+  },
+  "G4_frozen_anchor": {
+    "rgb_backbone_trainable_params": 0,
+    "rgb_bn_in_eval": true,
+    "passed": true
+  },
+  "all_passed": true
+}

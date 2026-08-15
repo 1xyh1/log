@@ -55,6 +55,11 @@ def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def sha256_json(obj) -> str:
+    payload = json.dumps(obj, ensure_ascii=False, separators=(",", ":"), sort_keys=False)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 class Step4Validator(DetectionValidator):
     """Float 6ch validator (no /255); the F0 model splits the 6ch batch internally."""
 
@@ -108,6 +113,8 @@ def main():
             self.step4_contract = contract
             self.step4_requested_batch = requested_batch
             self._epoch_dataset = None
+            self._g8_actual_ids: list[str] = []
+            self._g8_actual_flips: list[bool] = []
 
         def build_dataset(self, img_path, mode="train", batch=None):
             split = "train" if mode == "train" else "val"
@@ -129,6 +136,14 @@ def main():
         def preprocess_batch(self, batch):
             if int(self.args.batch) != self.step4_requested_batch:
                 raise RuntimeError("ABORT_RESOURCE_PROFILE_CHANGED")
+            # ACTUAL DataLoader yield evidence (before any device copy), same as the
+            # fixed Step-3 runner — no planned-hash-only regression (reviewer P0-3).
+            ids = batch.get("sample_id")
+            flips = batch.get("flip_applied")
+            if ids is not None:
+                self._g8_actual_ids.extend(str(x) for x in ids)
+            if flips is not None:
+                self._g8_actual_flips.extend(bool(x) for x in flips)
             for k, v in batch.items():
                 if isinstance(v, torch.Tensor):
                     batch[k] = v.to(self.device, non_blocking=self.device.type == "cuda")
@@ -156,17 +171,36 @@ def main():
 
     def on_epoch_start(tr):
         ds = getattr(tr, "_epoch_dataset", None)
-        if ds is not None:
-            ds.set_epoch(tr.epoch)
-            ordered_ids = [ds.ids[i] for i in ds.sampler.perm]
-            flip_bits = "".join("1" if mp.should_flip(ds.seed, tr.epoch, sid, ds.fliplr)
-                                else "0" for sid in ordered_ids)
-            trace.append({"epoch": tr.epoch,
-                          "sample_order_sha256": ds.sampler.order_sha256(),
-                          "flip_schedule_sha256": sha256_text(flip_bits),
-                          "batch": int(tr.args.batch)})
+        if ds is None:
+            raise RuntimeError("G8_NO_EPOCH_DATASET")
+        ds.set_epoch(tr.epoch)
+        if hasattr(tr.train_loader, "reset"):
+            tr.train_loader.reset()  # InfiniteDataLoader owns a persistent iterator
+        tr._g8_actual_ids = []
+        tr._g8_actual_flips = []
 
     def on_epoch_end(tr):
+        ds = tr._epoch_dataset
+        expected_ids = [ds.ids[i] for i in ds.sampler.perm]
+        expected_flips = [mp.should_flip(ds.seed, tr.epoch, sid, ds.fliplr)
+                          for sid in expected_ids]
+        actual_ids = list(tr._g8_actual_ids)
+        actual_flips = list(tr._g8_actual_flips)
+        if actual_ids != expected_ids:
+            raise RuntimeError(f"G8_ACTUAL_ORDER_MISMATCH epoch={tr.epoch}")
+        if actual_flips != expected_flips:
+            raise RuntimeError(f"G8_ACTUAL_FLIP_MISMATCH epoch={tr.epoch}")
+        legacy_flip_bits = "".join("1" if f else "0" for f in expected_flips)
+        trace.append({"epoch": tr.epoch,
+                      "n_samples": len(actual_ids),
+                      "sample_order_sha256": ds.sampler.order_sha256(),
+                      "flip_schedule_sha256": sha256_text(legacy_flip_bits),
+                      "expected_order_sha256": sha256_json(expected_ids),
+                      "actual_order_sha256": sha256_json(actual_ids),
+                      "expected_flip_sha256": sha256_json(expected_flips),
+                      "actual_flip_sha256": sha256_json(actual_flips),
+                      "actual_matches_expected": True,
+                      "batch": int(tr.args.batch)})
         w = tr.model.fusions
         growth.append({"epoch": tr.epoch + 1,
                        "projP3_norm": float(w["4"].proj.weight.norm()),
@@ -180,10 +214,37 @@ def main():
     trainer.add_callback("on_train_epoch_end", on_epoch_end)
 
     run_dir.mkdir(parents=True, exist_ok=True)
-    manifest = {"group": a.group, "model": "Step4F0Model (RGB anchor + zero-init residual)",
-                "aux_mode": GROUPS[a.group], "freeze": "RGB backbone frozen, BN eval",
-                "recipe": "R3-causal-earlyfusion-sample", "requested_batch": a.batch,
-                "aux_encoder_seed": MODEL_INIT_SEED}
+
+    def _state_sha(module) -> str:
+        from multimodal.early_fusion_yolo26 import tensor_sha256
+        h = hashlib.sha256()
+        for n, p in sorted(module.state_dict().items()):
+            h.update(n.encode())
+            h.update(p.detach().cpu().contiguous().numpy().tobytes())
+        return h.hexdigest()
+
+    manifest = {
+        "schema": "step4-f0-manifest-v1",
+        "group": a.group,
+        "physical_run_name": a.name,
+        "run_kind": a.run_kind,
+        "model": "Step4F0Model (RGB anchor + zero-init residual)",
+        "aux_mode": GROUPS[a.group],
+        "freeze": "RGB backbone frozen, BN eval",
+        "recipe": "R3-causal-earlyfusion-sample",
+        "expected_epochs": a.epochs,
+        "requested_batch": a.batch,
+        "seed": a.seed,
+        "aux_encoder_seed": MODEL_INIT_SEED,
+        "contract_sha256": hashlib.sha256(Path(a.contract).read_bytes()).hexdigest(),
+        "initial_rgb_backbone_sha256": _state_sha(model.rgb_backbone),
+        "initial_aux_encoder_sha256": _state_sha(model.aux_encoder),
+        "initial_fusion_sha256": _state_sha(model.fusions),
+        "initial_model_state_sha256": _state_sha(model),
+        "g8_evidence": "actual_dataloader_yield_v1",
+        "ultralytics_version": __import__("ultralytics").__version__,
+        "created_at": __import__("datetime").datetime.now().astimezone().isoformat(),
+    }
     (run_dir / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False),
                                            encoding="utf-8")
 

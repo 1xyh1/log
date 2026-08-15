@@ -1,0 +1,200 @@
+{
+  "release_name": "v0.3.1",
+  "group": "B0-A-s20260813",
+  "head": "e2e",
+  "recipe": "default",
+  "recipe_source": "R0-sample-resolved (explicit)",
+  "seed": 20260813,
+  "ultralytics": "8.4.56",
+  "torch": "2.5.1+cu121",
+  "weights_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "dataset_yaml_sha256": "a20ee77454db9196d3c275219a63799c2b3ee6625aa3547f94a50570fd7c3f9c",
+  "train_ids_sha256": "054ab18cb1cfcc8bdc7bd13a7981d1352a29d1218c6b73ce70a9be01eff5fe3c",
+  "val_ids_sha256": "c4a2d31271dff38dbd189c74c0c01b6f2c9722d881e1ce322d982de14f5a5d3b",
+  "transfer_audit": {
+    "transferred_tensors": 708,
+    "transferred_params": 10047882,
+    "skipped_shape_mismatch": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "backbone_transferred_params": 5458760,
+    "neck_transferred_params": 3586342,
+    "detect_transferred_params": 1002780,
+    "backbone_sd_hash": "b928e4ec27534c8a27f038005eb76ae934b7858af32a9f8f60a0192e988823a3",
+    "neck_sd_hash": "06a5bff929d40b077723d6d9e47deb1c80441cb4ff2bf77ab22e5326c8a5cca1"
+  },
+  "head_check_before_train": {
+    "requested_head": true,
+    "yaml.end2end": true,
+    "model.end2end": true,
+    "trainer.args.end2end": null,
+    "detect_head.end2end": true
+  },
+  "config_sha256": "90d999f44dd2ec81e3bbde5192678bcce70ab4e4162647e43d1940d19bae030a",
+  "eval_dual": {
+    "checkpoint": "best.pt",
+    "val": {
+      "map50": 0.09978072562358276,
+      "map50_95": 0.07816011337868481,
+      "per_class": {
+        "0": {
+          "ap50": 0.0316,
+          "ap50_95": 0.0102
+        },
+        "2": {
+          "ap50": 0.0272,
+          "ap50_95": 0.0054
+        },
+        "3": {
+          "ap50": 0.1421,
+          "ap50_95": 0.034
+        },
+        "4": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.4975,
+          "ap50_95": 0.4975
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.015969506383662544,
+      "map50_95": 0.008889612251841978,
+      "per_class": {
+        "0": {
+          "ap50": 0.0319,
+          "ap50_95": 0.0262
+        },
+        "2": {
+          "ap50": 0.015,
+          "ap50_95": 0.0048
+        },
+        "3": {
+          "ap50": 0.0363,
+          "ap50_95": 0.0083
+        },
+        "4": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.039,
+          "ap50_95": 0.0343
+        },
+        "8": {
+          "ap50": 0.0215,
+          "ap50_95": 0.0065
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": true,
+      "detect_head.end2end": true
+    }
+  },
+  "eval_dual_last": {
+    "checkpoint": "last.pt",
+    "val": {
+      "map50": 0.08363636363636365,
+      "map50_95": 0.04874675324675326,
+      "per_class": {
+        "0": {
+          "ap50": 0.295,
+          "ap50_95": 0.098
+        },
+        "2": {
+          "ap50": 0.2905,
+          "ap50_95": 0.2432
+        },
+        "3": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "4": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.681490651003381,
+      "map50_95": 0.5661483751549171,
+      "per_class": {
+        "0": {
+          "ap50": 0.9143,
+          "ap50_95": 0.7799
+        },
+        "2": {
+          "ap50": 0.7054,
+          "ap50_95": 0.6486
+        },
+        "3": {
+          "ap50": 0.8588,
+          "ap50_95": 0.7278
+        },
+        "4": {
+          "ap50": 0.575,
+          "ap50_95": 0.4885
+        },
+        "5": {
+          "ap50": 0.335,
+          "ap50_95": 0.1005
+        },
+        "6": {
+          "ap50": 0.755,
+          "ap50_95": 0.6711
+        },
+        "8": {
+          "ap50": 0.995,
+          "ap50_95": 0.8332
+        },
+        "9": {
+          "ap50": 0.995,
+          "ap50_95": 0.8458
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": true,
+      "detect_head.end2end": true
+    }
+  }
+}

@@ -556,3 +556,19 @@ zero-init 下 **dL/dA = Wᵀ·dL/dF = 0**（step1 编码器梯度精确为 0）�
 
 ### 下一步（等审阅者批准后）
 三组 × 80 epochs formal 训练 → 三路因果（期望证据 normal > zero-aux > shuffle）→ LOO → 四类判级。
+
+---
+
+## 2026-08-15 · 板块 14：Step 4-F0 审阅 P0 修复轮（5 P0 + 2 P1 全部关闭）
+
+审阅者否决 3×80 epoch 后修复清单（逐项）：
+- **P0-1 前向图 bug（最重要）**：neck layer 11 的 f=-1 消费当前 x——融合后未 `x = y[10]` 导致 top-down 主链吃的是融合前 RGB P5，fused P5 只在 layer 21 再参与一次。修复：fusion 后 `x = y[10]`。新增 `test_p5_fused_tensor_enters_neck_layer11`（非零 proj + 非零 aux 必须改变进入 layer 11 的张量）。调试中发现并修复测试自身的 forward-hook 陷阱（hook 返回值会替换模块输出——setdefault 返回被存张量导致形状污染；hook 必须返回 None）。
+- **P0-2 Gate3 假通过**：原 audit 三组共享同一 model（被逐步 SGD 修改）且全部用 C1-I sample（D/M 被清零）。修复：每组 pristine model（manual_seed+独立 reference+零初始化断言）+ 各自数据集内容（F0-C0→C0-N / F0-I→C1-I / F0-D→C2-D）。新增 `test_gate3_each_group_starts_from_zero_init`、`test_gate3_depth_uses_nonzero_D_M`、`test_f0_c0_weight_grad_zero_but_bias_allowed`。
+- **P0-3 G8 回退**：Step4 runner 原记 planned hash。修复：照抄 Step-3 修复版 actual-yield 采集（batch["sample_id"]/["flip_applied"]、train_loader.reset()、epoch 末 expected vs actual 比对不一致即 ABORT、记录 expected/actual 四哈希）。新增 `test_actual_yield_g8_matches_expected`。
+- **P0-4 SHUFFLE 非双射**：修复：新增共享模块 `src/multimodal/causality_interventions.py`（二分图完美跨组匹配 + 旋转 fallback，保证 bijective 无自配；Step-3 evaluator 与 Step-4 均调用同一实现）；评估时旧 shuffle_map 重新验证、不合格自动重建。新增 `test_shuffle_is_bijective_no_self_cross_group`（train/val/all17 三集全验证）。
+- **P0-5 无完整性门禁**：修复：`eval_step4_causality` 先跑 `inspect_step3_run`（扩展 trace/growth 文件名参数）拒绝 stale/mixed/short run；manifest 扩展至 v1 schema（expected_epochs、contract_sha256、initial_rgb_backbone/aux_encoder/fusion/model_state 四个初始 SHA、g8_evidence=actual_dataloader_yield_v1、ultralytics 版本、created_at）。新增 `test_stale_or_short_formal_run_rejected`、`test_three_group_initial_state_sha_equal`。
+- **P1**：feature_fusion docstring 改为正确两步梯度描述；watcher 前缀泛化（reports/step*、runs/** 文本+results.png）；计划文档判据措辞（N>C0 且 N>Z 且 N>S；Z>S 非硬门槛）。
+
+**验证**：Step4 12 项测试全过；Step3 测试（contract+recovery）9 项全过（共享 derangement 重构无回归）；audit 四门禁 all PASSED；三组 smoke 全 DONE（actual-yield G8 轨迹）。
+
+**状态**：5 P0 + 2 P1 全部关闭，等待审阅者批准 3×80 epoch。

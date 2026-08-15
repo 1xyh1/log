@@ -32,12 +32,11 @@ SYNC_PREFIXES = (
     "scripts/",
     "tests/",
     "docs/",
-    "reports/step3_",
-    "reports/step2_closing",
+    "reports/step",
 )
 
 # 结果目录：只同步文本与必要图（results.png = val 曲线）
-RESULTS_PREFIX = "runs/step3_earlyfusion/"
+RESULTS_PREFIX = "runs/"
 RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
 RESULTS_FIGURE_NAMES = {"results.png"}
 

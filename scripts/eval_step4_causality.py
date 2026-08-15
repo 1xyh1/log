@@ -22,37 +22,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from multimodal import step3_eval_utils as evu  # noqa: E402
+from multimodal.causality_interventions import (  # noqa: E402
+    assert_valid_shuffle_map, bijective_derangement)
 from multimodal.raw_sample_index import build_contract, OUT_DEFAULT  # noqa: E402
-from multimodal.step4_f0_model import Step4F0Model  # noqa: E402
+from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
 
 GROUPS = {"F0-C0": "zero", "F0-I": "ir", "F0-D": "depth"}
 DATASET_GROUP = {"F0-C0": "C0-N", "F0-I": "C1-I", "F0-D": "C2-D"}
-
-
-def group_aware_derangement(ids: list[str], _unused) -> dict:
-    """No-self-match derangement preferring donor_group != rgb_group.
-
-    Most-constrained-first greedy: a full cross-group derangement exists for all
-    three probe sets (verified in tests/test_step4_f0.py::test_shuffle_consistency).
-    """
-    from multimodal.raw_sample_index import group_of
-    groups = {}
-    for sid in ids:
-        groups.setdefault(group_of(sid), []).append(sid)
-    donors = {sid: [d for g, ds in groups.items() if g != group_of(sid) for d in ds]
-              for sid in ids}
-    result = {}
-    remaining = set(ids)
-    while remaining:
-        best = min(remaining,
-                   key=lambda s: len([d for d in donors[s] if d in remaining and d != s]))
-        pool = [d for d in donors[best] if d in remaining and d != best] or \
-               [d for d in ids if d != best]  # donors may be reused (protocol: only no self-match)
-        result[best] = pool[0]
-        remaining.remove(best)
-    assert all(result[s] != s for s in result), "derangement violated"
-    return result
 
 
 def late10(run_dir: Path) -> dict:
@@ -85,17 +62,32 @@ def main():
     names = {int(k): v for k, v in names.items()}
 
     run_dir = Path(a.project) / a.run_name
+    # P0-5: integrity gate before any evaluation (stale/mixed/short runs rejected)
+    integrity = inspect_step3_run(run_dir, a.expected_epochs, require_weights=True,
+                                  trace_name="step4_g8_trace.jsonl",
+                                  growth_name="step4_growth.jsonl")
+    if not integrity.to_dict()["passed"]:
+        print(json.dumps(integrity.to_dict(), indent=2, ensure_ascii=False))
+        raise RuntimeError("REFUSE_EVAL_INCOHERENT_RUN")
     ds_group = DATASET_GROUP[a.group]
-    # deterministic SHUFFLE maps (input-level donor permutation), fixed per set
+    # deterministic SHUFFLE maps: bijective no-self cross-group (P0-4); existing maps
+    # are RE-VALIDATED and rebuilt if they fail the formal SHUFFLE gate.
     maps = {}
     for split, key in (("train", "shuffle_map_train.json"), ("val", "shuffle_map_val.json"),
                        ("all17", "shuffle_map_all17.json")):
         fp = run_dir / key
+        ids = contract[f"{split}_ids"]
         if fp.exists():
-            maps[split] = json.loads(fp.read_text(encoding="utf-8"))
-        else:
-            maps[split] = group_aware_derangement(contract[f"{split}_ids"], {})
+            old = json.loads(fp.read_text(encoding="utf-8"))
+            if not assert_valid_shuffle_map(old, ids):
+                print(f"[warn] {key} failed the bijection gate -> rebuilding")
+                fp.unlink()
+        if not fp.exists():
+            maps[split] = bijective_derangement(ids)
+            assert assert_valid_shuffle_map(maps[split], ids), key
             fp.write_text(json.dumps(maps[split], indent=2), encoding="utf-8")
+        else:
+            maps[split] = json.loads(fp.read_text(encoding="utf-8"))
 
     results = {"schema": "step4-stock-validator-semantics-v1", "group": a.group,
                "aux_mode": GROUPS[a.group], "late10": late10(run_dir)}

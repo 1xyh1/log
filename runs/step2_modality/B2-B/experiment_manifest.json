@@ -1,0 +1,382 @@
+{
+  "release_name": "v0.3.1",
+  "group": "B2-B",
+  "head": "o2m",
+  "recipe": "checkpoint-neutral",
+  "recipe_source": "R2-neutral-sample (R2 - RGB photometric: hsv/bgr/auto_augment/erasing)",
+  "seed": 20260812,
+  "ultralytics": "8.4.56",
+  "torch": "2.5.1+cu121",
+  "weights_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "dataset_yaml_sha256": "be772362dba02c7a6bcc29f3dd02b0e05f13ae30dce6ffd94f9acca9167e33ac",
+  "train_ids_sha256": "054ab18cb1cfcc8bdc7bd13a7981d1352a29d1218c6b73ce70a9be01eff5fe3c",
+  "val_ids_sha256": "c4a2d31271dff38dbd189c74c0c01b6f2c9722d881e1ce322d982de14f5a5d3b",
+  "transfer_audit": {
+    "transferred_tensors": 708,
+    "transferred_params": 10047882,
+    "skipped_shape_mismatch": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "backbone_transferred_params": 5458760,
+    "neck_transferred_params": 3586342,
+    "detect_transferred_params": 1002780,
+    "backbone_sd_hash": "b928e4ec27534c8a27f038005eb76ae934b7858af32a9f8f60a0192e988823a3",
+    "neck_sd_hash": "06a5bff929d40b077723d6d9e47deb1c80441cb4ff2bf77ab22e5326c8a5cca1"
+  },
+  "head_check_before_train": {
+    "requested_head": false,
+    "yaml.end2end": false,
+    "model.end2end": false,
+    "detect_head.end2end": false
+  },
+  "config_sha256": "1a40ca96020b0ea573c184b48c7c34492b1956aa07b50ae68c408a808787061e",
+  "eval_sets": {
+    "checkpoint": "best.pt",
+    "train": {
+      "map50": 0.2978370357764285,
+      "map50_95": 0.14748163730431468,
+      "per_class": {
+        "0": {
+          "ap50": 0.4317,
+          "ap50_95": 0.2226
+        },
+        "2": {
+          "ap50": 0.495,
+          "ap50_95": 0.1741
+        },
+        "3": {
+          "ap50": 0.2324,
+          "ap50_95": 0.0659
+        },
+        "4": {
+          "ap50": 0.1225,
+          "ap50_95": 0.0539
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.6061,
+          "ap50_95": 0.3664
+        },
+        "8": {
+          "ap50": 0.495,
+          "ap50_95": 0.297
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "val": {
+      "map50": 0.18055782312925173,
+      "map50_95": 0.14897755102040816,
+      "per_class": {
+        "0": {
+          "ap50": 0.214,
+          "ap50_95": 0.1227
+        },
+        "2": {
+          "ap50": 0.007,
+          "ap50_95": 0.0007
+        },
+        "3": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "4": {
+          "ap50": 0.0479,
+          "ap50_95": 0.0239
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.995,
+          "ap50_95": 0.8955
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.327954817149602,
+      "map50_95": 0.20947623681739708,
+      "per_class": {
+        "0": {
+          "ap50": 0.4018,
+          "ap50_95": 0.2059
+        },
+        "2": {
+          "ap50": 0.2968,
+          "ap50_95": 0.1036
+        },
+        "3": {
+          "ap50": 0.2,
+          "ap50_95": 0.0566
+        },
+        "4": {
+          "ap50": 0.0792,
+          "ap50_95": 0.0352
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.4839,
+          "ap50_95": 0.2913
+        },
+        "8": {
+          "ap50": 0.495,
+          "ap50_95": 0.297
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.995,
+          "ap50_95": 0.8955
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "eval_sets_last": {
+    "checkpoint": "last.pt",
+    "train": {
+      "map50": 0.3904924506810042,
+      "map50_95": 0.26436709082565246,
+      "per_class": {
+        "0": {
+          "ap50": 0.6481,
+          "ap50_95": 0.3931
+        },
+        "2": {
+          "ap50": 0.5162,
+          "ap50_95": 0.3584
+        },
+        "3": {
+          "ap50": 0.2246,
+          "ap50_95": 0.1485
+        },
+        "4": {
+          "ap50": 0.37,
+          "ap50_95": 0.2465
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.87,
+          "ap50_95": 0.622
+        },
+        "8": {
+          "ap50": 0.495,
+          "ap50_95": 0.3465
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "val": {
+      "map50": 0.0005298457411133468,
+      "map50_95": 0.00020340660987199798,
+      "per_class": {
+        "0": {
+          "ap50": 0.0037,
+          "ap50_95": 0.0014
+        },
+        "2": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "3": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "4": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "all17": {
+      "map50": 0.27365583430162127,
+      "map50_95": 0.18513133169122117,
+      "per_class": {
+        "0": {
+          "ap50": 0.5597,
+          "ap50_95": 0.3402
+        },
+        "2": {
+          "ap50": 0.3032,
+          "ap50_95": 0.211
+        },
+        "3": {
+          "ap50": 0.195,
+          "ap50_95": 0.1283
+        },
+        "4": {
+          "ap50": 0.215,
+          "ap50_95": 0.1435
+        },
+        "5": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "6": {
+          "ap50": 0.695,
+          "ap50_95": 0.4967
+        },
+        "8": {
+          "ap50": 0.495,
+          "ap50_95": 0.3465
+        },
+        "9": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        },
+        "11": {
+          "ap50": 0.0,
+          "ap50_95": 0.0
+        }
+      }
+    },
+    "head_on_ckpt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "head_check_after_trainer": {
+    "requested_head": false,
+    "yaml.end2end": false,
+    "model.end2end": false,
+    "trainer.args.end2end": false,
+    "detect_head.end2end": false
+  },
+  "head_check_after_checkpoint_reload": {
+    "best.pt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    },
+    "last.pt": {
+      "ckpt_train_args.end2end": false,
+      "detect_head.end2end": false
+    }
+  },
+  "checkpoint_reload_integrity": {
+    "expected_stem_shape": [
+      32,
+      3,
+      3,
+      3
+    ],
+    "best.pt": {
+      "stem_shape_ok": true,
+      "stem_tensor_matches_checkpoint": true,
+      "stem_sha256_matches": true,
+      "forward_ok": true,
+      "reload_stem_shape": [
+        32,
+        3,
+        3,
+        3
+      ]
+    },
+    "last.pt": {
+      "stem_shape_ok": true,
+      "stem_tensor_matches_checkpoint": true,
+      "stem_sha256_matches": true,
+      "forward_ok": true,
+      "reload_stem_shape": [
+        32,
+        3,
+        3,
+        3
+      ]
+    }
+  },
+  "stem_meta": {
+    "stem_source": "yolo26s.pt::model.0.conv.weight",
+    "source_stem_shape": [
+      32,
+      3,
+      3,
+      3
+    ],
+    "source_stem_sha256": "25d9e6b87ced7c9ccd24d946fd0ff5d3a986f0a0054c0df146e7dc3460798ff6",
+    "adapt_formula": "W_new = [W0+W1, W2, 0] (3ch compatibility for [D,M,0] input)",
+    "pretrainer_target_stem_shape": [
+      32,
+      3,
+      3,
+      3
+    ],
+    "interpretation_note": "function-preserving holds ONLY at epoch-0 init; parameterization differs, so optimization trajectories are NOT equivalent (no 3x/2x LR compensation). Adapt groups are minimum-adapted representation candidates, not reparameterization controls.",
+    "trainer_target_stem_shape": [
+      32,
+      3,
+      3,
+      3
+    ]
+  },
+  "stem_function_preservation": [
+    {
+      "where": "adaptation-complete",
+      "threshold_raw_conv": 1e-05,
+      "threshold_conv_bn_act": 0.0001,
+      "raw_conv": {
+        "max_abs_diff": 9.5367431640625e-07,
+        "mean_abs_diff": 3.487716426775478e-08,
+        "max_rel_diff": 0.3629629611968994
+      },
+      "conv_bn_act": {
+        "max_abs_diff": 3.814697265625e-05,
+        "mean_abs_diff": 8.924807275434432e-07,
+        "max_rel_diff": 3.553914785385132
+      },
+      "passed": true
+    },
+    {
+      "where": "trainer-built-pre-optimizer",
+      "threshold_raw_conv": 1e-05,
+      "threshold_conv_bn_act": 0.0001,
+      "raw_conv": {
+        "max_abs_diff": 9.5367431640625e-07,
+        "mean_abs_diff": 3.487716782046846e-08,
+        "max_rel_diff": 0.3629629611968994
+      },
+      "conv_bn_act": {
+        "max_abs_diff": 3.0517578125e-05,
+        "mean_abs_diff": 8.933267849897675e-07,
+        "max_rel_diff": 3.552795886993408
+      },
+      "passed": true
+    }
+  ]
+}

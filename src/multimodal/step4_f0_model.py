@@ -95,6 +95,10 @@ class Step4F0Model(nn.Module):
         y[4] = self.fusions["4"](y[4], a3)
         y[6] = self.fusions["6"](y[6], a4)
         y[10] = self.fusions["10"](y[10], a5)
+        # CRITICAL (reviewer P0-1): neck layer 11 has f=-1 and consumes the CURRENT x.
+        # Without this, the top-down main chain starts from the pre-fusion RGB P5 and
+        # fused P5 only re-enters at layer 21's [-1,10] — not the frozen design.
+        x = y[10]
         for m in self.tail:
             if m.f != -1:
                 x = y[m.f] if isinstance(m.f, int) else [x if j == -1 else y[j] for j in m.f]

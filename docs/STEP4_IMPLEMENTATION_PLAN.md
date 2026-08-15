@@ -24,7 +24,7 @@ F_i = R_i + P_i(A_i)   → 原 YOLO26 neck/head（可训练）
 
 - 训练：RGB backbone 冻结（BN eval 强制，`model.train()` 覆盖保持不变量）；可训练 = aux encoder + fusion projections + neck/head；R3 配方不变；seed 20260812；aux encoder 随机初始化 seed = MODEL_INIT_SEED(2026081200)。
 - 矩阵：F0-C0 / F0-I / F0-D × seed12（对应 Step 3 的 C0-N/C1-I/C2-D 数据内容）。
-- 因果（每个 checkpoint）：NORMAL / ZERO-AUX / SHUFFLE（输入级 donor 置换，无自配、跨组优先）× last/best × train11/val6/all17；**期望证据：normal > zero-aux > shuffle**（feature fusion 找到空间对应关系的判据）。
+- 因果（每个 checkpoint）：NORMAL / ZERO-AUX / SHUFFLE（输入级 bijective 无自配跨组 donor 置换）× last/best × train11/val6/all17。**正式 complementarity 判据：N > C0 且 N > ZERO-AUX 且 N > SHUFFLE**；"ZERO > SHUFFLE" 只说明错配比缺失更有害，**不是硬门槛**（如 N=0.30, S=0.24, Z=0.22 同样支持正确配对有价值）。
 - 判级沿用四类协议；LOO 在 C0 与候选都完成后补。
 
 ## 门禁（audit_step4_f0.py，全 PASS 才允许训练）

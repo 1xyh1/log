@@ -1,0 +1,22 @@
+{
+  "schema": "step4-f0-manifest-v1",
+  "group": "F0-D",
+  "physical_run_name": "smoke-F0-D-e1",
+  "run_kind": "smoke",
+  "model": "Step4F0Model (RGB anchor + zero-init residual)",
+  "aux_mode": "depth",
+  "freeze": "RGB backbone frozen, BN eval",
+  "recipe": "R3-causal-earlyfusion-sample",
+  "expected_epochs": 1,
+  "requested_batch": 4,
+  "seed": 20260812,
+  "aux_encoder_seed": 2026081200,
+  "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+  "initial_rgb_backbone_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+  "initial_aux_encoder_sha256": "f8d739ee6935183e1bfa320c667824c6c53bf07c66bf40385b79dd7c9dfb78cb",
+  "initial_fusion_sha256": "4f0c3ba53e3a34f87402ed2ea96656271281e21bec696a74e47d42bd382e59ea",
+  "initial_model_state_sha256": "72c0562457f9b60b431733b757b48d8eac91f627caa7a0473e5b4ecbb5238c8f",
+  "g8_evidence": "actual_dataloader_yield_v1",
+  "ultralytics_version": "8.4.56",
+  "created_at": "2026-08-15T09:19:10.803543+08:00"
+}
