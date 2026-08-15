@@ -244,9 +244,15 @@ def main():
     run_dir.mkdir(parents=True, exist_ok=True)
 
     def _state_sha(module) -> str:
-        from multimodal.early_fusion_yolo26 import tensor_sha256
         h = hashlib.sha256()
         for n, p in sorted(module.state_dict().items()):
+            h.update(n.encode())
+            h.update(p.detach().cpu().contiguous().numpy().tobytes())
+        return h.hexdigest()
+
+    def _param_sha(module) -> str:
+        h = hashlib.sha256()
+        for n, p in sorted(module.named_parameters()):
             h.update(n.encode())
             h.update(p.detach().cpu().contiguous().numpy().tobytes())
         return h.hexdigest()
@@ -267,6 +273,7 @@ def main():
         "contract_sha256": hashlib.sha256(Path(a.contract).read_bytes()).hexdigest(),
         "initial_rgb_backbone_sha256": _state_sha(model.rgb_backbone),
         "initial_aux_encoder_sha256": _state_sha(model.aux_encoder),
+        "initial_aux_encoder_param_sha256": _param_sha(model.aux_encoder),
         "initial_fusion_sha256": _state_sha(model.fusions),
         "initial_model_state_sha256": _state_sha(model),
         "g8_evidence": "actual_dataloader_yield_v1",
@@ -284,37 +291,66 @@ def main():
         "\n".join(json.dumps(g) for g in growth) + "\n", encoding="utf-8")
 
     # ---- G6: REAL optimizer-update gate (reviewer-mandated hard evidence) ----
-    # Compares the trained checkpoint against the initial state recorded in the manifest.
-    ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu", weights_only=False)
-    trained = (ck.get("ema") or ck.get("model")).float()
+    # Uses the IN-MEMORY fp32 trained model (trainer.model): the saved EMA checkpoint
+    # is half precision, where tiny bias updates (~1e-5) underflow to exact 0 — that
+    # would falsely report "bias never moved" for F0-C0.
+    # aux/fusions compare PARAMETERS only: train-mode BN running stats legitimately
+    # drift even for zero input (C0), which is not a parameter update.
+    trained = trainer.model
 
-    def _sha(module) -> str:
+    def _state_sha(module) -> str:
         h = hashlib.sha256()
         for n, p in sorted(module.state_dict().items()):
             h.update(n.encode())
             h.update(p.detach().cpu().contiguous().numpy().tobytes())
         return h.hexdigest()
 
+    def _param_sha(module) -> str:
+        h = hashlib.sha256()
+        for n, p in sorted(module.named_parameters()):
+            h.update(n.encode())
+            h.update(p.detach().cpu().contiguous().numpy().tobytes())
+        return h.hexdigest()
+
+    # Rebuild the deterministic initial aux encoder for a tolerance-based comparison:
+    # with weight_decay>0, SGD shrinks zero-grad params by ~(1 - lr*wd) per step
+    # (~1e-7/step), so C0's "aux unchanged" can only be checked within that scale.
+    _rng = torch.random.get_rng_state()
+    torch.manual_seed(MODEL_INIT_SEED)
+    _initial_model = Step4F0Model(build_reference_3ch(), aux_mode=GROUPS[a.group])
+    torch.random.set_rng_state(_rng)
+
+    def _param_rel_diff(module_a, module_b) -> float:
+        max_rel = 0.0
+        for (_, p), (_, q) in zip(sorted(module_a.named_parameters()),
+                                  sorted(module_b.named_parameters())):
+            p = p.detach().cpu()
+            q = q.detach().cpu()
+            rel = ((p - q).abs() / (q.abs() + 1e-12)).max().item()
+            max_rel = max(max_rel, rel)
+        return max_rel
+
+    aux_rel = _param_rel_diff(trained.aux_encoder, _initial_model.aux_encoder)
     gate = {
-        "rgb_backbone_unchanged": _sha(trained.rgb_backbone) ==
+        "rgb_backbone_unchanged": _state_sha(trained.rgb_backbone) ==
                                   manifest["initial_rgb_backbone_sha256"],
-        "aux_encoder_changed": _sha(trained.aux_encoder) !=
-                               manifest["initial_aux_encoder_sha256"],
-        "tail_changed": True,
+        "aux_encoder_max_rel_change": aux_rel,
         "proj_weight_norms": [float(trained.fusions[k].proj.weight.norm())
                               for k in ("4", "6", "10")],
         "proj_bias_max": [float(trained.fusions[k].proj.bias.abs().max())
                           for k in ("4", "6", "10")],
     }
     if a.group == "F0-C0":
-        gate["expected"] = "RGB unchanged; aux unchanged; proj weight == 0 (bias may move)"
+        gate["expected"] = ("RGB state unchanged; aux params at weight-decay scale only "
+                            "(max_rel < 1e-4); proj weight EXACTLY 0; proj bias may move")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and not gate["aux_encoder_changed"]
+                              and aux_rel < 1e-4
                               and max(gate["proj_weight_norms"]) == 0.0)
     else:
-        gate["expected"] = "RGB unchanged; proj P3/P4/P5 weight > 0; aux changed"
+        gate["expected"] = ("RGB state unchanged; aux params learned beyond decay scale "
+                            "(max_rel > 1e-4); proj P3/P4/P5 weight > 0")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and gate["aux_encoder_changed"]
+                              and aux_rel > 1e-4
                               and min(gate["proj_weight_norms"]) > 0.0)
     (run_dir / "step4_update_gate.json").write_text(
         json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")

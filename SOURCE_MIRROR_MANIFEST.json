@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T13:43:48.504318+08:00",
+  "generated_at_local": "2026-08-15T13:48:04.255934+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -35,7 +35,7 @@
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786772167919665300
+      "mtime_ns": 1786772883039888600
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -960,92 +960,92 @@
     "runs/step4_f0/smoke-F0-C0-e1/args.yaml": {
       "sha256": "dc03c432ce43e45d4b37fba408e9bad71ee1945b4e0f655dbf42ef0ed58a8db6",
       "size_bytes": 1929,
-      "mtime_ns": 1786772551766374500
+      "mtime_ns": 1786772814259175900
     },
     "runs/step4_f0/smoke-F0-C0-e1/manifest.json": {
-      "sha256": "35dc47ac8831b99f598019cc7b9def73ef69837a2da811774016c2073db2c36b",
-      "size_bytes": 1035,
-      "mtime_ns": 1786772551842295300
+      "sha256": "07966eaaef337a2cacab2dff81ff6dee3a274e2d6dc537ed0fd653f0dfa120f5",
+      "size_bytes": 1142,
+      "mtime_ns": 1786772814337924000
     },
     "runs/step4_f0/smoke-F0-C0-e1/results.csv": {
-      "sha256": "d6d2beb1487fd420ae840442aaa4afedae98547c86eb3066536ecd7d14b6a7b8",
-      "size_bytes": 286,
-      "mtime_ns": 1786772556242961600
+      "sha256": "51a0d87c60321c46911b0c1eaccb2d23c59af92649aac94e3e72fed7766d24ca",
+      "size_bytes": 287,
+      "mtime_ns": 1786772818571110700
     },
     "runs/step4_f0/smoke-F0-C0-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786772556959626100
+      "mtime_ns": 1786772819322219700
     },
     "runs/step4_f0/smoke-F0-C0-e1/step4_growth.jsonl": {
       "sha256": "f927faafe6d01b091ab1faf50be27bb64f72057409bd91d7a980b58aedc88e06",
       "size_bytes": 126,
-      "mtime_ns": 1786772556960639600
+      "mtime_ns": 1786772819322219700
     },
     "runs/step4_f0/smoke-F0-C0-e1/step4_update_gate.json": {
-      "sha256": "a599007d1c594dea48a6e9af9a9b2f95cef63d069ea5db2e3142ff5c60a0ad25",
-      "size_bytes": 314,
-      "mtime_ns": 1786772557030467500
+      "sha256": "07ad2558d727f3dcfba795220c38742f7a617d2e0bc00cebd51fba3b7c059cc4",
+      "size_bytes": 422,
+      "mtime_ns": 1786772819614331100
     },
     "runs/step4_f0/smoke-F0-D-e1/args.yaml": {
       "sha256": "1ef35372d4b1c271e7bc2cca39f4b43ff2eae13ea29192c34489c6a3f81b309f",
       "size_bytes": 1927,
-      "mtime_ns": 1786772572312362000
+      "mtime_ns": 1786772835279389700
     },
     "runs/step4_f0/smoke-F0-D-e1/manifest.json": {
-      "sha256": "835b2bc77deafdedc2cdc5a19d5d76daecc5e74531c99eaf424616caf141a403",
-      "size_bytes": 1034,
-      "mtime_ns": 1786772572391437700
+      "sha256": "9187eb95153dbc68e524b329e132564dd66fbaff503bed6daa4897deb24bcb90",
+      "size_bytes": 1141,
+      "mtime_ns": 1786772835358665800
     },
     "runs/step4_f0/smoke-F0-D-e1/results.csv": {
-      "sha256": "bf27f29bb3ed806957845de9e769c5282ffaa4935364018708c9662598b03f83",
-      "size_bytes": 285,
-      "mtime_ns": 1786772576556444300
+      "sha256": "14c5bd8a4d3a42d47642a29470e56fcccb853828dfb155140e27ec62fc8c6ebb",
+      "size_bytes": 286,
+      "mtime_ns": 1786772839559460200
     },
     "runs/step4_f0/smoke-F0-D-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786772577325442600
+      "mtime_ns": 1786772840347454100
     },
     "runs/step4_f0/smoke-F0-D-e1/step4_growth.jsonl": {
       "sha256": "6620bcd1e863242e2c45729670d7823f9cb74d2de23b10a21b62bc617eec3c4b",
       "size_bytes": 177,
-      "mtime_ns": 1786772577325442600
+      "mtime_ns": 1786772840347454100
     },
     "runs/step4_f0/smoke-F0-D-e1/step4_update_gate.json": {
-      "sha256": "973df77bad023f71a5ea2535f3bba0a2d512b48d8c34a25ac31c13bb74ac3f93",
-      "size_bytes": 354,
-      "mtime_ns": 1786772577398000100
+      "sha256": "91b7c9b4b097b916a41765257595808fde7545cc48c7754c73f002f98cffb047",
+      "size_bytes": 451,
+      "mtime_ns": 1786772840693214600
     },
     "runs/step4_f0/smoke-F0-I-e1/args.yaml": {
       "sha256": "1f5f9748f7602117d64e91475534ecab7120aa04fcb5cb295dbd96b2fe6c1494",
       "size_bytes": 1927,
-      "mtime_ns": 1786772561911895000
+      "mtime_ns": 1786772824728574800
     },
     "runs/step4_f0/smoke-F0-I-e1/manifest.json": {
-      "sha256": "6129d7c4f23651ec06259520beb66ffc82cd34edc92098b0c88be727a1791861",
-      "size_bytes": 1031,
-      "mtime_ns": 1786772561986607800
+      "sha256": "687c74d8165a8387516355968eef44ad3380e9718fbc0ed535d5044fefd6082b",
+      "size_bytes": 1138,
+      "mtime_ns": 1786772824811147500
     },
     "runs/step4_f0/smoke-F0-I-e1/results.csv": {
-      "sha256": "8eb3dedf16385ef18b74b6727f6c75e79e59ef7de8bcd2640b5dadb6b8d47e66",
+      "sha256": "52b55db921d308926c4749f7a98f8acd1bc6d3774a00e48b2b5035313419ab78",
       "size_bytes": 287,
-      "mtime_ns": 1786772566157763100
+      "mtime_ns": 1786772829054712300
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786772567023357600
+      "mtime_ns": 1786772829839019600
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_growth.jsonl": {
       "sha256": "c1c957f84ce829ffbac07f7651b50ad10eb6f52e0b93b7f8688058c6ff3fb850",
       "size_bytes": 176,
-      "mtime_ns": 1786772567023357600
+      "mtime_ns": 1786772829840022100
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_update_gate.json": {
-      "sha256": "6914e16ef62df130c2504597d9e015184e35566ae32b8c7b0a885647add07db1",
-      "size_bytes": 354,
-      "mtime_ns": 1786772567116657900
+      "sha256": "b5133c1ea4727a45ef5186fbb772a6218a57a5aee6ea517440cf502e79caf598",
+      "size_bytes": 446,
+      "mtime_ns": 1786772830112471900
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -1123,9 +1123,9 @@
       "mtime_ns": 1786724234824578000
     },
     "scripts/run_step4_f0.py": {
-      "sha256": "9c675f2308b15eb5eecf5a8774ab90ed062246cccd7d050e41d85f424385a0a6",
-      "size_bytes": 15916,
-      "mtime_ns": 1786772465505108200
+      "sha256": "f3f2028dd7d693896440e07aca3de46bfd020b1ef6480bfa917472c9dbd0cd6f",
+      "size_bytes": 17623,
+      "mtime_ns": 1786772799296313500
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -1304,19 +1304,15 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f0/smoke-F0-C0-e1/args.yaml",
     "runs/step4_f0/smoke-F0-C0-e1/manifest.json",
     "runs/step4_f0/smoke-F0-C0-e1/results.csv",
-    "runs/step4_f0/smoke-F0-C0-e1/step4_growth.jsonl",
     "runs/step4_f0/smoke-F0-C0-e1/step4_update_gate.json",
-    "runs/step4_f0/smoke-F0-D-e1/args.yaml",
     "runs/step4_f0/smoke-F0-D-e1/manifest.json",
     "runs/step4_f0/smoke-F0-D-e1/results.csv",
-    "runs/step4_f0/smoke-F0-D-e1/step4_growth.jsonl",
     "runs/step4_f0/smoke-F0-D-e1/step4_update_gate.json",
     "runs/step4_f0/smoke-F0-I-e1/manifest.json",
     "runs/step4_f0/smoke-F0-I-e1/results.csv",
     "runs/step4_f0/smoke-F0-I-e1/step4_update_gate.json",
-    "scripts/eval_step4_causality.py"
+    "scripts/run_step4_f0.py"
   ]
 }
