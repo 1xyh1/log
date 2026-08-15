@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import statistics
 import sys
 from pathlib import Path
 
@@ -120,25 +121,25 @@ def main():
     total = 7 + 21 + 21
     for fold in folds:
         fold_key = "full" if fold is None else fold
-        subset = val_ids if fold is None else [s for s in val_ids if s != fold]
         fold_res = {}
         for tag in ("C0", "IR", "D"):
             group = DATASET_GROUP[{"C0": "F0-C0", "IR": "F0-I", "D": "F0-D"}[tag]]
             variants = {"NORMAL": evaluate_fold(
-                models[tag], contract, group, subset, device, names)}
+                models[tag], contract, group, fold, device, names)}
             if tag == "C0":
                 variants["ZERO-AUX"] = variants["NORMAL"]
                 variants["SHUFFLE"] = variants["NORMAL"]
-                variants["copy_of_normal"] = True
+                copied = True
             else:
                 variants["ZERO-AUX"] = evaluate_fold(
-                    models[tag], contract, group, subset, device, names,
+                    models[tag], contract, group, fold, device, names,
                     aux_zero=True)
                 variants["SHUFFLE"] = evaluate_fold(
-                    models[tag], contract, group, subset, device, names,
+                    models[tag], contract, group, fold, device, names,
                     aux_id_map=shuffle_map)
-                variants["copy_of_normal"] = False
+                copied = False
             fold_res[tag] = {v: round(x, 6) for v, x in variants.items()}
+            fold_res[tag]["copy_of_normal"] = copied
             n_done += 1
             print(f"[{n_done}/{total}] fold={fold_key} {tag} NORMAL="
                   f"{fold_res[tag]['NORMAL']:.4f}", flush=True)
@@ -158,7 +159,7 @@ def main():
                 "per_fold": per_fold,
                 "positive_folds": pos,
                 "n_folds": len(vals),
-                "median": round(sorted(vals)[len(vals) // 2] if vals else 0.0, 6),
+                "median": round(statistics.median(vals), 6) if vals else None,
                 "min": round(min(vals), 6),
                 "max": round(max(vals), 6)}
 
