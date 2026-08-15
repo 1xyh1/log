@@ -55,19 +55,21 @@ class TestValidateLooPayload:
 
     def test_hand_computed_semantics(self):
         """Independent small-integer fixture pins the recompute semantics."""
+        def c0(v):
+            return {"NORMAL": v, "ZERO-AUX": v, "SHUFFLE": v,
+                    "copy_of_normal": True}
+
+        def aux(n, z, s):
+            return {"NORMAL": n, "ZERO-AUX": z, "SHUFFLE": s,
+                    "copy_of_normal": False}
+
         folds = {
-            "full": {"C0": {"NORMAL": 0.20, "ZERO-AUX": 0.20, "SHUFFLE": 0.20,
-                            "copy_of_normal": True},
-                     "IR": {"NORMAL": 0.30, "ZERO-AUX": 0.28, "SHUFFLE": 0.29,
-                            "copy_of_normal": False}},
-            "000001": {"C0": {"NORMAL": 0.10, "ZERO-AUX": 0.10, "SHUFFLE": 0.10,
-                              "copy_of_normal": True},
-                       "IR": {"NORMAL": 0.20, "ZERO-AUX": 0.18, "SHUFFLE": 0.19,
-                              "copy_of_normal": False}},
-            "000002": {"C0": {"NORMAL": 0.30, "ZERO-AUX": 0.30, "SHUFFLE": 0.30,
-                              "copy_of_normal": True},
-                       "IR": {"NORMAL": 0.40, "ZERO-AUX": 0.38, "SHUFFLE": 0.39,
-                              "copy_of_normal": False}},
+            "full": {"C0": c0(0.20), "IR": aux(0.30, 0.28, 0.29),
+                     "D": aux(0.25, 0.24, 0.26)},
+            "000001": {"C0": c0(0.10), "IR": aux(0.20, 0.18, 0.19),
+                       "D": aux(0.15, 0.14, 0.16)},
+            "000002": {"C0": c0(0.30), "IR": aux(0.40, 0.38, 0.39),
+                       "D": aux(0.35, 0.34, 0.36)},
         }
         loo = {"schema": LOO_SCHEMA, "checkpoint": "last.pt",
                "val_ids": ["000001", "000002"], "folds": folds,
@@ -334,7 +336,13 @@ class TestShuffleMaps:
             load_validated_shuffle_maps(dirs, VAL_IDS)
 
     def test_ir_d_divergence_rejected(self, tmp_path):
-        dirs = _make_map_dirs(tmp_path, ir_map=bijective_derangement(VAL_IDS),
-                              d_map=bijective_derangement(list(reversed(VAL_IDS))))
+        # two distinct legal derangements (hand-written; group proxy has no
+        # '_' in these ids, so any non-self bijection is cross-group legal)
+        ir_map = {VAL_IDS[i]: VAL_IDS[(i + 1) % len(VAL_IDS)]
+                  for i in range(len(VAL_IDS))}
+        d_map = {VAL_IDS[i]: VAL_IDS[(i + 2) % len(VAL_IDS)]
+                 for i in range(len(VAL_IDS))}
+        assert ir_map != d_map
+        dirs = _make_map_dirs(tmp_path, ir_map=ir_map, d_map=d_map)
         with pytest.raises(RuntimeError, match="IR_AND_D_SHUFFLE_MAPS_DIFFER"):
             load_validated_shuffle_maps(dirs, VAL_IDS)
