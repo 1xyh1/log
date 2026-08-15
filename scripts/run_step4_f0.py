@@ -42,9 +42,12 @@ R3_KW = dict(
     mosaic=0.0, mixup=0.0, cutmix=0.0, copy_paste=0.0,
     scale=0.0, translate=0.0, degrees=0.0, shear=0.0, perspective=0.0,
     multi_scale=0.0, amp=False, fliplr=0.30393, flipud=0.0,
-    # amp=False is F0-FROZEN: zero-init fusion gradients (~1e-4) underflow to exact
-    # zero under fp16 autocast (measured: proj norms stayed 0.0 for a full epoch with
-    # amp=True while amp=False updated them; RGB anchor stayed frozen either way).
+    # amp=False is F0-FROZEN: AMP-path incompatibility / projection-update suppression
+    # (exact mechanism UNRESOLVED, non-blocking). Measured with otherwise-identical
+    # Trainer conditions: amp=True -> zero-init projections stayed EXACTLY 0 for a full
+    # epoch; amp=False -> P3/P4/P5 projections updated normally. Possible mechanisms
+    # (autocast backward numerics, GradScaler behavior / step skipping, or interaction
+    # with zero-init + MuSGD) are not pursued further this stage.
     hsv_h=0.0, hsv_s=0.0, hsv_v=0.0, bgr=0.0,
     auto_augment=None, erasing=0.0,
     seed=20260812, deterministic=True, end2end=False,
@@ -331,10 +334,27 @@ def main():
         return max_rel
 
     aux_rel = _param_rel_diff(trained.aux_encoder, _initial_model.aux_encoder)
+    # P1 (reviewer): elementwise max_rel explodes when any initial param is ~0; record
+    # stable global metrics alongside (max_rel kept as diagnostic only).
+    def _param_global_diffs(module_a, module_b):
+        l2_num, l2_den, max_abs = 0.0, 0.0, 0.0
+        for (_, p), (_, q) in zip(sorted(module_a.named_parameters()),
+                                  sorted(module_b.named_parameters())):
+            p = p.detach().cpu().float()
+            q = q.detach().cpu().float()
+            l2_num += float((p - q).pow(2).sum())
+            l2_den += float(q.pow(2).sum())
+            max_abs = max(max_abs, float((p - q).abs().max()))
+        return {"global_rel_l2": (l2_num ** 0.5) / (l2_den ** 0.5 + 1e-12),
+                "max_abs_change": max_abs}
+
+    aux_glob = _param_global_diffs(trained.aux_encoder, _initial_model.aux_encoder)
     gate = {
         "rgb_backbone_unchanged": _state_sha(trained.rgb_backbone) ==
                                   manifest["initial_rgb_backbone_sha256"],
-        "aux_encoder_max_rel_change": aux_rel,
+        "aux_encoder_max_rel_change_diagnostic": aux_rel,
+        "aux_encoder_global_rel_l2": aux_glob["global_rel_l2"],
+        "aux_encoder_max_abs_change": aux_glob["max_abs_change"],
         "proj_weight_norms": [float(trained.fusions[k].proj.weight.norm())
                               for k in ("4", "6", "10")],
         "proj_bias_max": [float(trained.fusions[k].proj.bias.abs().max())
@@ -342,15 +362,15 @@ def main():
     }
     if a.group == "F0-C0":
         gate["expected"] = ("RGB state unchanged; aux params at weight-decay scale only "
-                            "(max_rel < 1e-4); proj weight EXACTLY 0; proj bias may move")
+                            "(global_rel_l2 < 1e-5); proj weight EXACTLY 0; proj bias may move")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and aux_rel < 1e-4
+                              and gate["aux_encoder_global_rel_l2"] < 1e-5
                               and max(gate["proj_weight_norms"]) == 0.0)
     else:
         gate["expected"] = ("RGB state unchanged; aux params learned beyond decay scale "
-                            "(max_rel > 1e-4); proj P3/P4/P5 weight > 0")
+                            "(global_rel_l2 > 1e-5); proj P3/P4/P5 weight > 0")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and aux_rel > 1e-4
+                              and gate["aux_encoder_global_rel_l2"] > 1e-5
                               and min(gate["proj_weight_norms"]) > 0.0)
     (run_dir / "step4_update_gate.json").write_text(
         json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")
