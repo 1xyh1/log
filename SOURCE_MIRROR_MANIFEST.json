@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T13:42:18.286750+08:00",
+  "generated_at_local": "2026-08-15T13:43:48.504318+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -958,79 +958,94 @@
       "mtime_ns": 1786754121472833600
     },
     "runs/step4_f0/smoke-F0-C0-e1/args.yaml": {
-      "sha256": "b0ba199397394d4a1760dc6fe593351e875fee97f4ce675fb6426f9165029d15",
-      "size_bytes": 1928,
-      "mtime_ns": 1786756728810267800
+      "sha256": "dc03c432ce43e45d4b37fba408e9bad71ee1945b4e0f655dbf42ef0ed58a8db6",
+      "size_bytes": 1929,
+      "mtime_ns": 1786772551766374500
     },
     "runs/step4_f0/smoke-F0-C0-e1/manifest.json": {
-      "sha256": "9212758e1bb4b9b4da34a6e453494509bd933f85ac1effdae35a81cde1f97658",
+      "sha256": "35dc47ac8831b99f598019cc7b9def73ef69837a2da811774016c2073db2c36b",
       "size_bytes": 1035,
-      "mtime_ns": 1786756728887750500
+      "mtime_ns": 1786772551842295300
     },
     "runs/step4_f0/smoke-F0-C0-e1/results.csv": {
-      "sha256": "f1f81f16233b170e28f9614cf43e1ab2df3ce8c9a6d00aedff99b17ad511018f",
+      "sha256": "d6d2beb1487fd420ae840442aaa4afedae98547c86eb3066536ecd7d14b6a7b8",
       "size_bytes": 286,
-      "mtime_ns": 1786756734834739900
+      "mtime_ns": 1786772556242961600
     },
     "runs/step4_f0/smoke-F0-C0-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786756735626809300
+      "mtime_ns": 1786772556959626100
     },
     "runs/step4_f0/smoke-F0-C0-e1/step4_growth.jsonl": {
-      "sha256": "93c206d3a1a6b8b1f6b511ae60bc687ff2be26826d44b48bb8e4885447588c6a",
+      "sha256": "f927faafe6d01b091ab1faf50be27bb64f72057409bd91d7a980b58aedc88e06",
       "size_bytes": 126,
-      "mtime_ns": 1786756735626809300
+      "mtime_ns": 1786772556960639600
+    },
+    "runs/step4_f0/smoke-F0-C0-e1/step4_update_gate.json": {
+      "sha256": "a599007d1c594dea48a6e9af9a9b2f95cef63d069ea5db2e3142ff5c60a0ad25",
+      "size_bytes": 314,
+      "mtime_ns": 1786772557030467500
     },
     "runs/step4_f0/smoke-F0-D-e1/args.yaml": {
-      "sha256": "a9839902a4bb5b41dbdaf62bd57684b7d65010f51c94298bfe9733c35d473421",
-      "size_bytes": 1926,
-      "mtime_ns": 1786756750732564500
+      "sha256": "1ef35372d4b1c271e7bc2cca39f4b43ff2eae13ea29192c34489c6a3f81b309f",
+      "size_bytes": 1927,
+      "mtime_ns": 1786772572312362000
     },
     "runs/step4_f0/smoke-F0-D-e1/manifest.json": {
-      "sha256": "dca069d3a85835c4372d02767b98c4da3961a336162b90c33114459284fee5a8",
+      "sha256": "835b2bc77deafdedc2cdc5a19d5d76daecc5e74531c99eaf424616caf141a403",
       "size_bytes": 1034,
-      "mtime_ns": 1786756750804542000
+      "mtime_ns": 1786772572391437700
     },
     "runs/step4_f0/smoke-F0-D-e1/results.csv": {
-      "sha256": "0d3055e428ece7c51d38438edacbcad59bd54ac1a06c5ace24f876c5810dc8bd",
-      "size_bytes": 286,
-      "mtime_ns": 1786756755294160600
+      "sha256": "bf27f29bb3ed806957845de9e769c5282ffaa4935364018708c9662598b03f83",
+      "size_bytes": 285,
+      "mtime_ns": 1786772576556444300
     },
     "runs/step4_f0/smoke-F0-D-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786756755933704700
+      "mtime_ns": 1786772577325442600
     },
     "runs/step4_f0/smoke-F0-D-e1/step4_growth.jsonl": {
-      "sha256": "93c206d3a1a6b8b1f6b511ae60bc687ff2be26826d44b48bb8e4885447588c6a",
-      "size_bytes": 126,
-      "mtime_ns": 1786756755933704700
+      "sha256": "6620bcd1e863242e2c45729670d7823f9cb74d2de23b10a21b62bc617eec3c4b",
+      "size_bytes": 177,
+      "mtime_ns": 1786772577325442600
+    },
+    "runs/step4_f0/smoke-F0-D-e1/step4_update_gate.json": {
+      "sha256": "973df77bad023f71a5ea2535f3bba0a2d512b48d8c34a25ac31c13bb74ac3f93",
+      "size_bytes": 354,
+      "mtime_ns": 1786772577398000100
     },
     "runs/step4_f0/smoke-F0-I-e1/args.yaml": {
       "sha256": "1f5f9748f7602117d64e91475534ecab7120aa04fcb5cb295dbd96b2fe6c1494",
       "size_bytes": 1927,
-      "mtime_ns": 1786772414306292000
+      "mtime_ns": 1786772561911895000
     },
     "runs/step4_f0/smoke-F0-I-e1/manifest.json": {
-      "sha256": "4d3acf5ff7ddfe6ff65ddf0d72d1b7828c3277d2d446d7901e219ab6f349f6e0",
+      "sha256": "6129d7c4f23651ec06259520beb66ffc82cd34edc92098b0c88be727a1791861",
       "size_bytes": 1031,
-      "mtime_ns": 1786772414382996700
+      "mtime_ns": 1786772561986607800
     },
     "runs/step4_f0/smoke-F0-I-e1/results.csv": {
-      "sha256": "b090e8cb5515bbc4a7b5a65c3374b20b514abec0d1e42a0be5d184bc00097d6e",
+      "sha256": "8eb3dedf16385ef18b74b6727f6c75e79e59ef7de8bcd2640b5dadb6b8d47e66",
       "size_bytes": 287,
-      "mtime_ns": 1786772419188592000
+      "mtime_ns": 1786772566157763100
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_g8_trace.jsonl": {
       "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
       "size_bytes": 625,
-      "mtime_ns": 1786772420040364500
+      "mtime_ns": 1786772567023357600
     },
     "runs/step4_f0/smoke-F0-I-e1/step4_growth.jsonl": {
       "sha256": "c1c957f84ce829ffbac07f7651b50ad10eb6f52e0b93b7f8688058c6ff3fb850",
       "size_bytes": 176,
-      "mtime_ns": 1786772420040364500
+      "mtime_ns": 1786772567023357600
+    },
+    "runs/step4_f0/smoke-F0-I-e1/step4_update_gate.json": {
+      "sha256": "6914e16ef62df130c2504597d9e015184e35566ae32b8c7b0a885647add07db1",
+      "size_bytes": 354,
+      "mtime_ns": 1786772567116657900
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -1289,11 +1304,19 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f0/smoke-F0-I-e1/args.yaml",
+    "runs/step4_f0/smoke-F0-C0-e1/args.yaml",
+    "runs/step4_f0/smoke-F0-C0-e1/manifest.json",
+    "runs/step4_f0/smoke-F0-C0-e1/results.csv",
+    "runs/step4_f0/smoke-F0-C0-e1/step4_growth.jsonl",
+    "runs/step4_f0/smoke-F0-C0-e1/step4_update_gate.json",
+    "runs/step4_f0/smoke-F0-D-e1/args.yaml",
+    "runs/step4_f0/smoke-F0-D-e1/manifest.json",
+    "runs/step4_f0/smoke-F0-D-e1/results.csv",
+    "runs/step4_f0/smoke-F0-D-e1/step4_growth.jsonl",
+    "runs/step4_f0/smoke-F0-D-e1/step4_update_gate.json",
     "runs/step4_f0/smoke-F0-I-e1/manifest.json",
     "runs/step4_f0/smoke-F0-I-e1/results.csv",
-    "runs/step4_f0/smoke-F0-I-e1/step4_growth.jsonl",
-    "scripts/run_step4_f0.py",
-    "tests/test_step4_f0.py"
+    "runs/step4_f0/smoke-F0-I-e1/step4_update_gate.json",
+    "scripts/eval_step4_causality.py"
   ]
 }

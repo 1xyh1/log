@@ -89,8 +89,25 @@ def main():
         else:
             maps[split] = json.loads(fp.read_text(encoding="utf-8"))
 
+    def _sha(path: Path) -> str:
+        import hashlib
+        h = hashlib.sha256()
+        with open(path, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        return h.hexdigest()
+
     results = {"schema": "step4-stock-validator-semantics-v1", "group": a.group,
-               "aux_mode": GROUPS[a.group], "late10": late10(run_dir)}
+               "aux_mode": GROUPS[a.group], "late10": late10(run_dir),
+               "provenance": {
+                   "results_sha256": _sha(run_dir / "results.csv"),
+                   "args_sha256": _sha(run_dir / "args.yaml"),
+                   "last_pt_sha256": _sha(run_dir / "weights" / "last.pt"),
+                   "best_pt_sha256": _sha(run_dir / "weights" / "best.pt"),
+                   "manifest_sha256": _sha(run_dir / "manifest.json"),
+                   "contract_sha256": _sha(Path(a.contract)),
+                   "evaluator_source_sha256": _sha(Path(__file__)),
+               }}
     for ck_name in ("last.pt", "best.pt"):
         ck = torch.load(run_dir / "weights" / ck_name, map_location="cpu", weights_only=False)
         model = (ck.get("ema") or ck.get("model")).float().eval().to(device)

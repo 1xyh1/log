@@ -1,0 +1,17 @@
+{
+  "rgb_backbone_unchanged": true,
+  "aux_encoder_changed": true,
+  "tail_changed": true,
+  "proj_weight_norms": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "proj_bias_max": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "expected": "RGB unchanged; aux unchanged; proj weight == 0 (bias may move)",
+  "passed": false
+}
