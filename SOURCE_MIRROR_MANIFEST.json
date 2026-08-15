@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-16T01:41:52.170433+08:00",
-  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-16T02:00:02.433373+08:00",
+  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -35,7 +35,7 @@
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786812318747554500
+      "mtime_ns": 1786816691336340700
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -513,9 +513,9 @@
       "mtime_ns": 1786772830112471900
     },
     "runs/step4_f0/step4_loo.json": {
-      "sha256": "58e66a912edd3fd447c05000212efbc4a9bc92c49d0bdd04ef42936bd2c5f031",
-      "size_bytes": 7168,
-      "mtime_ns": 1786812379987617900
+      "sha256": "325f3273c359fcb2b8a26989a72c7322b706f5e7a22208746c479d5927c20769",
+      "size_bytes": 8614,
+      "mtime_ns": 1786816750909522600
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -598,9 +598,9 @@
       "mtime_ns": 1786811821315390900
     },
     "scripts/step4_loo.py": {
-      "sha256": "ee7a7dd76c70ef4a1c2c1d3497f8ece7c6be22eec880971396bd8ad1fdf8c46a",
-      "size_bytes": 9464,
-      "mtime_ns": 1786815663302459500
+      "sha256": "01f3b6d4d580c30a8c2b95665d6ca90b82de95affea468903bb135f5d6c1c8db",
+      "size_bytes": 7855,
+      "mtime_ns": 1786816683349227000
     },
     "scripts/summarize_step1_rgb.py": {
       "sha256": "bad98f3a786556bcea4f71085a351f1bc4534ac55573d4af6d02a8011a3f9c70",
@@ -613,9 +613,9 @@
       "mtime_ns": 1786753996830533400
     },
     "scripts/summarize_step4.py": {
-      "sha256": "79fdc1cd4ea354584674a76cb45c795053563d7c11de49ca244d2e71c8dd03c9",
-      "size_bytes": 18030,
-      "mtime_ns": 1786814857979580700
+      "sha256": "fcda8b88aed61a538b92ae55a369f6948ea46795346c8b7ff828c92add161dfb",
+      "size_bytes": 14681,
+      "mtime_ns": 1786816725728085700
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -686,6 +686,11 @@
       "sha256": "387eaa50a982ed61bdd21cbe3a07268880e08295ad1ba688d4f8180a321e864c",
       "size_bytes": 6678,
       "mtime_ns": 1786724234828403600
+    },
+    "src/multimodal/step4_closeout.py": {
+      "sha256": "7f09eb8877b2bda267c74fa7f4dac56890762f4943589fd2b446421ef74aef03",
+      "size_bytes": 13464,
+      "mtime_ns": 1786816662920391600
     },
     "src/multimodal/step4_f0_model.py": {
       "sha256": "7c56f6d1926619b9021b2926c39edfc177ea6932f5e91cc1f258139ba2489703",
@@ -772,6 +777,11 @@
       "size_bytes": 3853,
       "mtime_ns": 1786724234841428600
     },
+    "tests/test_step4_closeout.py": {
+      "sha256": "29e943971aa9fec2d2d6a55e64f5ab76f4eb5b0cd3b50551576228d46bf909ef",
+      "size_bytes": 14844,
+      "mtime_ns": 1786816791160502900
+    },
     "tests/test_step4_f0.py": {
       "sha256": "aaa015e48394def6b84701e26212883f66d25dcb4e3fb5fd28f33bf32eee475f",
       "size_bytes": 4061,
@@ -784,6 +794,9 @@
     }
   },
   "changed_in_this_sync": [
-    "scripts/step4_loo.py"
+    "runs/step4_f0/step4_loo.json",
+    "scripts/step4_loo.py",
+    "scripts/summarize_step4.py",
+    "src/multimodal/step4_closeout.py"
   ]
 }

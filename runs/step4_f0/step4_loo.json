@@ -1,5 +1,5 @@
 {
-  "schema": "step4-loo-v1",
+  "schema": "step4-loo-v2",
   "method": "val6 leave-one-out on last.pt; SHUFFLE donor pool stays the full val6 derangement (excluded image leaves anchor set only); C0 ZERO/SHUFFLE = NORMAL by group-mask construction (copied, marked).",
   "checkpoint": "last.pt",
   "val_ids": [
@@ -20,7 +20,21 @@
     "IR_last_pt_sha256": "d99c43a7f857c2bad35a2ea53b9d6aeb2718ed093726456e89978ebb11fde73f",
     "D_last_pt_sha256": "72002add2324f52ffa3b39f793afa85a0f252caf856475d13946f5ce5b31d9f2",
     "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
-    "loo_source_sha256": "b19aa1490012baecf599548c88229abe842d782e0cae0e571922f98249521347"
+    "loo_source_sha256": "01f3b6d4d580c30a8c2b95665d6ca90b82de95affea468903bb135f5d6c1c8db",
+    "dep_step4_closeout_sha256": "7f09eb8877b2bda267c74fa7f4dac56890762f4943589fd2b446421ef74aef03",
+    "dep_step3_eval_utils_sha256": "387eaa50a982ed61bdd21cbe3a07268880e08295ad1ba688d4f8180a321e864c",
+    "dep_trimodal_dataset_sha256": "a831012a199b91e737ce77c745739d773182457caab4cfeb8984af097b517c6c",
+    "dep_step4_f0_model_sha256": "7c56f6d1926619b9021b2926c39edfc177ea6932f5e91cc1f258139ba2489703",
+    "dep_aux_encoder_sha256": "1430e55fc800b6759e1682ac3f1379e96dde3c294e40af78033c669dca44c871",
+    "dep_feature_fusion_sha256": "bb7635bb09d7311d9abb97b4c8594fa8c00030bfa592d88f3ee1f16150c29908",
+    "dep_trainability_sha256": "2360f7fa03838c3c5aa446210f1ea1b9e8d8fda597e7451c4653f887f4cb7fc0",
+    "dep_causality_interventions_sha256": "d52bdc6e2317aeb1687b5e53b3b6b4725d37ad6981ada6b09d2e80e8637c3769",
+    "dep_run_integrity_sha256": "84345cd978d531b13199f9fb3ef69d2b5d77a8c12d273c5d618660fede8cee47",
+    "dep_raw_sample_index_sha256": "9ce1c2bd9658f7091c9ccf13f5fb4615de988a4a0eb72c574d5256f04f13bce4",
+    "dep_modality_preprocess_sha256": "92569ba363131762d2365438ee39dd444b8cad3f7a6ea5e3bdaeebb4298e302e",
+    "dep_early_fusion_yolo26_sha256": "ad0c23523c37791c32524a73029a108e43ac406d0e834ba79eaeecbe8f149f3b",
+    "ir_shuffle_map_val_sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+    "d_shuffle_map_val_sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5"
   },
   "folds": {
     "full": {
