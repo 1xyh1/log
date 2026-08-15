@@ -581,8 +581,8 @@ zero-init 下 **dL/dA = Wᵀ·dL/dF = 0**（step1 编码器梯度精确为 0）�
 
 ### 根因 1：AMP fp16 梯度下溢（proj 一整个 epoch 精确为 0 的真正原因）
 - 实测：amp=True 时 F0-I/F0-D 的 proj weight/bias 在真实 Trainer 一整个 epoch 后精确为 0（连 bias 都不动），aux encoder 只有 BN 微动；手动 MuSGD 复刻分组 3 步即更新 proj（max≈0.0009）→ 排除优化器分组问题。
-- 诊断：`amp=False` 后 proj norms 0.0043/0.0045/0.0087 正常更新——零初始化融合层梯度 ~1e-4 量级，fp16 最小正规数 ~6e-5，**梯度在 autocast 路径下下溢归零**。
-- 修复：F0 执行配置冻结 `amp=False`（注释写明证据与理由；RGB anchor 在两种精度下都保持冻结）。R3 的优化器/增强/预算不变。
+- 诊断：`amp=False` 后 proj norms 0.0043/0.0045/0.0087 正常更新。**表述降级（审阅者 2026-08-15）**：AMP-path incompatibility / projection-update suppression（机制未完全定因，非阻塞）——1e-4 大于 fp16 最小正规数 6e-5 且 AMP 有 GradScaler，不能下结论"梯度因 fp16 最小正规数下溢"；可能机制（autocast backward 数值路径、GradScaler 行为/跳步、与 zero-init+MuSGD 的交互）本阶段不追因，未来定因需补 scaler scale 与 unscale 后梯度诊断。
+- 修复：F0 执行配置冻结 `amp=False`（代码注释已按降级口径改写；RGB anchor 在两种精度下都保持冻结）。R3 的优化器/增强/预算不变。
 - 附带发现：EMA 存档为 half 精度，C0 的 bias 微更新（~1e-5）会存成 0——G6 门禁改读**训练后内存中的 fp32 原模型**。
 
 ### 根因 2：C0 的"aux 参数不变"在权重衰减下物理不成立
