@@ -201,11 +201,67 @@
       }
     }
   },
+  "loo_provenance": {
+    "schema": {
+      "recorded": "step4-loo-v1",
+      "expected": "step4-loo-v1",
+      "match": true
+    },
+    "checkpoint": {
+      "recorded": "last.pt",
+      "expected": "last.pt",
+      "match": true
+    },
+    "C0_last_pt_sha256": {
+      "recorded": "72d3acb25e4cc6ac58129a4f1f080fd5b5da4966b6caadabe2048e5123cdf093",
+      "current": "72d3acb25e4cc6ac58129a4f1f080fd5b5da4966b6caadabe2048e5123cdf093",
+      "match": true
+    },
+    "IR_last_pt_sha256": {
+      "recorded": "d99c43a7f857c2bad35a2ea53b9d6aeb2718ed093726456e89978ebb11fde73f",
+      "current": "d99c43a7f857c2bad35a2ea53b9d6aeb2718ed093726456e89978ebb11fde73f",
+      "match": true
+    },
+    "D_last_pt_sha256": {
+      "recorded": "72002add2324f52ffa3b39f793afa85a0f252caf856475d13946f5ce5b31d9f2",
+      "current": "72002add2324f52ffa3b39f793afa85a0f252caf856475d13946f5ce5b31d9f2",
+      "match": true
+    },
+    "contract_sha256": {
+      "recorded": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+      "current": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+      "match": true
+    },
+    "loo_source_sha256": {
+      "recorded": "b19aa1490012baecf599548c88229abe842d782e0cae0e571922f98249521347",
+      "current": "b19aa1490012baecf599548c88229abe842d782e0cae0e571922f98249521347",
+      "match": true
+    },
+    "cross_eval_C0_last_pt_sha256": {
+      "recorded": "72d3acb25e4cc6ac58129a4f1f080fd5b5da4966b6caadabe2048e5123cdf093",
+      "eval_provenance": "72d3acb25e4cc6ac58129a4f1f080fd5b5da4966b6caadabe2048e5123cdf093",
+      "match": true
+    },
+    "cross_eval_IR_last_pt_sha256": {
+      "recorded": "d99c43a7f857c2bad35a2ea53b9d6aeb2718ed093726456e89978ebb11fde73f",
+      "eval_provenance": "d99c43a7f857c2bad35a2ea53b9d6aeb2718ed093726456e89978ebb11fde73f",
+      "match": true
+    },
+    "cross_eval_D_last_pt_sha256": {
+      "recorded": "72002add2324f52ffa3b39f793afa85a0f252caf856475d13946f5ce5b31d9f2",
+      "eval_provenance": "72002add2324f52ffa3b39f793afa85a0f252caf856475d13946f5ce5b31d9f2",
+      "match": true
+    }
+  },
   "g8_actual": {
     "epochs_compared": 80,
     "actual_yield_fields_present_all_epochs": true,
     "order_and_flip_hashes_match": true,
     "mismatched_epochs": [],
+    "expected_equals_actual_all_rows": true,
+    "expected_actual_mismatch_rows": [],
+    "actual_matches_expected_flag_all_true": true,
+    "flag_false_rows": [],
     "trace_files_byte_identical": true,
     "trace_file_sha256": {
       "C0": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
@@ -453,5 +509,29 @@
       "note": "Negative evidence does not imply the modality itself is useless (Step 3-A standing ruling)."
     }
   },
-  "verdict_frozen": false
+  "verdict_frozen": true,
+  "final_conclusions": {
+    "F0-I": {
+      "status": "MODEL-USES-AUX-BUT-NO-BENEFIT",
+      "statement": "IR is genuinely used by the model: NORMAL-ZERO is positive in 6/6 LOO folds (stable strong signal) and NORMAL-SHUFFLE in 4/6. It has not been proven to beat the matched RGB baseline: IR-C0 = -0.0018 (last.pt val6), LOO 2/6 positive, median -0.0021, dominated by one negative fold.",
+      "diagnostics": [
+        "PAIRED_BEATS_ZERO_AND_SHUFFLE",
+        "STRONG_PAIRED_IR_USAGE",
+        "NEAR_CONTROL",
+        "BEST_PT_PASSES_ALL_3",
+        "AUX_LEARNED",
+        "LOO_MIXED_SIGNS_pos2/6"
+      ]
+    },
+    "F0-D": {
+      "status": "MODEL-USES-AUX-BUT-NO-BENEFIT",
+      "statement": "Depth parameters learn beyond the control decay scale, but the training-set exploitable information did not convert into independent val generalization gain: D-C0 = -0.0151 (last.pt val6), LOO 0/6 positive, median -0.0164.",
+      "diagnostics": [
+        "AUX_LEARNED",
+        "WEAK_OR_NONGENERALIZING_DEPTH_USAGE",
+        "LOO_STABLE_NEGATIVE_pos0/6"
+      ]
+    },
+    "next_step": "F1 IR soft/reliability gate (CSSA soft reliability / EvaNet quality prior direction). Do NOT stack Depth yet."
+  }
 }

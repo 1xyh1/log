@@ -44,7 +44,9 @@ def _read_json(path: Path):
 
 
 def g8_check(run_dirs: dict[str, Path]) -> dict:
-    """Actual-yield G8: per-epoch order/flip agreement + byte-identical traces."""
+    """Actual-yield G8, closeout edition: per-epoch per-row
+    expected==actual order/flip re-check + actual_matches_expected flag,
+    cross-group agreement, byte-identical traces."""
     traces = {g: _read_jsonl(p / "step4_g8_trace.jsonl") for g, p in run_dirs.items()}
     n = min(len(x) for x in traces.values())
     all_actual = all(
@@ -52,11 +54,20 @@ def g8_check(run_dirs: dict[str, Path]) -> dict:
         for g in traces for e in range(n)
     )
     mismatches = []
+    exp_act_mismatches = []
+    flag_mismatches = []
     for e in range(n):
         orders = {traces[g][e]["actual_order_sha256"] for g in traces}
         flips = {traces[g][e]["actual_flip_sha256"] for g in traces}
         if len(orders) != 1 or len(flips) != 1:
             mismatches.append(e)
+        for g in traces:
+            row = traces[g][e]
+            if row.get("expected_order_sha256") != row.get("actual_order_sha256") \
+                    or row.get("expected_flip_sha256") != row.get("actual_flip_sha256"):
+                exp_act_mismatches.append(f"{g}:e{e}")
+            if row.get("actual_matches_expected") is not True:
+                flag_mismatches.append(f"{g}:e{e}")
     file_shas = {g: sha256_file(run_dirs[g] / "step4_g8_trace.jsonl")
                  for g in run_dirs}
     return {
@@ -64,9 +75,14 @@ def g8_check(run_dirs: dict[str, Path]) -> dict:
         "actual_yield_fields_present_all_epochs": all_actual,
         "order_and_flip_hashes_match": not mismatches,
         "mismatched_epochs": mismatches,
+        "expected_equals_actual_all_rows": not exp_act_mismatches,
+        "expected_actual_mismatch_rows": exp_act_mismatches,
+        "actual_matches_expected_flag_all_true": not flag_mismatches,
+        "flag_false_rows": flag_mismatches,
         "trace_files_byte_identical": len(set(file_shas.values())) == 1,
         "trace_file_sha256": file_shas,
-        "passed": bool(all_actual and not mismatches
+        "passed": bool(all_actual and not mismatches and not exp_act_mismatches
+                       and not flag_mismatches
                        and len(set(file_shas.values())) == 1),
     }
 
@@ -97,6 +113,51 @@ def g6_rejudge(run_dirs: dict[str, Path]) -> dict:
                 "noise as learning)"),
         }
     return out
+
+
+def loo_provenance_check(loo: dict, run_dirs: dict[str, Path],
+                         contract_path: Path, loo_script_path: Path,
+                         evals: dict[str, dict]) -> dict:
+    """Re-verify the LOO file identity before consuming it (avoid a stale LOO).
+
+    Checks: schema/checkpoint declaration, all five recorded provenance SHA
+    (3x last.pt / contract / LOO script source), plus cross-consistency with
+    the eval JSON provenance for the same checkpoints.
+    """
+    checks = {
+        "schema": {"recorded": loo.get("schema"), "expected": "step4-loo-v1",
+                   "match": loo.get("schema") == "step4-loo-v1"},
+        "checkpoint": {"recorded": loo.get("checkpoint"), "expected": "last.pt",
+                       "match": loo.get("checkpoint") == "last.pt"},
+    }
+    targets = {
+        "C0_last_pt_sha256": run_dirs["C0"] / "weights" / "last.pt",
+        "IR_last_pt_sha256": run_dirs["IR"] / "weights" / "last.pt",
+        "D_last_pt_sha256": run_dirs["D"] / "weights" / "last.pt",
+        "contract_sha256": contract_path,
+        "loo_source_sha256": loo_script_path,
+    }
+    prov = loo.get("provenance") or {}
+    for key, fp in targets.items():
+        if key not in prov:
+            checks[key] = {"recorded": None, "current": None, "match": False,
+                           "error": "RECORDED_SHA_MISSING"}
+            continue
+        if not fp.exists():
+            checks[key] = {"recorded": prov[key], "current": None, "match": False,
+                           "error": "TARGET_FILE_MISSING"}
+            continue
+        cur = sha256_file(fp)
+        checks[key] = {"recorded": prov[key], "current": cur,
+                       "match": prov[key] == cur}
+    # cross-consistency: LOO checkpoint SHAs must equal the eval JSON provenance
+    for tag, key in (("C0", "C0_last_pt_sha256"), ("IR", "IR_last_pt_sha256"),
+                     ("D", "D_last_pt_sha256")):
+        eval_sha = evals[tag].get("provenance", {}).get("last_pt_sha256")
+        checks[f"cross_eval_{key}"] = {
+            "recorded": prov.get(key), "eval_provenance": eval_sha,
+            "match": bool(prov.get(key) and prov.get(key) == eval_sha)}
+    return checks
 
 
 def provenance_check(eval_obj: dict, run_dir: Path, contract_path: Path,
@@ -268,6 +329,12 @@ def main():
     if not loo_path.exists():
         raise RuntimeError("STEP4_LOO_MISSING: run scripts/step4_loo.py first")
     loo = _read_json(loo_path)
+    loo_prov = loo_provenance_check(loo, run_dirs, contract_path,
+                                    ROOT / "scripts" / "step4_loo.py", evals)
+    bad_loo = {k: v for k, v in loo_prov.items() if not v["match"]}
+    if bad_loo:
+        print(json.dumps(bad_loo, indent=2, ensure_ascii=False))
+        raise RuntimeError("REFUSE_SUMMARY_WITH_STALE_LOO")
 
     g6 = g6_rejudge(run_dirs)
     summary = {
@@ -275,6 +342,7 @@ def main():
         "physical_runs": {g: str(rd) for g, rd in run_dirs.items()},
         "integrity": integrity,
         "provenance_all_seven": prov,
+        "loo_provenance": loo_prov,
         "g8_actual": g8_check(run_dirs),
         "g6_unified_rejudge": g6,
         "loo": {"path": str(loo_path),
@@ -295,6 +363,42 @@ def main():
     }
     for tag, gname in (("IR", "F0-I"), ("D", "F0-D")):
         summary["groups"][gname] = verdict(evals[tag], evals["C0"], loo, g6, tag)
+
+    # Closeout: freeze only after every gate above passed (provenance and LOO
+    # checks already fail-fast; G8/G6 are re-asserted here explicitly).
+    if not summary["g8_actual"]["passed"]:
+        raise RuntimeError("REFUSE_FREEZE_G8_NOT_PASSED")
+    if not all(v["unified_threshold_rejudge_passed"] for v in g6.values()):
+        raise RuntimeError("REFUSE_FREEZE_G6_NOT_PASSED")
+    gi = summary["groups"]["F0-I"]
+    gd = summary["groups"]["F0-D"]
+    summary["verdict_frozen"] = True
+    summary["final_conclusions"] = {
+        "F0-I": {
+            "status": gi["status"],
+            "statement": (
+                "IR is genuinely used by the model: NORMAL-ZERO is positive in "
+                "6/6 LOO folds (stable strong signal) and NORMAL-SHUFFLE in 4/6. "
+                "It has not been proven to beat the matched RGB baseline: "
+                f"IR-C0 = {gi['vs_c0']:+.4f} (last.pt val6), LOO "
+                f"{gi['loo']['positive_folds']}/6 positive, median "
+                f"{gi['loo']['median']:+.4f}, dominated by one negative fold."),
+            "diagnostics": gi["diagnostics"],
+        },
+        "F0-D": {
+            "status": gd["status"],
+            "statement": (
+                "Depth parameters learn beyond the control decay scale, but the "
+                "training-set exploitable information did not convert into "
+                "independent val generalization gain: "
+                f"D-C0 = {gd['vs_c0']:+.4f} (last.pt val6), LOO "
+                f"{gd['loo']['positive_folds']}/6 positive, median "
+                f"{gd['loo']['median']:+.4f}."),
+            "diagnostics": gd["diagnostics"],
+        },
+        "next_step": ("F1 IR soft/reliability gate (CSSA soft reliability / "
+                      "EvaNet quality prior direction). Do NOT stack Depth yet."),
+    }
 
     out = project / "_summary_step4.json"
     out.write_text(json.dumps(summary, indent=2, ensure_ascii=False),
