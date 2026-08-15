@@ -96,7 +96,13 @@
     "epochs_compared": 80,
     "order_and_flip_hashes_match": true,
     "mismatched_epochs": [],
-    "evidence_level": "legacy_planned_or_mixed",
+    "evidence_level": "legacy_planned_match_actual_yield_unavailable_for_some_groups",
+    "actual_yield_per_group": {
+      "C0-N": true,
+      "C1-I": false,
+      "C2-D": false
+    },
+    "claim": "80-epoch planned sampler/flip schedule matched across groups. Actual DataLoader yield proven for groups with actual_* fields only.",
     "passed": true
   },
   "groups": {
@@ -113,7 +119,22 @@
       "late10_median": 0.24639,
       "best_pt_normal": 0.26615816326530606,
       "final_aux_q": 0.010609452469482479,
-      "status": "MIXED-EVIDENCE",
+      "paired_vs_zero": -0.0071,
+      "paired_vs_shuffle": 0.0155,
+      "val6_loo": {
+        "positive_folds": 6,
+        "median_delta": 0.07206428571428569,
+        "min_delta": 0.029708333333333364,
+        "max_delta": 0.08293181818181819,
+        "status": "DIAGNOSTIC_ONLY"
+      },
+      "diagnostics": [
+        "aux kernels learned (q>1e-4)",
+        "paired vs zero: negative",
+        "paired vs shuffle: positive",
+        "LOO positive_folds=6/6 median_delta=0.07206428571428569"
+      ],
+      "status": "MODEL-USES-AUX-BUT-NO-BENEFIT",
       "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless."
     },
     "C2-D": {
@@ -124,7 +145,22 @@
       "late10_median": 0.21031,
       "best_pt_normal": 0.2482214285714286,
       "final_aux_q": 0.013385602773476255,
-      "status": "MIXED-EVIDENCE",
+      "paired_vs_zero": -0.0021,
+      "paired_vs_shuffle": -0.0187,
+      "val6_loo": {
+        "positive_folds": 6,
+        "median_delta": 0.02971623376623375,
+        "min_delta": 0.00854285714285715,
+        "max_delta": 0.0592119047619048,
+        "status": "DIAGNOSTIC_ONLY"
+      },
+      "diagnostics": [
+        "aux kernels learned (q>1e-4)",
+        "paired vs zero: negative",
+        "paired vs shuffle: negative",
+        "LOO positive_folds=6/6 median_delta=0.02971623376623375"
+      ],
+      "status": "MODEL-USES-AUX-BUT-NO-BENEFIT",
       "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless."
     }
   }

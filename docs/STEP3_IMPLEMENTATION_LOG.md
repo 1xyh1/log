@@ -517,3 +517,19 @@ def gate_g6b(contract: dict) -> dict:
    - C1-I：**MIXED-EVIDENCE**（N 0.258 > C0 0.197，但 N < Z 0.265；q=0.0106）
    - C2-D：**MIXED-EVIDENCE**（N 0.224 > C0 0.197，N ≈ Z 0.226，N < S 0.243；q=0.0134）
 7. 解释边界（报告口径）：**Step 3-A 阴性 ≠ IR/Depth 无用**。当前证据说明共享 backbone 的 6ch early fusion 未挖出正确配对的互补增益（N 不优于 Z/S）；IR/Depth 可学性已由 Step 2 证明。下一步由审阅者裁决：进 Step 4（modality-specific encoder / feature-level fusion，参考模块 reference_fusion_blocks.py 已隔离就绪）或补 seed。
+
+---
+
+## 2026-08-15 · 板块 12：LOO 补齐 + 判级口径收口（Step 3-A 定稿）
+
+### LOO（val6 leave-one-out，不重训，C0 = C0-N-r1）
+- C1-I：**6/6 全正**，median Δ=+0.0721，min +0.0297，max +0.0829 —— NORMAL 相对 C0 的优势不是单图驱动
+- C2-D：**6/6 全正**，median Δ=+0.0297，min +0.0085，max +0.0592 —— 同样方向稳定
+
+### 最终判级（四类协议内，MIXED-EVIDENCE 降级为诊断子状态）
+- **C1-I → MODEL-USES-AUX-BUT-NO-BENEFIT**：aux kernels learned（q=0.0106）；paired_vs_zero = **-0.0071**；paired_vs_shuffle = **+0.0155**；LOO 6/6（+0.072）→ diagnostic: **mixed intervention signs**
+- **C2-D → MODEL-USES-AUX-BUT-NO-BENEFIT**：paired_vs_zero = **-0.0021**；paired_vs_shuffle = **-0.0187**；LOO 6/6（+0.030）→ diagnostic: **paired auxiliary not beneficial / possible shortcut or representation mismatch**
+- G8 口径修正：`evidence_level = legacy_planned_match_actual_yield_unavailable_for_some_groups`（C1/C2 仅 planned 证据；C0-N-r1 有 actual-yield 且 planned==actual 验证通过）；claim 字段明确说明，不宣称三组 full actual-yield PASS。
+
+### Step 3-A 定稿结论
+> 在统一 YOLO26 6ch 参数化下，IR/Depth 通过第一层 6ch stem 的 early fusion **没有证明"正确配对的辅助模态带来有益因果增益"**（NORMAL 不优于 ZERO；C2-D 的 NORMAL 甚至低于 SHUFFLE）。但 aux kernel 确有学习（q>0）、LOO 6/6 显示 NORMAL>C0 方向稳定——**阴性证据指向"当前融合方式不当"，而非"模态无用"**（Step 2 已证可学性）。不补 seed13/14、不改 R3。下一步：Step 4（RGB anchor + lightweight aux encoders + P3/P4/P5 feature fusion，F0=IdentityConcat[I,0,0] + F0-C0 matched control + epoch0 等价门禁），参考文档 docs/STEP4_REFERENCE_GUIDED_DESIGN.md + reference_implementation_notes.md。

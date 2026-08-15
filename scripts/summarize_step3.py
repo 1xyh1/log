@@ -25,6 +25,7 @@ def g8_check(run_dirs: dict[str, Path]) -> dict:
         for g in traces for e in range(n)
     )
     mismatches = []
+    per_group_actual = {}
     for e in range(n):
         if all_actual:
             orders = {traces[g][e]["actual_order_sha256"] for g in traces}
@@ -36,11 +37,21 @@ def g8_check(run_dirs: dict[str, Path]) -> dict:
             flips = {traces[g][e].get("flip_schedule_sha256") for g in traces}
         if len(orders) != 1 or None in orders or len(flips) != 1 or None in flips:
             mismatches.append(e)
+    for g, t in traces.items():
+        per_group_actual[g] = all("actual_order_sha256" in x and "actual_flip_sha256" in x
+                                  for x in t)
+    # Honest evidence wording (reviewer): planned schedule matched across all 80 epochs;
+    # actual DataLoader yield only proven for groups with actual_* fields (C0-N-r1).
+    evidence_level = "actual_yield_all" if all(per_group_actual.values()) else \
+        "legacy_planned_match_actual_yield_unavailable_for_some_groups"
     return {
         "epochs_compared": n,
         "order_and_flip_hashes_match": not mismatches,
         "mismatched_epochs": mismatches,
-        "evidence_level": "actual" if all_actual else "legacy_planned_or_mixed",
+        "evidence_level": evidence_level,
+        "actual_yield_per_group": per_group_actual,
+        "claim": "80-epoch planned sampler/flip schedule matched across groups. "
+                 "Actual DataLoader yield proven for groups with actual_* fields only.",
         "passed": not mismatches,
     }
 
@@ -68,7 +79,26 @@ def verdict(cand: dict, c0: dict, growth: list[dict]) -> dict:
     elif unstable:
         status = "UNSTABLE"
     else:
-        status = "MIXED-EVIDENCE"
+        # Reviewer ruling: MIXED-EVIDENCE is a DIAGNOSTIC SUBSTATUS, not a fifth class.
+        # Mixed intervention signs with learned aux kernels map to
+        # MODEL-USES-AUX-BUT-NO-BENEFIT and the sign pattern is recorded explicitly.
+        status = "MODEL-USES-AUX-BUT-NO-BENEFIT"
+    paired_vs_zero = round(n - z, 4)
+    paired_vs_shuffle = round(n - s, 4)
+    diagnostics = []
+    if q > 1e-4:
+        diagnostics.append("aux kernels learned (q>1e-4)")
+    if paired_vs_zero > 0:
+        diagnostics.append("paired vs zero: positive")
+    elif paired_vs_zero < 0:
+        diagnostics.append("paired vs zero: negative")
+    if paired_vs_shuffle > 0:
+        diagnostics.append("paired vs shuffle: positive")
+    elif paired_vs_shuffle < 0:
+        diagnostics.append("paired vs shuffle: negative")
+    if loo.get("status") == "DIAGNOSTIC_ONLY" and loo.get("positive_folds") is not None:
+        diagnostics.append(f"LOO positive_folds={loo['positive_folds']}/{len(loo.get('deltas', []))} "
+                           f"median_delta={loo.get('median_delta')}")
     return {
         "normal": n,
         "zero": z,
@@ -77,6 +107,11 @@ def verdict(cand: dict, c0: dict, growth: list[dict]) -> dict:
         "late10_median": late,
         "best_pt_normal": best,
         "final_aux_q": q,
+        "paired_vs_zero": paired_vs_zero,
+        "paired_vs_shuffle": paired_vs_shuffle,
+        "val6_loo": {k: loo.get(k) for k in
+                     ("positive_folds", "median_delta", "min_delta", "max_delta", "status")},
+        "diagnostics": diagnostics,
         "status": status,
         "note": "Negative Step3 early-fusion evidence does not imply the modality itself is useless.",
     }

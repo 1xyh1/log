@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T00:43:03.679143+08:00",
+  "generated_at_local": "2026-08-15T08:36:17.918191+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -8,9 +8,9 @@
       "mtime_ns": 1786724234815732900
     },
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
-      "sha256": "28849a7498c0c6b1c8660374f75397b8d575baa05271d7da4a985fe24fa89562",
-      "size_bytes": 29492,
-      "mtime_ns": 1786725736580928400
+      "sha256": "cab7bbc61c91abf9bc3a5169d1acccf79c33360c5d17f56f5cd2523270fc96a1",
+      "size_bytes": 31369,
+      "mtime_ns": 1786754139297950700
     },
     "docs/STEP3_RECOVERY_RUNBOOK.md": {
       "sha256": "34b79ac05a08e0df22ab091e913ede74c68b223adffd1bbedb8348c0bc603ac2",
@@ -30,7 +30,7 @@
     "reports/step3_data_contract.json": {
       "sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
       "size_bytes": 23438,
-      "mtime_ns": 1786725486833714900
+      "mtime_ns": 1786754039704164700
     },
     "reports/step3_gates_g1_g2_g3.json": {
       "sha256": "d028d2b6b73d1b31dd62bd64e847575f41376d56f78c67cf01b10531a039b8ef",
@@ -138,9 +138,9 @@
       "mtime_ns": 1786694167769039700
     },
     "runs/step3_earlyfusion/C1-I/eval_step3_causality.json": {
-      "sha256": "94cd0bca2bb1fc8b3f8c9fd667b056228fd8715fef5e36328b5d6b2c1836a6eb",
-      "size_bytes": 20689,
-      "mtime_ns": 1786724891605605600
+      "sha256": "cd092caa5591e89658cbc8ff80a46430d7e702b0c8ef971471bd6d6611f0049e",
+      "size_bytes": 22167,
+      "mtime_ns": 1786754031735027400
     },
     "runs/step3_earlyfusion/C1-I/manifest.json": {
       "sha256": "54851c8770c5c260682baacdfaf359eac00bf8ec03a45fd7349d86a843c38caa",
@@ -183,9 +183,9 @@
       "mtime_ns": 1786694466001217800
     },
     "runs/step3_earlyfusion/C2-D/eval_step3_causality.json": {
-      "sha256": "18a57adc8dbdbd8eeac0dd3f14d70f7fdb936c98438e235ccea07dc6ef49b248",
-      "size_bytes": 20602,
-      "mtime_ns": 1786724940560861400
+      "sha256": "32d8e8c042f4306bd3ed4b312393da6593e858c7795e4091d72c1ddb3972bb68",
+      "size_bytes": 22078,
+      "mtime_ns": 1786754105252052800
     },
     "runs/step3_earlyfusion/C2-D/manifest.json": {
       "sha256": "96a01e523fc8ad25286b9c4b7cf1e77f7f7bca0f8dfac3f4cd6d1d2e76aca11a",
@@ -223,9 +223,9 @@
       "mtime_ns": 1786694762395360500
     },
     "runs/step3_earlyfusion/_summary_step3_v2.json": {
-      "sha256": "3daf7d90875dfa131a1942896b296af4f682958ca336e6165af2d3cc0e46521c",
-      "size_bytes": 4558,
-      "mtime_ns": 1786725573623339100
+      "sha256": "6755315b13a8087fa5e43827899834cd3d6b0fa0a49805d112f337c504ef3116",
+      "size_bytes": 5918,
+      "mtime_ns": 1786754121472833600
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -298,9 +298,9 @@
       "mtime_ns": 1786635943303950300
     },
     "scripts/summarize_step3.py": {
-      "sha256": "ccd20749568e567237ffa9ef1bb2df663249affd8a0ae004817794a91c633a82",
-      "size_bytes": 5183,
-      "mtime_ns": 1786724234824578000
+      "sha256": "08a08f8974e76a65431da6acefa02393c4248d865eaeca7759f3d13971b3ebdc",
+      "size_bytes": 7188,
+      "mtime_ns": 1786753996830533400
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -439,39 +439,10 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/PROBLEM_DIAGNOSIS.md",
     "docs/STEP3_IMPLEMENTATION_LOG.md",
-    "docs/STEP3_RECOVERY_RUNBOOK.md",
-    "docs/STEP4_REFERENCE_GUIDED_DESIGN.md",
-    "docs/reference_implementation_notes.md",
-    "runs/step3_earlyfusion/C0-N-r1/args.yaml",
-    "runs/step3_earlyfusion/C0-N-r1/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C0-N-r1/manifest.json",
-    "runs/step3_earlyfusion/C0-N-r1/results.csv",
-    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_all17.json",
-    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_train.json",
-    "runs/step3_earlyfusion/C0-N-r1/shuffle_map_val.json",
-    "runs/step3_earlyfusion/C0-N-r1/step3_g8_trace.jsonl",
-    "runs/step3_earlyfusion/C0-N-r1/step3_kernel_growth.jsonl",
     "runs/step3_earlyfusion/C1-I/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C1-I/shuffle_map_train.json",
     "runs/step3_earlyfusion/C2-D/eval_step3_causality.json",
-    "runs/step3_earlyfusion/C2-D/shuffle_map_train.json",
     "runs/step3_earlyfusion/_summary_step3_v2.json",
-    "scripts/diagnose_step3_training.py",
-    "scripts/eval_step3_causality.py",
-    "scripts/run_step3_earlyfusion.py",
-    "scripts/summarize_step3.py",
-    "scripts/validate_step3_run.py",
-    "src/multimodal/reference_fusion_blocks.py",
-    "src/multimodal/run_integrity.py",
-    "src/multimodal/step3_eval_utils.py",
-    "src/multimodal/trainability.py",
-    "src/multimodal/trimodal_dataset.py",
-    "tests/.pytest_cache/CACHEDIR.TAG",
-    "tests/.pytest_cache/README.md",
-    "tests/.pytest_cache/v/cache/nodeids",
-    "tests/test_reference_fusion_blocks.py",
-    "tests/test_step3_recovery_contract.py"
+    "scripts/summarize_step3.py"
   ]
 }
