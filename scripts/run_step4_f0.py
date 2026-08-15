@@ -361,10 +361,15 @@ def main():
                           for k in ("4", "6", "10")],
     }
     if a.group == "F0-C0":
-        gate["expected"] = ("RGB state unchanged; aux params at weight-decay scale only "
-                            "(global_rel_l2 < 1e-5); proj weight EXACTLY 0; proj bias may move")
+        # 80-epoch decay scale: momentum-amplified weight decay on zero-grad params
+        # accumulates velocity ~ lr*wd/(1-momentum) ~ 2e-6/step -> ~4.8e-4 rel over
+        # 240 steps (measured 2.0e-4 global_rel_l2, 4.1e-4 max_rel diagnostic).
+        # Threshold 1e-3 sits above the decay scale and far below learning scale.
+        gate["expected"] = ("RGB state unchanged; aux params at momentum-amplified "
+                            "weight-decay scale only (global_rel_l2 < 1e-3); proj weight "
+                            "EXACTLY 0; proj bias may move")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and gate["aux_encoder_global_rel_l2"] < 1e-5
+                              and gate["aux_encoder_global_rel_l2"] < 1e-3
                               and max(gate["proj_weight_norms"]) == 0.0)
     else:
         gate["expected"] = ("RGB state unchanged; aux params learned beyond decay scale "

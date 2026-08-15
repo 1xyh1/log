@@ -1,0 +1,18 @@
+{
+  "rgb_backbone_unchanged": true,
+  "aux_encoder_max_rel_change_diagnostic": 332695680.0,
+  "aux_encoder_global_rel_l2": 0.006298602084099367,
+  "aux_encoder_max_abs_change": 0.008547641336917877,
+  "proj_weight_norms": [
+    0.22628670930862427,
+    0.19514477252960205,
+    0.3877140283584595
+  ],
+  "proj_bias_max": [
+    8.55878397487686e-07,
+    5.02403054269962e-07,
+    3.718548384767928e-07
+  ],
+  "expected": "RGB state unchanged; aux params learned beyond decay scale (global_rel_l2 > 1e-5); proj P3/P4/P5 weight > 0",
+  "passed": true
+}
