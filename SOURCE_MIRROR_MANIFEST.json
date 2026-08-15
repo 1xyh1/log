@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-15T15:25:48.215399+08:00",
+  "generated_at_local": "2026-08-15T15:27:01.292869+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -8,9 +8,9 @@
       "mtime_ns": 1786724234815732900
     },
     "docs/STEP3_IMPLEMENTATION_LOG.md": {
-      "sha256": "ad11a816689dc98132c144f6dfc1d0e6e4a9e2887de15498a12fa2975940496e",
-      "size_bytes": 41111,
-      "mtime_ns": 1786776905020814800
+      "sha256": "70e2b71b328d60dfef88f8162934d35a63ddd8d6c8d797743f9d95915be32a03",
+      "size_bytes": 43423,
+      "mtime_ns": 1786778774013165700
     },
     "docs/STEP3_RECOVERY_RUNBOOK.md": {
       "sha256": "34b79ac05a08e0df22ab091e913ede74c68b223adffd1bbedb8348c0bc603ac2",
@@ -1484,9 +1484,6 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f0/F0-D/eval_step4_causality.json",
-    "runs/step4_f0/F0-D/shuffle_map_all17.json",
-    "runs/step4_f0/F0-D/shuffle_map_train.json",
-    "runs/step4_f0/F0-D/shuffle_map_val.json"
+    "docs/STEP3_IMPLEMENTATION_LOG.md"
   ]
 }

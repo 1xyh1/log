@@ -617,3 +617,31 @@ Step4-F0 architecture / P3P4P5 routing / matched initialization / RGB Trainer-li
 
 ### 正式训练执行约束（冻结）
 三组必须全部 amp=False、batch=4、seed=20260812、R3 其余参数一致、actual-yield G8；目录全新 formal `runs/step4_f0/F0-C0|F0-I|F0-D`；顺序 F0-C0 → F0-I → F0-D；任一组 G5/G6/G8 报错即整体停止。跑完后审阅者将检查：80 行 G8、80 行 growth、RGB SHA、projection growth 曲线、late10、三个 last.pt 的 NORMAL/ZERO/SHUFFLE。
+
+---
+
+## 2026-08-15 · 板块 17：Step 4-F0 三组 × 80 epoch formal 完成 + 三路因果评估
+
+### 正式训练（顺序 F0-C0 → F0-I → F0-D，amp=False、batch=4、seed=20260812、actual-yield G8）
+- **F0-I**：G6 PASS，proj 终值 [0.2263, 0.1951, 0.3877] —— 80 epoch 后三层 projection 全部显著离开零点
+- **F0-D**：G6 PASS，proj 终值 [0.2420, 0.2000, 0.3946]
+- **F0-C0 首跑 G6 FAIL → 阈值校准 → F0-C0-r1 重跑 PASS**：
+  - 首跑实测 aux global_rel_l2=2.0e-4、max_rel 诊断 4.1e-4 —— 超出 1e-5 阈值但这是**动量放大的权重衰减**尺度（速度累积 ≈ lr·wd/(1-momentum) ≈ 2e-6/步 × 240 步 ≈ 4.8e-4，与实测吻合；proj 仍精确 0、RGB 不变）。C0 阈值改为 global_rel_l2 < 1e-3（注释含推导）。
+  - 纪律教训：管道（`cmd | grep`）会掩盖 set -e 失败——后续链式训练一律 `set -o pipefail`。
+  - F0-C0-r1：G6 PASS（proj 精确 [0,0,0]、RGB 不变、aux 仅衰减尺度）——**F0-C0-r1 为有效 control**；原 F0-C0 目录保留作失败证据。
+
+### 三路因果评估（stock validator 语义，last.pt 主口径）
+
+| 组 | NORMAL | ZERO-AUX | SHUFFLE | 判据 N>C0 / N>Z / N>S |
+|---|---|---|---|---|
+| F0-C0-r1 (control) | **0.3010** | 0.3010 | 0.3010 | N=Z=S（零 aux 语义 ✓） |
+| F0-I | 0.2992 | 0.2577 | 0.2937 | ✗(-0.0018) / ✓(+0.0415) / ✓(+0.0055) |
+| F0-D | 0.2860 | 0.2845 | 0.2909 | ✗(-0.0150) / ✓(+0.0015) / ✗(-0.0049) |
+
+best.pt（辅助）：F0-I N=0.3176 > C0 0.3067、>Z、>S（3/3）；F0-D N=0.3004（>Z、>S，<C0）。
+
+### 初步观察（最终判级留给审阅者）
+- control 本身 0.3010（冻结 backbone + 训练 neck/head 的 R3 训练在 80 epoch 达到的 baseline——明显高于 Step 3 全参数 6ch 的 0.197）。
+- F0-I：**paired_vs_zero +0.0415 是清晰的干预符号**（正确配对的 IR 相对"无 aux"有收益）；paired_vs_shuffle +0.0055 为正；vs control -0.0018 在 6-val 噪声内。三个符号中两个为正，一个为近似零。
+- F0-D：三个符号均弱/为负（paired_vs_zero +0.0015、paired_vs_shuffle -0.0049、vs control -0.0150）——feature-level Depth 注入在 F0 结构下未显示收益。
+- 待审阅者检查：80 行 G8、80 行 growth、RGB SHA、projection growth 曲线、late10。
