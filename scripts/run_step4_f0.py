@@ -372,10 +372,14 @@ def main():
                               and gate["aux_encoder_global_rel_l2"] < 1e-3
                               and max(gate["proj_weight_norms"]) == 0.0)
     else:
-        gate["expected"] = ("RGB state unchanged; aux params learned beyond decay scale "
-                            "(global_rel_l2 > 1e-5); proj P3/P4/P5 weight > 0")
+        # Reviewer ruling (2026-08-16): unify the active-aux threshold with the C0
+        # control's < 1e-3.  > 1e-5 would call a 5e-5 model "learned" even though it
+        # sits BELOW the measured control decay scale (2.05e-4 global_rel_l2 on C0).
+        gate["expected"] = ("RGB state unchanged; aux params learned beyond the "
+                            "measured control decay scale (global_rel_l2 > 1e-3); "
+                            "proj P3/P4/P5 weight > 0")
         gate["passed"] = bool(gate["rgb_backbone_unchanged"]
-                              and gate["aux_encoder_global_rel_l2"] > 1e-5
+                              and gate["aux_encoder_global_rel_l2"] > 1e-3
                               and min(gate["proj_weight_norms"]) > 0.0)
     (run_dir / "step4_update_gate.json").write_text(
         json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")
