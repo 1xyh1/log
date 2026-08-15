@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-16T02:02:27.826381+08:00",
-  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-16T02:03:22.742679+08:00",
+  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -18,9 +18,9 @@
       "mtime_ns": 1786724234815732900
     },
     "docs/STEP4_IMPLEMENTATION_PLAN.md": {
-      "sha256": "e9e7dde65789a2bd596da1e61a7a8216b76f5b8dc4e9e5b70cd62c258d3aa718",
-      "size_bytes": 3894,
-      "mtime_ns": 1786756256278870400
+      "sha256": "336d81212994157c8636fbeb7a30fe632d3a670037ffeb0c7142ff25be570c6f",
+      "size_bytes": 4334,
+      "mtime_ns": 1786816987891701000
     },
     "docs/STEP4_REFERENCE_GUIDED_DESIGN.md": {
       "sha256": "eb79ca4e8f40f44a78e80989f43f09e45cfb1a49e14e17cc973b74bfdfd45f56",
@@ -418,9 +418,9 @@
       "mtime_ns": 1786777723812869500
     },
     "runs/step4_f0/_summary_step4.json": {
-      "sha256": "3a7a060056ffaa1ec07552d70b30e72bd7ef2aaa224a1641574ffdece731c05e",
-      "size_bytes": 20632,
-      "mtime_ns": 1786814864830505600
+      "sha256": "c38eefbdf7c50fbff141e7c865986e515af40aa512af5a293022e8d74c769725",
+      "size_bytes": 25363,
+      "mtime_ns": 1786816959942977800
     },
     "runs/step4_f0/smoke-F0-C0-e1/args.yaml": {
       "sha256": "dc03c432ce43e45d4b37fba408e9bad71ee1945b4e0f655dbf42ef0ed58a8db6",
@@ -513,9 +513,9 @@
       "mtime_ns": 1786772830112471900
     },
     "runs/step4_f0/step4_loo.json": {
-      "sha256": "325f3273c359fcb2b8a26989a72c7322b706f5e7a22208746c479d5927c20769",
+      "sha256": "8266b31dfc5eed2b3285d3251dbe722472d66a526dc505c26c4eb13cccbefff8",
       "size_bytes": 8614,
-      "mtime_ns": 1786816750909522600
+      "mtime_ns": 1786816954081944300
     },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
@@ -794,6 +794,8 @@
     }
   },
   "changed_in_this_sync": [
-    "tests/test_step4_closeout.py"
+    "docs/STEP4_IMPLEMENTATION_PLAN.md",
+    "runs/step4_f0/_summary_step4.json",
+    "runs/step4_f0/step4_loo.json"
   ]
 }

@@ -48,7 +48,10 @@ F_i = R_i + P_i(A_i)   → 原 YOLO26 neck/head（可训练）
 2. 三组各 1-epoch smoke（无 OOM/NaN；batch=4 预期可过，OOM 统一 batch=2/nbs=4 全组重来）
 3. 三组 × 80 epochs（串行，formal 目录不可覆盖）
 4. 三路因果评估（last 主口径）+ late10 + per-class
-5. LOO + 四类判级 → 报审阅者
+5. LOO + 四类判级 → **已完成（冻结，verdict_frozen=true，2026-08-16）**
+   - 判级：F0-I / F0-D 均 MODEL-USES-AUX-BUT-NO-BENEFIT（`runs/step4_f0/_summary_step4.json` schema v2）
+   - closeout 门禁：LOO payload 从 folds 重算精确比对、19 键 provenance（12 依赖 SHA + shuffle map SHA + 交叉）、G8 逐行 expected==actual、对抗测试 `tests/test_step4_closeout.py` 30 项
+   - 下一步：F1 IR soft/reliability gate（暂不叠加 Depth）
 
 ## 后续（F1-F4，本阶段不实现）
 
