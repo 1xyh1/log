@@ -99,11 +99,18 @@ def _state_sha(module) -> str:
 class B1CorruptionDatasetView:
     """Wraps TriModalDataset: after the frozen preprocessing/letterbox output,
     corrupts ONLY channel 3 (IR) per the deterministic schedule and records
-    the G9 evidence for the epoch."""
+    the G9 evidence for the epoch.
 
-    def __init__(self, dataset, seed: int):
+    apply_corruption=False is used for B1-C0: the C0 aux input is already
+    zero, so the corruption is intentionally NOT applied (any noise would
+    only touch an unused channel); the schedule evidence is still recorded so
+    the control shares the identical training-time schedule.
+    """
+
+    def __init__(self, dataset, seed: int, apply_corruption: bool = True):
         self.dataset = dataset
         self.seed = int(seed)
+        self.apply_corruption = bool(apply_corruption)
         self.epoch = 0
         self.records: list[dict] = []
 
@@ -124,9 +131,11 @@ class B1CorruptionDatasetView:
         rgb_before = img[:3].copy()
         dep_before = img[4:6].copy()
         ir_before_sha = sha256_plane(img[3])
-        content = content_mask_from_sample(sample, imgsz=img.shape[-1])
-        img[3] = apply_schedule_to_plane(
-            img[3], sched, seed=self.seed, epoch=self.epoch, content_mask=content)
+        if self.apply_corruption:
+            content = content_mask_from_sample(sample, imgsz=img.shape[-1])
+            img[3] = apply_schedule_to_plane(
+                img[3], sched, seed=self.seed, epoch=self.epoch,
+                content_mask=content)
         ir_after_sha = sha256_plane(img[3])
         sample["img"] = np.ascontiguousarray(img)
         self.records.append({
@@ -222,7 +231,9 @@ def main() -> None:
             if mode == "train":
                 dataset = self.build_dataset(dataset_path, mode, batch_size)
                 self._epoch_dataset = dataset
-                self._b1_view = B1CorruptionDatasetView(dataset, seed=a.seed)
+                self._b1_view = B1CorruptionDatasetView(
+                    dataset, seed=a.seed,
+                    apply_corruption=(spec["aux_mode"] != "zero"))
                 return InfiniteDataLoader(
                     self._b1_view, batch_size=batch_size,
                     sampler=dataset.sampler, shuffle=False,
@@ -345,23 +356,17 @@ def main() -> None:
             {"sample_id": r["sample_id"], "kind": r["kind"],
              "severity": r["severity"]} for r in records
         ]
-        expected_rows = [
-            {"sample_id": r["sample_id"], "kind": r["kind"],
-             "severity": r["severity"]} for r in expected_sched
-        ]
-        # order follows the actual yield (sampler perm); compare as sequences
-        if actual_rows != [dict(row) for row in expected_rows
-                           for row in ([row] if False else [])] or True:
-            # expected_sched is sorted by sample_id; align to actual order
-            expected_by_id = {r["sample_id"]: r for r in expected_sched}
-            aligned = [{"sample_id": r["sample_id"],
-                        "kind": expected_by_id[r["sample_id"]]["kind"],
-                        "severity": expected_by_id[r["sample_id"]]["severity"]}
-                       for r in records]
-            if actual_rows != aligned:
-                raise RuntimeError(f"G9_SCHEDULE_MISMATCH epoch={tr.epoch}")
+        # align expected (sorted by id) to the actual yield order for the
+        # sequence-level check
+        expected_by_id = {r["sample_id"]: r for r in expected_sched}
+        aligned = [{"sample_id": r["sample_id"],
+                    "kind": expected_by_id[r["sample_id"]]["kind"],
+                    "severity": expected_by_id[r["sample_id"]]["severity"]}
+                   for r in records]
+        if actual_rows != aligned:
+            raise RuntimeError(f"G9_SCHEDULE_MISMATCH epoch={tr.epoch}")
         expected_sha = schedule_sha256(a.seed, tr.epoch, ds.ids)
-        actual_sha = _sha_json(actual_rows)
+        actual_sha = _sha_json(sorted(actual_rows, key=lambda r: r["sample_id"]))
         kind_counts = {}
         for r in records:
             kind_counts[r["kind"]] = kind_counts.get(r["kind"], 0) + 1

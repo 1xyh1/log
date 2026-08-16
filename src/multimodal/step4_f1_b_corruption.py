@@ -62,9 +62,12 @@ def schedule_for_epoch(seed: int, epoch: int, sample_ids) -> list[dict]:
 
 
 def schedule_sha256(seed: int, epoch: int, sample_ids) -> str:
-    """Canonical SHA anchor for the expected schedule of one epoch (G9)."""
+    """Canonical SHA anchor for the expected schedule of one epoch (G9).
+    Normalization MUST match the runner's actual-schedule serialization:
+    rows sorted by sample_id, compact separators, ensure_ascii=False."""
     payload = json.dumps(schedule_for_epoch(seed, epoch, sample_ids),
-                         sort_keys=True, ensure_ascii=False)
+                         sort_keys=True, ensure_ascii=False,
+                         separators=(",", ":"))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
