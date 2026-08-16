@@ -1,9 +1,9 @@
 {
-  "schema": "step4-f1-summary-v3",
+  "schema": "step4-f1-summary-v4",
   "loo_file_sha256": "e207e7ecc0d5c1dbe78bfb321e9ee45019c035d54a7a07604a9d2a363756e393",
   "quality_file_sha256": "1c739976a3f81f3b63205be887560f15c486bf6fa5ce864a565d91586453bd2f",
   "posthoc_file_sha256": "f18f9cc2841c4953c3650d5aca968a0f60b0244afa3e7e81474a3690a150f575",
-  "summarize_source_sha256": "bd811cf65dd3952fc4e64553798a205b4d2a7de0ea33ed0984ab1c8a39708c31",
+  "summarize_source_sha256": "2d5dcf06c14551d5f20f997eb74eca60d9a3673b62a9f7497f63a3d17d06a109",
   "f1_closeout_source_sha256": "ff63ecc36047ffeb7304ef669d5805e54e7ab851516918a99b62acf082fedbb8",
   "shared_closeout_source_sha256": "07fd2bf308d652fe477b64921941e756cf8576779dc44606eb7b8e8463888a92",
   "integrity": {
@@ -1153,6 +1153,14 @@
     "force_qclean_value": 0.5039910276730856,
     "identity_learned_minus_qclean": -1.611170784099336e-05,
     "adaptive_contribution_near_zero": true,
+    "degraded_learned_minus_qclean_stats": {
+      "mean": 0.0005527296779459324,
+      "n_positive": 6,
+      "n_negative": 1,
+      "n_same": 10,
+      "max_gain": 0.004433333333333317,
+      "max_gain_condition": "noise:1.00"
+    },
     "macro_mean_learned_ap": 0.2604507394637776,
     "worst_condition": "noise:1.00",
     "worst_condition_learned_ap": 0.0685343149540518,
@@ -1214,7 +1222,7 @@
         "monotone_direction": "none"
       }
     },
-    "conclusion": "CONSTANT ATTENUATION HELPS, ADAPTIVITY CONTRIBUTES NOTHING"
+    "conclusion": "CONSTANT ATTENUATION DOMINATES; ADAPTIVITY IS NOT PROVEN"
   },
   "stability_block": {
     "per_group": {
