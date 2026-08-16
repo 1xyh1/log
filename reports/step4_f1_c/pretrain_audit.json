@@ -1,0 +1,92 @@
+{
+  "schema": "step4-f1-c-audit-v1",
+  "sections": {
+    "schedule_frozen": {
+      "checks": {
+        "kind_probs_exact": true,
+        "severities_exact": true,
+        "zero_severity_exact": true,
+        "noise_sigma_matches_eval": true,
+        "shift_not_in_training": true
+      },
+      "passed": true
+    },
+    "sha256_driven_randomness": {
+      "checks": {
+        "no_builtin_hash_calls": true,
+        "sha256_digest_used": true,
+        "epoch_in_payload": true,
+        "noise_uses_digest": true,
+        "numpy_not_python_rng": true,
+        "deterministic_same_input": true,
+        "epoch_affects_schedule": true,
+        "schedule_sha_repeatable": true,
+        "noise_epoch_dependent": true
+      },
+      "passed": true
+    },
+    "g9_logic_present": {
+      "checks": {
+        "g9_trace_written": true,
+        "expected_schedule_sha_recorded": true,
+        "actual_schedule_sha_recorded": true,
+        "ir_sha_before_after": true,
+        "rgb_depth_labels_bbox_assert": true,
+        "kind_counts": true,
+        "c0_noop_semantics": true,
+        "fail_fast": true
+      },
+      "passed": true
+    },
+    "f1_v4_frozen_reference": {
+      "checks": {
+        "f1_summary_exists": true,
+        "f1_schema_v4": true,
+        "f1_verdict_frozen": true,
+        "f1_a0_conclusion": true
+      },
+      "passed": true
+    },
+    "docs_present": {
+      "checks": {
+        "design_freeze": true,
+        "execution_guide": true,
+        "feedback_readme": true
+      },
+      "passed": true
+    },
+    "g10_magnitude_gate": {
+      "checks": {
+        "g10_1_batch_equals_single": true,
+        "g10_2_permutation_invariant": true,
+        "g10_3_init_equivalence_bitwise": true,
+        "g10_3_magnitude_zero_init": true,
+        "g10_4_grad_finite_nonzero": true,
+        "g10_4_update_leaves_zero": true,
+        "g10_5_gate_to_aux_grad_zero": true,
+        "g10_5_residual_to_aux_grad_nonzero": true,
+        "g10_6_q_finite_b1": true,
+        "g10_6_inputs_untouched": true
+      },
+      "passed": true
+    },
+    "g10_7_runner_fp32_sha": {
+      "checks": {
+        "g10_7_fp32_sha_recorded": true,
+        "g10_7_on_train_end": true,
+        "g10_7_pre_half_note": true
+      },
+      "passed": true
+    }
+  },
+  "provenance": {
+    "corruption_source_sha256": "4fceb384417cf845bd8256c560a161d1392fdbad25aac51ae4cdcb9cd33b608e",
+    "runner_source_sha256": "5fd1572ecca8ed0f39c2e153d61c9dc731738e7420a061bc4107aead56bcc36e",
+    "audit_source_sha256": "5642c626bbead60e4a15bdea1371cad12645030779488981d3388bbe4e753414",
+    "f1_summary_sha256": "ddd8ad12a1193d7cea75878f27c13beeaa718f0297e6e0969e29aade983d79d4",
+    "b1_summary_sha256": "1f73ffa9ee3754a836eb22a3136f4c3e6252d6fb23ae68523cd34ff7c43af49f",
+    "gate_module_sha256": "3354ac231a452575016604588846454767fefced34fe798ffcdaebc233c2bce9",
+    "model_source_sha256": "210e5be696ef7180bb68fe5d46d50c7f26ee3dfea07c8b8e889e5d808dd7429f"
+  },
+  "all_passed": true
+}

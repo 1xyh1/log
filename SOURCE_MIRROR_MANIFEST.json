@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T02:24:17.134394+08:00",
+  "generated_at_local": "2026-08-17T02:26:05.382662+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -66,6 +66,21 @@
       "sha256": "817ea2b7e50a51691e8e7a04d277d826bccdd166a6ccc328577c0d346f6e4387",
       "size_bytes": 598,
       "mtime_ns": 1786844362448458300
+    },
+    "docs/step4_f1_c/DESIGN_FREEZE.md": {
+      "sha256": "0d5ef908795467a36ae997b210cd03b5b2f91b7a3fc0f0d69850af09523d1232",
+      "size_bytes": 3663,
+      "mtime_ns": 1786904680902551500
+    },
+    "docs/step4_f1_c/EXECUTION_GUIDE.md": {
+      "sha256": "3ed6962acd980a65c6c839da12d6f429420d773966f21c84a327c8c3d906a5a1",
+      "size_bytes": 1261,
+      "mtime_ns": 1786904702532183600
+    },
+    "docs/step4_f1_c/feedback/README.md": {
+      "sha256": "4685055d1d52a669c82adc26cb9a95a2bb843f006f67b6f2b8daa40da6f1dc8d",
+      "size_bytes": 196,
+      "mtime_ns": 1786904702577795400
     },
     "docs/step4_f1_c_descriptor_v2/EXECUTION_GUIDE.md": {
       "sha256": "486f58ceed99e15915d26906d10c24d0f1a4c106856a8df3df80f233145695e1",
@@ -156,6 +171,11 @@
       "sha256": "35296329219cfaca3b3b68d85923227bf005fb893822b48983890b4106193779",
       "size_bytes": 2022,
       "mtime_ns": 1786891928401167100
+    },
+    "reports/step4_f1_c/pretrain_audit.json": {
+      "sha256": "bc255026921aae813c4ce78edc3caac6dc639a56ec372227ec0c828085084f9e",
+      "size_bytes": 3047,
+      "mtime_ns": 1786904720080844700
     },
     "reports/step4_f1_c_agreement/agreement_all17_growth.json": {
       "sha256": "990eea97c54f6d06c3f471decb4e993288a46daa64179b6c0948ecee7f957d8f",
@@ -703,9 +723,9 @@
       "mtime_ns": 1786896394447354700
     },
     "scripts/audit_step4_f1_c.py": {
-      "sha256": "50e2f6ab22319da3f7de2ba9ef1df732e595ed5c0e739b8a2487599388066cf4",
-      "size_bytes": 11217,
-      "mtime_ns": 1786904648695761400
+      "sha256": "5642c626bbead60e4a15bdea1371cad12645030779488981d3388bbe4e753414",
+      "size_bytes": 11206,
+      "mtime_ns": 1786904717907188500
     },
     "scripts/audit_step4_f1_ir_gate.py": {
       "sha256": "8bf7d72a04fa570cefee90510825f30bb2402404558105b60ac4c83a1f6fdcb1",
@@ -1124,7 +1144,10 @@
     }
   },
   "changed_in_this_sync": [
-    "scripts/run_step4_f1_c.py",
-    "src/multimodal/step4_f1_ir_gate_model.py"
+    "docs/step4_f1_c/DESIGN_FREEZE.md",
+    "docs/step4_f1_c/EXECUTION_GUIDE.md",
+    "docs/step4_f1_c/feedback/README.md",
+    "reports/step4_f1_c/pretrain_audit.json",
+    "scripts/audit_step4_f1_c.py"
   ]
 }
