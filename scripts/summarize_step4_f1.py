@@ -192,8 +192,8 @@ def _verify_manifest(manifest: dict, tag: str, run_dir: Path,
 
 
 def _verify_quality(report: dict, run_dir: Path, contract_path: Path) -> dict:
-    if report.get("schema") != "step4-f1-ir-quality-probe-v1":
-        raise RuntimeError("bad F1 quality schema")
+    if report.get("schema") != "step4-f1-ir-quality-probe-v2":
+        raise RuntimeError("bad F1 quality schema (A0 probe v2 required)")
     if report.get("checkpoint") != "last.pt":
         raise RuntimeError("F1 closeout requires last.pt quality evidence")
     p = report.get("provenance") or {}
@@ -480,6 +480,59 @@ def main() -> None:
         ),
     }
 
+    # ---- A0 (reviewer): constant-attenuation vs adaptive contribution ----
+    a0 = quality.get("interpretation_inputs") or {}
+    adaptive_gain_identity = a0.get("identity_learned_minus_qclean")
+    adaptive_near_zero = (
+        adaptive_gain_identity is not None
+        and abs(adaptive_gain_identity) < 0.01
+    )
+    a0_block = {
+        "force_qclean_value": a0.get("force_qclean_value"),
+        "identity_learned_minus_qclean": adaptive_gain_identity,
+        "adaptive_contribution_near_zero": adaptive_near_zero,
+        "macro_mean_learned_ap": a0.get("macro_mean_learned_ap"),
+        "worst_condition": a0.get("worst_condition"),
+        "worst_condition_learned_ap": a0.get("worst_condition_learned_ap"),
+        "corruptions_where_gate_beats_force_qclean":
+            a0.get("corruptions_where_gate_beats_force_qclean"),
+        "family_q_severity_monotonicity":
+            a0.get("family_q_severity_monotonicity"),
+        "conclusion": ("CONSTANT ATTENUATION HELPS, ADAPTIVITY CONTRIBUTES "
+                       "NOTHING" if adaptive_near_zero else
+                       "adaptive contribution not yet ruled out; F1-B test "
+                       "required"),
+    }
+
+    # ---- best/late10 stability block (reviewer: IR gain is checkpoint-sensitive)
+    import csv
+    stability = {}
+    for tag in ("C0", "FIXED", "SOFT"):
+        stability[tag] = {
+            "last_val": float(evals[tag]["last.pt"]["NORMAL"]["val"]["map50_95"]),
+            "best_val": float(evals[tag]["best.pt"]["NORMAL"]["val"]["map50_95"]),
+            "late10": evals[tag].get("late10", {}),
+        }
+    with open(runs["C0"] / "results.csv", encoding="utf-8", newline="") as f:
+        c0_tail = [float(r["metrics/mAP50-95(B)"])
+                   for r in csv.DictReader(f) if r.get("metrics/mAP50-95(B)")][-10:]
+    f0_summary = _read(ROOT / "runs" / "step4_f0" / "_summary_step4.json")
+    f0_c0_last = f0_summary["groups"]["F0-C0"]["last_normal_val"]
+    stability_block = {
+        "per_group": stability,
+        "f1_c0_last_is_late10_minimum": bool(
+            abs(stability["C0"]["last_val"] - min(c0_tail)) < 1e-9),
+        "f1_c0_late10_tail": c0_tail,
+        "frozen_f0_c0_r1_last_val": f0_c0_last,
+        "f0_c0_r1_minus_f1_fixed": f0_c0_last - fixed,
+        "interpretation": (
+            "IR complementary is a candidate claim valid only under THIS F1 "
+            "single seed, the preregistered last.pt and the matched "
+            "learned-gate C0; best/late10 do not form consistent support and "
+            "the frozen F0 control still exceeds F1-I-fixed — the fixed "
+            "residual must NOT be frozen as the final competition structure"),
+    }
+
     causal_pass = normal > c0 and normal > zero and normal > shuffle
     loo_pass = soft_loo["median"] > 0 and soft_loo["positive_folds"] >= 4
     gate_beats_fixed = normal > fixed and gate_loo["median"] > 0
@@ -503,7 +556,7 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-summary-v2",
+        "schema": "step4-f1-summary-v3",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
         "posthoc_file_sha256": _sha(posthoc_path),
@@ -527,6 +580,8 @@ def main() -> None:
         "posthoc": {"checks": posthoc["checks"],
                     "provenance_checks": posthoc_checks,
                     "passed": posthoc["passed"]},
+        "a0_constant_vs_adaptive": a0_block,
+        "stability_block": stability_block,
         "primary_last_val6": {
             "C0": c0,
             "FIXED_NORMAL": fixed,

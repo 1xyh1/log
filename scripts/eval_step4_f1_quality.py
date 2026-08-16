@@ -119,9 +119,10 @@ def main() -> None:
     conditions = [("identity", 0.0), ("zero", 1.0)]
     for kind in ("blur", "contrast", "noise", "shift"):
         conditions.extend((kind, value) for value in (0.25, 0.50, 0.75, 1.0))
+    SCAN_OVERRIDES = (0.0, 0.25, 0.5, 0.75, 1.0)
 
     report = {
-        "schema": "step4-f1-ir-quality-probe-v1",
+        "schema": "step4-f1-ir-quality-probe-v2",
         "role": "diagnostic only; does not replace NORMAL/ZERO/SHUFFLE",
         "checkpoint": a.checkpoint,
         "provenance": {
@@ -149,13 +150,27 @@ def main() -> None:
         "conditions": {},
     }
     try:
+        # Pass 1: clean identity gate statistics define FORCE-QCLEAN.
+        identity_dataset = IRCorruptionDatasetView(base, kind="identity",
+                                                   severity=0.0)
+        model.set_gate_override(None)
+        identity_values = _gate_values(model, identity_dataset, device)
+        clean_q_mean = _summary(identity_values)["mean"]
+        if clean_q_mean is None:
+            raise RuntimeError("F1_QUALITY_CLEAN_Q_MISSING")
+        print(f"[clean q mean] {clean_q_mean:.6f}")
+
         for kind, severity in conditions:
             dataset = IRCorruptionDatasetView(base, kind=kind, severity=severity)
             model.set_gate_override(None)
             values = _gate_values(model, dataset, device)
             learned = _evaluate_with_override(model, dataset, device, names, None)
-            forced_zero = _evaluate_with_override(model, dataset, device, names, 0.0)
-            forced_one = _evaluate_with_override(model, dataset, device, names, 1.0)
+            # Reviewer A0: constant-clean override decouples "adaptive gate" from
+            # "constant attenuation" (q x P(A) scale coupling).
+            force_qclean = _evaluate_with_override(
+                model, dataset, device, names, clean_q_mean)
+            scan = {f"{q:.2f}": _evaluate_with_override(
+                model, dataset, device, names, q) for q in SCAN_OVERRIDES}
             key = f"{kind}:{severity:.2f}"
             report["conditions"][key] = {
                 "kind": kind,
@@ -163,22 +178,55 @@ def main() -> None:
                 "raw_q": _summary(values),
                 "per_sample_gate": values,
                 "learned_gate": learned,
-                "force_q0": forced_zero,
-                "force_q1": forced_one,
+                "force_qclean": force_qclean,
+                "force_q0": scan["0.00"],
+                "force_q1": scan["1.00"],
+                "scan_overrides": scan,
+                "learned_minus_force_qclean_map50_95": (
+                    learned["map50_95"] - force_qclean["map50_95"]),
                 "learned_minus_force_q1_map50_95": (
-                    learned["map50_95"] - forced_one["map50_95"]
-                ),
+                    learned["map50_95"] - scan["1.00"]["map50_95"]),
             }
             print(
                 f"[{key}] q={report['conditions'][key]['raw_q']['mean']:.4f} "
-                f"AP={learned['map50_95']:.4f} q1={forced_one['map50_95']:.4f}"
+                f"AP={learned['map50_95']:.4f} "
+                f"qclean={force_qclean['map50_95']:.4f} "
+                f"q1={scan['1.00']['map50_95']:.4f}"
             )
     finally:
         model.set_gate_override(None)
 
     identity_q = report["conditions"]["identity:0.00"]["raw_q"]["mean"]
+    learned_aps = [row["learned_gate"]["map50_95"]
+                   for row in report["conditions"].values()]
+    worst_key = min(report["conditions"], key=lambda k:
+                    report["conditions"][k]["learned_gate"]["map50_95"])
+    family_monotonicity = {}
+    for kind in ("blur", "contrast", "noise", "shift"):
+        seq = [identity_q] + [
+            report["conditions"][f"{kind}:{v:.2f}"]["raw_q"]["mean"]
+            for v in (0.25, 0.5, 0.75, 1.0)
+        ]
+        monotone_down = all(seq[i] >= seq[i + 1] - 1e-4
+                            for i in range(len(seq) - 1))
+        monotone_up = all(seq[i] <= seq[i + 1] + 1e-4
+                          for i in range(len(seq) - 1))
+        family_monotonicity[kind] = {
+            "q_sequence": seq,
+            "monotone_down": monotone_down,
+            "monotone_up": monotone_up,
+            "monotone_direction": ("down" if monotone_down else
+                                   "up" if monotone_up else "none"),
+        }
     report["interpretation_inputs"] = {
         "identity_q_mean": identity_q,
+        "force_qclean_value": clean_q_mean,
+        "identity_learned_minus_qclean": report["conditions"]["identity:0.00"][
+            "learned_minus_force_qclean_map50_95"],
+        "macro_mean_learned_ap": statistics.mean(learned_aps),
+        "worst_condition_learned_ap": report["conditions"][worst_key][
+            "learned_gate"]["map50_95"],
+        "worst_condition": worst_key,
         "corruptions_with_lower_q_than_identity": [
             key for key, row in report["conditions"].items()
             if key != "identity:0.00" and row["raw_q"]["mean"] < identity_q
@@ -187,6 +235,16 @@ def main() -> None:
             key for key, row in report["conditions"].items()
             if row["learned_minus_force_q1_map50_95"] > 0
         ],
+        "corruptions_where_gate_beats_force_qclean": [
+            key for key, row in report["conditions"].items()
+            if row["learned_minus_force_qclean_map50_95"] > 0
+        ],
+        "family_q_severity_monotonicity": family_monotonicity,
+        "adaptive_gain_interpretation": (
+            "learned vs FORCE-QCLEAN: if the difference is near zero, the "
+            "result is CONSTANT ATTENUATION HELPING, ADAPTIVITY CONTRIBUTING "
+            "NOTHING — q x P(A) scale coupling makes the raw q magnitude "
+            "meaningless on its own"),
         "warning": ("q movement alone is not success; detection retention versus "
                     "FORCE-Q1 is required"),
     }

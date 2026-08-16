@@ -128,10 +128,19 @@ def write_manifest(changed: list[str]):
     for rel_str, _ in sorted(source_state().items()):
         rel = Path(rel_str)
         src = SOURCE_ROOT / rel
+        raw = src.read_bytes()
+        eol = "crlf" if b"\r\n" in raw else "lf"
+        canonical_lf = raw.replace(b"\r\n", b"\n")
         entries[rel_str] = {
-            "sha256": sha256(src),
+            "sha256": sha256(src),          # source disk bytes (append-only key)
             "size_bytes": src.stat().st_size,
             "mtime_ns": src.stat().st_mtime_ns,
+            # EOL provenance (reviewer 2026-08-16): GitHub stores LF bytes, the
+            # local disk stores CRLF, so a disk-byte SHA never matches the
+            # GitHub blob.  canonical_lf_sha256 matches the remote blob for
+            # text files with no other diff; source_eol records the local EOL.
+            "canonical_lf_sha256": hashlib.sha256(canonical_lf).hexdigest(),
+            "source_eol": eol,
         }
     manifest = {
         "generated_at_local": datetime.now().astimezone().isoformat(),
