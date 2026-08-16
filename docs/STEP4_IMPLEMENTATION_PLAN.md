@@ -51,8 +51,12 @@ F_i = R_i + P_i(A_i)   → 原 YOLO26 neck/head（可训练）
 5. LOO + 四类判级 → **已完成（冻结，verdict_frozen=true，2026-08-16）**
    - 判级：F0-I / F0-D 均 MODEL-USES-AUX-BUT-NO-BENEFIT（`runs/step4_f0/_summary_step4.json` schema v2）
    - closeout 门禁：LOO payload 从 folds 重算精确比对、19 键 provenance（12 依赖 SHA + shuffle map SHA + 交叉）、G8 逐行 expected==actual、对抗测试 `tests/test_step4_closeout.py` 30 项
+   - 镜像快照 `925fa78` 的数值与内部门禁保留，但 summary 记录的 `loo_file_sha256` 与随后更新的 LOO 文件字节不一致；本机仅重跑 `summarize_step4.py` 后由 F1 `G0_f0_closeout` 复核，不重跑 LOO、不手填 SHA
    - 下一步：F1 IR soft/reliability gate（暂不叠加 Depth）
 
-## 后续（F1-F4，本阶段不实现）
+## 后续入口
 
-F1 soft modality gate（权重和=1，quality prior 单调影响）→ F2a StrictOrthogonal / F2b RDTTrack-style（synthetic unit tests 先行）→ F3/F4 QAF 候选（需同时满足 clean 不差 + degraded 更稳 + causality 成立）。参考 `reference_implementation_notes.md`（RDTTrack 冻结纪律 / YOLOv5 multispectral P3P4P5 / CSSA soft gating / EvaNet 可靠性）。
+F0 已完成并冻结数值结论。F1 不再采用“多模态 softmax 权重和为 1”的旧设想，而是
+保持 RGB 完全不缩放，只对 IR residual 使用一个 task-oriented scalar gate。当前冻结
+设计、论文边界、代码清单和执行顺序统一见 `docs/step4_f1_ir_gate/`。Depth、正交化、
+QAF、双向融合和形变敏感 loss 均需由 F1 结果单独触发，禁止一次堆叠。

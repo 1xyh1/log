@@ -1,5 +1,9 @@
 # Reference implementation notes — RDTTrack × YOLOv5 multispectral × YOLO26
 
+> **版本边界：**本文是 F0 设计前的参考拆解，其中 IdentityConcat、CSSA/EvaNet
+> reliability 和 QAF 顺序属于历史候选，不是当前执行协议。真实 F0 以
+> `Step4F0Model` 为准，F1 以 `docs/step4_f1_ir_gate/` 为准。
+
 > 目的：不是把参考仓库“搬进”当前工程，而是把已经验证过的多模态工程模式拆成可审计的设计决策。本文固定参考快照：
 >
 > - 本项目镜像：`1xyh1/log@82655b7ef78efa116533b53ea919ec6bbf9dbe57`
@@ -441,7 +445,8 @@ RDTTrack 思想：辅助特征产生 prompt，残差注入 RGB。
 
 ### F3 — SoftModalityGate
 
-把 CSSA/EvaNet 类“模态可靠性”思想放进 soft gate；不做 hard switch。
+历史候选曾计划把 CSSA/EvaNet 类线索放进 soft gate；当前已修正为：EvaNet 只用于
+独立质量评估思路，CSSA 不作为 reliability gate 依据，正式 F1 只门控 IR residual。
 
 ## QAF：质量先验只作为 gate prior
 

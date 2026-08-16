@@ -1,5 +1,10 @@
 # Step 4 — Reference-guided RGB-anchor feature fusion
 
+> **历史探索文档，禁止作为当前执行协议。** 本文第 2～7 节记录了 F0 实现前的
+> IdentityConcat/Prompt/QAF 候选，已被真实完成的 `Step4F0Model`（zero-init residual）
+> 与冻结 F0 结论取代。当前下一阶段以
+> `docs/step4_f1_ir_gate/` 为唯一设计和执行入口；不要按本文重写 F0 或堆叠模块。
+
 ## 1. 为什么不是三套完整 YOLO26s
 
 RDTTrack 与成熟 YOLOv5 multispectral 都证明“模态专属处理 + feature interaction”有价值，但当前工程有三个约束：
@@ -21,7 +26,7 @@ Depth+M adapter ────────────────┴────�
 
 官方 YOLO26 backbone tap：layer 4 / 6 / 10，对应 P3/8、P4/16、P5/32。代码不只相信 YAML 注释，`inspect_yolo26_backbone_taps()` 会运行时确认 stride。
 
-## 2. F0：IdentityConcatFusion — 必须先跑
+## 2. 历史 F0 候选：IdentityConcatFusion（未采用，禁止执行）
 
 每个尺度先把 IR / Depth 适配到与 RGB 相同的 C，然后：
 
@@ -63,7 +68,7 @@ Aux reduce ─┘
 
 不能把 F2b 在论文/答辩里写成“严格正交投影”。两者性能若不同，本身就是有价值的 ablation。
 
-## 5. F3 / QAF：SoftModalityGate
+## 5. 历史 F3 / QAF 候选：SoftModalityGate（未进入当前路线）
 
 不做 CSSA 式 hard switching。输出：
 
