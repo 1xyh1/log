@@ -120,7 +120,7 @@ class TestApplySemantics:
         sched = {"sample_id": "000001", "kind": "noise", "severity": 1.0}
         out = apply_schedule_to_plane(plane, sched, seed=SEED, epoch=0,
                                       content_mask=mask)
-        assert np.array_equal(out[~mask], 0.0)
+        assert np.all(out[~mask] == 0.0)
         assert not np.array_equal(out[mask], plane[mask])
 
     def test_blur_reduces_gradients(self):

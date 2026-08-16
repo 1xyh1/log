@@ -1,0 +1,66 @@
+{
+  "schema": "step4-f1-b-audit-v1",
+  "sections": {
+    "schedule_frozen": {
+      "checks": {
+        "kind_probs_exact": true,
+        "severities_exact": true,
+        "zero_severity_exact": true,
+        "noise_sigma_matches_eval": true,
+        "shift_not_in_training": true
+      },
+      "passed": true
+    },
+    "sha256_driven_randomness": {
+      "checks": {
+        "no_builtin_hash_calls": true,
+        "sha256_digest_used": true,
+        "epoch_in_payload": true,
+        "noise_uses_digest": true,
+        "numpy_not_python_rng": true,
+        "deterministic_same_input": true,
+        "epoch_affects_schedule": true,
+        "schedule_sha_repeatable": true,
+        "noise_epoch_dependent": true
+      },
+      "passed": true
+    },
+    "g9_logic_present": {
+      "checks": {
+        "g9_trace_written": true,
+        "expected_schedule_sha_recorded": true,
+        "actual_schedule_sha_recorded": true,
+        "ir_sha_before_after": true,
+        "rgb_depth_labels_bbox_assert": true,
+        "kind_counts": true,
+        "c0_noop_semantics": true,
+        "fail_fast": true
+      },
+      "passed": true
+    },
+    "f1_v4_frozen_reference": {
+      "checks": {
+        "f1_summary_exists": true,
+        "f1_schema_v4": true,
+        "f1_verdict_frozen": true,
+        "f1_a0_conclusion": true
+      },
+      "passed": true
+    },
+    "docs_present": {
+      "checks": {
+        "design_freeze": true,
+        "execution_guide": true,
+        "feedback_readme": true
+      },
+      "passed": true
+    }
+  },
+  "provenance": {
+    "corruption_source_sha256": "4fceb384417cf845bd8256c560a161d1392fdbad25aac51ae4cdcb9cd33b608e",
+    "runner_source_sha256": "dad4a6f5e1a0cddc4215903bec76f8f9ab14df07e8618ba8643523edb6881366",
+    "audit_source_sha256": "1b7423d0c2160db95458be288092db80473d204ee72d07f1bbfa7db876539631",
+    "f1_summary_sha256": "ddd8ad12a1193d7cea75878f27c13beeaa718f0297e6e0969e29aade983d79d4"
+  },
+  "all_passed": true
+}
