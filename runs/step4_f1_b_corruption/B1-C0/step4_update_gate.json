@@ -1,0 +1,27 @@
+{
+  "rgb_backbone_unchanged": true,
+  "aux_encoder_global_rel_l2": 0.00020458213732720625,
+  "aux_encoder_max_abs_change": 9.609758853912354e-05,
+  "gate_global_rel_l2": 0.000408428252869155,
+  "gate_max_abs_change": 1.276656985282898e-05,
+  "proj_weight_norms": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "proj_bias_norms": [
+    1.5919082443360821e-06,
+    9.520642834104365e-07,
+    1.3982212294649798e-06
+  ],
+  "last_epoch_effective_q": {
+    "count": 11,
+    "mean": 0.4999832808971405,
+    "min": 0.4999832510948181,
+    "max": 0.4999832510948181
+  },
+  "q_finite_and_bounded": true,
+  "expected": "null aux stays below decay threshold (<0.001 scaled to 80ep); proj weights stay zero",
+  "decay_threshold_scaled_to_epochs": 0.001,
+  "passed": true
+}
