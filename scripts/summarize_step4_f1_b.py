@@ -153,10 +153,16 @@ def _verify_manifest(manifest: dict, tag: str, run_dir: Path,
     }
 
 
-def _verify_g6(tag: str, gate: dict) -> dict:
-    """Re-judge the recorded update evidence; passed=true is NOT trusted."""
-    rgb_ok = gate.get("rgb_backbone_unchanged") is True
-    q_ok = gate.get("q_finite_and_bounded") is True
+def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
+               expected_epochs: int) -> dict:
+    """Re-judge the recorded update evidence; recorded booleans are NOT trusted.
+
+    v2.1 (reviewer): q finiteness is recomputed from the recorded q stats;
+    the RGB backbone SHA is recomputed from the actual last.pt against the
+    manifest; the epoch-scaled threshold is checked against the frozen formula.
+    """
+    import torch
+
     aux_delta = float(gate.get("aux_encoder_global_rel_l2", float("nan")))
     gate_delta = float(gate.get("gate_max_abs_change", float("nan")))
     proj = [float(v) for v in gate.get("proj_weight_norms", [])]
@@ -164,26 +170,53 @@ def _verify_g6(tag: str, gate: dict) -> dict:
     if (len(proj) != 3 or len(proj_bias) != 3
             or not all(math.isfinite(v) for v in proj + proj_bias)):
         raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
+    # q finiteness from the recorded stats, not the boolean
+    q = gate.get("last_epoch_effective_q") or {}
+    q_vals = [q.get(k) for k in ("mean", "min", "max")]
+    q_finite = (int(q.get("count", 0)) > 0
+                and all(v is not None and math.isfinite(float(v))
+                        for v in q_vals)
+                and 0.0 <= float(q_vals[1]) <= float(q_vals[2]) <= 1.0)
+    # threshold formula check
+    recorded_threshold = float(gate.get("decay_threshold_scaled_to_epochs",
+                                        float("nan")))
+    expected_threshold = 1e-3 * (expected_epochs / 80.0)
+    threshold_ok = math.isclose(recorded_threshold, expected_threshold,
+                                rel_tol=1e-9)
+    # RGB backbone SHA recomputed from the actual checkpoint
+    ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu",
+                    weights_only=False)
+    model = (ck.get("ema") or ck.get("model"))
+    h = hashlib.sha256()
+    for n, p in sorted(model.rgb_backbone.state_dict().items()):
+        h.update(n.encode())
+        h.update(p.detach().cpu().contiguous().numpy().tobytes())
+    rgb_ok = h.hexdigest() == manifest.get("initial_rgb_backbone_sha256")
+
     if tag == "C0":
-        passed = rgb_ok and q_ok and aux_delta < UNIFIED_ACTIVE_THRESHOLD \
-            and max(proj) == 0.0
+        passed = rgb_ok and q_finite and aux_delta < UNIFIED_ACTIVE_THRESHOLD \
+            and max(proj) == 0.0 and threshold_ok
     elif tag == "FIXED":
-        q = gate.get("last_epoch_effective_q") or {}
-        passed = (rgb_ok and q_ok and aux_delta > UNIFIED_ACTIVE_THRESHOLD
+        passed = (rgb_ok and q_finite and aux_delta > UNIFIED_ACTIVE_THRESHOLD
                   and min(proj) > 0.0
-                  and q.get("min") == 1.0 and q.get("max") == 1.0)
+                  and q.get("min") == 1.0 and q.get("max") == 1.0
+                  and threshold_ok)
     else:
-        passed = (rgb_ok and q_ok and aux_delta > UNIFIED_ACTIVE_THRESHOLD
-                  and min(proj) > 0.0 and gate_delta > 0.0)
+        passed = (rgb_ok and q_finite and aux_delta > UNIFIED_ACTIVE_THRESHOLD
+                  and min(proj) > 0.0 and gate_delta > 0.0 and threshold_ok)
     if not passed:
         raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
     return {
         "rgb_backbone_unchanged": rgb_ok,
+        "rgb_sha_recomputed_from_last_pt": rgb_ok,
         "aux_encoder_global_rel_l2": aux_delta,
         "gate_max_abs_change": gate_delta,
         "proj_weight_norms": proj,
         "proj_bias_norms": proj_bias,
-        "q_finite_and_bounded": q_ok,
+        "q_finite_and_bounded": q_finite,
+        "q_stats_recomputed": q,
+        "threshold_formula_ok": threshold_ok,
+        "threshold_recorded": recorded_threshold,
         "passed": True,
     }
 
@@ -402,7 +435,9 @@ def main() -> None:
         if not rep["passed"]:
             raise RuntimeError(f"B1_INTEGRITY_FAIL: {tag}")
         gate = _read(run_dir / "step4_update_gate.json")
-        g6[tag] = _verify_g6(tag, gate)
+        manifest_early = _read(run_dir / "manifest.json")
+        g6[tag] = _verify_g6(tag, gate, run_dir, manifest_early,
+                             a.expected_epochs)
         integrity[tag] = rep
 
     # ---- provenance blocks (v2 closeout) ----

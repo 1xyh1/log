@@ -32,7 +32,10 @@
   q 恒 1 的 fixed 结构有害**（50% 退化样本的 IR residual 无法降权）。
 - B1-I-soft = 0.3040：> C0（+0.0200）、> fixed（+0.0491）、> ZERO（+0.0013）；
   **< SHUFFLE（−0.0003）**——N>S 微负，在 6-val 噪声内但严格判据不成立。
-- SOFT−C0 LOO：6/6 正，median +0.0481 ✓；SOFT−FIXED LOO：6/6 正 ✓。
+- SOFT−C0 LOO：6/6 正，median **+0.019017** ✓；SOFT−FIXED LOO：6/6 正，
+  median **+0.048066** ✓。
+  （更正 2026-08-17：上一版把两个 median 写反——SOFT−C0 是 +0.019017、
+  SOFT−FIXED 是 +0.048066。）
 
 ## B1 晋级证据（_summary_step4_f1_b.json，frozen）
 
@@ -53,8 +56,9 @@
 
 1. B1 的训练期 corruption 让"q≈0.5 的恒定降权"在退化集上显著优于
    separately-trained fixed（macro +0.0403、worst4 +0.0422）——**但这不是
-   自适应可靠性**：learned 与 FORCE-QCLEAN 几乎逐位打平（macro +6e-5、
-   worst4 −3e-6、identity 差 −1.6e-5 同 F1），gate 仍未学到输入条件化。
+   自适应可靠性**：learned 与 FORCE-QCLEAN 几乎逐位打平（macro **+3.48977e-5**、
+   worst4 −3e-6、identity 差 **0.0**），gate 仍未学到输入条件化。
+   （更正 2026-08-17：identity 差为 0.0，不是 F1 的 −1.6e-5。）
 2. 严格因果协议 N>S = −0.0003 微负；ZERO 与 SHUFFLE 都接近 N（差 ±0.0013/0.0003），
    与 F1 的 paired 信号（N−Z +0.0415）相比，B1 的配对优势几乎消失——
    corruption 训练模糊了"正确配对"与"缺失/错配"的边界。

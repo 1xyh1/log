@@ -96,6 +96,11 @@ def main() -> None:
 
     contract = json.loads(Path(a.contract).read_text(encoding="utf-8"))
     base = TriModalDataset(contract, split="val", group="C1-I", augment=False)
+    from multimodal.causality_interventions import (
+        assert_valid_shuffle_map, bijective_derangement)
+    val_ids_early = list(contract["val_ids"])
+    shuffle_map = bijective_derangement(val_ids_early)
+    assert assert_valid_shuffle_map(shuffle_map, val_ids_early)
 
     report = {
         "schema": "step4-f1-c-agreement-diagnosis-v1",
@@ -111,6 +116,13 @@ def main() -> None:
                 ROOT / "src" / "multimodal" / "reliability_gate.py"),
             "dataset_source_sha256": _sha(
                 ROOT / "src" / "multimodal" / "trimodal_dataset.py"),
+            "causality_interventions_sha256": _sha(
+                ROOT / "src" / "multimodal" / "causality_interventions.py"),
+            "corruption_view_sha256": _sha(
+                ROOT / "src" / "multimodal" / "step4_f1_interventions.py"),
+            "val6_shuffle_map_sha256": hashlib.sha256(
+                json.dumps(shuffle_map, sort_keys=True, ensure_ascii=False)
+                .encode("utf-8")).hexdigest(),
         },
         "checkpoints": {},
     }
@@ -123,11 +135,7 @@ def main() -> None:
         ck_report = {"val6_pairing": {}, "degraded": {}}
         with torch.no_grad():
             # val6 pairing: NORMAL / ZERO-AUX / SHUFFLE per image
-            from multimodal.causality_interventions import (
-                assert_valid_shuffle_map, bijective_derangement)
             val_ids = list(contract["val_ids"])
-            shuffle_map = bijective_derangement(val_ids)
-            assert assert_valid_shuffle_map(shuffle_map, val_ids)
             for variant in ("NORMAL", "ZERO-AUX", "SHUFFLE"):
                 ds = TriModalDataset(
                     contract, split="val", group="C1-I", augment=False,

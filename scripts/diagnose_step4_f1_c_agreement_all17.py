@@ -83,13 +83,31 @@ def main() -> None:
 
     contract = json.loads(Path(a.contract).read_text(encoding="utf-8"))
     all17_ids = list(contract["all17_ids"])
+    shuffle_map = bijective_derangement(all17_ids)
+    assert assert_valid_shuffle_map(shuffle_map, all17_ids)
+    map_payload = json.dumps(shuffle_map, sort_keys=True, ensure_ascii=False)
+    map_sha = hashlib.sha256(map_payload.encode("utf-8")).hexdigest()
 
     report = {
         "schema": "step4-f1-c-agreement-all17-v1",
         "provenance": {
             "soft_last_pt_sha256": _sha(run_dir / "weights" / "last.pt"),
+            "soft_best_pt_sha256": _sha(run_dir / "weights" / "best.pt"),
+            "results_csv_sha256": _sha(run_dir / "results.csv"),
+            "growth_trace_sha256": _sha(run_dir / "step4_growth.jsonl"),
             "contract_sha256": _sha(Path(a.contract)),
             "script_sha256": _sha(Path(__file__)),
+            "model_source_sha256": _sha(
+                ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py"),
+            "gate_source_sha256": _sha(
+                ROOT / "src" / "multimodal" / "reliability_gate.py"),
+            "dataset_source_sha256": _sha(
+                ROOT / "src" / "multimodal" / "trimodal_dataset.py"),
+            "eval_core_sha256": _sha(
+                ROOT / "src" / "multimodal" / "step3_eval_utils.py"),
+            "causality_interventions_sha256": _sha(
+                ROOT / "src" / "multimodal" / "causality_interventions.py"),
+            "all17_shuffle_map_sha256": map_sha,
         },
         "all17": {},
         "growth_drift": {},
@@ -100,8 +118,6 @@ def main() -> None:
                         weights_only=False)
         model = (ck.get("ema") or ck.get("model")).float().eval().to(device)
         model.requires_grad_(False)
-        shuffle_map = bijective_derangement(all17_ids)
-        assert assert_valid_shuffle_map(shuffle_map, all17_ids)
         per_variant = {}
         with torch.no_grad():
             for variant in ("NORMAL", "SHUFFLE"):
