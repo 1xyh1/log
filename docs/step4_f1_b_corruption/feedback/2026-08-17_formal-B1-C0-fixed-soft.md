@@ -38,7 +38,10 @@
 
 - own FORCE-QCLEAN = 0.5006（B1-soft 自己的 clean q，仍近似常数 0.5）
 - macro AP（17 退化条件）：soft 0.2992 vs fixed 0.2589 vs qclean 0.2991
-  → macro_pass true（soft 超 fixed 大幅、超 qclean 仅 +6e-5）
+  → macro_pass true（soft 超 fixed 大幅、超 qclean 仅 **+3.49e-5**）
+  （更正 2026-08-17：上一版写 +6e-5，实际 macro_soft − macro_qclean = +3.49e-5）
+- identity learned−QCLEAN = **0.0**（更正：B1 的 identity 差为 0.0，不是 F1 的
+  −1.6e-5——上一版沿用 F1 数值属笔误）
 - worst-4 AP（noise:0.50/0.75、shift:0.50/0.25）：soft 0.2915 vs fixed 0.2493
   vs qclean 0.2915 → worst4_pass **false**（soft − qclean ≈ −3e-6）
 - learned−QCLEAN 正数：**4/17**（要求 ≥9）→ adaptive_pass false
