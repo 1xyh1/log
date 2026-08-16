@@ -95,8 +95,9 @@ class TestGradients:
 
     def test_gate_detach_blocks_aux_gradient(self):
         """The F1-C model feeds the gate detached A; reproduce the semantics:
-        gradient through the gate must not reach the aux features."""
-        feats = _features()
+        gradient through the gate must not reach the aux features, even when
+        the features THEMSELVES require grad (strong test, reviewer P0)."""
+        feats = [f.clone().requires_grad_(True) for f in _features()]
         detached = tuple(f.detach() for f in feats)
         torch.manual_seed(0)
         gate = MagnitudeReliabilityGate()
@@ -106,12 +107,18 @@ class TestGradients:
             assert f.grad is None
 
     def test_residual_path_aux_gradient_nonzero(self):
-        """Residual path (proj -> aux features) still carries gradient."""
+        """Residual path must use the ACTUAL _gated_residual semantics:
+        F = R + q * P(A) with the gate detached from A."""
+        from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel
+
+        feats = [f.clone().requires_grad_(True) for f in _features()]
+        a3 = feats[0]
         proj = torch.nn.Conv2d(256, 256, 1, bias=True)
         torch.nn.init.normal_(proj.weight, std=0.01)
-        a3 = _features()[0].requires_grad_(True)
-        out = proj(a3)
-        out.sum().backward()
+        q = torch.ones(1, 1)
+        r = torch.randn(1, 256, 20, 20)
+        fused = Step4F1IRGateModel._gated_residual(proj, r, a3[0:1], q)
+        fused.sum().backward()
         assert a3.grad is not None
         assert float(a3.grad.abs().max()) > 0.0
 
@@ -135,3 +142,20 @@ class TestOutputs:
             gate(feats)
         for original, after in zip(copies, feats):
             assert torch.equal(original, after)
+
+    def test_gate_does_not_touch_rgb_or_depth_channels(self):
+        """G10.6 (strong): the gate consumes ONLY the aux pyramid; a 6ch input
+        keeps RGB (channels 0-2) and Depth (channels 4-5) byte-identical."""
+        from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel
+        from multimodal.early_fusion_yolo26 import build_reference_3ch
+
+        torch.manual_seed(MODEL_SEED := 2026081200)
+        model = Step4F1IRGateModel(build_reference_3ch(), aux_mode="ir",
+                                   gate_mode="learned", gate_module="magnitude")
+        img = torch.rand(2, 6, 80, 80)
+        rgb_before = img[:, :3].clone()
+        dep_before = img[:, 4:6].clone()
+        with torch.no_grad():
+            model._predict_once(img)
+        assert torch.equal(img[:, :3], rgb_before)
+        assert torch.equal(img[:, 4:6], dep_before)
