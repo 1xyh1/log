@@ -111,13 +111,18 @@ class TestGradients:
         F = R + q * P(A) with the gate detached from A."""
         from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel
 
+        class _FusionLike:
+            def __init__(self, proj):
+                self.proj = proj
+
         feats = [f.clone().requires_grad_(True) for f in _features()]
         a3 = feats[0]
         proj = torch.nn.Conv2d(256, 256, 1, bias=True)
         torch.nn.init.normal_(proj.weight, std=0.01)
         q = torch.ones(1, 1)
         r = torch.randn(1, 256, 20, 20)
-        fused = Step4F1IRGateModel._gated_residual(proj, r, a3[0:1], q)
+        fused = Step4F1IRGateModel._gated_residual(
+            _FusionLike(proj), r, a3[0:1], q)
         fused.sum().backward()
         assert a3.grad is not None
         assert float(a3.grad.abs().max()) > 0.0
@@ -152,7 +157,7 @@ class TestOutputs:
         torch.manual_seed(MODEL_SEED := 2026081200)
         model = Step4F1IRGateModel(build_reference_3ch(), aux_mode="ir",
                                    gate_mode="learned", gate_module="magnitude")
-        img = torch.rand(2, 6, 80, 80)
+        img = torch.rand(2, 6, 160, 160)
         rgb_before = img[:, :3].clone()
         dep_before = img[:, 4:6].clone()
         with torch.no_grad():
