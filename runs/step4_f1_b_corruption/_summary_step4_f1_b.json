@@ -1,9 +1,9 @@
 {
-  "schema": "step4-f1-b-summary-v2.1",
-  "loo_file_sha256": "3354b56573fd26533628feba453f0ee77cf1b353f378d50bff1d4c84da87adfb",
+  "schema": "step4-f1-b-summary-v2.2",
+  "loo_file_sha256": "f29ad9f44e7e648d2cd49dbc32a56715085488b919185da090438f03435e9c43",
   "quality_file_sha256": "dd98d919d83d825d5d3ff0a99521c4252fd95ab89d295d49abed6aa301209037",
   "posthoc_file_sha256": "707b48d3e2ca947274352add2b71deecfe47dfd34dac163f7e7e0b9a5b627f08",
-  "summarize_source_sha256": "be03ee9fb2f80bf2c9506c0dfe73e50961f729f2f7dead26128adbe364a4d063",
+  "summarize_source_sha256": "a010bc2a4ddeabd0da786fcc7a852c5cfb9dddaa3414cb7b6d44e3fa5a6941dc",
   "integrity": {
     "C0": {
       "run_dir": "runs\\step4_f1_b_corruption\\B1-C0",
@@ -627,8 +627,19 @@
   },
   "g6_rejudged": {
     "C0": {
-      "rgb_backbone_unchanged": true,
-      "rgb_sha_recomputed_from_last_pt": true,
+      "rgb_backbone_evidence_passed": true,
+      "rgb_backbone_unchanged_exact": null,
+      "rgb_runtime_boolean_recorded_not_trusted": true,
+      "rgb_manifest_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_matches_manifest": true,
+      "rgb_expected_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_loaded_last_pt_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_backbone_half_checkpoint_equal": true,
+      "rgb_final_fp32_sha256_recorded": null,
+      "rgb_exact_fp32_reverification_available": false,
+      "rgb_exact_fp32_equal": null,
+      "rgb_reverification_limit": "historical step4_update_gate.json has no final fp32 state SHA; float16 checkpoint equality cannot exclude sub-fp16-ULP updates",
       "aux_encoder_global_rel_l2": 0.00020458213732720625,
       "gate_max_abs_change": 1.276656985282898e-05,
       "proj_weight_norms": [
@@ -642,6 +653,15 @@
         1.3982212294649798e-06
       ],
       "q_finite_and_bounded": true,
+      "q_stats_validation": {
+        "passed": true,
+        "errors": [],
+        "count": 11,
+        "mean": 0.4999832808971405,
+        "min": 0.4999832510948181,
+        "max": 0.4999832510948181,
+        "order_tolerance": 1e-06
+      },
       "q_stats_recomputed": {
         "count": 11,
         "mean": 0.4999832808971405,
@@ -653,8 +673,19 @@
       "passed": true
     },
     "FIXED": {
-      "rgb_backbone_unchanged": true,
-      "rgb_sha_recomputed_from_last_pt": true,
+      "rgb_backbone_evidence_passed": true,
+      "rgb_backbone_unchanged_exact": null,
+      "rgb_runtime_boolean_recorded_not_trusted": true,
+      "rgb_manifest_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_matches_manifest": true,
+      "rgb_expected_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_loaded_last_pt_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_backbone_half_checkpoint_equal": true,
+      "rgb_final_fp32_sha256_recorded": null,
+      "rgb_exact_fp32_reverification_available": false,
+      "rgb_exact_fp32_equal": null,
+      "rgb_reverification_limit": "historical step4_update_gate.json has no final fp32 state SHA; float16 checkpoint equality cannot exclude sub-fp16-ULP updates",
       "aux_encoder_global_rel_l2": 0.005848853319681938,
       "gate_max_abs_change": 0.0,
       "proj_weight_norms": [
@@ -668,6 +699,15 @@
         2.510375679776189e-06
       ],
       "q_finite_and_bounded": true,
+      "q_stats_validation": {
+        "passed": true,
+        "errors": [],
+        "count": 11,
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "order_tolerance": 1e-06
+      },
       "q_stats_recomputed": {
         "count": 11,
         "mean": 1.0,
@@ -679,8 +719,19 @@
       "passed": true
     },
     "SOFT": {
-      "rgb_backbone_unchanged": true,
-      "rgb_sha_recomputed_from_last_pt": true,
+      "rgb_backbone_evidence_passed": true,
+      "rgb_backbone_unchanged_exact": null,
+      "rgb_runtime_boolean_recorded_not_trusted": true,
+      "rgb_manifest_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_fp32_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
+      "rgb_reconstructed_initial_matches_manifest": true,
+      "rgb_expected_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_loaded_last_pt_half_sha256": "a3e5a37fa60ab8ed675bcc4bc168ffebf0dbfc8b367c2b0c375f4687c7407e22",
+      "rgb_backbone_half_checkpoint_equal": true,
+      "rgb_final_fp32_sha256_recorded": null,
+      "rgb_exact_fp32_reverification_available": false,
+      "rgb_exact_fp32_equal": null,
+      "rgb_reverification_limit": "historical step4_update_gate.json has no final fp32 state SHA; float16 checkpoint equality cannot exclude sub-fp16-ULP updates",
       "aux_encoder_global_rel_l2": 0.005074676777353829,
       "gate_max_abs_change": 0.003867807798087597,
       "proj_weight_norms": [
@@ -694,6 +745,15 @@
         1.8713648387347348e-05
       ],
       "q_finite_and_bounded": true,
+      "q_stats_validation": {
+        "passed": true,
+        "errors": [],
+        "count": 11,
+        "mean": 0.5002719163894653,
+        "min": 0.4928756058216095,
+        "max": 0.5073831081390381,
+        "order_tolerance": 1e-06
+      },
       "q_stats_recomputed": {
         "count": 11,
         "mean": 0.5002719163894653,
@@ -888,8 +948,8 @@
       "match": true
     },
     "loo_source_sha256": {
-      "recorded": "c7820af1325bafa08771aaf77a8b78592a7bc94762486c59192e46e83cc9b705",
-      "current": "c7820af1325bafa08771aaf77a8b78592a7bc94762486c59192e46e83cc9b705",
+      "recorded": "875ef12a644fe2fa64ddad92d9d10c417db7165c80e2a3327e8576ee28da89f4",
+      "current": "875ef12a644fe2fa64ddad92d9d10c417db7165c80e2a3327e8576ee28da89f4",
       "match": true
     },
     "eval_core_sha256": {
@@ -913,8 +973,8 @@
       "match": true
     },
     "f1_closeout_source_sha256": {
-      "recorded": "ff63ecc36047ffeb7304ef669d5805e54e7ab851516918a99b62acf082fedbb8",
-      "current": "ff63ecc36047ffeb7304ef669d5805e54e7ab851516918a99b62acf082fedbb8",
+      "recorded": "595d589c41a29291582374566176f65b93f1f05bc11ab1b65fba2f7bb078b526",
+      "current": "595d589c41a29291582374566176f65b93f1f05bc11ab1b65fba2f7bb078b526",
       "match": true
     },
     "f0_model_source_sha256": {
