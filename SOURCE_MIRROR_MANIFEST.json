@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T01:57:43.535503+08:00",
+  "generated_at_local": "2026-08-17T01:58:43.258334+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -1078,9 +1078,9 @@
       "mtime_ns": 1786844312891447100
     },
     "tests/test_step4_f1_c_descriptor_audit.py": {
-      "sha256": "b1ff1befd037266609fa2e32f311666211f56b2a48708b8cd0d2ae1e72e2a7ce",
-      "size_bytes": 2438,
-      "mtime_ns": 1786902893979863300
+      "sha256": "3a1fe8063ad9815bd0d4ccdb62500ca61a01b3f2a5d9b043189aeb58af4d1f02",
+      "size_bytes": 2662,
+      "mtime_ns": 1786903067458778900
     },
     "tests/test_step4_f1_closeout.py": {
       "sha256": "4d21713ac718b7fee1a04201e968c4cd40150c04b404f160a6cd5c14583b1eb4",
@@ -1094,6 +1094,6 @@
     }
   },
   "changed_in_this_sync": [
-    "src/multimodal/step4_f1_c_descriptor_audit.py"
+    "tests/test_step4_f1_c_descriptor_audit.py"
   ]
 }

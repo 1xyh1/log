@@ -64,11 +64,14 @@ def test_scan_requires_exact_finite_q_grid():
 
 
 def test_correlation_report_contains_continuous_and_family_holdout_axes():
+    # scans chosen so q0-q1 utility is STRICTLY decreasing (0.5, 0.4, -0.4,
+    # -0.5) — with ties the standard tie-aware Spearman is mathematically
+    # capped below 1.0 (e.g. 0.8944), which is not what this test pins.
     targets = [
-        scan_targets(_scan([0.8, 0.7, 0.6, 0.5, 0.4])),
+        scan_targets(_scan([0.9, 0.7, 0.6, 0.5, 0.4])),
         scan_targets(_scan([0.7, 0.6, 0.5, 0.4, 0.3])),
         scan_targets(_scan([0.4, 0.5, 0.6, 0.7, 0.8])),
-        scan_targets(_scan([0.3, 0.4, 0.5, 0.6, 0.7])),
+        scan_targets(_scan([0.3, 0.4, 0.5, 0.6, 0.8])),
     ]
     report = correlation_report(
         [4.0, 3.0, 2.0, 1.0], targets, ["noise", "noise", "blur", "blur"]
