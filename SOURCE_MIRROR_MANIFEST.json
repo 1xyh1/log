@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-16T08:59:45.364098+08:00",
-  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-16T09:01:03.061361+08:00",
+  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -582,6 +582,261 @@
       "size_bytes": 8614,
       "mtime_ns": 1786816954081944300
     },
+    "runs/step4_f1_ir_gate/F1-C0/args.yaml": {
+      "sha256": "f09b8f728af245487689389a16be05ae5555146ce503a0f5dd1dda9669daae1e",
+      "size_bytes": 1928,
+      "mtime_ns": 1786839793822130600
+    },
+    "runs/step4_f1_ir_gate/F1-C0/eval_step4_f1_causality.json": {
+      "sha256": "d700684225254799985c458a597d67930434daa9ffaf9f61e61d497a2b46aae3",
+      "size_bytes": 54609,
+      "mtime_ns": 1786841022398957300
+    },
+    "runs/step4_f1_ir_gate/F1-C0/manifest.json": {
+      "sha256": "caf12d295e80fde171d09e5531eb3a517b05c3142eb28e5c8eb86c9f34235a7f",
+      "size_bytes": 2208,
+      "mtime_ns": 1786839793902358400
+    },
+    "runs/step4_f1_ir_gate/F1-C0/results.csv": {
+      "sha256": "077b0ab2dbb1e6c25841ebe1170abf8107ed7c12391b39680a359321e2053794",
+      "size_bytes": 12182,
+      "mtime_ns": 1786840138114806500
+    },
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786840927233706900
+    },
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786840927230700100
+    },
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786840927233706900
+    },
+    "runs/step4_f1_ir_gate/F1-C0/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1786840138586622700
+    },
+    "runs/step4_f1_ir_gate/F1-C0/step4_growth.jsonl": {
+      "sha256": "06ee6317d85c3e09ef1f4134ef5bd189a8d0ad022f34bd0f5fd533d61370cba0",
+      "size_bytes": 32524,
+      "mtime_ns": 1786840138586622700
+    },
+    "runs/step4_f1_ir_gate/F1-C0/step4_update_gate.json": {
+      "sha256": "0672f618152bb3b02b5b49f3f1f82eeb156fd5c259a293f9c3b676510af75f9c",
+      "size_bytes": 774,
+      "mtime_ns": 1786840138875661900
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/args.yaml": {
+      "sha256": "fa251f6dd595f5268311e93cb29462fa705ea4f08d4292dde56576865ef4c4d7",
+      "size_bytes": 1938,
+      "mtime_ns": 1786840144040067100
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/eval_step4_f1_causality.json": {
+      "sha256": "74fbc9a2dd7f03f6082c660fa8317abb0a1c0ed696f161407af53800911f7dce",
+      "size_bytes": 51627,
+      "mtime_ns": 1786841120666485400
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/manifest.json": {
+      "sha256": "4e0b7b6fd07db37fe988f389f6c59c9ef92eeca364129452b75abb008ef04655",
+      "size_bytes": 2218,
+      "mtime_ns": 1786840144117659900
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/results.csv": {
+      "sha256": "4545ee5aae4a9f49410b299b3c44b23bd2e6e511dcf564c2ab38af0ae985b720",
+      "size_bytes": 12165,
+      "mtime_ns": 1786840484626824400
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786841025367644700
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786841025367644700
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786841025367644700
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1786840485184197200
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_growth.jsonl": {
+      "sha256": "ed6e89e4b8a6bad90c7b044035d73e346dc6457bdcfb3a0c6ffd5d14b2020f63",
+      "size_bytes": 32738,
+      "mtime_ns": 1786840485184197200
+    },
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_update_gate.json": {
+      "sha256": "8f05faea22463ccf256cd5754b7737ab1b4e6d38ae561697afa9109867c295c0",
+      "size_bytes": 757,
+      "mtime_ns": 1786840485455901300
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/args.yaml": {
+      "sha256": "2dc51bbf9e5789d009828133e46d264b83ba410b7b7cf9fe979d246d1378be79",
+      "size_bytes": 1936,
+      "mtime_ns": 1786840490825579900
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/eval_step4_f1_causality.json": {
+      "sha256": "39969377f751cf31cd8f2d5b322e8172271bf953c1cfaf72d83db5d35e5982be",
+      "size_bytes": 54532,
+      "mtime_ns": 1786841220018374200
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/eval_step4_f1_quality_last.json": {
+      "sha256": "0558c5a356639d77e1326715ccdd18d29ea9d0974b8670606e3f1baa16d30b89",
+      "size_bytes": 76114,
+      "mtime_ns": 1786841384072243100
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/manifest.json": {
+      "sha256": "1da89d4462b8f0a2ce8f4a6a03cfae756e2072d1a558b9f517dee945ec7881a9",
+      "size_bytes": 2214,
+      "mtime_ns": 1786840490892821600
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/results.csv": {
+      "sha256": "fa2409d2322ec971b58b77ecb9d818da834a7bd9f0496374e85eb2dbc5a3f742",
+      "size_bytes": 12175,
+      "mtime_ns": 1786840834123382100
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1786841123465944300
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1786841123460931600
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1786841123465944300
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1786840834624546000
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_growth.jsonl": {
+      "sha256": "58b1e3223b4a552fbe24766e566702fb22cb0f1727d1a73f612eb7bfb3a538d8",
+      "size_bytes": 36342,
+      "mtime_ns": 1786840834628821900
+    },
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_update_gate.json": {
+      "sha256": "b8ef64971edd753b7df4bac03c8ccef0ec9d872155765a9e0b9618151bedb794",
+      "size_bytes": 833,
+      "mtime_ns": 1786840834893782200
+    },
+    "runs/step4_f1_ir_gate/_summary_step4_f1.json": {
+      "sha256": "8554466d1eb3c9383673fa30ec79d5efdda70b77de1cbdd411eab8be5e7a7f2a",
+      "size_bytes": 49359,
+      "mtime_ns": 1786841660249721000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/args.yaml": {
+      "sha256": "9c6251150dc12a63a83e4dde76a7a8c8a2bfa97e9a080aeb9dcb787b6dbe5526",
+      "size_bytes": 1945,
+      "mtime_ns": 1786839684333960400
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/manifest.json": {
+      "sha256": "731649b8a1fa7d493221a1a159d52c9cd6450aa89adc483fc2e3f13c23541423",
+      "size_bytes": 2215,
+      "mtime_ns": 1786839684411110600
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/results.csv": {
+      "sha256": "e6e5ce87f87c6c6994d423548282ebfc997e0f48e2f791b0597d712ada76fbf6",
+      "size_bytes": 287,
+      "mtime_ns": 1786839689353533200
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_g8_trace.jsonl": {
+      "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+      "size_bytes": 625,
+      "mtime_ns": 1786839690270518000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_growth.jsonl": {
+      "sha256": "3b3cf4da5a5274df30579aebccb4365028140590c3603060a2c9f5a029254b58",
+      "size_bytes": 406,
+      "mtime_ns": 1786839690270518000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_update_gate.json": {
+      "sha256": "4728599e2c08e45df93237e1d2e7e0b5398cd2f9de8721419062712ae6e52b31",
+      "size_bytes": 778,
+      "mtime_ns": 1786839690647135800
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/args.yaml": {
+      "sha256": "430bdc004bc705aabf3f44eeda63cc5e6afcad192def4902d2358ba14c6d9f45",
+      "size_bytes": 1955,
+      "mtime_ns": 1786839696685707300
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/manifest.json": {
+      "sha256": "c0fadb8ef4d21b2d188dc5e20702364207cb9142fedd38c3be9a4c3b902c6478",
+      "size_bytes": 2225,
+      "mtime_ns": 1786839696754443000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/results.csv": {
+      "sha256": "61c91584135c1c81455498a59ebe68a9e4e159637dde9197e3e67ebc9d945b0d",
+      "size_bytes": 287,
+      "mtime_ns": 1786839701471889000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_g8_trace.jsonl": {
+      "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+      "size_bytes": 625,
+      "mtime_ns": 1786839702388088000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_growth.jsonl": {
+      "sha256": "b49bf88702095e674a5d6462dc1e7d63fae908409fa874faa92bc59e2d5097f4",
+      "size_bytes": 410,
+      "mtime_ns": 1786839702388088000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_update_gate.json": {
+      "sha256": "62e6abe0e84790f2c189dc3f702f73ca6744a5474783cc9f51f432e498aa001d",
+      "size_bytes": 765,
+      "mtime_ns": 1786839702711299900
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/args.yaml": {
+      "sha256": "cc04f211b76d80eac92e5434c73f2264aaf7cd8b4bc93539dcb8905da8f603d9",
+      "size_bytes": 1953,
+      "mtime_ns": 1786839708580099900
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/manifest.json": {
+      "sha256": "6a46785620caaac23a77652f6cf3dc592cec64700fd4ca02daba291927ddb8c8",
+      "size_bytes": 2221,
+      "mtime_ns": 1786839708662363700
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/results.csv": {
+      "sha256": "30364ca93e06a1057903968e83c94f6aa9f65d618854282a4e4cafa2f735d626",
+      "size_bytes": 287,
+      "mtime_ns": 1786839713404202600
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_g8_trace.jsonl": {
+      "sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+      "size_bytes": 625,
+      "mtime_ns": 1786839714243646000
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_growth.jsonl": {
+      "sha256": "9da3a554f40f94e7c270c6256a24620e073e4683c6c2edc70ed0d77d840559ef",
+      "size_bytes": 458,
+      "mtime_ns": 1786839714251665100
+    },
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_update_gate.json": {
+      "sha256": "075eee1f4bbdd61ea5ec51f9d0ea38adcb86eb6d727e855422b7c5226dcfc64a",
+      "size_bytes": 847,
+      "mtime_ns": 1786839714542746300
+    },
+    "runs/step4_f1_ir_gate/step4_f1_loo.json": {
+      "sha256": "e207e7ecc0d5c1dbe78bfb321e9ee45019c035d54a7a07604a9d2a363756e393",
+      "size_bytes": 8579,
+      "mtime_ns": 1786841656594401500
+    },
     "scripts/audit_dataset.py": {
       "sha256": "892511f4144532d3b2cc93bc49dcd78e718e33f551573486576a4163a43e6348",
       "size_bytes": 540,
@@ -939,6 +1194,56 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_f1_ir_gate/feedback/2026-08-16_formal-F1-C0-fixed-soft.md"
+    "runs/step4_f1_ir_gate/F1-C0/args.yaml",
+    "runs/step4_f1_ir_gate/F1-C0/eval_step4_f1_causality.json",
+    "runs/step4_f1_ir_gate/F1-C0/manifest.json",
+    "runs/step4_f1_ir_gate/F1-C0/results.csv",
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_all17.json",
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_train.json",
+    "runs/step4_f1_ir_gate/F1-C0/shuffle_map_val.json",
+    "runs/step4_f1_ir_gate/F1-C0/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/F1-C0/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/F1-C0/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/args.yaml",
+    "runs/step4_f1_ir_gate/F1-I-fixed/eval_step4_f1_causality.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/manifest.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/results.csv",
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_all17.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_train.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/shuffle_map_val.json",
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/F1-I-fixed/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/args.yaml",
+    "runs/step4_f1_ir_gate/F1-I-soft/eval_step4_f1_causality.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/eval_step4_f1_quality_last.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/manifest.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/results.csv",
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_all17.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_train.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/shuffle_map_val.json",
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/F1-I-soft/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/_summary_step4_f1.json",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/args.yaml",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/manifest.json",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/results.csv",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-C0-e1/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/args.yaml",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/manifest.json",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/results.csv",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-I-fixed-e1/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/args.yaml",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/manifest.json",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/results.csv",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_g8_trace.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_growth.jsonl",
+    "runs/step4_f1_ir_gate/smoke-F1-I-soft-e1/step4_update_gate.json",
+    "runs/step4_f1_ir_gate/step4_f1_loo.json"
   ]
 }
