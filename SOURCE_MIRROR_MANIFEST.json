@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-16T08:04:50.143791+08:00",
+  "generated_at_local": "2026-08-16T08:08:14.163830+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -86,6 +86,11 @@
       "sha256": "bd21aef5656f32eb646a0799b5c0a9f55d9d205767c5eb61044cc291cd0fd522",
       "size_bytes": 1752,
       "mtime_ns": 1786772905698551200
+    },
+    "reports/step4_f1_ir_gate/modality_quality_val.json": {
+      "sha256": "cfe2be9dbb8ac2094d9f2036d97e034bed86c1ba59a3cd1d9d3e99d223875276",
+      "size_bytes": 12499,
+      "mtime_ns": 1786838884300591800
     },
     "runs/step3_earlyfusion/C0-N-r1/args.yaml": {
       "sha256": "86483f46560b65ba671fb9a0af3b02253410f1683d8626a1a6c88ad5c6e2ee3c",
@@ -455,7 +460,12 @@
     "runs/step4_f0/_summary_step4.json": {
       "sha256": "c38eefbdf7c50fbff141e7c865986e515af40aa512af5a293022e8d74c769725",
       "size_bytes": 25363,
-      "mtime_ns": 1786816959942977800
+      "mtime_ns": 1786838842652083800
+    },
+    "runs/step4_f0/history/_summary_step4_pre_f1_20260816_080721.json": {
+      "sha256": "c38eefbdf7c50fbff141e7c865986e515af40aa512af5a293022e8d74c769725",
+      "size_bytes": 25363,
+      "mtime_ns": 1786838841253525800
     },
     "runs/step4_f0/smoke-F0-C0-e1/args.yaml": {
       "sha256": "dc03c432ce43e45d4b37fba408e9bad71ee1945b4e0f655dbf42ef0ed58a8db6",
@@ -904,30 +914,6 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/STEP4_IMPLEMENTATION_PLAN.md",
-    "docs/STEP4_REFERENCE_GUIDED_DESIGN.md",
-    "docs/reference_implementation_notes.md",
-    "docs/step4_f1_ir_gate/DESIGN_FREEZE.md",
-    "docs/step4_f1_ir_gate/EXECUTION_GUIDE.md",
-    "docs/step4_f1_ir_gate/PAPER_MAPPING.md",
-    "docs/step4_f1_ir_gate/README.md",
-    "docs/step4_f1_ir_gate/ROADMAP_AFTER_F1.md",
-    "docs/step4_f1_ir_gate/feedback/README.md",
-    "docs/step4_f1_ir_gate/feedback/_TEMPLATE.md",
-    "scripts/audit_step4_f1_ir_gate.py",
-    "scripts/audit_step4_f1_modality_quality.py",
-    "scripts/eval_step4_f1_causality.py",
-    "scripts/eval_step4_f1_quality.py",
-    "scripts/run_step4_f1_ir_gate.py",
-    "scripts/step4_f1_loo.py",
-    "scripts/summarize_step4_f1.py",
-    "src/multimodal/modality_quality.py",
-    "src/multimodal/reliability_gate.py",
-    "src/multimodal/step4_f1_closeout.py",
-    "src/multimodal/step4_f1_interventions.py",
-    "src/multimodal/step4_f1_ir_gate_model.py",
-    "tests/test_modality_quality.py",
-    "tests/test_step4_f1_closeout.py",
-    "tests/test_step4_f1_ir_gate.py"
+    "runs/step4_f0/history/_summary_step4_pre_f1_20260816_080721.json"
   ]
 }
