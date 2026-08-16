@@ -41,9 +41,12 @@ best.pt（辅助）：C0 0.3195 / fixed 0.3176 / soft 0.2998。
 
 - identity q mean = 0.504；17 个退化条件中 8 个（noise/shift 全部 8 个）mean q
   低于 identity 超 1e-4（要求 ≥9 → 不达标）；blur/contrast 的 q 未系统性下降。
-- learned gate 在 8 个退化条件上 AP > FORCE-Q1（blur:0.50、contrast:0.50/0.75/1.00、
-  noise 四档）——学习到的 q≈0.5 在噪声/移位下保留了更多性能。
+- learned gate 在 noise 四档以及 blur:0.50、contrast:0.50/0.75/1.00 上 AP 高于
+  FORCE-Q1；**shift 四档均低于 FORCE-Q1**（learned 约 0.281–0.295 vs
+  FORCE-Q1 约 0.312–0.323）。
 - reliability_supported = false（8/17 < 9）→ 第 6 项晋级条件不成立。
+- 更正（2026-08-16，审阅者指正）：上一版此处写"q≈0.5 在噪声/移位下保留了更多
+  性能"为事实错误——shift 四档全部是 FORCE-Q1 更好。JSON 判级不受影响。
 
 ## LOO（val6 leave-one-out，last.pt）
 
