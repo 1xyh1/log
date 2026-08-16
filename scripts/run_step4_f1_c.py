@@ -41,19 +41,15 @@ from ultralytics.models.yolo.detect.train import DetectionTrainer  # noqa: E402
 from ultralytics.models.yolo.detect.val import DetectionValidator  # noqa: E402
 
 GROUP_SPECS = {
-    "F1C-C0": {"aux_mode": "zero", "gate_mode": "magnitude", "dataset": "C0-N"},
+    "F1C-C0": {"aux_mode": "zero", "gate_mode": "learned",
+               "gate_module": "magnitude", "dataset": "C0-N"},
     "F1C-I-fixed": {"aux_mode": "ir", "gate_mode": "fixed_one",
-                    "gate_module": "magnitude", "dataset": "C1-I",
-                    "effective": "fixed_one"},
-    "F1C-I-magsoft": {"aux_mode": "ir", "gate_mode": "magnitude",
-                      "gate_module": "magnitude", "dataset": "C1-I",
-                      "effective": "learned"},
-    "F1C-I-soft": {"aux_mode": "ir", "gate_mode": "learned", "dataset": "C1-I",
-                   "effective": "learned"},
+                    "gate_module": "magnitude", "dataset": "C1-I"},
+    "F1C-I-magsoft": {"aux_mode": "ir", "gate_mode": "learned",
+                      "gate_module": "magnitude", "dataset": "C1-I"},
+    "F1C-I-soft": {"aux_mode": "ir", "gate_mode": "learned",
+                   "gate_module": "original", "dataset": "C1-I"},
 }
-
-EFFECTIVE_GATE = {"F1C-C0": "learned", "F1C-I-fixed": "fixed_one",
-                  "F1C-I-magsoft": "learned", "F1C-I-soft": "learned"}
 
 R3_KW = dict(
     epochs=80, batch=4, nbs=4, warmup_epochs=0, workers=0, cache=False,
@@ -227,15 +223,20 @@ def main() -> None:
     if not audit_path.exists():
         raise RuntimeError(f"F1C_PRETRAIN_AUDIT_MISSING: {audit_path}")
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
-    if (audit.get("schema") != "step4-f1-b-audit-v1"
+    if (audit.get("schema") != "step4-f1-c-audit-v2"
             or audit.get("all_passed") is not True):
         raise RuntimeError("F1C_PRETRAIN_AUDIT_NOT_PASSED")
     audit_prov = audit.get("provenance") or {}
     audit_targets = {
         "corruption_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_b_corruption.py",
-        "runner_source_sha256": ROOT / "scripts" / "run_step4_f1_b.py",
-        "audit_source_sha256": ROOT / "scripts" / "audit_step4_f1_b.py",
-        "f1_summary_sha256": ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json",
+        "runner_source_sha256": ROOT / "scripts" / "run_step4_f1_c.py",
+        "audit_source_sha256": ROOT / "scripts" / "audit_step4_f1_c.py",
+        "gate_module_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "f1c_design_freeze_sha256": ROOT / "docs" / "step4_f1_c" / "DESIGN_FREEZE.md",
+        "a1_v2_last_sha256": ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_last.json",
+        "a1_v2_best_sha256": ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_best.json",
+        "b1_v22_summary_sha256": ROOT / "runs" / "step4_f1_b_corruption" / "_summary_step4_f1_b.json",
     }
     stale_audit = {
         key: {"recorded": audit_prov.get(key), "current": _sha_file(path)}
@@ -483,14 +484,25 @@ def main() -> None:
     def on_train_end(tr):
         # G10.7: record the final fp32 RGB backbone SHA from the trainer's
         # still-float32 model, BEFORE any downstream half-precision
-        # serialization of checkpoints.
+        # serialization of checkpoints, and assert the match immediately.
+        actual_final = _state_sha(tr.model.rgb_backbone)
+        expected_initial = manifest["initial_rgb_backbone_sha256"]
+        record = {
+            "schema": "step4-f1-c-fp32-rgb-v1",
+            "group": a.group,
+            "expected_initial_sha256": expected_initial,
+            "actual_final_sha256": actual_final,
+            "match": actual_final == expected_initial,
+            "note": "recorded at on_train_end from the fp32 trainer model "
+                    "(pre-half checkpoint serialization)",
+        }
         (run_dir / "step4_fp32_rgb_sha.json").write_text(
-            json.dumps({
-                "fp32_rgb_backbone_sha256": _state_sha(tr.model.rgb_backbone),
-                "note": "recorded at on_train_end from the fp32 trainer model "
-                        "(pre-half checkpoint serialization)",
-            }, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"[{a.group}] G10.7 fp32 RGB SHA recorded")
+            json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+        if record["match"] is not True:
+            raise RuntimeError(f"G10_7_FP32_RGB_SHA_MISMATCH: {record}")
+        print(f"[{a.group}] G10.7 fp32 RGB SHA recorded and asserted")
+
+
 
     trainer.add_callback("on_train_epoch_start", on_epoch_start)
     trainer.add_callback("on_train_epoch_end", on_epoch_end)
@@ -505,7 +517,8 @@ def main() -> None:
         "model": "Step4F1IRGateModel (RGB anchor + q*zero-init IR residual)",
         "aux_mode": spec["aux_mode"],
         "gate_mode": spec["gate_mode"],
-        "gate_module": spec.get("gate_module", "original"),
+        "gate_module": model.gate_module_kind,
+        "gate_module_kind_from_model": model.gate_module_kind,
         "dataset_group": spec["dataset"],
         "corruption_schedule": {
             "kind_probs": dict(KIND_PROBS),
@@ -525,7 +538,7 @@ def main() -> None:
             ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json"
         ),
         "design_freeze_sha256": _sha_file(
-            ROOT / "docs" / "step4_f1_b_corruption" / "DESIGN_FREEZE.md"
+            ROOT / "docs" / "step4_f1_c" / "DESIGN_FREEZE.md"
         ),
         "rgb_policy": "frozen and unscaled; BN eval",
         "recipe": "R3-causal-earlyfusion-sample",

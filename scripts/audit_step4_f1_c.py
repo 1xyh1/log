@@ -86,7 +86,7 @@ def audit_sha_driven() -> dict:
 
 
 def audit_g9_logic_present() -> dict:
-    runner = (ROOT / "scripts" / "run_step4_f1_b.py").read_text(encoding="utf-8")
+    runner = (ROOT / "scripts" / "run_step4_f1_c.py").read_text(encoding="utf-8")
     checks = {
         "g9_trace_written": "step4_b1_g9_trace.jsonl" in runner,
         "expected_schedule_sha_recorded": "expected_schedule_sha256" in runner,
@@ -205,7 +205,10 @@ def audit_g10_7_runner_records_fp32_sha() -> dict:
     checks = {
         "g10_7_fp32_sha_recorded": "step4_fp32_rgb_sha.json" in runner,
         "g10_7_on_train_end": "on_train_end" in runner,
-        "g10_7_pre_half_note": "pre-half" in runner,
+        "g10_7_schema_v1": "step4-f1-c-fp32-rgb-v1" in runner,
+        "g10_7_expected_initial": "expected_initial_sha256" in runner,
+        "g10_7_actual_final": "actual_final_sha256" in runner,
+        "g10_7_match_asserted": "G10_7_FP32_RGB_SHA_MISMATCH" in runner,
     }
     return {"checks": checks, "passed": all(checks.values())}
 
@@ -221,22 +224,26 @@ def main() -> None:
         "g10_7_runner_fp32_sha": audit_g10_7_runner_records_fp32_sha(),
     }
     report = {
-        "schema": "step4-f1-c-audit-v1",
+        "schema": "step4-f1-c-audit-v2",
         "sections": sections,
         "provenance": {
             "corruption_source_sha256": _sha_file(
                 ROOT / "src" / "multimodal" / "step4_f1_b_corruption.py"),
             "runner_source_sha256": _sha_file(
-                ROOT / "scripts" / "run_step4_f1_b.py"),
+                ROOT / "scripts" / "run_step4_f1_c.py"),
             "audit_source_sha256": _sha_file(Path(__file__)),
-            "f1_summary_sha256": _sha_file(
-                ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json"),
-            "b1_summary_sha256": _sha_file(
-                ROOT / "runs" / "step4_f1_b_corruption" / "_summary_step4_f1_b.json"),
             "gate_module_sha256": _sha_file(
                 ROOT / "src" / "multimodal" / "reliability_gate.py"),
             "model_source_sha256": _sha_file(
                 ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py"),
+            "f1c_design_freeze_sha256": _sha_file(
+                ROOT / "docs" / "step4_f1_c" / "DESIGN_FREEZE.md"),
+            "a1_v2_last_sha256": _sha_file(
+                ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_last.json"),
+            "a1_v2_best_sha256": _sha_file(
+                ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_best.json"),
+            "b1_v22_summary_sha256": _sha_file(
+                ROOT / "runs" / "step4_f1_b_corruption" / "_summary_step4_f1_b.json"),
         },
         "all_passed": all(s["passed"] for s in sections.values()),
     }

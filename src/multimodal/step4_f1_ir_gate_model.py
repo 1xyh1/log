@@ -36,7 +36,7 @@ class Step4F1IRGateModel(Step4F0Model):
                  gate_hidden: int = 64, gate_module: str | None = None):
         if aux_mode not in {"zero", "ir"}:
             raise ValueError("F1 is IR-only; Depth must not be stacked into this stage")
-        if gate_mode not in {"learned", "fixed_one", "magnitude"}:
+        if gate_mode not in {"learned", "fixed_one"}:
             raise ValueError(f"unknown gate_mode: {gate_mode}")
         if gate_module not in (None, "original", "magnitude"):
             raise ValueError(f"unknown gate_module: {gate_module}")
@@ -44,9 +44,9 @@ class Step4F1IRGateModel(Step4F0Model):
                          freeze_rgb_backbone=freeze_rgb_backbone,
                          aux_mode=aux_mode)
         self.gate_mode = gate_mode
-        # gate_module decouples the MODULE from the effective-q semantics so a
-        # fixed-q1 control can keep the magnitude module (matched structure).
-        use_magnitude = (gate_module == "magnitude" or gate_mode == "magnitude")
+        # gate_module ALONE decides the module; gate_mode only decides the
+        # effective-q semantics (P0-2: the mixed "magnitude" gate_mode is gone).
+        use_magnitude = gate_module == "magnitude"
         if use_magnitude:
             from multimodal.reliability_gate import MagnitudeReliabilityGate
             self.reliability_gate = MagnitudeReliabilityGate(hidden=gate_hidden)
