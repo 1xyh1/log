@@ -39,3 +39,27 @@
 ## 待审阅者放行
 
 按审阅者指示，**formal 三组 × 80 epoch 暂不启动**，等放行。
+
+## HOLD 整改（审阅者 2026-08-16 复审，formal 前必修）
+
+审阅者判定 HOLD，三项必修已全部落地并重跑 smoke（新目录 -r2 修订号）：
+
+1. **B1 pretrain audit 成为硬门禁**：`run_step4_f1_b.py` 增加 `--audit-report`
+   参数，核验 schema/all_passed/全部 provenance（corruption/runner/audit/F1
+   summary 源 SHA），陈旧即 `B1_PRETRAIN_AUDIT_STALE` 拒绝训练；manifest 新增
+   `pretrain_audit_sha256`、`f1_v4_summary_sha256`、`design_freeze_sha256`。
+2. **G9 逐样本证据落盘**：新增 `step4_b1_g9_records.jsonl`（每 epoch 每样本的
+   sample_id/kind/severity/ir_sha_before/ir_sha_after/三通道与标注不变断言），
+   G9 trace 行新增 `records_sha256`（canonical records SHA）；B1 summarizer
+   将逐行重判，不信任 trace 布尔。
+3. **smoke 目录唯一化**：所有已存在目录一律拒绝（formal/smoke 都不覆盖）；
+   smoke 自动带 `-rN` 修订号（旧 smoke 证据保留）。
+
+建议项同步完成：B1 专用评估链（`eval_step4_f1_b_causality.py` /
+`step4_f1_b_loo.py` / `eval_step4_f1_b_quality.py` / `summarize_step4_f1_b.py`，
+含 G9 逐行重判、own-QCLEAN、macro/worst-4、9/17 判据）；quality 文本改为
+"ADAPTIVITY IS NOT PROVEN"。
+
+重跑结果：audit 全过（新 provenance 含新 runner SHA）→ 三组 smoke
+（`smoke-*-e1-r2`）全 PASS，G9 records 落盘 11 条/epoch、records_sha256 入 trace。
+全部产物编译通过、18 项对抗测试全过。**继续等 FORMAL GO**。
