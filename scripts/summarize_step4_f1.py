@@ -363,6 +363,38 @@ def main() -> None:
     quality = _read(quality_path)
     quality_provenance = _verify_quality(quality, runs["SOFT"], contract_path)
 
+    # Post-hoc gradient-semantics audit (detach erratum checklist).
+    posthoc_path = ROOT / "reports" / "step4_f1_ir_gate" / "posthoc_gradient_audit.json"
+    if not posthoc_path.exists():
+        raise RuntimeError("F1_POSTHOC_AUDIT_MISSING")
+    posthoc = _read(posthoc_path)
+    if posthoc.get("schema") != "step4-f1-posthoc-gradient-audit-v1" \
+            or posthoc.get("passed") is not True:
+        raise RuntimeError("F1_POSTHOC_AUDIT_NOT_PASSED")
+    posthoc_prov = posthoc.get("provenance") or {}
+    posthoc_targets = {
+        "soft_last_pt_sha256": runs["SOFT"] / "weights" / "last.pt",
+        "c0_last_pt_sha256": runs["C0"] / "weights" / "last.pt",
+        "contract_sha256": contract_path,
+        "script_sha256": ROOT / "scripts" / "audit_step4_f1_posthoc.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "dataset_source_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+        "eval_core_sha256": ROOT / "src" / "multimodal" / "step3_eval_utils.py",
+    }
+    posthoc_checks = {
+        key: _require_sha(posthoc_prov.get(key), path, f"POSTHOC:{key}")
+        for key, path in posthoc_targets.items()
+    }
+    # cross-consistency: posthoc checkpoints must be the same last.pt files
+    for tag, key in (("SOFT", "soft_last_pt_sha256"), ("C0", "c0_last_pt_sha256")):
+        eval_sha = (evals[tag].get("provenance") or {}).get("last_pt_sha256")
+        if not posthoc_prov.get(key) or posthoc_prov[key] != eval_sha:
+            raise RuntimeError(
+                f"F1_POSTHOC_EVAL_CHECKPOINT_MISMATCH {tag}: "
+                f"posthoc={posthoc_prov.get(key)} eval={eval_sha}"
+            )
+
     def score(tag, variant):
         return float(evals[tag]["last.pt"][variant]["val"]["map50_95"])
 
@@ -374,13 +406,45 @@ def main() -> None:
     soft_loo = loo["deltas"]["SOFT_minus_C0"]
     gate_loo = loo["deltas"]["SOFT_minus_FIXED"]
     q_rows = evals["SOFT"]["last.pt"]["gate_values"]["NORMAL"]["val"]
-    q_values = [float(row["raw_q"]) for row in q_rows.values()]
+    q_values = sorted(float(row["raw_q"]) for row in q_rows.values())
+    n_q = len(q_values)
+
+    def qnt(p: float) -> float:
+        return q_values[min(n_q - 1, max(0, round(p * (n_q - 1))))]
+
     q_summary = {
+        "n": n_q,
         "mean": statistics.mean(q_values),
-        "median": statistics.median(q_values),
-        "min": min(q_values),
-        "max": max(q_values),
-        "range": max(q_values) - min(q_values),
+        "std": statistics.stdev(q_values) if n_q > 1 else 0.0,
+        "min": q_values[0],
+        "max": q_values[-1],
+        "p10": qnt(0.10),
+        "p50": qnt(0.50),
+        "p90": qnt(0.90),
+        "range": q_values[-1] - q_values[0],
+    }
+
+    # Threshold context the reviewer asked to be stored explicitly: formula,
+    # epoch budget, measured per-group changes and the control noise floor.
+    g6_context = {
+        "decay_threshold_formula": "1e-3 * epochs / 80",
+        "epochs": a.expected_epochs,
+        "scaled_threshold_used_by_runner": 1e-3 * (a.expected_epochs / 80.0),
+        "formal_uses_original_1e_3": a.expected_epochs == 80,
+        "control_noise_floor": g6["C0"]["aux_encoder_global_rel_l2"],
+        "measured_changes": {
+            tag: {
+                "aux_encoder_global_rel_l2": row["aux_encoder_global_rel_l2"],
+                "gate_max_abs_change": row["gate_max_abs_change"],
+                "proj_weight_norms": row["proj_weight_norms"],
+                "proj_bias_norms": row["proj_bias_norms"],
+            }
+            for tag, row in g6.items()
+        },
+        "note": ("linear epoch scaling exists ONLY for smoke chain-aliveness; "
+                 "formal 80ep runs use the original 1e-3 threshold "
+                 "(scale factor 1.0) and quality is judged by the causal and "
+                 "LOO protocol, never by these thresholds"),
     }
 
     conditions = quality.get("conditions") or {}
@@ -439,9 +503,10 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-summary-v1",
+        "schema": "step4-f1-summary-v2",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
+        "posthoc_file_sha256": _sha(posthoc_path),
         "summarize_source_sha256": _sha(Path(__file__)),
         "f1_closeout_source_sha256": _sha(
             ROOT / "src" / "multimodal" / "step4_f1_closeout.py"
@@ -454,10 +519,14 @@ def main() -> None:
         "manifest_provenance": manifest_provenance,
         "matched_initial_state": matched_initial_state,
         "g6": g6,
+        "g6_threshold_context": g6_context,
         "g8": g8,
         "loo_payload_validation": loo_payload_validation,
         "loo_provenance": loo_provenance,
         "quality_provenance": quality_provenance,
+        "posthoc": {"checks": posthoc["checks"],
+                    "provenance_checks": posthoc_checks,
+                    "passed": posthoc["passed"]},
         "primary_last_val6": {
             "C0": c0,
             "FIXED_NORMAL": fixed,
