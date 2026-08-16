@@ -93,8 +93,8 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
             recs = by_epoch.get(epoch, [])
             if len(recs) != len(train_ids):
                 errors.append(f"G9_RECORDS_COUNT:{tag}:e{epoch}")
-                continue
-            # ID set must be complete and duplicate-free
+            # ID set must be complete and duplicate-free (checked even when the
+            # count is off, so a duplicated row is named explicitly)
             rec_ids = [str(r["sample_id"]) for r in recs]
             if sorted(rec_ids) != sorted(train_ids):
                 errors.append(f"G9_ID_SET_INCOMPLETE:{tag}:e{epoch}")
@@ -278,8 +278,10 @@ def main() -> None:
 
     macro_soft = statistics.mean(
         row["learned_gate"]["map50_95"] for row in degraded.values())
+    # "FIXED" = the separately-trained B1-I-fixed model evaluated on the same
+    # corrupted datasets (frozen protocol); NOT force_q1 on the soft ckpt.
     macro_fixed = statistics.mean(
-        row["force_q1"]["map50_95"] for row in degraded.values())
+        row["separately_trained_fixed"]["map50_95"] for row in degraded.values())
     macro_qclean = statistics.mean(
         row["force_qclean"]["map50_95"] for row in degraded.values())
     worst4_keys = sorted(degraded, key=lambda k:
@@ -287,7 +289,7 @@ def main() -> None:
     worst4_soft = statistics.mean(
         degraded[k]["learned_gate"]["map50_95"] for k in worst4_keys)
     worst4_fixed = statistics.mean(
-        degraded[k]["force_q1"]["map50_95"] for k in worst4_keys)
+        degraded[k]["separately_trained_fixed"]["map50_95"] for k in worst4_keys)
     worst4_qclean = statistics.mean(
         degraded[k]["force_qclean"]["map50_95"] for k in worst4_keys)
     learned_minus_qclean_pos = sum(

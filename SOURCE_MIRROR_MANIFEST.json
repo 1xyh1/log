@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-16T23:49:03.761539+08:00",
+  "generated_at_local": "2026-08-16T23:51:19.139272+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -673,9 +673,9 @@
       "mtime_ns": 1786891962230304700
     },
     "scripts/eval_step4_f1_b_quality.py": {
-      "sha256": "011bb65514c78ec00d5db1d4dfab66b384b4a35039a0a876ae5f15679b1fe654",
-      "size_bytes": 12067,
-      "mtime_ns": 1786895337069393800
+      "sha256": "149acc32d8fc6e55610cdb61cddd7b868f4bdc78fb7a82b69743c8dd18b56b92",
+      "size_bytes": 12431,
+      "mtime_ns": 1786895348779032900
     },
     "scripts/eval_step4_f1_causality.py": {
       "sha256": "944c10a1d7d98b00749fbdb7f9d5efb862f14c4661c9c6ea58c4369f55406154",
@@ -778,9 +778,9 @@
       "mtime_ns": 1786844053692192600
     },
     "scripts/summarize_step4_f1_b.py": {
-      "sha256": "2a0eb23c3885ab7073d858a26ec069716e740a9bfb04fab42aa6ed346b59cf40",
-      "size_bytes": 16030,
-      "mtime_ns": 1786895300524141800
+      "sha256": "d62f00cc188d231b6f305e0149e495ff0a66d004123ec6fc4b70329594921df6",
+      "size_bytes": 16282,
+      "mtime_ns": 1786895411359799300
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -992,6 +992,11 @@
       "size_bytes": 6814,
       "mtime_ns": 1786756795414075100
     },
+    "tests/test_step4_f1_b_closeout.py": {
+      "sha256": "d7963405f0d608a7e0ae8bf95f792bdea23be0205d587573250efb7736e1b494",
+      "size_bytes": 5491,
+      "mtime_ns": 1786895466153439000
+    },
     "tests/test_step4_f1_b_corruption.py": {
       "sha256": "b5cca21c449c304ac13863ebcb52c9a22f2771088eb1d531294b839f3076a9cf",
       "size_bytes": 6323,
@@ -1010,7 +1015,7 @@
   },
   "changed_in_this_sync": [
     "scripts/eval_step4_f1_b_quality.py",
-    "scripts/step4_f1_b_loo.py",
-    "scripts/summarize_step4_f1_b.py"
+    "scripts/summarize_step4_f1_b.py",
+    "tests/test_step4_f1_b_closeout.py"
   ]
 }

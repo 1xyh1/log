@@ -139,6 +139,7 @@ def main() -> None:
         "checkpoint": a.checkpoint,
         "provenance": {
             "checkpoint_sha256": _sha(run_dir / "weights" / a.checkpoint),
+            "fixed_checkpoint_sha256": _sha(fixed_dir / "weights" / a.checkpoint),
             "contract_sha256": _sha(contract_path),
             "script_sha256": _sha(Path(__file__)),
             "interventions_source_sha256": _sha(
@@ -183,6 +184,9 @@ def main() -> None:
                 model, dataset, device, names, clean_q_mean)
             scan = {f"{q:.2f}": _evaluate_with_override(
                 model, dataset, device, names, q) for q in SCAN_OVERRIDES}
+            # separately-trained fixed model on the same corrupted dataset
+            fixed_ap = evu.evaluate_dataset_stock_semantics(
+                fixed_model, dataset, device, names)
             key = f"{kind}:{severity:.2f}"
             report["conditions"][key] = {
                 "kind": kind,
@@ -193,7 +197,10 @@ def main() -> None:
                 "force_qclean": force_qclean,
                 "force_q0": scan["0.00"],
                 "force_q1": scan["1.00"],
+                "separately_trained_fixed": fixed_ap,
                 "scan_overrides": scan,
+                "learned_minus_fixed_map50_95": (
+                    learned["map50_95"] - fixed_ap["map50_95"]),
                 "learned_minus_force_qclean_map50_95": (
                     learned["map50_95"] - force_qclean["map50_95"]),
                 "learned_minus_force_q1_map50_95": (
