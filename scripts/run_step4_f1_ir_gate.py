@@ -447,32 +447,45 @@ def main() -> None:
             q_finite and 0.0 <= float(last_q["min"]) <= float(last_q["max"]) <= 1.0
         ),
     }
+    # The unified 1e-3 aux threshold was calibrated on 80-epoch F0 runs
+    # (control decay scale 2.05e-4/80ep; active-aux learning 6.3e-3/80ep).
+    # Scale it linearly with the epoch budget so 1-epoch smokes compare like
+    # for like: 1ep decay noise ~2.6e-6 and 1ep learning ~8e-5 both sit well
+    # away from the scaled threshold.  (Execution feedback 2026-08-16.)
+    decay_threshold = 1e-3 * (a.epochs / 80.0)
     if a.group == "F1-C0":
         passed = bool(
             gate["rgb_backbone_unchanged"]
-            and gate["aux_encoder_global_rel_l2"] < 1e-3
+            and gate["aux_encoder_global_rel_l2"] < decay_threshold
             and max(proj_norms) == 0.0
             and gate["q_finite_and_bounded"]
         )
-        gate["expected"] = "null aux stays below decay threshold; proj weights stay zero"
+        gate["expected"] = (f"null aux stays below decay threshold "
+                            f"(<{decay_threshold:.3g} scaled to {a.epochs}ep); "
+                            "proj weights stay zero")
     elif a.group == "F1-I-fixed":
         passed = bool(
             gate["rgb_backbone_unchanged"]
-            and gate["aux_encoder_global_rel_l2"] > 1e-3
+            and gate["aux_encoder_global_rel_l2"] > decay_threshold
             and min(proj_norms) > 0.0
             and gate["q_finite_and_bounded"]
             and last_q["min"] == 1.0 and last_q["max"] == 1.0
         )
-        gate["expected"] = "active IR/projections learn; effective q remains exactly one"
+        gate["expected"] = (f"active IR/projections learn beyond decay scale "
+                            f"(>{decay_threshold:.3g} scaled to {a.epochs}ep); "
+                            "effective q remains exactly one")
     else:
         passed = bool(
             gate["rgb_backbone_unchanged"]
-            and gate["aux_encoder_global_rel_l2"] > 1e-3
+            and gate["aux_encoder_global_rel_l2"] > decay_threshold
             and min(proj_norms) > 0.0
             and gate["gate_max_abs_change"] > 0.0
             and gate["q_finite_and_bounded"]
         )
-        gate["expected"] = "active IR/projections/gate learn; q remains finite in [0,1]"
+        gate["expected"] = (f"active IR/projections/gate learn beyond decay scale "
+                            f"(>{decay_threshold:.3g} scaled to {a.epochs}ep); "
+                            "q remains finite in [0,1]")
+    gate["decay_threshold_scaled_to_epochs"] = decay_threshold
     gate["passed"] = passed
     (run_dir / "step4_update_gate.json").write_text(
         json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8"
