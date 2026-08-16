@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T07:43:36.360647+08:00",
+  "generated_at_local": "2026-08-17T07:46:11.297245+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -178,9 +178,9 @@
       "mtime_ns": 1786891928401167100
     },
     "reports/step4_f1_c/pretrain_audit.json": {
-      "sha256": "bc255026921aae813c4ce78edc3caac6dc639a56ec372227ec0c828085084f9e",
-      "size_bytes": 3047,
-      "mtime_ns": 1786904720080844700
+      "sha256": "d39df4b8c8b944c72876c4a99bfa596798f15abee4f9398ff53cacb7bcf7be0d",
+      "size_bytes": 3359,
+      "mtime_ns": 1786923922121506900
     },
     "reports/step4_f1_c_agreement/agreement_all17_growth.json": {
       "sha256": "990eea97c54f6d06c3f471decb4e993288a46daa64179b6c0948ecee7f957d8f",
@@ -728,9 +728,9 @@
       "mtime_ns": 1786896394447354700
     },
     "scripts/audit_step4_f1_c.py": {
-      "sha256": "14b4d8d3dc43dd746e52d3d588a4675a0ddf372c263db67b9455611eb08049fc",
-      "size_bytes": 11705,
-      "mtime_ns": 1786923576940616600
+      "sha256": "c271381e6235d267fda02eed39d918fd185338e9d125cfc36ee5e67615f3dadf",
+      "size_bytes": 11706,
+      "mtime_ns": 1786923919877547800
     },
     "scripts/audit_step4_f1_c_posthoc.py": {
       "sha256": "d8e6ee8d107251fdc0f2da25545f9585900317876b60c5b2aabac2cf5f535741",
@@ -882,6 +882,11 @@
       "size_bytes": 9019,
       "mtime_ns": 1786902893858581900
     },
+    "scripts/step4_f1_c_loo.py": {
+      "sha256": "5c0478743b443e0a0b2c853206aeaf07b751f1fb901f2d531404b88425cda5b6",
+      "size_bytes": 9108,
+      "mtime_ns": 1786923834007742600
+    },
     "scripts/step4_f1_loo.py": {
       "sha256": "a68b4ca8c8e2054ab1d77609fabcd701da40346df702a3b51d7759a1780260b1",
       "size_bytes": 8584,
@@ -916,6 +921,11 @@
       "sha256": "a010bc2a4ddeabd0da786fcc7a852c5cfb9dddaa3414cb7b6d44e3fa5a6941dc",
       "size_bytes": 33282,
       "mtime_ns": 1786902893884203300
+    },
+    "scripts/summarize_step4_f1_c.py": {
+      "sha256": "d5a760f453877a2c0b64e7c0da5927cd6c0c1322fe0d36fdd70c42b37a96c3dc",
+      "size_bytes": 19755,
+      "mtime_ns": 1786923877108215300
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -1164,8 +1174,9 @@
     }
   },
   "changed_in_this_sync": [
-    "scripts/audit_step4_f1_c_posthoc.py",
-    "scripts/eval_step4_f1_c_causality.py",
-    "scripts/eval_step4_f1_c_quality.py"
+    "reports/step4_f1_c/pretrain_audit.json",
+    "scripts/audit_step4_f1_c.py",
+    "scripts/step4_f1_c_loo.py",
+    "scripts/summarize_step4_f1_c.py"
   ]
 }

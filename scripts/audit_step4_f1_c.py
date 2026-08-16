@@ -88,7 +88,7 @@ def audit_sha_driven() -> dict:
 def audit_g9_logic_present() -> dict:
     runner = (ROOT / "scripts" / "run_step4_f1_c.py").read_text(encoding="utf-8")
     checks = {
-        "g9_trace_written": "step4_b1_g9_trace.jsonl" in runner,
+        "g9_trace_written": "step4_f1c_g9_trace.jsonl" in runner,
         "expected_schedule_sha_recorded": "expected_schedule_sha256" in runner,
         "actual_schedule_sha_recorded": "actual_schedule_sha256" in runner,
         "ir_sha_before_after": ("ir_sha_before" in runner
