@@ -179,6 +179,10 @@ def main() -> None:
                    default="formal")
     p.add_argument("--contract", default=OUT_DEFAULT)
     p.add_argument(
+        "--audit-report",
+        default=str(ROOT / "reports" / "step4_f1_b_corruption" / "pretrain_audit.json"),
+    )
+    p.add_argument(
         "--data", default=(
             "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml"))
     p.add_argument("--device", default="0")
@@ -187,18 +191,50 @@ def main() -> None:
     p.add_argument("--batch", type=int, default=4)
     a = p.parse_args()
 
+    project = Path(a.project).resolve()
     if a.run_kind == "smoke" and a.name is None:
-        a.name = f"smoke-{a.group}-e{a.epochs}"
+        # unique smoke directories: revision suffix so reruns never overwrite
+        # historical smoke evidence (reviewer 2026-08-16)
+        base = f"smoke-{a.group}-e{a.epochs}"
+        a.name = base
+        rev = 2
+        while (project / a.name).exists():
+            a.name = f"{base}-r{rev}"
+            rev += 1
     elif a.name is None:
         a.name = a.group
-    project = Path(a.project).resolve()
     run_dir = project / a.name
-    if a.run_kind in {"formal", "recovery"} and run_dir.exists():
-        raise RuntimeError(f"FORMAL_RUN_DIR_EXISTS: {run_dir}")
+    if run_dir.exists():
+        raise RuntimeError(
+            f"RUN_DIR_EXISTS: {run_dir} — formal/smoke directories are never "
+            "reused; pass a fresh --name or let smoke auto-revision")
 
     contract_path = Path(a.contract)
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     spec = GROUP_SPECS[a.group]
+
+    # ---- hard gate: B1 pretrain audit must exist, pass, and be FRESH ----
+    audit_path = Path(a.audit_report)
+    if not audit_path.exists():
+        raise RuntimeError(f"B1_PRETRAIN_AUDIT_MISSING: {audit_path}")
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    if (audit.get("schema") != "step4-f1-b-audit-v1"
+            or audit.get("all_passed") is not True):
+        raise RuntimeError("B1_PRETRAIN_AUDIT_NOT_PASSED")
+    audit_prov = audit.get("provenance") or {}
+    audit_targets = {
+        "corruption_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_b_corruption.py",
+        "runner_source_sha256": ROOT / "scripts" / "run_step4_f1_b.py",
+        "audit_source_sha256": ROOT / "scripts" / "audit_step4_f1_b.py",
+        "f1_summary_sha256": ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json",
+    }
+    stale_audit = {
+        key: {"recorded": audit_prov.get(key), "current": _sha_file(path)}
+        for key, path in audit_targets.items()
+        if audit_prov.get(key) != _sha_file(path)
+    }
+    if stale_audit:
+        raise RuntimeError(f"B1_PRETRAIN_AUDIT_STALE: {stale_audit}")
 
     rng_state = torch.random.get_rng_state()
     torch.manual_seed(MODEL_INIT_SEED)
@@ -309,6 +345,7 @@ def main() -> None:
 
     trace: list[dict] = []
     g9_trace: list[dict] = []
+    g9_records: list[dict] = []
     growth: list[dict] = []
 
     def on_epoch_start(tr):
@@ -386,12 +423,25 @@ def main() -> None:
                 (r["ir_sha_before"] == r["ir_sha_after"]) == (r["kind"] == "clean")
                 for r in records)
         g9_ok = bool(rgb_ok and dep_ok and labels_ok and ir_changed_ok)
+        # Per-sample evidence is persisted (reviewer: the epoch summary alone
+        # cannot be independently re-judged from artifacts).
+        epoch_records = [
+            {"epoch": tr.epoch, **{k: r[k] for k in (
+                "sample_id", "kind", "severity", "ir_sha_before", "ir_sha_after",
+                "rgb_unchanged", "depth_unchanged",
+                "labels_bboxes_same_object")}}
+            for r in records
+        ]
+        g9_records.extend(epoch_records)
+        records_sha = _sha_json(sorted(epoch_records,
+                                       key=lambda r: r["sample_id"]))
         g9_trace.append({
             "epoch": tr.epoch,
             "n_samples": len(records),
             "expected_schedule_sha256": expected_sha,
             "actual_schedule_sha256": actual_sha,
             "expected_matches_actual": expected_sha == actual_sha,
+            "records_sha256": records_sha,
             "ir_changed_for_corrupted_only": ir_changed_ok,
             "rgb_depth_labels_bboxes_unchanged": bool(rgb_ok and dep_ok and labels_ok),
             "kind_counts": kind_counts,
@@ -442,6 +492,13 @@ def main() -> None:
         },
         "corruption_source_sha256": _sha_file(
             ROOT / "src" / "multimodal" / "step4_f1_b_corruption.py"
+        ),
+        "pretrain_audit_sha256": _sha_file(audit_path),
+        "f1_v4_summary_sha256": _sha_file(
+            ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json"
+        ),
+        "design_freeze_sha256": _sha_file(
+            ROOT / "docs" / "step4_f1_b_corruption" / "DESIGN_FREEZE.md"
         ),
         "rgb_policy": "frozen and unscaled; BN eval",
         "recipe": "R3-causal-earlyfusion-sample",
@@ -500,6 +557,9 @@ def main() -> None:
     )
     (run_dir / "step4_b1_g9_trace.jsonl").write_text(
         "\n".join(json.dumps(row) for row in g9_trace) + "\n", encoding="utf-8"
+    )
+    (run_dir / "step4_b1_g9_records.jsonl").write_text(
+        "\n".join(json.dumps(row) for row in g9_records) + "\n", encoding="utf-8"
     )
     (run_dir / "step4_growth.jsonl").write_text(
         "\n".join(json.dumps(row) for row in growth) + "\n", encoding="utf-8"
