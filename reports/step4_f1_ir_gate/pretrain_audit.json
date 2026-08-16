@@ -3,7 +3,7 @@
   "provenance": {
     "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
     "audit_source_sha256": "8bf7d72a04fa570cefee90510825f30bb2402404558105b60ac4c83a1f6fdcb1",
-    "model_source_sha256": "efd47b518ab72f4dd06919c1fa74113856e3322fc2e64626c8ff894cc2430f5e",
+    "model_source_sha256": "339fe8c89a3af4d2151f8199373ebbff312ca38d06f1e73977d7cb825c4eb93a",
     "gate_source_sha256": "2d8069fa6d466fd5c3a37675d57f4b4863eb871bbf35cd298634deb1e44e3b01",
     "f0_model_source_sha256": "7c56f6d1926619b9021b2926c39edfc177ea6932f5e91cc1f258139ba2489703",
     "aux_encoder_source_sha256": "1430e55fc800b6759e1682ac3f1379e96dde3c294e40af78033c669dca44c871",
@@ -52,7 +52,7 @@
     "step1_gate_grad": 0.0,
     "step1_aux_grad": 0.0,
     "step2_gate_grad": 0.21448524296283722,
-    "step2_aux_grad": 0.5703215003013611,
+    "step2_aux_grad": 0.5659217238426208,
     "rgb_grad": 0.0,
     "passed": true
   },

@@ -119,7 +119,16 @@ class Step4F1IRGateModel(Step4F0Model):
             x = m(x)
             y[m.i] = x
         a3, a4, a5 = self.aux_encoder(x_aux)
-        q = self._effective_gate((a3, a4, a5))
+        # Gate inputs are detached (execution feedback 2026-08-16): the gate still
+        # predicts q from the pre-projection A pyramid (per DESIGN_FREEZE), but its
+        # gradient must NOT flow back into the aux encoder.  With zero aux input
+        # (F1-C0) the LayerNorm gradient at zero (~1/sqrt(eps)) combined with the
+        # gate loop would otherwise produce O(1e-11) "numerical dust" gradients on
+        # the zero-init projections, which MuSGD's Muon branch then normalizes
+        # (X /= X.norm()+eps) into O(1) updates — breaking the C0 "proj stays
+        # exactly zero" invariant.  Detaching keeps the aux-encoder gradient path
+        # limited to the residual (F0 semantics).
+        q = self._effective_gate(tuple(f.detach() for f in (a3, a4, a5)))
         y[4] = self._gated_residual(self.fusions["4"], y[4], a3, q)
         y[6] = self._gated_residual(self.fusions["6"], y[6], a4, q)
         y[10] = self._gated_residual(self.fusions["10"], y[10], a5, q)
