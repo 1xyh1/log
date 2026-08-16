@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T02:22:16.697947+08:00",
+  "generated_at_local": "2026-08-17T02:24:17.134394+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -702,6 +702,11 @@
       "size_bytes": 8626,
       "mtime_ns": 1786896394447354700
     },
+    "scripts/audit_step4_f1_c.py": {
+      "sha256": "50e2f6ab22319da3f7de2ba9ef1df732e595ed5c0e739b8a2487599388066cf4",
+      "size_bytes": 11217,
+      "mtime_ns": 1786904648695761400
+    },
     "scripts/audit_step4_f1_ir_gate.py": {
       "sha256": "8bf7d72a04fa570cefee90510825f30bb2402404558105b60ac4c83a1f6fdcb1",
       "size_bytes": 12190,
@@ -821,6 +826,11 @@
       "sha256": "5fd1572ecca8ed0f39c2e153d61c9dc731738e7420a061bc4107aead56bcc36e",
       "size_bytes": 28184,
       "mtime_ns": 1786891900928295100
+    },
+    "scripts/run_step4_f1_c.py": {
+      "sha256": "ca395154e6d4a03f1c97919fb5e4fea2f2d7caed290923c629418db0d0e732e2",
+      "size_bytes": 30291,
+      "mtime_ns": 1786904612763806000
     },
     "scripts/run_step4_f1_ir_gate.py": {
       "sha256": "91c1e48522d09c6850dc1344fd070827aed2d8422e62eb6c5384730693073db4",
@@ -978,9 +988,9 @@
       "mtime_ns": 1786838637437297900
     },
     "src/multimodal/step4_f1_ir_gate_model.py": {
-      "sha256": "a452234fa17f322073771b362bd5de113762d7ce06be661b29d04c19ef16d71e",
-      "size_bytes": 6764,
-      "mtime_ns": 1786904487469656700
+      "sha256": "210e5be696ef7180bb68fe5d46d50c7f26ee3dfea07c8b8e889e5d808dd7429f",
+      "size_bytes": 7237,
+      "mtime_ns": 1786904592193519700
     },
     "src/multimodal/trainability.py": {
       "sha256": "2360f7fa03838c3c5aa446210f1ea1b9e8d8fda597e7451c4653f887f4cb7fc0",
@@ -1114,8 +1124,7 @@
     }
   },
   "changed_in_this_sync": [
-    "src/multimodal/reliability_gate.py",
-    "src/multimodal/step4_f1_ir_gate_model.py",
-    "tests/test_step4_f1_c_gate.py"
+    "scripts/run_step4_f1_c.py",
+    "src/multimodal/step4_f1_ir_gate_model.py"
   ]
 }

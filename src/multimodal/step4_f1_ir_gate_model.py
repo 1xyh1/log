@@ -33,20 +33,26 @@ class Step4F1IRGateModel(Step4F0Model):
 
     def __init__(self, reference, aux_encoder=None, freeze_rgb_backbone: bool = True,
                  aux_mode: str = "ir", gate_mode: str = "learned",
-                 gate_hidden: int = 64):
+                 gate_hidden: int = 64, gate_module: str | None = None):
         if aux_mode not in {"zero", "ir"}:
             raise ValueError("F1 is IR-only; Depth must not be stacked into this stage")
         if gate_mode not in {"learned", "fixed_one", "magnitude"}:
             raise ValueError(f"unknown gate_mode: {gate_mode}")
+        if gate_module not in (None, "original", "magnitude"):
+            raise ValueError(f"unknown gate_module: {gate_module}")
         super().__init__(reference, aux_encoder=aux_encoder,
                          freeze_rgb_backbone=freeze_rgb_backbone,
                          aux_mode=aux_mode)
         self.gate_mode = gate_mode
-        if gate_mode == "magnitude":
+        # gate_module decouples the MODULE from the effective-q semantics so a
+        # fixed-q1 control can keep the magnitude module (matched structure).
+        use_magnitude = (gate_module == "magnitude" or gate_mode == "magnitude")
+        if use_magnitude:
             from multimodal.reliability_gate import MagnitudeReliabilityGate
             self.reliability_gate = MagnitudeReliabilityGate(hidden=gate_hidden)
         else:
             self.reliability_gate = PyramidScalarReliabilityGate(hidden=gate_hidden)
+        self.gate_module_kind = "magnitude" if use_magnitude else "original"
         self._gate_override: float | None = None
         self._last_raw_gate: torch.Tensor | None = None
         self._last_effective_gate: torch.Tensor | None = None
