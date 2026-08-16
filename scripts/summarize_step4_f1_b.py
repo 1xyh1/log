@@ -30,7 +30,7 @@ from multimodal.step4_closeout import g8_check  # noqa: E402
 from multimodal.step4_f1_b_corruption import (  # noqa: E402
     SEVERITIES, TRAIN_KINDS, sample_schedule, schedule_sha256)
 from multimodal.step4_f1_closeout import (  # noqa: E402
-    LOO_SCHEMA, validate_f1_loo_payload)
+    LOO_SCHEMA, validate_effective_q_stats, validate_f1_loo_payload)
 
 GROUP_SPECS = {
     "C0": {"group": "B1-C0", "aux_mode": "zero", "gate_mode": "learned"},
@@ -154,12 +154,12 @@ def _verify_manifest(manifest: dict, tag: str, run_dir: Path,
 
 
 def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
-               expected_epochs: int) -> dict:
+               expected_epochs: int, expected_q_count: int) -> dict:
     """Re-judge the recorded update evidence; recorded booleans are NOT trusted.
 
-    v2.1 (reviewer): q finiteness is recomputed from the recorded q stats;
-    the RGB backbone SHA is recomputed from the actual last.pt against the
-    manifest; the epoch-scaled threshold is checked against the frozen formula.
+    v2.2: q finiteness/count/order are recomputed from recorded aggregates.
+    RGB evidence prefers the future fp32 end-of-training SHA; historical runs
+    fall back to an explicitly limited float16 checkpoint comparison.
     """
     import torch
 
@@ -170,24 +170,19 @@ def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
     if (len(proj) != 3 or len(proj_bias) != 3
             or not all(math.isfinite(v) for v in proj + proj_bias)):
         raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
-    # q finiteness from the recorded stats, not the boolean
+    # q count/finiteness/order from the recorded stats, not the boolean
     q = gate.get("last_epoch_effective_q") or {}
-    q_vals = [q.get(k) for k in ("mean", "min", "max")]
-    q_finite = (int(q.get("count", 0)) > 0
-                and all(v is not None and math.isfinite(float(v))
-                        for v in q_vals)
-                and 0.0 <= float(q_vals[1]) <= float(q_vals[2]) <= 1.0)
+    q_check = validate_effective_q_stats(q, expected_q_count)
+    q_finite = q_check["passed"]
     # threshold formula check
     recorded_threshold = float(gate.get("decay_threshold_scaled_to_epochs",
                                         float("nan")))
     expected_threshold = 1e-3 * (expected_epochs / 80.0)
     threshold_ok = math.isclose(recorded_threshold, expected_threshold,
                                 rel_tol=1e-9)
-    # RGB backbone SHA recomputed from the actual checkpoint.  Ultralytics
-    # saves last.pt in float16, so the frozen fp32 bytes cannot be recovered
-    # exactly from disk; compare at half precision via a round-trip of the
-    # rebuilt initial model instead (fp32 frozen identity implies identical
-    # half-precision bytes).
+    # Rebuild the deterministic initial fp32 backbone and first prove that its
+    # bytes equal the manifest pin.  Ultralytics' historical last.pt is fp16,
+    # so equality at checkpoint precision cannot rule out sub-fp16-ULP updates.
     from multimodal.early_fusion_yolo26 import (  # noqa: F401
         MODEL_INIT_SEED, build_reference_3ch)
     from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel
@@ -202,16 +197,32 @@ def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
         gate_mode=GROUP_SPECS[tag]["gate_mode"])
     torch.random.set_rng_state(rng_state)
 
-    def state_sha_half(module) -> str:
+    def state_sha(module, *, floating_dtype=None) -> str:
         h = hashlib.sha256()
         for n, p in sorted(module.state_dict().items()):
+            value = p.detach().cpu().contiguous()
+            if floating_dtype is not None and value.is_floating_point():
+                value = value.to(dtype=floating_dtype)
             h.update(n.encode())
-            h.update(p.detach().cpu().contiguous().half().numpy().tobytes())
+            h.update(value.contiguous().numpy().tobytes())
         return h.hexdigest()
 
-    expected_half = state_sha_half(initial.rgb_backbone)
-    loaded_half = state_sha_half(model.rgb_backbone)
-    rgb_ok = loaded_half == expected_half
+    reconstructed_initial_fp32 = state_sha(initial.rgb_backbone)
+    manifest_initial_fp32 = manifest.get("initial_rgb_backbone_sha256")
+    initial_pin_ok = reconstructed_initial_fp32 == manifest_initial_fp32
+    expected_half = state_sha(initial.rgb_backbone, floating_dtype=torch.float16)
+    loaded_half = state_sha(model.rgb_backbone, floating_dtype=torch.float16)
+    half_checkpoint_equal = loaded_half == expected_half
+    final_fp32_recorded = gate.get("final_rgb_backbone_fp32_sha256")
+    exact_fp32_available = isinstance(final_fp32_recorded, str)
+    exact_fp32_equal = (
+        final_fp32_recorded == manifest_initial_fp32
+        if exact_fp32_available else None
+    )
+    rgb_ok = bool(
+        initial_pin_ok
+        and (exact_fp32_equal if exact_fp32_available else half_checkpoint_equal)
+    )
 
     if tag == "C0":
         passed = rgb_ok and q_finite and aux_delta < UNIFIED_ACTIVE_THRESHOLD \
@@ -227,13 +238,30 @@ def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
     if not passed:
         raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
     return {
-        "rgb_backbone_unchanged": rgb_ok,
-        "rgb_sha_recomputed_from_last_pt": rgb_ok,
+        "rgb_backbone_evidence_passed": rgb_ok,
+        "rgb_backbone_unchanged_exact": exact_fp32_equal,
+        "rgb_runtime_boolean_recorded_not_trusted":
+            gate.get("rgb_backbone_unchanged"),
+        "rgb_manifest_initial_fp32_sha256": manifest_initial_fp32,
+        "rgb_reconstructed_initial_fp32_sha256": reconstructed_initial_fp32,
+        "rgb_reconstructed_initial_matches_manifest": initial_pin_ok,
+        "rgb_expected_half_sha256": expected_half,
+        "rgb_loaded_last_pt_half_sha256": loaded_half,
+        "rgb_backbone_half_checkpoint_equal": half_checkpoint_equal,
+        "rgb_final_fp32_sha256_recorded": final_fp32_recorded,
+        "rgb_exact_fp32_reverification_available": exact_fp32_available,
+        "rgb_exact_fp32_equal": exact_fp32_equal,
+        "rgb_reverification_limit": (
+            None if exact_fp32_available else
+            "historical step4_update_gate.json has no final fp32 state SHA; "
+            "float16 checkpoint equality cannot exclude sub-fp16-ULP updates"
+        ),
         "aux_encoder_global_rel_l2": aux_delta,
         "gate_max_abs_change": gate_delta,
         "proj_weight_norms": proj,
         "proj_bias_norms": proj_bias,
         "q_finite_and_bounded": q_finite,
+        "q_stats_validation": q_check,
         "q_stats_recomputed": q,
         "threshold_formula_ok": threshold_ok,
         "threshold_recorded": recorded_threshold,
@@ -456,8 +484,10 @@ def main() -> None:
             raise RuntimeError(f"B1_INTEGRITY_FAIL: {tag}")
         gate = _read(run_dir / "step4_update_gate.json")
         manifest_early = _read(run_dir / "manifest.json")
-        g6[tag] = _verify_g6(tag, gate, run_dir, manifest_early,
-                             a.expected_epochs)
+        g6[tag] = _verify_g6(
+            tag, gate, run_dir, manifest_early, a.expected_epochs,
+            expected_q_count=len(contract["train_ids"]),
+        )
         integrity[tag] = rep
 
     # ---- provenance blocks (v2 closeout) ----
@@ -615,7 +645,7 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-b-summary-v2.1",
+        "schema": "step4-f1-b-summary-v2.2",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
         "posthoc_file_sha256": _sha(posthoc_path),

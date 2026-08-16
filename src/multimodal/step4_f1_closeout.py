@@ -6,6 +6,7 @@ import statistics
 
 
 LOO_SCHEMA = "step4-f1-loo-v1"
+Q_STAT_ORDER_TOL = 1e-6
 
 DELTA_SPECS = {
     "SOFT_minus_C0": ("SOFT", "NORMAL", "C0", "NORMAL"),
@@ -16,6 +17,22 @@ DELTA_SPECS = {
     "FIXED_N_minus_Z": ("FIXED", "NORMAL", "FIXED", "ZERO-AUX"),
     "FIXED_N_minus_S": ("FIXED", "NORMAL", "FIXED", "SHUFFLE"),
 }
+
+
+def f1_b_loo_output_name(checkpoint: str) -> str:
+    if checkpoint == "last.pt":
+        return "step4_f1_b_loo.json"
+    if checkpoint == "best.pt":
+        return "step4_f1_b_loo_best.json"
+    raise ValueError(f"unsupported checkpoint: {checkpoint}")
+
+
+def f1_b_checkpoint_sha_key(tag: str, checkpoint: str) -> str:
+    if checkpoint == "last.pt":
+        return f"{tag}_last_pt_sha256"
+    if checkpoint == "best.pt":
+        return f"{tag}_best_pt_sha256"
+    raise ValueError(f"unsupported checkpoint: {checkpoint}")
 
 
 def compute_f1_deltas(folds: dict, val_ids: list[str]) -> dict:
@@ -55,11 +72,46 @@ def _valid_metric(value) -> bool:
     )
 
 
-def validate_f1_loo_payload(loo: dict) -> dict:
+def validate_effective_q_stats(stats: dict, expected_count: int) -> dict:
+    """Re-judge recorded q aggregates without trusting the producer boolean."""
+    errors: list[str] = []
+    if not isinstance(expected_count, int) or expected_count <= 0:
+        raise ValueError(f"expected_count must be positive, got {expected_count}")
+    try:
+        count = int(stats.get("count", -1))
+        mean = float(stats["mean"])
+        minimum = float(stats["min"])
+        maximum = float(stats["max"])
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return {"passed": False, "errors": ["Q_STATS_MALFORMED"]}
+    if count != expected_count:
+        errors.append(f"Q_COUNT_MISMATCH:{count}!={expected_count}")
+    if not all(math.isfinite(value) for value in (mean, minimum, maximum)):
+        errors.append("Q_STATS_NONFINITE")
+    elif not (
+        0.0 <= minimum <= maximum <= 1.0
+        and minimum - Q_STAT_ORDER_TOL <= mean <= maximum + Q_STAT_ORDER_TOL
+    ):
+        errors.append("Q_STATS_ORDER_OR_BOUNDS_INVALID")
+    return {
+        "passed": not errors,
+        "errors": errors,
+        "count": count,
+        "mean": mean,
+        "min": minimum,
+        "max": maximum,
+        "order_tolerance": Q_STAT_ORDER_TOL,
+    }
+
+
+def validate_f1_loo_payload(loo: dict,
+                            expected_checkpoint: str = "last.pt") -> dict:
+    if expected_checkpoint not in {"last.pt", "best.pt"}:
+        raise ValueError(f"unsupported checkpoint: {expected_checkpoint}")
     errors: list[str] = []
     if loo.get("schema") != LOO_SCHEMA:
         errors.append("SCHEMA_MISMATCH")
-    if loo.get("checkpoint") != "last.pt":
+    if loo.get("checkpoint") != expected_checkpoint:
         errors.append("CHECKPOINT_MISMATCH")
     val_ids = list(loo.get("val_ids") or [])
     folds = loo.get("folds") or {}

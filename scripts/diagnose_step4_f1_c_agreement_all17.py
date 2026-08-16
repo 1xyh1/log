@@ -89,7 +89,7 @@ def main() -> None:
     map_sha = hashlib.sha256(map_payload.encode("utf-8")).hexdigest()
 
     report = {
-        "schema": "step4-f1-c-agreement-all17-v1",
+        "schema": "step4-f1-c-agreement-all17-v1.1",
         "provenance": {
             "soft_last_pt_sha256": _sha(run_dir / "weights" / "last.pt"),
             "soft_best_pt_sha256": _sha(run_dir / "weights" / "best.pt"),
@@ -107,8 +107,13 @@ def main() -> None:
                 ROOT / "src" / "multimodal" / "step3_eval_utils.py"),
             "causality_interventions_sha256": _sha(
                 ROOT / "src" / "multimodal" / "causality_interventions.py"),
+            "run_integrity_sha256": _sha(
+                ROOT / "src" / "multimodal" / "run_integrity.py"),
             "all17_shuffle_map_sha256": map_sha,
+            "torch_version": torch.__version__,
+            "ultralytics_version": __import__("ultralytics").__version__,
         },
+        "all17_shuffle_map": shuffle_map,
         "all17": {},
         "growth_drift": {},
     }
@@ -190,7 +195,7 @@ def main() -> None:
 
     out_dir = ROOT / "reports" / "step4_f1_c_agreement"
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / "agreement_all17_growth.json"
+    out = out_dir / "agreement_all17_growth_v1_1.json"
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("->", out)

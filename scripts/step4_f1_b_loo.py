@@ -20,6 +20,8 @@ from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 from multimodal.step4_f1_closeout import (  # noqa: E402
     LOO_SCHEMA,
     compute_f1_deltas,
+    f1_b_checkpoint_sha_key,
+    f1_b_loo_output_name,
     validate_f1_loo_payload,
 )
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
@@ -34,6 +36,19 @@ MODEL_SPECS = {
     "FIXED": {"aux_mode": "ir", "gate_mode": "fixed_one", "group": "B1-I-fixed"},
     "SOFT": {"aux_mode": "ir", "gate_mode": "learned", "group": "B1-I-soft"},
 }
+
+
+def _loo_output_path(project: Path, checkpoint: str) -> Path:
+    """Preserve the frozen last.pt filename; suffix diagnostic best.pt only."""
+    return project / f1_b_loo_output_name(checkpoint)
+
+
+def _checkpoint_provenance(runs: dict[str, Path], checkpoint: str) -> dict:
+    return {
+        f1_b_checkpoint_sha_key(tag, checkpoint):
+            _sha(path / "weights" / checkpoint)
+        for tag, path in runs.items()
+    }
 
 
 def _load(run_dir: Path, device, expected: dict, checkpoint: str = "last.pt"):
@@ -125,8 +140,7 @@ def main() -> None:
         "val_ids": val_ids,
         "runs": {tag: str(path) for tag, path in runs.items()},
         "provenance": {
-            **{f"{tag}_ckpt_sha256": _sha(path / "weights" / a.checkpoint)
-               for tag, path in runs.items()},
+            **_checkpoint_provenance(runs, a.checkpoint),
             "contract_sha256": _sha(contract_path),
             "loo_source_sha256": _sha(Path(__file__)),
             "eval_core_sha256": _sha(
@@ -194,19 +208,12 @@ def main() -> None:
               f"SOFT={rows['SOFT']['NORMAL']:.4f}", flush=True)
 
     result["deltas"] = compute_f1_deltas(result["folds"], val_ids)
-    if a.checkpoint == "last.pt":
-        proof = validate_f1_loo_payload(result)
-    else:
-        # best.pt is diagnostic-only; the shared F1 payload validator enforces
-        # the frozen last.pt primary protocol, so re-check the payload math
-        # locally without the checkpoint constraint.
-        recomputed = compute_f1_deltas(result["folds"], val_ids)
-        proof = {"passed": recomputed == result["deltas"],
-                 "errors": [] if recomputed == result["deltas"]
-                 else ["DELTA_MISMATCH"]}
+    proof = validate_f1_loo_payload(
+        result, expected_checkpoint=a.checkpoint
+    )
     if not proof["passed"]:
         raise RuntimeError(f"F1_LOO_PAYLOAD_SELF_CHECK_FAILED: {proof['errors']}")
-    out = project / f"step4_f1_b_loo_{a.checkpoint.removesuffix('.pt')}.json"
+    out = _loo_output_path(project, a.checkpoint)
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_F1_LOO: {out}")
     out.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")

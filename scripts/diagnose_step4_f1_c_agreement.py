@@ -103,7 +103,7 @@ def main() -> None:
     assert assert_valid_shuffle_map(shuffle_map, val_ids_early)
 
     report = {
-        "schema": "step4-f1-c-agreement-diagnosis-v1",
+        "schema": "step4-f1-c-agreement-diagnosis-v1.1",
         "role": "diagnostic only; no AP re-evaluation",
         "provenance": {
             "soft_last_pt_sha256": _sha(run_dir / "weights" / "last.pt"),
@@ -120,10 +120,17 @@ def main() -> None:
                 ROOT / "src" / "multimodal" / "causality_interventions.py"),
             "corruption_view_sha256": _sha(
                 ROOT / "src" / "multimodal" / "step4_f1_interventions.py"),
+            "step3_eval_utils_sha256": _sha(
+                ROOT / "src" / "multimodal" / "step3_eval_utils.py"),
+            "run_integrity_sha256": _sha(
+                ROOT / "src" / "multimodal" / "run_integrity.py"),
             "val6_shuffle_map_sha256": hashlib.sha256(
                 json.dumps(shuffle_map, sort_keys=True, ensure_ascii=False)
                 .encode("utf-8")).hexdigest(),
+            "torch_version": torch.__version__,
+            "ultralytics_version": __import__("ultralytics").__version__,
         },
+        "val6_shuffle_map": shuffle_map,
         "checkpoints": {},
     }
 
@@ -200,7 +207,7 @@ def main() -> None:
 
     out_dir = ROOT / "reports" / "step4_f1_c_agreement"
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / "agreement_diagnosis.json"
+    out = out_dir / "agreement_diagnosis_v1_1.json"
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("->", out)
