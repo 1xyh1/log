@@ -71,3 +71,63 @@ def broadcast_gate(q: torch.Tensor, reference: torch.Tensor) -> torch.Tensor:
     if q.ndim != 2 or q.shape[1] != 1 or q.shape[0] != reference.shape[0]:
         raise ValueError(f"gate {tuple(q.shape)} is incompatible with {tuple(reference.shape)}")
     return q.to(device=reference.device, dtype=reference.dtype)[:, :, None, None]
+
+
+def per_sample_log_rms(feature: torch.Tensor) -> torch.Tensor:
+    """Per-sample log-RMS over (C,H,W), matching the A1 audit formula exactly:
+    log(sqrt(mean(A^2)) + 1e-9).  NEVER reduce across the batch."""
+    if feature.ndim != 4:
+        raise ValueError(f"expected BCHW feature, got {tuple(feature.shape)}")
+    ms = feature.pow(2).mean(dim=(1, 2, 3))
+    return torch.log(ms.sqrt() + 1e-9)
+
+
+class MagnitudeReliabilityGate(PyramidScalarReliabilityGate):
+    """F1-C magnitude gate: the original gate plus a zero-init magnitude branch.
+
+    Equivalent form required by the reviewer so the ORIGINAL norm/fc1/fc2
+    initialization and RNG order are untouched:
+
+        z = LayerNorm(concat(GAP(A3), GAP(A4), GAP(A5)))
+        m = [logRMS(A3), logRMS(A4), logRMS(A5)]
+        h = old_fc1(z) + magnitude_fc(m)     # magnitude_fc: no bias, zero-init
+        q = sigmoid(old_fc2(SiLU(h)))
+
+    With the magnitude branch at zero the outputs are bitwise identical to the
+    original gate, so the model's initial detector still equals the RGB
+    reference exactly.
+    """
+
+    def __init__(self, channels: Sequence[int] = (256, 256, 512),
+                 hidden: int = 64, final_weight_std: float = 1e-3):
+        super().__init__(channels=channels, hidden=hidden,
+                         final_weight_std=final_weight_std)
+        # Constructed AFTER the original layers, so the original RNG order is
+        # preserved; zero-init consumes no RNG afterwards.
+        self.magnitude_fc = nn.Linear(3, int(hidden), bias=False)
+        nn.init.zeros_(self.magnitude_fc.weight)
+
+    def forward(self, features: Sequence[torch.Tensor]) -> torch.Tensor:
+        if len(features) != len(self.channels):
+            raise ValueError(
+                f"expected {len(self.channels)} pyramid levels, got {len(features)}"
+            )
+        pooled = []
+        mags = []
+        batch = None
+        for idx, (feature, channels) in enumerate(zip(features, self.channels)):
+            if feature.ndim != 4 or feature.shape[1] != channels:
+                raise ValueError(
+                    f"level {idx} expected BCHW with C={channels}, got "
+                    f"{tuple(feature.shape)}"
+                )
+            if batch is None:
+                batch = feature.shape[0]
+            elif feature.shape[0] != batch:
+                raise ValueError("pyramid levels have different batch sizes")
+            pooled.append(F.adaptive_avg_pool2d(feature, 1).flatten(1))
+            mags.append(per_sample_log_rms(feature))
+        descriptor = self.norm(torch.cat(pooled, dim=1))
+        magnitude = torch.stack(mags, dim=1)  # (B, 3)
+        h = self.fc1(descriptor) + self.magnitude_fc(magnitude)
+        return torch.sigmoid(self.fc2(self.act(h)))

@@ -36,13 +36,17 @@ class Step4F1IRGateModel(Step4F0Model):
                  gate_hidden: int = 64):
         if aux_mode not in {"zero", "ir"}:
             raise ValueError("F1 is IR-only; Depth must not be stacked into this stage")
-        if gate_mode not in {"learned", "fixed_one"}:
+        if gate_mode not in {"learned", "fixed_one", "magnitude"}:
             raise ValueError(f"unknown gate_mode: {gate_mode}")
         super().__init__(reference, aux_encoder=aux_encoder,
                          freeze_rgb_backbone=freeze_rgb_backbone,
                          aux_mode=aux_mode)
         self.gate_mode = gate_mode
-        self.reliability_gate = PyramidScalarReliabilityGate(hidden=gate_hidden)
+        if gate_mode == "magnitude":
+            from multimodal.reliability_gate import MagnitudeReliabilityGate
+            self.reliability_gate = MagnitudeReliabilityGate(hidden=gate_hidden)
+        else:
+            self.reliability_gate = PyramidScalarReliabilityGate(hidden=gate_hidden)
         self._gate_override: float | None = None
         self._last_raw_gate: torch.Tensor | None = None
         self._last_effective_gate: torch.Tensor | None = None
