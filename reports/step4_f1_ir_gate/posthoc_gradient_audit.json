@@ -1,0 +1,44 @@
+{
+  "schema": "step4-f1-posthoc-gradient-audit-v1",
+  "checks": {
+    "gate_detach_semantics": {
+      "aux_grad_from_gate_path": 0.0,
+      "gate_params_grad_active": true,
+      "gate_grad_max": 0.9999110698699951,
+      "passed": true
+    },
+    "residual_path_active": {
+      "aux_grad_via_residual": 1.7525300979614258,
+      "proj_weight_grad_max": 1.5059746503829956,
+      "passed": true
+    },
+    "gate_moved_in_training_from_g6": true,
+    "c0_projection_neutral": {
+      "proj_weight_norms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proj_bias_norms": [
+        1.6137345255629043e-06,
+        9.938080438587349e-07,
+        1.4624409914176795e-06
+      ],
+      "bias_neutral_threshold": 0.0001,
+      "weights_exactly_zero": true,
+      "biases_neutral": true,
+      "passed": true
+    }
+  },
+  "provenance": {
+    "soft_last_pt_sha256": "1fb04cd1b84150a0e1f869e28a12c76004da17c96788198df9b6ffb66f33626d",
+    "c0_last_pt_sha256": "a5d1254a119e46e9fb7cf54530fbdcc96c57bd09e7c424a03fe45c5e3b30087d",
+    "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+    "script_sha256": "68162600e6aa28ea413460c64ea40a7cde6c4c9a3705a4e8427d0fed6ce415c4",
+    "model_source_sha256": "339fe8c89a3af4d2151f8199373ebbff312ca38d06f1e73977d7cb825c4eb93a",
+    "gate_source_sha256": "2d8069fa6d466fd5c3a37675d57f4b4863eb871bbf35cd298634deb1e44e3b01",
+    "dataset_source_sha256": "a831012a199b91e737ce77c745739d773182457caab4cfeb8984af097b517c6c",
+    "eval_core_sha256": "387eaa50a982ed61bdd21cbe3a07268880e08295ad1ba688d4f8180a321e864c"
+  },
+  "passed": true
+}
