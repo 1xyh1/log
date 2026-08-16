@@ -487,10 +487,40 @@ def main() -> None:
         adaptive_gain_identity is not None
         and abs(adaptive_gain_identity) < 0.01
     )
+    # Reviewer v4 wording rule: the conclusion must weigh the whole degraded
+    # set, not the clean condition alone.  ADAPTIVITY is only "proven" when a
+    # majority of degraded conditions show a clear positive learned-QCLEAN
+    # gain; otherwise constant attenuation DOMINATES and adaptivity remains
+    # unproven.
+    degraded_qclean_deltas = [
+        row["learned_minus_force_qclean_map50_95"]
+        for key, row in conditions.items() if key != "identity:0.00"
+    ]
+    n_pos = sum(1 for d in degraded_qclean_deltas if d > 0)
+    n_neg = sum(1 for d in degraded_qclean_deltas if d < 0)
+    n_same = sum(1 for d in degraded_qclean_deltas if abs(d) <= 1e-6)
+    mean_deg = statistics.mean(degraded_qclean_deltas)
+    max_gain = max(degraded_qclean_deltas)
+    max_gain_condition = max(
+        (key for key in conditions if key != "identity:0.00"),
+        key=lambda key: conditions[key]["learned_minus_force_qclean_map50_95"])
+    if n_pos >= 9 and mean_deg > 0.001:
+        a0_conclusion = ("ADAPTIVITY SHOWS DEGRADED-SET SUPPORT; B1 "
+                         "confirmation still required")
+    else:
+        a0_conclusion = "CONSTANT ATTENUATION DOMINATES; ADAPTIVITY IS NOT PROVEN"
     a0_block = {
         "force_qclean_value": a0.get("force_qclean_value"),
         "identity_learned_minus_qclean": adaptive_gain_identity,
         "adaptive_contribution_near_zero": adaptive_near_zero,
+        "degraded_learned_minus_qclean_stats": {
+            "mean": mean_deg,
+            "n_positive": n_pos,
+            "n_negative": n_neg,
+            "n_same": n_same,
+            "max_gain": max_gain,
+            "max_gain_condition": max_gain_condition,
+        },
         "macro_mean_learned_ap": a0.get("macro_mean_learned_ap"),
         "worst_condition": a0.get("worst_condition"),
         "worst_condition_learned_ap": a0.get("worst_condition_learned_ap"),
@@ -498,10 +528,7 @@ def main() -> None:
             a0.get("corruptions_where_gate_beats_force_qclean"),
         "family_q_severity_monotonicity":
             a0.get("family_q_severity_monotonicity"),
-        "conclusion": ("CONSTANT ATTENUATION HELPS, ADAPTIVITY CONTRIBUTES "
-                       "NOTHING" if adaptive_near_zero else
-                       "adaptive contribution not yet ruled out; F1-B test "
-                       "required"),
+        "conclusion": a0_conclusion,
     }
 
     # ---- best/late10 stability block (reviewer: IR gain is checkpoint-sensitive)
@@ -558,7 +585,7 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-summary-v3",
+        "schema": "step4-f1-summary-v4",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
         "posthoc_file_sha256": _sha(posthoc_path),
