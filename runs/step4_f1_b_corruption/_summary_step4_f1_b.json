@@ -1,9 +1,9 @@
 {
-  "schema": "step4-f1-b-summary-v2",
+  "schema": "step4-f1-b-summary-v2.1",
   "loo_file_sha256": "3354b56573fd26533628feba453f0ee77cf1b353f378d50bff1d4c84da87adfb",
   "quality_file_sha256": "dd98d919d83d825d5d3ff0a99521c4252fd95ab89d295d49abed6aa301209037",
   "posthoc_file_sha256": "707b48d3e2ca947274352add2b71deecfe47dfd34dac163f7e7e0b9a5b627f08",
-  "summarize_source_sha256": "16ea241b8c0e9d8c2f5e4e0debb1cc0a1a7a31687c41ca3574da0135cfe33961",
+  "summarize_source_sha256": "be03ee9fb2f80bf2c9506c0dfe73e50961f729f2f7dead26128adbe364a4d063",
   "integrity": {
     "C0": {
       "run_dir": "runs\\step4_f1_b_corruption\\B1-C0",
@@ -628,6 +628,7 @@
   "g6_rejudged": {
     "C0": {
       "rgb_backbone_unchanged": true,
+      "rgb_sha_recomputed_from_last_pt": true,
       "aux_encoder_global_rel_l2": 0.00020458213732720625,
       "gate_max_abs_change": 1.276656985282898e-05,
       "proj_weight_norms": [
@@ -641,10 +642,19 @@
         1.3982212294649798e-06
       ],
       "q_finite_and_bounded": true,
+      "q_stats_recomputed": {
+        "count": 11,
+        "mean": 0.4999832808971405,
+        "min": 0.4999832510948181,
+        "max": 0.4999832510948181
+      },
+      "threshold_formula_ok": true,
+      "threshold_recorded": 0.001,
       "passed": true
     },
     "FIXED": {
       "rgb_backbone_unchanged": true,
+      "rgb_sha_recomputed_from_last_pt": true,
       "aux_encoder_global_rel_l2": 0.005848853319681938,
       "gate_max_abs_change": 0.0,
       "proj_weight_norms": [
@@ -658,10 +668,19 @@
         2.510375679776189e-06
       ],
       "q_finite_and_bounded": true,
+      "q_stats_recomputed": {
+        "count": 11,
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "threshold_formula_ok": true,
+      "threshold_recorded": 0.001,
       "passed": true
     },
     "SOFT": {
       "rgb_backbone_unchanged": true,
+      "rgb_sha_recomputed_from_last_pt": true,
       "aux_encoder_global_rel_l2": 0.005074676777353829,
       "gate_max_abs_change": 0.003867807798087597,
       "proj_weight_norms": [
@@ -675,6 +694,14 @@
         1.8713648387347348e-05
       ],
       "q_finite_and_bounded": true,
+      "q_stats_recomputed": {
+        "count": 11,
+        "mean": 0.5002719163894653,
+        "min": 0.4928756058216095,
+        "max": 0.5073831081390381
+      },
+      "threshold_formula_ok": true,
+      "threshold_recorded": 0.001,
       "passed": true
     }
   },
