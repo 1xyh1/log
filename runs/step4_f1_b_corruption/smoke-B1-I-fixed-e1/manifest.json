@@ -1,12 +1,12 @@
 {
   "schema": "step4-f1-b-manifest-v1",
-  "group": "B1-C0",
-  "physical_run_name": "smoke-B1-C0-e1",
+  "group": "B1-I-fixed",
+  "physical_run_name": "smoke-B1-I-fixed-e1",
   "run_kind": "smoke",
   "model": "Step4F1IRGateModel (RGB anchor + q*zero-init IR residual)",
-  "aux_mode": "zero",
-  "gate_mode": "learned",
-  "dataset_group": "C0-N",
+  "aux_mode": "ir",
+  "gate_mode": "fixed_one",
+  "dataset_group": "C1-I",
   "corruption_schedule": {
     "kind_probs": {
       "clean": 0.5,
@@ -52,5 +52,5 @@
   "g9_evidence": "actual_corruption_yield_v1",
   "ultralytics_version": "8.4.56",
   "torch_version": "2.5.1+cu121",
-  "created_at": "2026-08-16T09:42:26.629023+08:00"
+  "created_at": "2026-08-16T09:42:38.216709+08:00"
 }
