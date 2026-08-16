@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-"""F1-B closeout summarizer: G9 per-sample re-judgement + B1 promotion rules.
+"""F1-B closeout summarizer v2: full provenance re-verification + G9 per-sample
+re-judgement + B1 promotion rules.
 
-Unlike the F1 summarizer this one does NOT trust the G9 trace booleans: it
-re-reads step4_b1_g9_records.jsonl, recomputes the canonical records SHA,
-re-derives every per-sample assertion (IR before/after semantics, RGB/Depth/
-label/bbox untouched, kind/severity validity), recomputes kind counts and the
-expected schedule, and only then applies the frozen B1 promotion rules
-(clean SOFT > C0 and > separately-trained FIXED with LOO, macro and worst-4
-degraded AP above BOTH fixed and the B1-soft's own FORCE-QCLEAN, learned-
-QCLEAN positive on >= 9/17 degraded conditions).
+v2 closeout (reviewer 2026-08-17, no retraining): the summarizer now executes
+its own verification instead of trusting recorded booleans —
+  * eval/manifest/LOO/quality/posthoc provenance blocks are re-hashed;
+  * G6 is re-judged from the recorded measurements (passed=true is NOT trusted);
+  * G9 records are re-judged per sample (schedule, SHAs, semantics, IDs);
+  * last/best/late10 stability block records the mid-training paired-signal
+    peak and its decay to last.pt.
 """
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import math
@@ -36,6 +37,8 @@ GROUP_SPECS = {
     "FIXED": {"group": "B1-I-fixed", "aux_mode": "ir", "gate_mode": "fixed_one"},
     "SOFT": {"group": "B1-I-soft", "aux_mode": "ir", "gate_mode": "learned"},
 }
+
+UNIFIED_ACTIVE_THRESHOLD = 1e-3
 
 
 def _read(path: Path):
@@ -67,9 +70,204 @@ def _require_sha(recorded, path: Path, label: str) -> dict:
     return {"recorded": recorded, "current": current, "match": True}
 
 
+# --------------------------------------------------------------------------
+# Provenance verification blocks (v2 closeout)
+# --------------------------------------------------------------------------
+
+def _verify_eval(eval_obj: dict, run_dir: Path, contract_path: Path,
+                 expected: dict) -> dict:
+    if eval_obj.get("schema") != "step4-f1-b-stock-validator-semantics-v1":
+        raise RuntimeError(f"bad B1 eval schema in {run_dir}")
+    for key in ("group", "aux_mode", "gate_mode"):
+        if eval_obj.get(key) != expected[key]:
+            raise RuntimeError(
+                f"B1_EVAL_IDENTITY_MISMATCH {run_dir.name}:{key} "
+                f"recorded={eval_obj.get(key)} expected={expected[key]}"
+            )
+    p = eval_obj.get("provenance") or {}
+    targets = {
+        "results_sha256": run_dir / "results.csv",
+        "args_sha256": run_dir / "args.yaml",
+        "last_pt_sha256": run_dir / "weights" / "last.pt",
+        "best_pt_sha256": run_dir / "weights" / "best.pt",
+        "manifest_sha256": run_dir / "manifest.json",
+        "contract_sha256": contract_path,
+        "evaluator_source_sha256": ROOT / "scripts" / "eval_step4_f1_b_causality.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "step3_eval_utils_sha256": ROOT / "src" / "multimodal" / "step3_eval_utils.py",
+        "trimodal_dataset_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+        "f0_model_source_sha256": ROOT / "src" / "multimodal" / "step4_f0_model.py",
+        "aux_encoder_source_sha256": ROOT / "src" / "multimodal" / "aux_encoder.py",
+        "feature_fusion_source_sha256": ROOT / "src" / "multimodal" / "feature_fusion.py",
+        "trainability_source_sha256": ROOT / "src" / "multimodal" / "trainability.py",
+        "causality_interventions_sha256": ROOT / "src" / "multimodal" / "causality_interventions.py",
+        "raw_sample_index_sha256": ROOT / "src" / "multimodal" / "raw_sample_index.py",
+    }
+    checks = {
+        key: _require_sha(p.get(key), path, f"{run_dir.name}:{key}")
+        for key, path in targets.items()
+    }
+    return checks
+
+
+def _verify_manifest(manifest: dict, tag: str, run_dir: Path,
+                     contract_path: Path, audit_path: Path,
+                     expected_epochs: int) -> dict:
+    expected = GROUP_SPECS[tag]
+    identity = {
+        "schema": "step4-f1-b-manifest-v1",
+        "group": expected["group"],
+        "physical_run_name": run_dir.name,
+        "run_kind": "formal",
+        "aux_mode": expected["aux_mode"],
+        "gate_mode": expected["gate_mode"],
+        "expected_epochs": expected_epochs,
+    }
+    for key, value in identity.items():
+        if manifest.get(key) != value:
+            raise RuntimeError(
+                f"B1_MANIFEST_IDENTITY_MISMATCH {tag}:{key} "
+                f"recorded={manifest.get(key)} expected={value}"
+            )
+    targets = {
+        "contract_sha256": contract_path,
+        "pretrain_audit_sha256": audit_path,
+        "runner_source_sha256": ROOT / "scripts" / "run_step4_f1_b.py",
+        "corruption_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_b_corruption.py",
+        "f1_v4_summary_sha256": ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json",
+        "design_freeze_sha256": ROOT / "docs" / "step4_f1_b_corruption" / "DESIGN_FREEZE.md",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "f0_model_source_sha256": ROOT / "src" / "multimodal" / "step4_f0_model.py",
+        "aux_encoder_source_sha256": ROOT / "src" / "multimodal" / "aux_encoder.py",
+        "feature_fusion_source_sha256": ROOT / "src" / "multimodal" / "feature_fusion.py",
+        "trainability_source_sha256": ROOT / "src" / "multimodal" / "trainability.py",
+        "dataset_source_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+        "preprocess_source_sha256": ROOT / "src" / "multimodal" / "modality_preprocess.py",
+        "quality_mask_source_sha256": ROOT / "src" / "multimodal" / "modality_quality.py",
+    }
+    return {
+        key: _require_sha(manifest.get(key), path, f"MANIFEST:{tag}:{key}")
+        for key, path in targets.items()
+    }
+
+
+def _verify_g6(tag: str, gate: dict) -> dict:
+    """Re-judge the recorded update evidence; passed=true is NOT trusted."""
+    rgb_ok = gate.get("rgb_backbone_unchanged") is True
+    q_ok = gate.get("q_finite_and_bounded") is True
+    aux_delta = float(gate.get("aux_encoder_global_rel_l2", float("nan")))
+    gate_delta = float(gate.get("gate_max_abs_change", float("nan")))
+    proj = [float(v) for v in gate.get("proj_weight_norms", [])]
+    proj_bias = [float(v) for v in gate.get("proj_bias_norms", [])]
+    if (len(proj) != 3 or len(proj_bias) != 3
+            or not all(math.isfinite(v) for v in proj + proj_bias)):
+        raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
+    if tag == "C0":
+        passed = rgb_ok and q_ok and aux_delta < UNIFIED_ACTIVE_THRESHOLD \
+            and max(proj) == 0.0
+    elif tag == "FIXED":
+        q = gate.get("last_epoch_effective_q") or {}
+        passed = (rgb_ok and q_ok and aux_delta > UNIFIED_ACTIVE_THRESHOLD
+                  and min(proj) > 0.0
+                  and q.get("min") == 1.0 and q.get("max") == 1.0)
+    else:
+        passed = (rgb_ok and q_ok and aux_delta > UNIFIED_ACTIVE_THRESHOLD
+                  and min(proj) > 0.0 and gate_delta > 0.0)
+    if not passed:
+        raise RuntimeError(f"B1_G6_REJUDGE_FAIL {tag}: {gate}")
+    return {
+        "rgb_backbone_unchanged": rgb_ok,
+        "aux_encoder_global_rel_l2": aux_delta,
+        "gate_max_abs_change": gate_delta,
+        "proj_weight_norms": proj,
+        "proj_bias_norms": proj_bias,
+        "q_finite_and_bounded": q_ok,
+        "passed": True,
+    }
+
+
+def _verify_quality(report: dict, run_dir: Path, fixed_dir: Path,
+                    contract_path: Path) -> dict:
+    if report.get("schema") != "step4-f1-b-ir-quality-probe-v1":
+        raise RuntimeError("bad B1 quality schema")
+    if report.get("checkpoint") != "last.pt":
+        raise RuntimeError("B1 closeout requires last.pt quality evidence")
+    p = report.get("provenance") or {}
+    targets = {
+        "checkpoint_sha256": run_dir / "weights" / "last.pt",
+        "fixed_checkpoint_sha256": fixed_dir / "weights" / "last.pt",
+        "contract_sha256": contract_path,
+        "script_sha256": ROOT / "scripts" / "eval_step4_f1_b_quality.py",
+        "interventions_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_interventions.py",
+        "evaluator_core_sha256": ROOT / "src" / "multimodal" / "step3_eval_utils.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "dataset_source_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+    }
+    return {
+        key: _require_sha(p.get(key), path, f"QUALITY:{key}")
+        for key, path in targets.items()
+    }
+
+
+def _verify_posthoc(posthoc: dict, runs: dict[str, Path],
+                    contract_path: Path) -> dict:
+    if posthoc.get("schema") != "step4-f1-b-posthoc-gradient-audit-v1" \
+            or posthoc.get("passed") is not True:
+        raise RuntimeError("B1_POSTHOC_AUDIT_NOT_PASSED")
+    p = posthoc.get("provenance") or {}
+    targets = {
+        "soft_last_pt_sha256": runs["SOFT"] / "weights" / "last.pt",
+        "c0_last_pt_sha256": runs["C0"] / "weights" / "last.pt",
+        "contract_sha256": contract_path,
+        "script_sha256": ROOT / "scripts" / "audit_step4_f1_b_posthoc.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "dataset_source_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+        "eval_core_sha256": ROOT / "src" / "multimodal" / "step3_eval_utils.py",
+    }
+    checks = {
+        key: _require_sha(p.get(key), path, f"POSTHOC:{key}")
+        for key, path in targets.items()
+    }
+    return checks
+
+
+def _verify_loo(loo: dict, runs: dict[str, Path], contract_path: Path) -> dict:
+    if loo.get("schema") != LOO_SCHEMA or loo.get("checkpoint") != "last.pt":
+        raise RuntimeError("bad B1 LOO schema/checkpoint")
+    p = loo.get("provenance") or {}
+    targets = {
+        **{f"{tag}_last_pt_sha256": path / "weights" / "last.pt"
+           for tag, path in runs.items()},
+        "contract_sha256": contract_path,
+        "loo_source_sha256": ROOT / "scripts" / "step4_f1_b_loo.py",
+        "eval_core_sha256": ROOT / "src" / "multimodal" / "step3_eval_utils.py",
+        "dataset_source_sha256": ROOT / "src" / "multimodal" / "trimodal_dataset.py",
+        "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "gate_source_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
+        "f1_closeout_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_closeout.py",
+        "f0_model_source_sha256": ROOT / "src" / "multimodal" / "step4_f0_model.py",
+        "aux_encoder_source_sha256": ROOT / "src" / "multimodal" / "aux_encoder.py",
+        "feature_fusion_source_sha256": ROOT / "src" / "multimodal" / "feature_fusion.py",
+        "trainability_source_sha256": ROOT / "src" / "multimodal" / "trainability.py",
+        "causality_interventions_sha256": ROOT / "src" / "multimodal" / "causality_interventions.py",
+        "raw_sample_index_sha256": ROOT / "src" / "multimodal" / "raw_sample_index.py",
+    }
+    return {
+        key: _require_sha(p.get(key), path, f"LOO:{key}")
+        for key, path in targets.items()
+    }
+
+
+# --------------------------------------------------------------------------
+# G9 per-sample re-judgement
+# --------------------------------------------------------------------------
+
 def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
                seed: int, contract: dict) -> dict:
-    """Per-sample G9 re-judgement: trust nothing, recompute everything."""
     train_ids = list(contract["train_ids"])
     errors: list[str] = []
     per_group: dict[str, dict] = {}
@@ -81,7 +279,6 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
         aux_mode = GROUP_SPECS[tag]["aux_mode"]
         if len(trace) != expected_epochs:
             errors.append(f"G9_TRACE_ROW_COUNT:{tag}:{len(trace)}")
-        # group records by epoch
         by_epoch: dict[int, list] = {}
         for r in records:
             by_epoch.setdefault(int(r["epoch"]), []).append(r)
@@ -127,7 +324,6 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
                         or r["severity"] != expected_sched["severity"]):
                     errors.append(f"G9_SCHEDULE_MISMATCH:{tag}:e{epoch}:{sid}")
                     continue
-                sid = str(r["sample_id"])
                 if r["kind"] not in TRAIN_KINDS:
                     errors.append(f"G9_KIND_INVALID:{tag}:e{epoch}:{sid}")
                     continue
@@ -161,12 +357,8 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
             if row.get("kind_counts") != counts:
                 errors.append(f"G9_KIND_COUNTS:{tag}:e{epoch}")
             cross_epoch_expected.setdefault(epoch, set()).add(expected)
-        per_group[tag] = {
-            "trace_rows": len(trace),
-            "record_rows": len(records),
-        }
+        per_group[tag] = {"trace_rows": len(trace), "record_rows": len(records)}
 
-    # cross-group expected schedule identical per epoch
     for epoch, shas in cross_epoch_expected.items():
         if len(shas) != 1:
             errors.append(f"G9_CROSS_GROUP_SCHEDULE:e{epoch}")
@@ -187,6 +379,7 @@ def main() -> None:
     a = p.parse_args()
     project = Path(a.project)
     contract_path = Path(a.contract)
+    audit_path = ROOT / "reports" / "step4_f1_b_corruption" / "pretrain_audit.json"
     contract = _read(contract_path)
     runs = {
         "C0": project / a.c0_run,
@@ -197,6 +390,7 @@ def main() -> None:
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_B1_SUMMARY: {out}")
 
+    # ---- integrity + G6 re-judgement ----
     integrity = {}
     g6 = {}
     for tag, run_dir in runs.items():
@@ -208,25 +402,32 @@ def main() -> None:
         if not rep["passed"]:
             raise RuntimeError(f"B1_INTEGRITY_FAIL: {tag}")
         gate = _read(run_dir / "step4_update_gate.json")
-        if gate.get("passed") is not True:
-            raise RuntimeError(f"B1_G6_FAIL: {tag}")
-        g6[tag] = gate
+        g6[tag] = _verify_g6(tag, gate)
         integrity[tag] = rep
 
+    # ---- provenance blocks (v2 closeout) ----
     evals = {
         tag: _read(run_dir / "eval_step4_f1_b_causality.json")
         for tag, run_dir in runs.items()
     }
-    for tag, ev in evals.items():
-        if ev.get("schema") != "step4-f1-b-stock-validator-semantics-v1":
-            raise RuntimeError(f"bad B1 eval schema in {tag}")
-        expected = GROUP_SPECS[tag]
-        for key in ("group", "aux_mode", "gate_mode"):
-            if ev.get(key) != expected[key]:
-                raise RuntimeError(
-                    f"B1_EVAL_IDENTITY_MISMATCH {tag}:{key} "
-                    f"recorded={ev.get(key)} expected={expected[key]}"
-                )
+    provenance = {
+        tag: _verify_eval(evals[tag], runs[tag], contract_path, GROUP_SPECS[tag])
+        for tag in runs
+    }
+    manifests = {tag: _read(run_dir / "manifest.json") for tag, run_dir in runs.items()}
+    manifest_provenance = {
+        tag: _verify_manifest(manifests[tag], tag, runs[tag], contract_path,
+                              audit_path, a.expected_epochs)
+        for tag in runs
+    }
+    matched_initial_state = {}
+    for key in ("initial_model_state_sha256", "initial_rgb_backbone_sha256",
+                "initial_aux_encoder_sha256", "initial_fusion_sha256",
+                "initial_gate_sha256"):
+        values = {tag: manifests[tag].get(key) for tag in runs}
+        if not (all(values.values()) and len(set(values.values())) == 1):
+            raise RuntimeError(f"B1_INITIAL_STATE_MISMATCH {key}: {values}")
+        matched_initial_state[key] = {"values": values, "passed": True}
 
     g8 = g8_check(runs, a.expected_epochs)
     if not g8["passed"]:
@@ -243,16 +444,26 @@ def main() -> None:
     loo_validation = validate_f1_loo_payload(loo)
     if not loo_validation["passed"]:
         raise RuntimeError(f"B1_LOO_PAYLOAD_INVALID: {loo_validation['errors']}")
+    loo_provenance = _verify_loo(loo, runs, contract_path)
 
     quality_path = runs["SOFT"] / "eval_step4_f1_b_quality_last.json"
     if not quality_path.exists():
         raise RuntimeError("B1_LAST_PT_QUALITY_EVIDENCE_MISSING")
     quality = _read(quality_path)
-    if quality.get("schema") != "step4-f1-b-ir-quality-probe-v1":
-        raise RuntimeError("bad B1 quality schema")
+    quality_provenance = _verify_quality(quality, runs["SOFT"], runs["FIXED"],
+                                         contract_path)
+
+    posthoc_path = ROOT / "reports" / "step4_f1_ir_gate" / "posthoc_gradient_audit_b.json"
+    if not posthoc_path.exists():
+        raise RuntimeError("B1_POSTHOC_AUDIT_MISSING")
+    posthoc = _read(posthoc_path)
+    posthoc_checks = _verify_posthoc(posthoc, runs, contract_path)
 
     def score(tag, variant):
         return float(evals[tag]["last.pt"][variant]["val"]["map50_95"])
+
+    def best_score(tag, variant):
+        return float(evals[tag]["best.pt"][variant]["val"]["map50_95"])
 
     c0 = score("C0", "NORMAL")
     fixed = score("FIXED", "NORMAL")
@@ -265,6 +476,32 @@ def main() -> None:
     causal_pass = normal > c0 and normal > zero and normal > shuffle
     loo_pass = soft_loo["median"] > 0 and soft_loo["positive_folds"] >= 4
     beats_fixed = normal > fixed and gate_loo["median"] > 0
+
+    # ---- stability block (reviewer: mid-training paired signal decays) ----
+    stability = {}
+    for tag in ("C0", "FIXED", "SOFT"):
+        stability[tag] = {
+            "last_val": score(tag, "NORMAL"),
+            "best_val": best_score(tag, "NORMAL"),
+            "best_N_minus_Z": best_score(tag, "NORMAL") - best_score(tag, "ZERO-AUX"),
+            "best_N_minus_S": best_score(tag, "NORMAL") - best_score(tag, "SHUFFLE"),
+            "late10": evals[tag].get("late10", {}),
+        }
+    with open(runs["SOFT"] / "results.csv", encoding="utf-8", newline="") as f:
+        soft_rows = [float(r["metrics/mAP50-95(B)"])
+                     for r in csv.DictReader(f)
+                     if r.get("metrics/mAP50-95(B)")]
+    best_epoch = soft_rows.index(max(soft_rows)) + 1
+    stability_block = {
+        "per_group": stability,
+        "soft_best_epoch_1based": best_epoch,
+        "soft_best_epoch_val": max(soft_rows),
+        "soft_last_val": soft_rows[-1],
+        "note": ("paired IR signal appears at mid-training checkpoints but does "
+                 "not persist to the preregistered last.pt; the adaptive gate "
+                 "was never proven better than constant QCLEAN — best.pt is "
+                 "auxiliary evidence and does not overturn the last.pt verdict"),
+    }
 
     # ---- B1 promotion rules (frozen DESIGN_FREEZE section 6) ----
     conditions = quality.get("conditions") or {}
@@ -323,15 +560,25 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-b-summary-v1",
+        "schema": "step4-f1-b-summary-v2",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
+        "posthoc_file_sha256": _sha(posthoc_path),
         "summarize_source_sha256": _sha(Path(__file__)),
         "integrity": integrity,
-        "g6": g6,
+        "provenance": provenance,
+        "manifest_provenance": manifest_provenance,
+        "matched_initial_state": matched_initial_state,
+        "g6_rejudged": g6,
         "g8": g8,
         "g9_rejudged": g9,
         "loo_payload_validation": loo_validation,
+        "loo_provenance": loo_provenance,
+        "quality_provenance": quality_provenance,
+        "posthoc": {"checks": posthoc["checks"],
+                    "provenance_checks": posthoc_checks,
+                    "passed": posthoc["passed"]},
+        "stability_block": stability_block,
         "primary_last_val6": {
             "C0": c0,
             "FIXED_NORMAL": fixed,
@@ -340,6 +587,8 @@ def main() -> None:
             "SOFT_SHUFFLE": shuffle,
             "SOFT_minus_C0": normal - c0,
             "SOFT_minus_FIXED": normal - fixed,
+            "SOFT_N_minus_Z": normal - zero,
+            "SOFT_N_minus_S": normal - shuffle,
         },
         "soft_loo": soft_loo,
         "soft_minus_fixed_loo": gate_loo,
