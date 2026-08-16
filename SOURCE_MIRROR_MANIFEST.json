@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-16T08:21:58.876796+08:00",
+  "generated_at_local": "2026-08-16T08:28:42.828246+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -38,9 +38,9 @@
       "mtime_ns": 1786838637426084800
     },
     "docs/step4_f1_ir_gate/EXECUTION_GUIDE.md": {
-      "sha256": "0a01c370d201fe5c55ea8c54b639216b7f5e5e42c8aa6837723575ad26c99bbc",
-      "size_bytes": 4762,
-      "mtime_ns": 1786838637426084800
+      "sha256": "e0ab678e1a79ecc1504276b8804555f7a2c1d32aaa0aa4a53e155c29ca73c813",
+      "size_bytes": 6266,
+      "mtime_ns": 1786840080366785100
     },
     "docs/step4_f1_ir_gate/PAPER_MAPPING.md": {
       "sha256": "95ca3d367f3814dbe229a8ee408976be3f1604ff75144d8b9437c94b232338f8",
@@ -924,7 +924,6 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_f1_ir_gate/feedback/2026-08-16_smoke-F1-C0-e1.md",
-    "scripts/run_step4_f1_ir_gate.py"
+    "docs/step4_f1_ir_gate/EXECUTION_GUIDE.md"
   ]
 }

@@ -103,3 +103,22 @@ G6、G8、LOO 与 last.pt 质量报告全部通过后写出。三个 eval/LOO/su
 源码镜像 watcher 已允许同步 `runs/step4_f1_ir_gate/` 下的 JSON、JSONL、CSV、YAML、
 TXT 和 `results.png`；`.pt`、数据集和其他图像仍被白名单规则排除。把本分支合并到受
 watcher 管理的本机源码前，先确认本机源码也已包含同一批文件，避免双向目录状态不一致。
+
+## 7. 勘误：gate 输入的 detach 语义（2026-08-16 本机 smoke 后追加）
+
+本机 smoke 发现 F1-C0 的 projection weight 不再保持精确零，根因是 gate 环路的
+"数值尘埃放大"：gate 输入 `LayerNorm(GAP(A))` 在零输入处梯度为 1/√eps≈1000；proj
+bias 先动 → `dL/dq ≠ 0` → A 经 gate 环路获得非零梯度 → 零初始化 projection 得到
+~1e-11 级梯度 → MuSGD 的 Muon 分支把任何非零动量按 `X /= X.norm()+eps` 归一化放大为
+O(1) 更新。修复为：**gate 每次仍读取当前 A（无信息变化），但 gate 路径不向 aux
+encoder 反传梯度；gate 参数仍然更新，aux encoder 仅由 residual 路径训练**。这是优化
+图变更，不是数值修复，正式判级前需按下列清单分别验证：
+
+- grad(aux_from_gate) == 0（受控 backward：冻结其余、只留 gate 回传路径，aux 参数梯度为零）；
+- soft gate 参数确实更新（G6 `gate_max_abs_change > 0`）；
+- active aux 仍通过 residual 路径更新（G6 `aux_encoder_global_rel_l2` 超过衰减阈值）；
+- F1-C0 的 projection weight 精确为零、bias 保持衰减级中性（G6 记录 `proj_bias_norms`）。
+
+G6 的 epoch 线性缩放阈值（`1e-3 × epochs/80`）**只用于 smoke 的训练链活性检查**，
+不用于判断模型质量；80-epoch formal 保持原始 1e-3 门槛。汇总时必须同时保存缩放公式、
+epoch 数、实测变化量与 control noise floor，供审阅者核对。
