@@ -36,8 +36,13 @@ SYNC_PREFIXES = (
 )
 
 # 结果目录：只同步文本与必要图（results.png = val 曲线）。
-# 收窄到 Step3/Step4（避免历史 step1/step2 结果淹没 log 仓库）。
-RESULTS_PREFIXES = ("runs/step3_earlyfusion/", "runs/step4_f0/")
+# 收窄到当前冻结/在研实验（避免历史 step1/step2 结果淹没 log 仓库）。
+# F1 仍沿用下方文本/必要曲线白名单；checkpoint 和原始数据继续明确屏蔽。
+RESULTS_PREFIXES = (
+    "runs/step3_earlyfusion/",
+    "runs/step4_f0/",
+    "runs/step4_f1_ir_gate/",
+)
 RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
 RESULTS_FIGURE_NAMES = {"results.png"}
 
