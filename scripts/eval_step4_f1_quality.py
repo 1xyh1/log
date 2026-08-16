@@ -52,13 +52,25 @@ def _gate_values(model, dataset, device) -> dict:
 
 
 def _summary(values: dict) -> dict:
-    q = [float(row["raw_q"]) for row in values.values()]
+    q = sorted(float(row["raw_q"]) for row in values.values())
+    n = len(q)
+    if n == 0:
+        return {"n": 0, "mean": None, "std": None, "min": None, "max": None,
+                "p10": None, "p50": None, "p90": None}
+
+    def quantile(p: float) -> float:
+        # nearest-rank quantile (n small, avoid interpolation surprises)
+        return q[min(n - 1, max(0, round(p * (n - 1))))]
+
     return {
-        "n": len(q),
+        "n": n,
         "mean": statistics.mean(q),
-        "median": statistics.median(q),
-        "min": min(q),
-        "max": max(q),
+        "std": statistics.stdev(q) if n > 1 else 0.0,
+        "min": q[0],
+        "max": q[-1],
+        "p10": quantile(0.10),
+        "p50": quantile(0.50),
+        "p90": quantile(0.90),
     }
 
 
