@@ -71,7 +71,10 @@ def _sha_text(text: str) -> str:
 
 
 def _sha_json(obj) -> str:
-    payload = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    # sort_keys=True matches the canonical schedule_sha256 serialization so
+    # expected/actual schedule anchors compare byte-identically (G9).
+    payload = json.dumps(obj, ensure_ascii=False, separators=(",", ":"),
+                         sort_keys=True)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
