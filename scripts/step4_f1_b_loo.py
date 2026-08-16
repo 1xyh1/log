@@ -30,9 +30,9 @@ def _sha(path: Path) -> str:
 
 
 MODEL_SPECS = {
-    "C0": {"aux_mode": "zero", "gate_mode": "learned", "group": "F1-C0"},
-    "FIXED": {"aux_mode": "ir", "gate_mode": "fixed_one", "group": "F1-I-fixed"},
-    "SOFT": {"aux_mode": "ir", "gate_mode": "learned", "group": "F1-I-soft"},
+    "C0": {"aux_mode": "zero", "gate_mode": "learned", "group": "B1-C0"},
+    "FIXED": {"aux_mode": "ir", "gate_mode": "fixed_one", "group": "B1-I-fixed"},
+    "SOFT": {"aux_mode": "ir", "gate_mode": "learned", "group": "B1-I-soft"},
 }
 
 
@@ -85,12 +85,12 @@ def main() -> None:
         integrity = inspect_step3_run(
             run_dir, a.expected_epochs, require_weights=True,
             trace_name="step4_g8_trace.jsonl", growth_name="step4_growth.jsonl",
-            eval_name="eval_step4_f1_causality.json",
+            eval_name="eval_step4_f1_b_causality.json",
         )
         if not integrity.to_dict()["passed"]:
             raise RuntimeError(f"REFUSE_F1_LOO_INCOHERENT_RUN: {tag}")
         eval_obj = json.loads(
-            (run_dir / "eval_step4_f1_causality.json").read_text(encoding="utf-8")
+            (run_dir / "eval_step4_f1_b_causality.json").read_text(encoding="utf-8")
         )
         if eval_obj.get("group") != MODEL_SPECS[tag]["group"]:
             raise RuntimeError(
@@ -195,7 +195,7 @@ def main() -> None:
     proof = validate_f1_loo_payload(result)
     if not proof["passed"]:
         raise RuntimeError(f"F1_LOO_PAYLOAD_SELF_CHECK_FAILED: {proof['errors']}")
-    out = project / "step4_f1_loo.json"
+    out = project / "step4_f1_b_loo.json"
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_F1_LOO: {out}")
     out.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")

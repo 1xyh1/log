@@ -94,6 +94,12 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
             if len(recs) != len(train_ids):
                 errors.append(f"G9_RECORDS_COUNT:{tag}:e{epoch}")
                 continue
+            # ID set must be complete and duplicate-free
+            rec_ids = [str(r["sample_id"]) for r in recs]
+            if sorted(rec_ids) != sorted(train_ids):
+                errors.append(f"G9_ID_SET_INCOMPLETE:{tag}:e{epoch}")
+            if len(set(rec_ids)) != len(rec_ids):
+                errors.append(f"G9_ID_DUPLICATES:{tag}:e{epoch}")
             # canonical records SHA
             canonical_rows = [
                 {k: r[k] for k in (
@@ -106,8 +112,21 @@ def rejudge_g9(run_dirs: dict[str, Path], expected_epochs: int,
                                              key=lambda r: r["sample_id"]))
             if row.get("records_sha256") != canonical_sha:
                 errors.append(f"G9_RECORDS_SHA_MISMATCH:{tag}:e{epoch}")
+            # actual schedule SHA recomputed from the records themselves
+            actual_rows = [{"sample_id": str(r["sample_id"]), "kind": r["kind"],
+                            "severity": r["severity"]} for r in recs]
+            recomputed_actual_sha = _sha_json(
+                sorted(actual_rows, key=lambda r: r["sample_id"]))
+            if row.get("actual_schedule_sha256") != recomputed_actual_sha:
+                errors.append(f"G9_ACTUAL_SCHEDULE_SHA:{tag}:e{epoch}")
             # per-sample re-judgement
             for r in recs:
+                sid = str(r["sample_id"])
+                expected_sched = sample_schedule(seed, epoch, sid)
+                if (r["kind"] != expected_sched["kind"]
+                        or r["severity"] != expected_sched["severity"]):
+                    errors.append(f"G9_SCHEDULE_MISMATCH:{tag}:e{epoch}:{sid}")
+                    continue
                 sid = str(r["sample_id"])
                 if r["kind"] not in TRAIN_KINDS:
                     errors.append(f"G9_KIND_INVALID:{tag}:e{epoch}:{sid}")

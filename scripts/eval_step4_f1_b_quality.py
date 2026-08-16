@@ -82,6 +82,7 @@ def _evaluate_with_override(model, dataset, device, names, override):
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--run-name", default="B1-I-soft")
+    p.add_argument("--fixed-run", default="B1-I-fixed")
     p.add_argument("--project", default="runs/step4_f1_b_corruption")
     p.add_argument("--contract", default=OUT_DEFAULT)
     p.add_argument("--device", default="0")
@@ -91,17 +92,19 @@ def main() -> None:
     a = p.parse_args()
     device = evu._as_device(a.device)
     run_dir = Path(a.project) / a.run_name
+    fixed_dir = Path(a.project) / a.fixed_run
     out = run_dir / f"eval_step4_f1_b_quality_{a.checkpoint.removesuffix('.pt')}.json"
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_B1_QUALITY_EVAL: {out}")
-    integrity = inspect_step3_run(
-        run_dir, a.expected_epochs, require_weights=True,
-        trace_name="step4_g8_trace.jsonl", growth_name="step4_growth.jsonl",
-        eval_name="eval_step4_f1_b_causality.json",
-    )
-    if not integrity.to_dict()["passed"]:
-        print(json.dumps(integrity.to_dict(), indent=2, ensure_ascii=False))
-        raise RuntimeError("REFUSE_QUALITY_EVAL_INCOHERENT_RUN")
+    for label, rd in (("soft", run_dir), ("fixed", fixed_dir)):
+        integrity = inspect_step3_run(
+            rd, a.expected_epochs, require_weights=True,
+            trace_name="step4_g8_trace.jsonl", growth_name="step4_growth.jsonl",
+            eval_name="eval_step4_f1_b_causality.json",
+        )
+        if not integrity.to_dict()["passed"]:
+            print(json.dumps(integrity.to_dict(), indent=2, ensure_ascii=False))
+            raise RuntimeError(f"REFUSE_QUALITY_EVAL_INCOHERENT_RUN: {label}")
 
     contract_path = Path(a.contract)
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
@@ -111,9 +114,18 @@ def main() -> None:
     )
     model = (ck.get("ema") or ck.get("model")).float().eval().to(device)
     if getattr(model, "gate_mode", None) != "learned":
-        raise RuntimeError("quality probe requires the learned F1-I-soft checkpoint")
+        raise RuntimeError("quality probe requires the learned B1-I-soft checkpoint")
     if getattr(model, "aux_mode", None) != "ir":
         raise RuntimeError("quality probe requires an IR auxiliary checkpoint")
+    # Separately-trained B1-I-fixed model for the macro/worst-4 comparison
+    # (reviewer: force_q1 on the soft checkpoint is NOT the frozen protocol's
+    # "fixed" arm).
+    fixed_ck = torch.load(
+        fixed_dir / "weights" / a.checkpoint, map_location="cpu", weights_only=False
+    )
+    fixed_model = (fixed_ck.get("ema") or fixed_ck.get("model")).float().eval().to(device)
+    if getattr(fixed_model, "gate_mode", None) != "fixed_one":
+        raise RuntimeError("quality probe requires the B1-I-fixed checkpoint")
     names = dict(CLASS_NAMES)
 
     conditions = [("identity", 0.0), ("zero", 1.0)]
