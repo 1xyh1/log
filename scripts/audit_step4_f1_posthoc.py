@@ -48,7 +48,12 @@ def _any_grad(module) -> bool:
 def load_model(run_dir: Path, device: torch.device):
     ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu",
                     weights_only=False)
-    return (ck.get("ema") or ck.get("model")).float().eval().to(device)
+    model = (ck.get("ema") or ck.get("model")).float().eval().to(device)
+    # Ultralytics saves final checkpoints with requires_grad=False on all
+    # parameters; the posthoc audit needs live autograd for its controlled
+    # backward checks.
+    model.requires_grad_(True)
+    return model
 
 
 def check_gate_detach(model, img, device) -> dict:
