@@ -183,15 +183,35 @@ def _verify_g6(tag: str, gate: dict, run_dir: Path, manifest: dict,
     expected_threshold = 1e-3 * (expected_epochs / 80.0)
     threshold_ok = math.isclose(recorded_threshold, expected_threshold,
                                 rel_tol=1e-9)
-    # RGB backbone SHA recomputed from the actual checkpoint
+    # RGB backbone SHA recomputed from the actual checkpoint.  Ultralytics
+    # saves last.pt in float16, so the frozen fp32 bytes cannot be recovered
+    # exactly from disk; compare at half precision via a round-trip of the
+    # rebuilt initial model instead (fp32 frozen identity implies identical
+    # half-precision bytes).
+    from multimodal.early_fusion_yolo26 import (  # noqa: F401
+        MODEL_INIT_SEED, build_reference_3ch)
+    from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel
+
     ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu",
                     weights_only=False)
     model = (ck.get("ema") or ck.get("model"))
-    h = hashlib.sha256()
-    for n, p in sorted(model.rgb_backbone.state_dict().items()):
-        h.update(n.encode())
-        h.update(p.detach().cpu().contiguous().numpy().tobytes())
-    rgb_ok = h.hexdigest() == manifest.get("initial_rgb_backbone_sha256")
+    rng_state = torch.random.get_rng_state()
+    torch.manual_seed(MODEL_INIT_SEED)
+    initial = Step4F1IRGateModel(
+        build_reference_3ch(), aux_mode=GROUP_SPECS[tag]["aux_mode"],
+        gate_mode=GROUP_SPECS[tag]["gate_mode"])
+    torch.random.set_rng_state(rng_state)
+
+    def state_sha_half(module) -> str:
+        h = hashlib.sha256()
+        for n, p in sorted(module.state_dict().items()):
+            h.update(n.encode())
+            h.update(p.detach().cpu().contiguous().half().numpy().tobytes())
+        return h.hexdigest()
+
+    expected_half = state_sha_half(initial.rgb_backbone)
+    loaded_half = state_sha_half(model.rgb_backbone)
+    rgb_ok = loaded_half == expected_half
 
     if tag == "C0":
         passed = rgb_ok and q_finite and aux_delta < UNIFIED_ACTIVE_THRESHOLD \
@@ -595,7 +615,7 @@ def main() -> None:
         next_step = "stop before spatial gate/QAF and inspect intervention signs"
 
     summary = {
-        "schema": "step4-f1-b-summary-v2",
+        "schema": "step4-f1-b-summary-v2.1",
         "loo_file_sha256": _sha(loo_path),
         "quality_file_sha256": _sha(quality_path),
         "posthoc_file_sha256": _sha(posthoc_path),
