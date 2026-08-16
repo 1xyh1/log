@@ -73,7 +73,7 @@ def scan_targets(scan: dict) -> dict:
         "best_minus_second_margin": best_ap - second_ap,
         "scan_range": scan_range,
         "identifiable_for_best_q": scan_range >= SCAN_IDENTIFIABLE_RANGE,
-        "q0_minus_q1_map50_95": parsed[0.0] - parsed[1.0],
+        "q0_minus_q1_map50_95": round(parsed[0.0] - parsed[1.0], 6),
         "scan": {f"{q:.2f}": parsed[q] for q in Q_GRID},
     }
 

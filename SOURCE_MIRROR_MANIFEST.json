@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T01:55:51.337746+08:00",
+  "generated_at_local": "2026-08-17T01:57:43.535503+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -948,9 +948,9 @@
       "mtime_ns": 1786844201170872000
     },
     "src/multimodal/step4_f1_c_descriptor_audit.py": {
-      "sha256": "c807e8a7240105e792ea9fb532e4815776b6d3f4749f907fd33b8f6a1e0d43a5",
-      "size_bytes": 4698,
-      "mtime_ns": 1786902893940559600
+      "sha256": "01c620d4694306a2424ef1d7518368024ae07fe2eafc8d8a24fe1908f5887944",
+      "size_bytes": 4708,
+      "mtime_ns": 1786903018497395000
     },
     "src/multimodal/step4_f1_closeout.py": {
       "sha256": "595d589c41a29291582374566176f65b93f1f05bc11ab1b65fba2f7bb078b526",
@@ -1094,17 +1094,6 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_f1_c_descriptor_v2/EXECUTION_GUIDE.md",
-    "docs/step4_f1_c_descriptor_v2/NEXT_EXPERIMENT_DRAFT.md",
-    "docs/step4_f1_c_descriptor_v2/feedback/README.md",
-    "scripts/diagnose_step4_f1_c_agreement.py",
-    "scripts/diagnose_step4_f1_c_agreement_all17.py",
-    "scripts/diagnose_step4_f1_c_descriptors.py",
-    "scripts/step4_f1_b_loo.py",
-    "scripts/summarize_step4_f1_b.py",
-    "src/multimodal/step4_f1_c_descriptor_audit.py",
-    "src/multimodal/step4_f1_closeout.py",
-    "tests/test_step4_f1_c_descriptor_audit.py",
-    "tests/test_step4_f1_closeout.py"
+    "src/multimodal/step4_f1_c_descriptor_audit.py"
   ]
 }
