@@ -36,8 +36,8 @@ MODEL_SPECS = {
 }
 
 
-def _load(run_dir: Path, device, expected: dict):
-    ck = torch.load(run_dir / "weights" / "last.pt", map_location="cpu",
+def _load(run_dir: Path, device, expected: dict, checkpoint: str = "last.pt"):
+    ck = torch.load(run_dir / "weights" / checkpoint, map_location="cpu",
                     weights_only=False)
     model = (ck.get("ema") or ck.get("model")).float().eval().to(device)
     if (getattr(model, "aux_mode", None) != expected["aux_mode"]
@@ -69,6 +69,8 @@ def main() -> None:
     p.add_argument("--contract", default=OUT_DEFAULT)
     p.add_argument("--device", default="0")
     p.add_argument("--expected-epochs", type=int, default=80)
+    p.add_argument("--checkpoint", choices=["last.pt", "best.pt"],
+                   default="last.pt")
     p.add_argument("--overwrite", action="store_true")
     a = p.parse_args()
     device = evu._as_device(a.device)
@@ -112,18 +114,18 @@ def main() -> None:
         raise RuntimeError("F1 fixed/soft shuffle maps differ")
 
     models = {
-        tag: _load(run_dir, device, MODEL_SPECS[tag])
+        tag: _load(run_dir, device, MODEL_SPECS[tag], a.checkpoint)
         for tag, run_dir in runs.items()
     }
     result = {
         "schema": LOO_SCHEMA,
-        "checkpoint": "last.pt",
+        "checkpoint": a.checkpoint,
         "method": ("val6 leave-one-out; excluded image leaves the anchor set only; "
                    "the full deterministic donor mapping is retained"),
         "val_ids": val_ids,
         "runs": {tag: str(path) for tag, path in runs.items()},
         "provenance": {
-            **{f"{tag}_last_pt_sha256": _sha(path / "weights" / "last.pt")
+            **{f"{tag}_ckpt_sha256": _sha(path / "weights" / a.checkpoint)
                for tag, path in runs.items()},
             "contract_sha256": _sha(contract_path),
             "loo_source_sha256": _sha(Path(__file__)),
@@ -195,7 +197,7 @@ def main() -> None:
     proof = validate_f1_loo_payload(result)
     if not proof["passed"]:
         raise RuntimeError(f"F1_LOO_PAYLOAD_SELF_CHECK_FAILED: {proof['errors']}")
-    out = project / "step4_f1_b_loo.json"
+    out = project / f"step4_f1_b_loo_{a.checkpoint.removesuffix('.pt')}.json"
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_F1_LOO: {out}")
     out.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
