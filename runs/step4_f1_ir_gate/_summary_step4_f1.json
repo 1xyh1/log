@@ -1,9 +1,9 @@
 {
-  "schema": "step4-f1-summary-v2",
+  "schema": "step4-f1-summary-v3",
   "loo_file_sha256": "e207e7ecc0d5c1dbe78bfb321e9ee45019c035d54a7a07604a9d2a363756e393",
-  "quality_file_sha256": "0558c5a356639d77e1326715ccdd18d29ea9d0974b8670606e3f1baa16d30b89",
+  "quality_file_sha256": "1c739976a3f81f3b63205be887560f15c486bf6fa5ce864a565d91586453bd2f",
   "posthoc_file_sha256": "f18f9cc2841c4953c3650d5aca968a0f60b0244afa3e7e81474a3690a150f575",
-  "summarize_source_sha256": "0517d5377b68dd96cd554526d90deebc33878961516eccf3186bb94702a164fe",
+  "summarize_source_sha256": "bd811cf65dd3952fc4e64553798a205b4d2a7de0ea33ed0984ab1c8a39708c31",
   "f1_closeout_source_sha256": "ff63ecc36047ffeb7304ef669d5805e54e7ab851516918a99b62acf082fedbb8",
   "shared_closeout_source_sha256": "07fd2bf308d652fe477b64921941e756cf8576779dc44606eb7b8e8463888a92",
   "integrity": {
@@ -1034,8 +1034,8 @@
       "match": true
     },
     "script_sha256": {
-      "recorded": "afe9b8b711f67c3c5cd3e0f8d5088595aced5c86c723b967cd75eb599bdca891",
-      "current": "afe9b8b711f67c3c5cd3e0f8d5088595aced5c86c723b967cd75eb599bdca891",
+      "recorded": "0e0e6fbea826c3fcd1607c59840068b11d0e5f1affbd68bebffeaf0a4c6d87bd",
+      "current": "0e0e6fbea826c3fcd1607c59840068b11d0e5f1affbd68bebffeaf0a4c6d87bd",
       "match": true
     },
     "interventions_source_sha256": {
@@ -1148,6 +1148,126 @@
       }
     },
     "passed": true
+  },
+  "a0_constant_vs_adaptive": {
+    "force_qclean_value": 0.5039910276730856,
+    "identity_learned_minus_qclean": -1.611170784099336e-05,
+    "adaptive_contribution_near_zero": true,
+    "macro_mean_learned_ap": 0.2604507394637776,
+    "worst_condition": "noise:1.00",
+    "worst_condition_learned_ap": 0.0685343149540518,
+    "corruptions_where_gate_beats_force_qclean": [
+      "contrast:0.75",
+      "noise:0.50",
+      "noise:0.75",
+      "noise:1.00",
+      "shift:0.25",
+      "shift:0.50"
+    ],
+    "family_q_severity_monotonicity": {
+      "blur": {
+        "q_sequence": [
+          0.5039910276730856,
+          0.5044946769873301,
+          0.5047663549582163,
+          0.5048926174640656,
+          0.5049896438916525
+        ],
+        "monotone_down": false,
+        "monotone_up": true,
+        "monotone_direction": "up"
+      },
+      "contrast": {
+        "q_sequence": [
+          0.5039910276730856,
+          0.5043014685312907,
+          0.5042520761489868,
+          0.5042445560296377,
+          0.5042408009370168
+        ],
+        "monotone_down": false,
+        "monotone_up": true,
+        "monotone_direction": "up"
+      },
+      "noise": {
+        "q_sequence": [
+          0.5039910276730856,
+          0.5030140082041422,
+          0.5029132962226868,
+          0.5027107099692026,
+          0.5026856064796448
+        ],
+        "monotone_down": true,
+        "monotone_up": false,
+        "monotone_direction": "down"
+      },
+      "shift": {
+        "q_sequence": [
+          0.5039910276730856,
+          0.5037152568499247,
+          0.5036368866761526,
+          0.5033696889877319,
+          0.5038511057694753
+        ],
+        "monotone_down": false,
+        "monotone_up": false,
+        "monotone_direction": "none"
+      }
+    },
+    "conclusion": "CONSTANT ATTENUATION HELPS, ADAPTIVITY CONTRIBUTES NOTHING"
+  },
+  "stability_block": {
+    "per_group": {
+      "C0": {
+        "last_val": 0.28398093447905476,
+        "best_val": 0.3194778992936888,
+        "late10": {
+          "mean": 0.2911,
+          "median": 0.2912,
+          "std": 0.0036,
+          "min": 0.284,
+          "max": 0.2982
+        }
+      },
+      "FIXED": {
+        "last_val": 0.299212481962482,
+        "best_val": 0.3175621118012423,
+        "late10": {
+          "mean": 0.2944,
+          "median": 0.2984,
+          "std": 0.0161,
+          "min": 0.249,
+          "max": 0.305
+        }
+      },
+      "SOFT": {
+        "last_val": 0.2977134801288937,
+        "best_val": 0.2998021235521236,
+        "late10": {
+          "mean": 0.2934,
+          "median": 0.2939,
+          "std": 0.0035,
+          "min": 0.2876,
+          "max": 0.2984
+        }
+      }
+    },
+    "f1_c0_last_is_late10_minimum": true,
+    "f1_c0_late10_tail": [
+      0.2982,
+      0.29184,
+      0.29315,
+      0.29292,
+      0.29086,
+      0.28877,
+      0.29148,
+      0.28986,
+      0.28969,
+      0.28396
+    ],
+    "frozen_f0_c0_r1_last_val": 0.30103284072249586,
+    "f0_c0_r1_minus_f1_fixed": 0.0018203587600138516,
+    "interpretation": "IR complementary is a candidate claim valid only under THIS F1 single seed, the preregistered last.pt and the matched learned-gate C0; best/late10 do not form consistent support and the frozen F0 control still exceeds F1-I-fixed — the fixed residual must NOT be frozen as the final competition structure"
   },
   "primary_last_val6": {
     "C0": 0.28398093447905476,

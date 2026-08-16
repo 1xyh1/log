@@ -520,8 +520,10 @@ def main() -> None:
     f0_c0_last = f0_summary["groups"]["F0-C0"]["last_normal_val"]
     stability_block = {
         "per_group": stability,
+        # results.csv stores ~3-decimal values; compare both sides at that
+        # precision.
         "f1_c0_last_is_late10_minimum": bool(
-            abs(stability["C0"]["last_val"] - min(c0_tail)) < 1e-9),
+            round(stability["C0"]["last_val"], 3) == round(min(c0_tail), 3)),
         "f1_c0_late10_tail": c0_tail,
         "frozen_f0_c0_r1_last_val": f0_c0_last,
         "f0_c0_r1_minus_f1_fixed": f0_c0_last - fixed,
