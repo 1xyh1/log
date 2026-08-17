@@ -185,7 +185,7 @@ def main() -> None:
     p.add_argument("--contract", default=OUT_DEFAULT)
     p.add_argument(
         "--audit-report",
-        default=str(ROOT / "reports" / "step4_f1_b_corruption" / "pretrain_audit.json"),
+        default=str(ROOT / "reports" / "step4_f1_c" / "pretrain_audit.json"),
     )
     p.add_argument(
         "--data", default=(
