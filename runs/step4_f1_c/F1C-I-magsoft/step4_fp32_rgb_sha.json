@@ -1,8 +1,0 @@
-{
-  "schema": "step4-f1-c-fp32-rgb-v1",
-  "group": "F1C-I-magsoft",
-  "expected_initial_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
-  "actual_final_sha256": "aeeb732a9260225991e4d01ebadc9a28f7a561415de4487294ff414c54bcf7e1",
-  "match": true,
-  "note": "recorded at on_train_end from the fp32 trainer model (pre-half checkpoint serialization)"
-}
