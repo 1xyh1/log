@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-17T19:13:10.525306+08:00",
-  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-18T04:57:05.315598+08:00",
+  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -1596,6 +1596,195 @@
       "size_bytes": 8583,
       "mtime_ns": 1786903218963165300,
       "canonical_lf_sha256": "c023614eb23fdb4d70012c025c07976caaa2341d34e8976406a139e19731163d",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/args.yaml": {
+      "sha256": "f7866b3645cb7d3ed30f659ba77f3dc1c4958a2044abc6b2df22d77e3b5f99ec",
+      "size_bytes": 1918,
+      "mtime_ns": 1786999100479351400,
+      "canonical_lf_sha256": "27e11e6bd21c8e645c12c11b5c7758e3f34781066c3b665f8ed0482d4251e5fc",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/manifest.json": {
+      "sha256": "490a87bc1c2a836d1e7a831fd09e25921e0a9aa20ef473a53b67b13db59938cc",
+      "size_bytes": 3731,
+      "mtime_ns": 1786999100535146900,
+      "canonical_lf_sha256": "173d13e1d95f84f791863e958e815f831e6b49e633be6fa646dac13b18f93e57",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/results.csv": {
+      "sha256": "14d81299697e4fa490877f748610a39e7fe18ee34961f846753de4329bba4b49",
+      "size_bytes": 12180,
+      "mtime_ns": 1786999450180855800,
+      "canonical_lf_sha256": "4a66e73f6dd30bc6649bb44b25ae23e7556669cd760fff42aaaa46f01b9c9ecf",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_f1c_g9_records.jsonl": {
+      "sha256": "38749222402bb5247eea8ed707891f7c126ca901c3599c5b30b1540157fdbccc",
+      "size_bytes": 297685,
+      "mtime_ns": 1786999450714749800,
+      "canonical_lf_sha256": "9334aa3a5dd46614740adc7d641717167742c22aff986631317c3bd92e011754",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_f1c_g9_trace.jsonl": {
+      "sha256": "3489ebc125a7e37652c2f67a1eccedbfa76d8d99d02745a46bc0f3813915a412",
+      "size_bytes": 40122,
+      "mtime_ns": 1786999450710752000,
+      "canonical_lf_sha256": "7e9f95058c2fcdf76f98bfb5c66c780abe49b8e789590f1f1a674a035fe0c69a",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_fp32_rgb_sha.json": {
+      "sha256": "67e638acfb7e673cc7de8ed3ffe1536e5dfe9a3e5de4ba48d4ef7e5ecd6cf385",
+      "size_bytes": 377,
+      "mtime_ns": 1786999450575386000,
+      "canonical_lf_sha256": "88e3b652cf426b457a0cd657ed4cbfd1eae4e6de5be5090a4534d1589585ee60",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1786999450709755100,
+      "canonical_lf_sha256": "39f802c9ca3c0599c84734ca40b8a8639dd85a55d3ca614dd63a312b6ad789b1",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_growth.jsonl": {
+      "sha256": "52002113d3722683e15f24285f352a6941e7c2d697c2083a4d857adad68def6e",
+      "size_bytes": 32584,
+      "mtime_ns": 1786999450716255800,
+      "canonical_lf_sha256": "933799cdbf6c5ddcdca816887d1854b34bdac44da8d7b2cd03be47de663f5e3b",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-C0/step4_update_gate.json": {
+      "sha256": "004c892646ee8119efd8066e721a783a26203d4d839911d97ed913ce3325bcf6",
+      "size_bytes": 778,
+      "mtime_ns": 1786999451074823800,
+      "canonical_lf_sha256": "722e983ec5fc25bc6522694cb22c6eca0ea1506238be9f1c49193a7097a934cd",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/args.yaml": {
+      "sha256": "56cff9e0b1d2f815bc7468c87563eded653827934528b8ad227423cdd9ca4084",
+      "size_bytes": 1928,
+      "mtime_ns": 1786999460276795100,
+      "canonical_lf_sha256": "53265ff38efec8ee3c255fe7ab1f1d7f47a307af458585a99eeadadbe5bf1f36",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/manifest.json": {
+      "sha256": "a334d002909cf1292a2e001dfed418563f817207dba94a35f73aae7f256e0c51",
+      "size_bytes": 3741,
+      "mtime_ns": 1786999460323155000,
+      "canonical_lf_sha256": "3ffb9556e8b8398592c68a86da8f8426a45fe5885d4c6932c8707654158b93b3",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/results.csv": {
+      "sha256": "6748264617ccda228230b3fc00b3b13cdc9b80401fcce678f590862e23e5ed71",
+      "size_bytes": 12169,
+      "mtime_ns": 1786999803258435600,
+      "canonical_lf_sha256": "7cd9f8c6ff210ef0f297636059119d7a79aec53b366de9e16d884e6c3b9c8059",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_f1c_g9_records.jsonl": {
+      "sha256": "2703e20f74ecfebe467567dce228ca83e591f8fc71c49411bb85c883ed26db83",
+      "size_bytes": 297685,
+      "mtime_ns": 1786999803782325400,
+      "canonical_lf_sha256": "20b52e4915776d082fe7701ff1bed7d7ec2f788a699966a73f595ddbfa9cf666",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_f1c_g9_trace.jsonl": {
+      "sha256": "85ad6fc8ed82de09aa3f6992fd4b35883e5dd304f4ceefd02456e3be229ca294",
+      "size_bytes": 40122,
+      "mtime_ns": 1786999803778811600,
+      "canonical_lf_sha256": "3790d820e701292faf4e0e5c91b7d2e61b1bc07cba29f0117886707c259f2b17",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_fp32_rgb_sha.json": {
+      "sha256": "ba020bf6794a134a2f8cc0b36279ebdf06b8910b546d2133971db12aff281c4a",
+      "size_bytes": 382,
+      "mtime_ns": 1786999803657156900,
+      "canonical_lf_sha256": "6e926e85372ff876870d221b7ecf620736008c0da738fb49390346b63d13233e",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1786999803777305700,
+      "canonical_lf_sha256": "39f802c9ca3c0599c84734ca40b8a8639dd85a55d3ca614dd63a312b6ad789b1",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_growth.jsonl": {
+      "sha256": "db10264ab184d1909ae32506fe86aa0dabbceeb9d7883a4e9e5d4452cc4bd5f2",
+      "size_bytes": 32758,
+      "mtime_ns": 1786999803784393300,
+      "canonical_lf_sha256": "1b112e6d02ac90f22e4f44a55d08ffbfa97e537a94ee82729828428f638f8d64",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-fixed/step4_update_gate.json": {
+      "sha256": "9f992742e6dc67496cd66351c64bc5dfdefdc2c4e419242a5f4844aeaad0011a",
+      "size_bytes": 756,
+      "mtime_ns": 1786999804095581600,
+      "canonical_lf_sha256": "0249eb027150b79373a7e89bb5e06434cc3c65a76c0a217e4366f2e9b92d76cc",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/args.yaml": {
+      "sha256": "cf082bd222bec090d00fb6aa843bd217a38e5b43a83214a4ba6c01836fcf6171",
+      "size_bytes": 1932,
+      "mtime_ns": 1786999812920293400,
+      "canonical_lf_sha256": "63f1f228f6fdf37f837c073abd025e9c170b8f5aebd58e43341684ee1d0c5319",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/manifest.json": {
+      "sha256": "5e998539c7fff54f2ace29f54d06630156893b825c73b14172b85f4e922aed01",
+      "size_bytes": 3743,
+      "mtime_ns": 1786999812958805000,
+      "canonical_lf_sha256": "dd42c45926b9fa4a413bd805f21d6585e59610a38cb2320299fee35adac8998a",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/results.csv": {
+      "sha256": "600a0b5c74d488c8019d487e22ca3b4655f4317db1338b8c50363720ebabfd5e",
+      "size_bytes": 12175,
+      "mtime_ns": 1787000158879552000,
+      "canonical_lf_sha256": "0d71a46901a9056a403879bd70008365c06ed84b9e31b60e3e7df0b03310b842",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_f1c_g9_records.jsonl": {
+      "sha256": "2703e20f74ecfebe467567dce228ca83e591f8fc71c49411bb85c883ed26db83",
+      "size_bytes": 297685,
+      "mtime_ns": 1787000159491182900,
+      "canonical_lf_sha256": "20b52e4915776d082fe7701ff1bed7d7ec2f788a699966a73f595ddbfa9cf666",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_f1c_g9_trace.jsonl": {
+      "sha256": "85ad6fc8ed82de09aa3f6992fd4b35883e5dd304f4ceefd02456e3be229ca294",
+      "size_bytes": 40122,
+      "mtime_ns": 1787000159487677300,
+      "canonical_lf_sha256": "3790d820e701292faf4e0e5c91b7d2e61b1bc07cba29f0117886707c259f2b17",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_fp32_rgb_sha.json": {
+      "sha256": "11eda3ec5f6b6f31e1570e2a7d20d3c79c135576b32dd209fa8fc7b5106fb155",
+      "size_bytes": 384,
+      "mtime_ns": 1787000159359914200,
+      "canonical_lf_sha256": "dcfb932308fadee963bfe9c1be20389beb3a9c4b554cb7aceb9aa0a4da7fe4e7",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1787000159486677100,
+      "canonical_lf_sha256": "39f802c9ca3c0599c84734ca40b8a8639dd85a55d3ca614dd63a312b6ad789b1",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_growth.jsonl": {
+      "sha256": "450c19037cec29ae6ebbecb1ec3a0d3d28455d5f9e79b3f8724c708a1f9d8c9f",
+      "size_bytes": 36371,
+      "mtime_ns": 1787000159492180300,
+      "canonical_lf_sha256": "6b71936a16f61457dd17465b04c93dfa2e74741bb7f6a0fdccd6d68bedabc7db",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/step4_update_gate.json": {
+      "sha256": "546a7fc6ef48228487defdf9f8a4017b45213af7241c7cc9bd3d5f81d86a41cc",
+      "size_bytes": 831,
+      "mtime_ns": 1787000159817314900,
+      "canonical_lf_sha256": "c0d25ecc891c5060203d28ee7f26e74a49d687b6c179a6c60315a0cc04d4ccf7",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/smoke-F1C-C0-e1-r2/args.yaml": {
@@ -3406,46 +3595,32 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_f1_c/DESIGN_FREEZE.md",
-    "docs/step4_f1_c/EXECUTION_GUIDE.md",
-    "docs/step4_f1_c/feedback/2026-08-17_external-dependency-closure.md",
-    "reports/step4_f1_c/pretrain_audit.json",
-    "reports/step4_f1_c/smoke_readiness.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/results.csv",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r4/step4_update_gate.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/results.csv",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r4/step4_update_gate.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/results.csv",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r4/step4_update_gate.json",
-    "scripts/audit_step4_f1_c.py",
-    "scripts/audit_step4_f1_c_smoke_readiness.py",
-    "scripts/eval_step4_f1_c_causality.py",
-    "scripts/eval_step4_f1_c_quality.py",
-    "scripts/run_step4_f1_c.py",
-    "scripts/step4_f1_c_loo.py",
-    "scripts/summarize_step4_f1_c.py",
-    "src/multimodal/step4_f1_c_readiness.py",
-    "tests/test_step4_f1_c_external_closure.py"
+    "runs/step4_f1_c/F1C-C0/args.yaml",
+    "runs/step4_f1_c/F1C-C0/manifest.json",
+    "runs/step4_f1_c/F1C-C0/results.csv",
+    "runs/step4_f1_c/F1C-C0/step4_f1c_g9_records.jsonl",
+    "runs/step4_f1_c/F1C-C0/step4_f1c_g9_trace.jsonl",
+    "runs/step4_f1_c/F1C-C0/step4_fp32_rgb_sha.json",
+    "runs/step4_f1_c/F1C-C0/step4_g8_trace.jsonl",
+    "runs/step4_f1_c/F1C-C0/step4_growth.jsonl",
+    "runs/step4_f1_c/F1C-C0/step4_update_gate.json",
+    "runs/step4_f1_c/F1C-I-fixed/args.yaml",
+    "runs/step4_f1_c/F1C-I-fixed/manifest.json",
+    "runs/step4_f1_c/F1C-I-fixed/results.csv",
+    "runs/step4_f1_c/F1C-I-fixed/step4_f1c_g9_records.jsonl",
+    "runs/step4_f1_c/F1C-I-fixed/step4_f1c_g9_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-fixed/step4_fp32_rgb_sha.json",
+    "runs/step4_f1_c/F1C-I-fixed/step4_g8_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-fixed/step4_growth.jsonl",
+    "runs/step4_f1_c/F1C-I-fixed/step4_update_gate.json",
+    "runs/step4_f1_c/F1C-I-magsoft/args.yaml",
+    "runs/step4_f1_c/F1C-I-magsoft/manifest.json",
+    "runs/step4_f1_c/F1C-I-magsoft/results.csv",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_f1c_g9_records.jsonl",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_f1c_g9_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_fp32_rgb_sha.json",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_g8_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_growth.jsonl",
+    "runs/step4_f1_c/F1C-I-magsoft/step4_update_gate.json"
   ]
 }
