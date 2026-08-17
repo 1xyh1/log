@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:15:53.802200+08:00",
+  "generated_at_local": "2026-08-18T05:17:49.063164+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -1676,10 +1676,10 @@
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/F1C-C0/results.csv": {
-      "sha256": "7b76eed9066b621aec893c938b7dca23f648f58d60deb713545e07eb68a9c2ed",
-      "size_bytes": 886,
-      "mtime_ns": 1787001349676710400,
-      "canonical_lf_sha256": "b56cb41a8a4bffb06c5302a7634b03fa918e67145a06ccb07ba2750955d46c1e",
+      "sha256": "12bec3d8930aeb73cdd52fd3da50e947484601e8e97405f9584429f097e21c38",
+      "size_bytes": 3447,
+      "mtime_ns": 1787001421518243400,
+      "canonical_lf_sha256": "ceb4263642d20e2f6f8ea573ac6c326f96f2d0ba60832a5dad82ec77af6e9cc6",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/F1C-I-fixed-preclosure/args.yaml": {
@@ -3903,35 +3903,6 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-C0-preclosure/args.yaml",
-    "runs/step4_f1_c/F1C-C0-preclosure/manifest.json",
-    "runs/step4_f1_c/F1C-C0-preclosure/results.csv",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_growth.jsonl",
-    "runs/step4_f1_c/F1C-C0-preclosure/step4_update_gate.json",
-    "runs/step4_f1_c/F1C-C0/args.yaml",
-    "runs/step4_f1_c/F1C-C0/manifest.json",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/args.yaml",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/manifest.json",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/results.csv",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_growth.jsonl",
-    "runs/step4_f1_c/F1C-I-fixed-preclosure/step4_update_gate.json",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/args.yaml",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/eval_step4_f1_c_quality_last.json",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/manifest.json",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/results.csv",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_growth.jsonl",
-    "runs/step4_f1_c/F1C-I-magsoft-preclosure/step4_update_gate.json"
+    "runs/step4_f1_c/F1C-C0/results.csv"
   ]
 }
