@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:43:30.455361+08:00",
+  "generated_at_local": "2026-08-18T05:49:37.413364+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -2011,6 +2011,13 @@
       "canonical_lf_sha256": "9616e1ad1e4bd2b5cdc9da4bfa4055067bb9e4cae9b953c381c445e58e41bc78",
       "source_eol": "crlf"
     },
+    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_quality_last.json": {
+      "sha256": "244b935130bcddc338678c86b1dcf3fadbfe07a4b416d3d8abad29d54a78ffbb",
+      "size_bytes": 228900,
+      "mtime_ns": 1787003312717113800,
+      "canonical_lf_sha256": "b526d651362c378e074a002fa0bb153a3706363b5a94f7a3be08bf8e67043790",
+      "source_eol": "crlf"
+    },
     "runs/step4_f1_c/F1C-I-magsoft/manifest.json": {
       "sha256": "049f14d807ae32b10f8ac5bf75344224d6b3a1d75ddde646d4e24cac29f1d202",
       "size_bytes": 3743,
@@ -2098,7 +2105,7 @@
     "runs/step4_f1_c/F1C-I-soft/eval_step4_f1_c_causality.json": {
       "sha256": "138dd457c0b7b46e64afe7229eb8aacaa2df32f435d0bc509377bdaf23559888",
       "size_bytes": 54624,
-      "mtime_ns": 1787000967046120700,
+      "mtime_ns": 1787003049940876600,
       "canonical_lf_sha256": "63349d09055e093ae7fc4a00251deb17a68b633f1639a7cc1be380f0ca16540f",
       "source_eol": "crlf"
     },
@@ -4176,6 +4183,6 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_causality.json"
+    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_quality_last.json"
   ]
 }
