@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:41:54.267696+08:00",
+  "generated_at_local": "2026-08-18T05:43:30.455361+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -2002,6 +2002,13 @@
       "size_bytes": 1932,
       "mtime_ns": 1787002269097078900,
       "canonical_lf_sha256": "63f1f228f6fdf37f837c073abd025e9c170b8f5aebd58e43341684ee1d0c5319",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_causality.json": {
+      "sha256": "e0c0964dbe0364ef91628a51465796a74bcf9961f3e20d311aacb246c2146ee3",
+      "size_bytes": 54717,
+      "mtime_ns": 1787002944709185400,
+      "canonical_lf_sha256": "9616e1ad1e4bd2b5cdc9da4bfa4055067bb9e4cae9b953c381c445e58e41bc78",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/F1C-I-magsoft/manifest.json": {
@@ -4169,9 +4176,6 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-I-fixed/eval_step4_f1_c_causality.json",
-    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_all17.json",
-    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_train.json",
-    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_val.json"
+    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_causality.json"
   ]
 }
