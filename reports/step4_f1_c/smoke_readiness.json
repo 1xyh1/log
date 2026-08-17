@@ -1,0 +1,265 @@
+{
+  "schema": "step4-f1-c-smoke-readiness-v1",
+  "smoke_runs": {
+    "C0": "runs/step4_f1_c/smoke-F1C-C0-e1-r3",
+    "FIXED": "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r3",
+    "MAGSOFT": "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r3"
+  },
+  "approved_formal_groups": [
+    "F1C-C0",
+    "F1C-I-fixed",
+    "F1C-I-magsoft",
+    "F1C-I-soft"
+  ],
+  "original_soft_smoke_required": false,
+  "evidence": {
+    "audit": {
+      "passed": true,
+      "errors": [],
+      "audit_sha256": "a2840e9d1289e36a8d178db1e3e23fa03013a719bb70fcd454226b1bd14ff9e2",
+      "current_pins": {
+        "corruption_source_sha256": "4fceb384417cf845bd8256c560a161d1392fdbad25aac51ae4cdcb9cd33b608e",
+        "runner_source_sha256": "6e56f89102aea6368623a697f9fb755d47ff6674003282de2133d5aa3fe7a733",
+        "audit_source_sha256": "c271381e6235d267fda02eed39d918fd185338e9d125cfc36ee5e67615f3dadf",
+        "gate_module_sha256": "3354ac231a452575016604588846454767fefced34fe798ffcdaebc233c2bce9",
+        "model_source_sha256": "aa2e95e06006d91d510a496a7d754820b5908ad1a8ea935edfae0ec8a38f912a",
+        "f1c_design_freeze_sha256": "0d5ef908795467a36ae997b210cd03b5b2f91b7a3fc0f0d69850af09523d1232",
+        "a1_v2_last_sha256": "7491d236b0506e016ea6cec5c1f5851bbb978a25ce644ce9a25b19dd8674965d",
+        "a1_v2_best_sha256": "95142c7684b03a742cb7e2496692fdebb43942d2138df6d6bb68755f917aec3f",
+        "b1_v22_summary_sha256": "1f73ffa9ee3754a836eb22a3136f4c3e6252d6fb23ae68523cd34ff7c43af49f"
+      }
+    },
+    "manifests": {
+      "C0": {
+        "passed": true,
+        "errors": []
+      },
+      "FIXED": {
+        "passed": true,
+        "errors": []
+      },
+      "MAGSOFT": {
+        "passed": true,
+        "errors": []
+      }
+    },
+    "args_results": {
+      "C0": {
+        "passed": true,
+        "errors": [],
+        "results_rows": 1
+      },
+      "FIXED": {
+        "passed": true,
+        "errors": [],
+        "results_rows": 1
+      },
+      "MAGSOFT": {
+        "passed": true,
+        "errors": [],
+        "results_rows": 1
+      }
+    },
+    "g6_rejudged": {
+      "C0": {
+        "passed": true,
+        "errors": [],
+        "threshold": 1.25e-05,
+        "aux_encoder_global_rel_l2": 4.3907991249972216e-07,
+        "proj_weight_norms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": {
+          "count": 11,
+          "mean": 0.4999832808971405,
+          "min": 0.4999832510948181,
+          "max": 0.4999832510948181
+        },
+        "stored_passed_ignored": true
+      },
+      "FIXED": {
+        "passed": true,
+        "errors": [],
+        "threshold": 1.25e-05,
+        "aux_encoder_global_rel_l2": 8.865843762158497e-05,
+        "proj_weight_norms": [
+          0.004534528125077486,
+          0.004293116275221109,
+          0.008387524634599686
+        ],
+        "q": {
+          "count": 11,
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "stored_passed_ignored": true
+      },
+      "MAGSOFT": {
+        "passed": true,
+        "errors": [],
+        "threshold": 1.25e-05,
+        "aux_encoder_global_rel_l2": 8.91100745107327e-05,
+        "proj_weight_norms": [
+          0.0031008957885205746,
+          0.0031936478335410357,
+          0.005475216545164585
+        ],
+        "q": {
+          "count": 11,
+          "mean": 0.5004992485046387,
+          "min": 0.49949559569358826,
+          "max": 0.5011934638023376
+        },
+        "stored_passed_ignored": true
+      }
+    },
+    "g8_rejudged": {
+      "epochs_compared": 1,
+      "row_counts": {
+        "C0": 1,
+        "FIXED": 1,
+        "MAGSOFT": 1
+      },
+      "actual_yield_fields_present_all_epochs": true,
+      "epoch_position_continuous": true,
+      "epoch_position_errors": [],
+      "expected_equals_actual_all_rows": true,
+      "expected_actual_mismatch_rows": [],
+      "actual_matches_expected_flag_all_true": true,
+      "flag_false_rows": [],
+      "order_and_flip_hashes_match": true,
+      "mismatched_epochs": [],
+      "trace_files_byte_identical": true,
+      "trace_file_sha256": {
+        "C0": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+        "FIXED": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+        "MAGSOFT": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2"
+      },
+      "errors": [],
+      "passed": true
+    },
+    "g9_rejudged": {
+      "passed": true,
+      "errors": []
+    },
+    "g10_7_fp32": {
+      "C0": {
+        "passed": true,
+        "errors": [],
+        "checks": {
+          "schema": true,
+          "group": true,
+          "expected_matches_manifest": true,
+          "actual_matches_manifest": true,
+          "match_flag": true
+        }
+      },
+      "FIXED": {
+        "passed": true,
+        "errors": [],
+        "checks": {
+          "schema": true,
+          "group": true,
+          "expected_matches_manifest": true,
+          "actual_matches_manifest": true,
+          "match_flag": true
+        }
+      },
+      "MAGSOFT": {
+        "passed": true,
+        "errors": [],
+        "checks": {
+          "schema": true,
+          "group": true,
+          "expected_matches_manifest": true,
+          "actual_matches_manifest": true,
+          "match_flag": true
+        }
+      }
+    },
+    "initial_state_equal": {
+      "initial_rgb_backbone_sha256": true,
+      "initial_aux_encoder_sha256": true,
+      "initial_fusion_sha256": true,
+      "initial_gate_sha256": true,
+      "initial_model_state_sha256": true
+    },
+    "versions": {
+      "C0": {
+        "torch": "2.5.1+cu121",
+        "ultralytics": "8.4.56"
+      },
+      "FIXED": {
+        "torch": "2.5.1+cu121",
+        "ultralytics": "8.4.56"
+      },
+      "MAGSOFT": {
+        "torch": "2.5.1+cu121",
+        "ultralytics": "8.4.56"
+      }
+    },
+    "formal_protocol": {
+      "epochs": 80,
+      "batch": 4,
+      "seed": 20260812,
+      "amp": false,
+      "smoke_groups": [
+        "F1C-C0",
+        "F1C-I-fixed",
+        "F1C-I-magsoft"
+      ],
+      "formal_groups": [
+        "F1C-C0",
+        "F1C-I-fixed",
+        "F1C-I-magsoft",
+        "F1C-I-soft"
+      ],
+      "original_soft_smoke_required": false
+    }
+  },
+  "evidence_sha256": "9b9d9787be2386020c4559b7de4ed6b9dc43e0e53677ff0259b33a2936d93ce6",
+  "provenance": {
+    "readiness_module_sha256": "b23f3af2e2e9373e155815dd112c9b27bbf8732f3c1cf5279d25ba6249c159d4",
+    "readiness_script_sha256": "3a182e139fe0c208cd096da0d48a1205201b2162f8db6c4f8d1656147f268168",
+    "runner_source_sha256": "6e56f89102aea6368623a697f9fb755d47ff6674003282de2133d5aa3fe7a733",
+    "audit_source_sha256": "c271381e6235d267fda02eed39d918fd185338e9d125cfc36ee5e67615f3dadf",
+    "audit_report_sha256": "a2840e9d1289e36a8d178db1e3e23fa03013a719bb70fcd454226b1bd14ff9e2",
+    "model_source_sha256": "aa2e95e06006d91d510a496a7d754820b5908ad1a8ea935edfae0ec8a38f912a",
+    "gate_source_sha256": "3354ac231a452575016604588846454767fefced34fe798ffcdaebc233c2bce9",
+    "corruption_source_sha256": "4fceb384417cf845bd8256c560a161d1392fdbad25aac51ae4cdcb9cd33b608e",
+    "design_freeze_sha256": "0d5ef908795467a36ae997b210cd03b5b2f91b7a3fc0f0d69850af09523d1232",
+    "contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+    "C0_manifest_json_sha256": "9cfa5a3957f70740503caa6483d834ddbaf1d251e8a87f591266ff390ce888ea",
+    "C0_args_yaml_sha256": "591ee74f16ba948d548e95ead09e2402cde26d4239dc0500206a71be1ec0259e",
+    "C0_results_csv_sha256": "402f79defed761dd7056ee5ecf75711cba0e6698556426c892574747fb64cefb",
+    "C0_step4_update_gate_json_sha256": "d61df1eb6f0cc3f50b0f946c955408d6c25a2676f8c27e548437e41bc4bf2643",
+    "C0_step4_g8_trace_jsonl_sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+    "C0_step4_f1c_g9_trace_jsonl_sha256": "d95043593fc495116c6f3dc71863b972f651f85edd6968be67779b28e8758e6b",
+    "C0_step4_f1c_g9_records_jsonl_sha256": "a4ee1a7f684d7a7c64a8266d0da1d80f16784e7385ab31c1ffe552c88ab174a4",
+    "C0_step4_growth_jsonl_sha256": "3b3cf4da5a5274df30579aebccb4365028140590c3603060a2c9f5a029254b58",
+    "C0_step4_fp32_rgb_sha_json_sha256": "67e638acfb7e673cc7de8ed3ffe1536e5dfe9a3e5de4ba48d4ef7e5ecd6cf385",
+    "FIXED_manifest_json_sha256": "eae5497edce4a80f920b7b2360a86a5ba7f7acc202f470ff5532324907b73e69",
+    "FIXED_args_yaml_sha256": "394ffca17f4387249029a69b4cb5d07ab0b88492eb2bfd0a3ea9af693062c06a",
+    "FIXED_results_csv_sha256": "d52d3ee2a48cc5e06485b94f544d251c45b8f45880c5729eff246215c3f9ff51",
+    "FIXED_step4_update_gate_json_sha256": "1dae6855095aad9843a7f65e7a0b2ca4be6ac03fe6cf2230382e3ed23801eef2",
+    "FIXED_step4_g8_trace_jsonl_sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+    "FIXED_step4_f1c_g9_trace_jsonl_sha256": "16672c856c0092f48760cffe144920d995fc94391cd1f88d9126d1911f0cba6c",
+    "FIXED_step4_f1c_g9_records_jsonl_sha256": "4f9ccfa1da761d0b5fc802feb594c2c57344b1838805947a6fd01b17163f1fac",
+    "FIXED_step4_growth_jsonl_sha256": "19147101f6a0310efff47f179a355591f1cb1e1c5d4d5678635756326645bbf3",
+    "FIXED_step4_fp32_rgb_sha_json_sha256": "ba020bf6794a134a2f8cc0b36279ebdf06b8910b546d2133971db12aff281c4a",
+    "MAGSOFT_manifest_json_sha256": "7fd54d3a49bbfb1448a55a4ddb7119132130a93783423af061b1122169a5f36d",
+    "MAGSOFT_args_yaml_sha256": "e9ce072fbbe85b11ad375fdcf63ae3c1faca48fdbe43b7821f2be594d6a684a9",
+    "MAGSOFT_results_csv_sha256": "11542c0f7f84caf0837bc1b675c7443387809be6e351f2907dc3af072c5f8318",
+    "MAGSOFT_step4_update_gate_json_sha256": "6833b8a5ae6f5814826159ef48b959dfa50895d6eb68262959a8eec949aa21f2",
+    "MAGSOFT_step4_g8_trace_jsonl_sha256": "b06cdbaf29c4dfe87bdf8c0450726d8267570c3d76028c2246f410b1b08728f2",
+    "MAGSOFT_step4_f1c_g9_trace_jsonl_sha256": "16672c856c0092f48760cffe144920d995fc94391cd1f88d9126d1911f0cba6c",
+    "MAGSOFT_step4_f1c_g9_records_jsonl_sha256": "4f9ccfa1da761d0b5fc802feb594c2c57344b1838805947a6fd01b17163f1fac",
+    "MAGSOFT_step4_growth_jsonl_sha256": "e9abea42c3c6a77e81a7b399519949282fd2b13d8492d005caddd65329326fe4",
+    "MAGSOFT_step4_fp32_rgb_sha_json_sha256": "11eda3ec5f6b6f31e1570e2a7d20d3c79c135576b32dd209fa8fc7b5106fb155"
+  },
+  "errors": [],
+  "all_passed": true
+}
