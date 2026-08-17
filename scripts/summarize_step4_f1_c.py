@@ -30,6 +30,14 @@ from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 from multimodal.step4_closeout import g8_check  # noqa: E402
 from multimodal.step4_f1_b_corruption import (  # noqa: E402
     SEVERITIES, TRAIN_KINDS, sample_schedule, schedule_sha256)
+from multimodal.step4_f1_c_closeout import (  # noqa: E402
+    frozen_promotion_decision,
+    verify_causal_eval_provenance,
+    verify_loo_provenance,
+    verify_posthoc_provenance,
+    verify_quality_provenance,
+)
+from multimodal.step4_f1_c_readiness import verify_readiness_report  # noqa: E402
 
 GROUP_SPECS = {
     "C0": {"group": "F1C-C0", "aux_mode": "zero", "gate_mode": "learned",
@@ -245,6 +253,13 @@ def main() -> None:
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_F1C_SUMMARY: {out}")
 
+    readiness_path = ROOT / "reports" / "step4_f1_c" / "smoke_readiness.json"
+    readiness = verify_readiness_report(
+        ROOT, readiness_path, contract_path, requested_group="F1C-I-magsoft"
+    )
+    if not readiness["passed"]:
+        raise RuntimeError(f"F1C_READINESS_STALE_AT_CLOSEOUT:{readiness['errors']}")
+
     integrity = {}
     g6 = {}
     for tag, run_dir in runs.items():
@@ -270,11 +285,16 @@ def main() -> None:
         tag: _read(run_dir / "eval_step4_f1_c_causality.json")
         for tag, run_dir in runs.items()
     }
+    eval_provenance = {}
     for tag, ev in evals.items():
         if ev.get("schema") != "step4-f1-c-stock-validator-semantics-v1":
             raise RuntimeError(f"bad F1C eval schema in {tag}")
         if ev.get("group") != GROUP_SPECS[tag]["group"]:
             raise RuntimeError(f"F1C eval group mismatch {tag}")
+        chk = verify_causal_eval_provenance(ROOT, runs[tag], ev, contract_path)
+        if not chk["passed"]:
+            raise RuntimeError(f"F1C_EVAL_PROVENANCE_FAIL:{tag}:{chk['errors']}")
+        eval_provenance[tag] = chk
 
     loo_path = project / "step4_f1_c_loo_last.json"
     if not loo_path.exists():
@@ -289,6 +309,11 @@ def main() -> None:
                                    base_tag, base_variant)
         if loo["deltas"][key] != recomputed:
             raise RuntimeError(f"F1C_LOO_DELTA_MISMATCH: {key}")
+    loo_provenance = verify_loo_provenance(
+        ROOT, project, loo, runs, contract_path
+    )
+    if not loo_provenance["passed"]:
+        raise RuntimeError(f"F1C_LOO_PROVENANCE_FAIL:{loo_provenance['errors']}")
 
     quality_path = runs["MAGSOFT"] / "eval_step4_f1_c_quality_last.json"
     if not quality_path.exists():
@@ -296,6 +321,13 @@ def main() -> None:
     quality = _read(quality_path)
     if quality.get("schema") != "step4-f1-c-ir-quality-probe-v1":
         raise RuntimeError("bad F1C quality schema")
+    quality_provenance = verify_quality_provenance(
+        ROOT, quality, runs["MAGSOFT"], runs["FIXED"], runs["ORIGSOFT"],
+        contract_path,
+    )
+    if not quality_provenance["passed"]:
+        raise RuntimeError(
+            f"F1C_QUALITY_PROVENANCE_FAIL:{quality_provenance['errors']}")
 
     posthoc_path = ROOT / "reports" / "step4_f1_c" / "posthoc_gradient_audit_c.json"
     if not posthoc_path.exists():
@@ -304,6 +336,12 @@ def main() -> None:
     if posthoc.get("schema") != "step4-f1-c-posthoc-gradient-audit-v1" \
             or posthoc.get("passed") is not True:
         raise RuntimeError("F1C_POSTHOC_AUDIT_NOT_PASSED")
+    posthoc_provenance = verify_posthoc_provenance(
+        ROOT, posthoc, runs["MAGSOFT"], runs["C0"], contract_path
+    )
+    if not posthoc_provenance["passed"]:
+        raise RuntimeError(
+            f"F1C_POSTHOC_PROVENANCE_FAIL:{posthoc_provenance['errors']}")
 
     def score(tag, variant):
         return float(evals[tag]["last.pt"][variant]["val"]["map50_95"])
@@ -327,7 +365,9 @@ def main() -> None:
     loo_fixed_ok = loo_cond(mag_fixed)
     loo_orig_ok = loo_cond(mag_orig)
 
-    causal_pass = normal > c0 and normal > zero and normal > shuffle
+    causal_pass = (
+        normal > c0 and normal > fixed and normal > zero and normal > shuffle
+    )
     beats_origsoft = normal > origsoft
     beats_historical = normal > HISTORICAL_B1_SOFT_LAST
 
@@ -359,27 +399,26 @@ def main() -> None:
         1 for row in degraded.values()
         if row["learned_minus_force_qclean_map50_95"] > 0)
 
-    macro_pass = macro_soft > macro_fixed and macro_soft > macro_qclean
-    worst4_pass = worst4_soft > worst4_fixed and worst4_soft > worst4_qclean
+    # DESIGN_FREEZE registered macro/worst-4 against own QCLEAN.  Beating
+    # FIXED/ORIGSOFT on these degraded aggregates remains diagnostic only.
+    macro_pass = macro_soft > macro_qclean
+    worst4_pass = worst4_soft > worst4_qclean
     adaptive_pass = learned_minus_qclean_pos >= 9
     beats_orig_macro = macro_soft > macro_orig
     beats_orig_worst4 = worst4_soft > worst4_orig
+    beats_fixed_macro = macro_soft > macro_fixed
+    beats_fixed_worst4 = worst4_soft > worst4_fixed
 
-    if (causal_pass and loo_c0_ok and loo_fixed_ok and loo_orig_ok
-            and beats_origsoft and beats_historical
-            and macro_pass and worst4_pass and adaptive_pass
-            and beats_orig_macro and beats_orig_worst4):
-        decision = "PROMOTE_F1C_MAGNITUDE_GATE_CONFIRM_ONE_SEED"
-        next_step = "one confirmation seed; keep Depth out"
-    elif causal_pass and loo_c0_ok and loo_orig_ok and beats_origsoft:
-        decision = "F1C_MAGNITUDE_HELPED_BUT_NOT_FULLY_PROMOTED"
-        next_step = "inspect which promotion axis failed; no new modules"
-    elif causal_pass and loo_c0_ok:
-        decision = "F1C_IR_COMPLEMENTARY_MAGNITUDE_NOT_BETTER_THAN_ORIGINAL"
-        next_step = "keep the simpler original gate unless magnitude wins"
-    else:
-        decision = "F1C_GATE_FAILED_CAUSAL_PROTOCOL"
-        next_step = "stop; inspect intervention signs"
+    promotion = frozen_promotion_decision(
+        c0=c0, fixed=fixed, normal=normal, zero=zero, shuffle=shuffle,
+        origsoft=origsoft, loo_c0_ok=loo_c0_ok, loo_fixed_ok=loo_fixed_ok,
+        loo_orig_ok=loo_orig_ok, macro_soft=macro_soft,
+        macro_qclean=macro_qclean, worst4_soft=worst4_soft,
+        worst4_qclean=worst4_qclean,
+        learned_minus_qclean_pos=learned_minus_qclean_pos,
+    )
+    decision = promotion["decision"]
+    next_step = promotion["next_step"]
 
     summary = {
         "schema": "step4-f1-c-summary-v1",
@@ -387,7 +426,15 @@ def main() -> None:
         "quality_file_sha256": _sha(quality_path),
         "posthoc_file_sha256": _sha(posthoc_path),
         "summarize_source_sha256": _sha(Path(__file__)),
+        "readiness_verified": {
+            "passed": readiness["passed"],
+            "evidence_sha256": readiness.get("evidence_sha256"),
+        },
         "integrity": integrity,
+        "eval_provenance_verified": eval_provenance,
+        "loo_provenance_verified": loo_provenance,
+        "quality_provenance_verified": quality_provenance,
+        "posthoc_provenance_verified": posthoc_provenance,
         "g6_rejudged": g6,
         "g8": g8,
         "g9_rejudged": g9,
@@ -413,12 +460,15 @@ def main() -> None:
             "worst4_keys": worst4_keys,
             "worst4_soft_fixed_qclean_orig": [worst4_soft, worst4_fixed, worst4_qclean, worst4_orig],
             "learned_minus_qclean_positive_count": learned_minus_qclean_pos,
-            "macro_pass": macro_pass,
-            "worst4_pass": worst4_pass,
+            "macro_pass_vs_own_qclean": macro_pass,
+            "worst4_pass_vs_own_qclean": worst4_pass,
             "adaptive_pass": adaptive_pass,
-            "beats_origsoft_macro": beats_orig_macro,
-            "beats_origsoft_worst4": beats_orig_worst4,
+            "diagnostic_beats_fixed_macro": beats_fixed_macro,
+            "diagnostic_beats_fixed_worst4": beats_fixed_worst4,
+            "diagnostic_beats_origsoft_macro": beats_orig_macro,
+            "diagnostic_beats_origsoft_worst4": beats_orig_worst4,
             "beats_historical_b1_soft": beats_historical,
+            "frozen_protocol": promotion,
         },
         "decision": decision,
         "next_step": next_step,

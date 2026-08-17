@@ -129,10 +129,17 @@ def main() -> None:
         "schema": "step4-f1-c-manifest-v1",
         "group": a.group,
         "physical_run_name": a.run_name,
+        "run_kind": "formal",
         "aux_mode": spec["aux_mode"],
         "gate_mode": spec["gate_mode"],
+        "gate_module": spec["gate_module"],
+        "gate_module_kind_from_model": spec["gate_module"],
         "dataset_group": spec["dataset"],
         "expected_epochs": a.expected_epochs,
+        "requested_batch": 4,
+        "seed": 20260812,
+        "smoke_readiness_sha256": _sha(
+            ROOT / "reports" / "step4_f1_c" / "smoke_readiness.json"),
     }
     mismatched = {
         key: {"recorded": manifest.get(key), "expected": expected}

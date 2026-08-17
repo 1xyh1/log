@@ -128,6 +128,7 @@ def main() -> None:
     p.add_argument("--contract", default=OUT_DEFAULT)
     p.add_argument("--device", default="0")
     p.add_argument("--expected-epochs", type=int, default=80)
+    p.add_argument("--overwrite", action="store_true")
     a = p.parse_args()
 
     from multimodal import step3_eval_utils as evu
@@ -135,6 +136,11 @@ def main() -> None:
     project = Path(a.project)
     c0_dir = project / a.c0_run
     soft_dir = project / a.soft_run
+    out_dir = ROOT / "reports" / "step4_f1_c"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / "posthoc_gradient_audit_c.json"
+    if out.exists() and not a.overwrite:
+        raise RuntimeError(f"REFUSE_OVERWRITE_F1C_POSTHOC: {out}")
     for tag, run_dir in (("C0", c0_dir), ("SOFT", soft_dir)):
         integrity = inspect_step3_run(
             run_dir, a.expected_epochs, require_weights=True,
@@ -145,8 +151,13 @@ def main() -> None:
 
     contract = json.loads(Path(a.contract).read_text(encoding="utf-8"))
     soft_model = load_model(soft_dir, device)
-    if getattr(soft_model, "gate_mode", None) != "learned":
-        raise RuntimeError("posthoc gate checks require F1C-I-magsoft learned gate")
+    if not (
+        getattr(soft_model, "gate_mode", None) == "learned"
+        and getattr(soft_model, "aux_mode", None) == "ir"
+        and getattr(soft_model, "gate_module_kind", None) == "magnitude"
+    ):
+        raise RuntimeError(
+            "posthoc gate checks require F1C-I-magsoft learned magnitude gate")
 
     ds = TriModalDataset(contract, split="val", group="C1-I", augment=False)
     samples = [ds[i] for i in range(min(4, len(ds)))]
@@ -159,6 +170,12 @@ def main() -> None:
     gate_detach = check_gate_detach(soft_model, img, device)
     residual = check_residual_path(soft_model, img, batch)
     c0_model = load_model(c0_dir, device)
+    if not (
+        getattr(c0_model, "aux_mode", None) == "zero"
+        and getattr(c0_model, "gate_mode", None) == "learned"
+        and getattr(c0_model, "gate_module_kind", None) == "magnitude"
+    ):
+        raise RuntimeError("posthoc C0 checkpoint identity mismatch")
     c0_neutral = check_c0_neutral(c0_model)
 
     # G6 evidence for the "gate params actually moved" half of claim 2
@@ -177,6 +194,9 @@ def main() -> None:
         "provenance": {
             "soft_last_pt_sha256": _sha(soft_dir / "weights" / "last.pt"),
             "c0_last_pt_sha256": _sha(c0_dir / "weights" / "last.pt"),
+            "soft_manifest_sha256": _sha(soft_dir / "manifest.json"),
+            "c0_manifest_sha256": _sha(c0_dir / "manifest.json"),
+            "soft_update_gate_sha256": _sha(soft_dir / "step4_update_gate.json"),
             "contract_sha256": _sha(Path(a.contract)),
             "script_sha256": _sha(Path(__file__)),
             "model_source_sha256": _sha(
@@ -191,9 +211,6 @@ def main() -> None:
         "passed": bool(gate_detach["passed"] and residual["passed"]
                        and gate_moved_in_training and c0_neutral["passed"]),
     }
-    out_dir = ROOT / "reports" / "step4_f1_c"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / "posthoc_gradient_audit_c.json"
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print(json.dumps(report, indent=2, ensure_ascii=False))

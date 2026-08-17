@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T12:02:26.795033+08:00",
+  "generated_at_local": "2026-08-17T12:05:20.029659+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -73,9 +73,9 @@
       "mtime_ns": 1786904680902551500
     },
     "docs/step4_f1_c/EXECUTION_GUIDE.md": {
-      "sha256": "3ed6962acd980a65c6c839da12d6f429420d773966f21c84a327c8c3d906a5a1",
-      "size_bytes": 1261,
-      "mtime_ns": 1786939112232235800
+      "sha256": "fad6ec9d55640386565cfdea878d28395800f5ae6e888df804672491a0e37de3",
+      "size_bytes": 2106,
+      "mtime_ns": 1786939446357596700
     },
     "docs/step4_f1_c/feedback/2026-08-17_smoke-F1C-C0-fixed-magsoft.md": {
       "sha256": "a972de5e7bdfee707e17dcaa1d545ed3bbec8dc67a13b864b99b3f9f8ce3b883",
@@ -178,9 +178,9 @@
       "mtime_ns": 1786891928401167100
     },
     "reports/step4_f1_c/pretrain_audit.json": {
-      "sha256": "6f02238a026cf0f9ef17be2e69e01486c0837428f6e89fb2a101e9ded58ece65",
+      "sha256": "a2840e9d1289e36a8d178db1e3e23fa03013a719bb70fcd454226b1bd14ff9e2",
       "size_bytes": 3359,
-      "mtime_ns": 1786933334841743100
+      "mtime_ns": 1786939470548140700
     },
     "reports/step4_f1_c_agreement/agreement_all17_growth.json": {
       "sha256": "990eea97c54f6d06c3f471decb4e993288a46daa64179b6c0948ecee7f957d8f",
@@ -733,9 +733,14 @@
       "mtime_ns": 1786923919877547800
     },
     "scripts/audit_step4_f1_c_posthoc.py": {
-      "sha256": "d8e6ee8d107251fdc0f2da25545f9585900317876b60c5b2aabac2cf5f535741",
-      "size_bytes": 8618,
-      "mtime_ns": 1786939111847171600
+      "sha256": "b920f98a471af1d61068c917cdbe6fb5640a761bfb635d8dc5e5990ccb6ac997",
+      "size_bytes": 9244,
+      "mtime_ns": 1786939446357596700
+    },
+    "scripts/audit_step4_f1_c_smoke_readiness.py": {
+      "sha256": "3a182e139fe0c208cd096da0d48a1205201b2162f8db6c4f8d1656147f268168",
+      "size_bytes": 2465,
+      "mtime_ns": 1786908782000000000
     },
     "scripts/audit_step4_f1_ir_gate.py": {
       "sha256": "8bf7d72a04fa570cefee90510825f30bb2402404558105b60ac4c83a1f6fdcb1",
@@ -798,14 +803,14 @@
       "mtime_ns": 1786895348779032900
     },
     "scripts/eval_step4_f1_c_causality.py": {
-      "sha256": "d46b7d6708f937f680e0337e40af4c23fbd8ab545f2e16500a1b8d8dab37268e",
-      "size_bytes": 11821,
-      "mtime_ns": 1786939111911933700
+      "sha256": "0f11249ace77dfa125c0031794f926207c6e0c4773f61a0ee49ca30eb2675a67",
+      "size_bytes": 11837,
+      "mtime_ns": 1786939446357596700
     },
     "scripts/eval_step4_f1_c_quality.py": {
-      "sha256": "db687e0cc1eb60a0c0879d3f26e86dfe876cfd2d1fe53db83cf9486befe66caf",
-      "size_bytes": 13523,
-      "mtime_ns": 1786939111969260500
+      "sha256": "6e07eb8e87a5cbaf068e3cca98edf6db7a5728d0c280dd188a35eae86146a996",
+      "size_bytes": 14699,
+      "mtime_ns": 1786939446354934600
     },
     "scripts/eval_step4_f1_causality.py": {
       "sha256": "944c10a1d7d98b00749fbdb7f9d5efb862f14c4661c9c6ea58c4369f55406154",
@@ -870,7 +875,7 @@
     "scripts/run_step4_f1_c.py": {
       "sha256": "6e56f89102aea6368623a697f9fb755d47ff6674003282de2133d5aa3fe7a733",
       "size_bytes": 32271,
-      "mtime_ns": 1786939298935908300
+      "mtime_ns": 1786939446354934600
     },
     "scripts/run_step4_f1_ir_gate.py": {
       "sha256": "91c1e48522d09c6850dc1344fd070827aed2d8422e62eb6c5384730693073db4",
@@ -883,9 +888,9 @@
       "mtime_ns": 1786902893858581900
     },
     "scripts/step4_f1_c_loo.py": {
-      "sha256": "5c0478743b443e0a0b2c853206aeaf07b751f1fb901f2d531404b88425cda5b6",
-      "size_bytes": 9108,
-      "mtime_ns": 1786939112105281100
+      "sha256": "ed31c806b75813a88a295e25c90f5924f803ec459c053ab140b3b7f3c6d61d5c",
+      "size_bytes": 10246,
+      "mtime_ns": 1786939446357596700
     },
     "scripts/step4_f1_loo.py": {
       "sha256": "a68b4ca8c8e2054ab1d77609fabcd701da40346df702a3b51d7759a1780260b1",
@@ -923,9 +928,9 @@
       "mtime_ns": 1786902893884203300
     },
     "scripts/summarize_step4_f1_c.py": {
-      "sha256": "d5a760f453877a2c0b64e7c0da5927cd6c0c1322fe0d36fdd70c42b37a96c3dc",
-      "size_bytes": 19755,
-      "mtime_ns": 1786939112170030700
+      "sha256": "e926338d7457c7112a9068425ccd2bcc70e0f399e97c831dc83d1a6d27cdb81e",
+      "size_bytes": 21831,
+      "mtime_ns": 1786939446357596700
     },
     "scripts/train.py": {
       "sha256": "ca29520ce1d4532a200918400c52e880b25a6441f707a5e0a79566893a39cdb6",
@@ -1022,10 +1027,20 @@
       "size_bytes": 4854,
       "mtime_ns": 1786844201170872000
     },
+    "src/multimodal/step4_f1_c_closeout.py": {
+      "sha256": "bea382f1dd735acaec974c754a1ec133fe0556f2159c183815070a549027723b",
+      "size_bytes": 8892,
+      "mtime_ns": 1786909020000000000
+    },
     "src/multimodal/step4_f1_c_descriptor_audit.py": {
       "sha256": "01c620d4694306a2424ef1d7518368024ae07fe2eafc8d8a24fe1908f5887944",
       "size_bytes": 4708,
       "mtime_ns": 1786903018497395000
+    },
+    "src/multimodal/step4_f1_c_readiness.py": {
+      "sha256": "b23f3af2e2e9373e155815dd112c9b27bbf8732f3c1cf5279d25ba6249c159d4",
+      "size_bytes": 23457,
+      "mtime_ns": 1786908782000000000
     },
     "src/multimodal/step4_f1_closeout.py": {
       "sha256": "595d589c41a29291582374566176f65b93f1f05bc11ab1b65fba2f7bb078b526",
@@ -1162,6 +1177,11 @@
       "size_bytes": 6431,
       "mtime_ns": 1786923678243183700
     },
+    "tests/test_step4_f1_c_handoff_closeout.py": {
+      "sha256": "e6699a37cf2898a08a33e18f25a1c07e132ff56eeba80978f09ad9c051c76d26",
+      "size_bytes": 2484,
+      "mtime_ns": 1786908782000000000
+    },
     "tests/test_step4_f1_closeout.py": {
       "sha256": "4d21713ac718b7fee1a04201e968c4cd40150c04b404f160a6cd5c14583b1eb4",
       "size_bytes": 3642,
@@ -1174,6 +1194,16 @@
     }
   },
   "changed_in_this_sync": [
-    "scripts/run_step4_f1_c.py"
+    "docs/step4_f1_c/EXECUTION_GUIDE.md",
+    "reports/step4_f1_c/pretrain_audit.json",
+    "scripts/audit_step4_f1_c_posthoc.py",
+    "scripts/audit_step4_f1_c_smoke_readiness.py",
+    "scripts/eval_step4_f1_c_causality.py",
+    "scripts/eval_step4_f1_c_quality.py",
+    "scripts/step4_f1_c_loo.py",
+    "scripts/summarize_step4_f1_c.py",
+    "src/multimodal/step4_f1_c_closeout.py",
+    "src/multimodal/step4_f1_c_readiness.py",
+    "tests/test_step4_f1_c_handoff_closeout.py"
   ]
 }

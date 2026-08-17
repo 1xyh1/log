@@ -94,11 +94,32 @@ def main() -> None:
     device = evu._as_device(a.device)
     run_dir = Path(a.project) / a.run_name
     fixed_dir = Path(a.project) / a.fixed_run
+    original_dir = Path(a.project) / a.original_run
     out = run_dir / f"eval_step4_f1_c_quality_{a.checkpoint.removesuffix('.pt')}.json"
     if out.exists() and not a.overwrite:
         raise RuntimeError(f"REFUSE_OVERWRITE_F1C_QUALITY_EVAL: {out}")
+    expected_identity = {
+        "magsoft": ("F1C-I-magsoft", "ir", "learned", "magnitude"),
+        "fixed": ("F1C-I-fixed", "ir", "fixed_one", "magnitude"),
+        "original": ("F1C-I-soft", "ir", "learned", "original"),
+    }
     for label, rd in (("magsoft", run_dir), ("fixed", fixed_dir),
                       ("original", original_dir)):
+        manifest = json.loads((rd / "manifest.json").read_text(encoding="utf-8"))
+        group, aux_mode, gate_mode, gate_module = expected_identity[label]
+        identity_ok = (
+            manifest.get("schema") == "step4-f1-c-manifest-v1"
+            and manifest.get("run_kind") == "formal"
+            and manifest.get("group") == group
+            and manifest.get("aux_mode") == aux_mode
+            and manifest.get("gate_mode") == gate_mode
+            and manifest.get("gate_module") == gate_module
+            and manifest.get("gate_module_kind_from_model") == gate_module
+        )
+        if not identity_ok:
+            raise RuntimeError(
+                f"REFUSE_QUALITY_RUN_IDENTITY_MISMATCH:{label}:{manifest}"
+            )
         integrity = inspect_step3_run(
             rd, a.expected_epochs, require_weights=True,
             trace_name="step4_g8_trace.jsonl", growth_name="step4_growth.jsonl",
@@ -115,10 +136,14 @@ def main() -> None:
         run_dir / "weights" / a.checkpoint, map_location="cpu", weights_only=False
     )
     model = (ck.get("ema") or ck.get("model")).float().eval().to(device)
-    if getattr(model, "gate_mode", None) != "learned":
-        raise RuntimeError("quality probe requires the learned F1C-I-magsoft checkpoint")
-    if getattr(model, "aux_mode", None) != "ir":
-        raise RuntimeError("quality probe requires an IR auxiliary checkpoint")
+    if (
+        getattr(model, "gate_mode", None) != "learned"
+        or getattr(model, "aux_mode", None) != "ir"
+        or getattr(model, "gate_module_kind", None) != "magnitude"
+    ):
+        raise RuntimeError(
+            "quality probe requires the learned magnitude F1C-I-magsoft checkpoint"
+        )
     # Separately-trained B1-I-fixed model for the macro/worst-4 comparison
     # (reviewer: force_q1 on the soft checkpoint is NOT the frozen protocol's
     # "fixed" arm).
@@ -126,17 +151,23 @@ def main() -> None:
         fixed_dir / "weights" / a.checkpoint, map_location="cpu", weights_only=False
     )
     # original-gate soft (matched control) evaluated on the same conditions
-    original_dir = Path(a.project) / a.original_run
     original_ck = torch.load(
         original_dir / "weights" / a.checkpoint, map_location="cpu",
         weights_only=False)
     original_model = (original_ck.get("ema") or original_ck.get("model")).float().eval().to(device)
-    if getattr(original_model, "gate_mode", None) != "learned" \
-            or getattr(original_model, "gate_module_kind", None) != "original":
+    if (
+        getattr(original_model, "gate_mode", None) != "learned"
+        or getattr(original_model, "aux_mode", None) != "ir"
+        or getattr(original_model, "gate_module_kind", None) != "original"
+    ):
         raise RuntimeError("quality probe requires the original-gate soft ckpt")
     fixed_model = (fixed_ck.get("ema") or fixed_ck.get("model")).float().eval().to(device)
-    if getattr(fixed_model, "gate_mode", None) != "fixed_one":
-        raise RuntimeError("quality probe requires the F1C-I-fixed checkpoint")
+    if (
+        getattr(fixed_model, "gate_mode", None) != "fixed_one"
+        or getattr(fixed_model, "aux_mode", None) != "ir"
+        or getattr(fixed_model, "gate_module_kind", None) != "magnitude"
+    ):
+        raise RuntimeError("quality probe requires the magnitude F1C-I-fixed checkpoint")
     names = dict(CLASS_NAMES)
 
     conditions = [("identity", 0.0), ("zero", 1.0)]
@@ -151,7 +182,10 @@ def main() -> None:
         "provenance": {
             "checkpoint_sha256": _sha(run_dir / "weights" / a.checkpoint),
             "fixed_checkpoint_sha256": _sha(fixed_dir / "weights" / a.checkpoint),
-        "original_checkpoint_sha256": _sha(original_dir / "weights" / a.checkpoint),
+            "original_checkpoint_sha256": _sha(original_dir / "weights" / a.checkpoint),
+            "magsoft_manifest_sha256": _sha(run_dir / "manifest.json"),
+            "fixed_manifest_sha256": _sha(fixed_dir / "manifest.json"),
+            "original_manifest_sha256": _sha(original_dir / "manifest.json"),
             "contract_sha256": _sha(contract_path),
             "script_sha256": _sha(Path(__file__)),
             "interventions_source_sha256": _sha(

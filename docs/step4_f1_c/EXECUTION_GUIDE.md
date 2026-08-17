@@ -16,14 +16,30 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 ## 2. 三组 smoke（等审阅者放行后执行）
 
 ```powershell
-python scripts/run_step4_f1_c.py --group F1C-C0 --run-kind smoke --epochs 1
-python scripts/run_step4_f1_c.py --group F1C-I-fixed --run-kind smoke --epochs 1
-python scripts/run_step4_f1_c.py --group F1C-I-magsoft --run-kind smoke --epochs 1
+python scripts/run_step4_f1_c.py --group F1C-C0 --run-kind smoke --epochs 1 --name smoke-F1C-C0-e1-r3
+python scripts/run_step4_f1_c.py --group F1C-I-fixed --run-kind smoke --epochs 1 --name smoke-F1C-I-fixed-e1-r3
+python scripts/run_step4_f1_c.py --group F1C-I-magsoft --run-kind smoke --epochs 1 --name smoke-F1C-I-magsoft-e1-r3
 ```
 
-检查 G5/G6/G8/G9 + `step4_fp32_rgb_sha.json`（G10.7）落盘。
+检查 G5/G6/G8/G9 + `step4_fp32_rgb_sha.json`（G10.7）落盘。随后必须从
+**原始 smoke 产物重新判定** readiness（不信已有 `passed=true`）：
+
+```powershell
+python scripts/audit_step4_f1_c_smoke_readiness.py `
+  --c0-smoke smoke-F1C-C0-e1-r3 `
+  --fixed-smoke smoke-F1C-I-fixed-e1-r3 `
+  --magsoft-smoke smoke-F1C-I-magsoft-e1-r3
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+```
+
+生成 `reports/step4_f1_c/smoke_readiness.json`。任一源码/audit/design/contract 或
+smoke 原始证据随后变化都会使 formal runner 拒跑。按 DESIGN_FREEZE，
+`F1C-I-soft` 是 formal matched control，**不额外要求 smoke**。
 
 ## 3. Formal（四组，审阅者 GO 后）
+
+formal runner 硬锁 `epochs=80 / batch=4 / seed=20260812 / amp=False`，并在
+构模前重新消费 `smoke_readiness.json`；readiness 缺失或 stale 时直接 ABORT。
 
 ```powershell
 python scripts/run_step4_f1_c.py --group F1C-C0 --run-kind formal

@@ -105,6 +105,17 @@ def main() -> None:
         if eval_obj.get("group") != MODEL_SPECS[tag]["group"]:
             raise RuntimeError(
                 f"REFUSE_F1C_LOO_EVAL_IDENTITY_MISMATCH: {tag}")
+        manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
+        expected = MODEL_SPECS[tag]
+        if not (
+            manifest.get("schema") == "step4-f1-c-manifest-v1"
+            and manifest.get("run_kind") == "formal"
+            and manifest.get("group") == expected["group"]
+            and manifest.get("aux_mode") == expected["aux_mode"]
+            and manifest.get("gate_mode") == expected["gate_mode"]
+            and manifest.get("gate_module") == expected["gate_module"]
+        ):
+            raise RuntimeError(f"REFUSE_F1C_LOO_MANIFEST_IDENTITY_MISMATCH:{tag}")
 
     val_ids = list(contract["val_ids"])
     if len(val_ids) != 6:
@@ -149,12 +160,20 @@ def main() -> None:
         "provenance": {
             **{f"{tag}_ckpt_sha256": _sha(path / "weights" / a.checkpoint)
                for tag, path in runs.items()},
+            **{f"{tag}_manifest_sha256": _sha(path / "manifest.json")
+               for tag, path in runs.items()},
+            **{f"{tag}_eval_sha256": _sha(path / "eval_step4_f1_c_causality.json")
+               for tag, path in runs.items()},
+            **{f"{tag}_shuffle_map_val_sha256": _sha(runs[tag] / "shuffle_map_val.json")
+               for tag in ("FIXED", "MAGSOFT", "ORIGSOFT")},
             "contract_sha256": _sha(contract_path),
             "loo_source_sha256": _sha(Path(__file__)),
             "eval_core_sha256": _sha(ROOT / "src" / "multimodal" / "step3_eval_utils.py"),
             "dataset_source_sha256": _sha(ROOT / "src" / "multimodal" / "trimodal_dataset.py"),
             "model_source_sha256": _sha(ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py"),
             "gate_source_sha256": _sha(ROOT / "src" / "multimodal" / "reliability_gate.py"),
+            "causality_interventions_sha256": _sha(
+                ROOT / "src" / "multimodal" / "causality_interventions.py"),
             "torch_version": torch.__version__,
             "ultralytics_version": __import__("ultralytics").__version__,
         },
