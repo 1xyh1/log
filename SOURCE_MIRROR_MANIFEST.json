@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:51:52.022141+08:00",
+  "generated_at_local": "2026-08-18T05:57:44.070302+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -122,10 +122,10 @@
       "source_eol": "lf"
     },
     "docs/step4_f1_c/feedback/2026-08-18_formal-complete.md": {
-      "sha256": "47e4900c63741cc6bf1d32decda8819e2fd83f0932809c92324ea5926bb9e77a",
-      "size_bytes": 4121,
-      "mtime_ns": 1787003480222753600,
-      "canonical_lf_sha256": "47e4900c63741cc6bf1d32decda8819e2fd83f0932809c92324ea5926bb9e77a",
+      "sha256": "eb0bd88efc991f435ffdaa095a4f3caee42504e492425df06305945a457a2f8f",
+      "size_bytes": 7093,
+      "mtime_ns": 1787003834665249100,
+      "canonical_lf_sha256": "eb0bd88efc991f435ffdaa095a4f3caee42504e492425df06305945a457a2f8f",
       "source_eol": "lf"
     },
     "docs/step4_f1_c/feedback/README.md": {
