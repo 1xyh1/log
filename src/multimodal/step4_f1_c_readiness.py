@@ -675,6 +675,12 @@ def evaluate_smoke_readiness(
             )
         }
         initial_state_frozen["passed"] = all(initial_state_equal.values())
+        # 冻结基准只覆盖有 smoke 证据的组 (magnitude 三组)。F1C-I-soft
+        # (original-gate matched control) 按 DESIGN_FREEZE 无 smoke、无冻结
+        # 基准可比——runner 只对 frozen_groups 内组做逐位比对 (2026-08-18
+        # 语义缺口修复:initial state 因 gate_module 不同必然不同)。
+        initial_state_frozen["frozen_groups"] = [
+            SMOKE_SPECS[x]["group"] for x in SMOKE_SPECS]
 
     try:
         g8 = g8_check(run_dirs, expected_epochs)

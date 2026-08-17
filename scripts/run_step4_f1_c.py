@@ -360,10 +360,21 @@ def main() -> None:
     if a.run_kind == "formal":
         frozen = (
             (readiness.get("evidence") or {}).get("initial_state_frozen") or {})
-        state_eq = check_initial_state_equality(initial_shas, frozen)
-        if not state_eq["passed"]:
-            raise RuntimeError(
-                f"ABORT_INITIAL_STATE_MISMATCH: {state_eq['mismatches']}")
+        # 冻结基准只覆盖有 smoke 证据的组 (magnitude 三组,见 frozen_groups)。
+        # F1C-I-soft (original-gate matched control) 按 DESIGN_FREEZE 无 smoke、
+        # 无冻结基准可比——记录 SHA 供审计,不做逐位比对 (2026-08-18 语义
+        # 缺口修复:original gate 的初始 state 与 magnitude 三组必然不同)。
+        frozen_groups = frozen.get("frozen_groups") or []
+        if a.group in frozen_groups:
+            state_eq = check_initial_state_equality(initial_shas, frozen)
+            if not state_eq["passed"]:
+                raise RuntimeError(
+                    f"ABORT_INITIAL_STATE_MISMATCH: {state_eq['mismatches']}")
+        else:
+            print(
+                f"[{a.group}] no smoke-frozen initial state (matched control "
+                "without smoke per DESIGN_FREEZE); initial SHAs recorded in "
+                "manifest for audit")
 
     requested_batch = int(a.batch)
 

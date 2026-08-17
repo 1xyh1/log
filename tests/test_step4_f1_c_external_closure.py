@@ -227,3 +227,18 @@ def test_builder_is_pinned_everywhere():
     assert "builder_source_sha256" in AUDIT_TARGETS
     assert "builder_source_sha256" in MANIFEST_PIN_TARGETS
     assert EXPECTED_BASE_CHECKPOINT_SHA256 == DOCUMENTED_BASE_SHA
+
+
+def test_frozen_state_declares_coverage_groups():
+    """initial-state 冻结基准只覆盖有 smoke 证据的组 (magnitude 三组)。
+
+    F1C-I-soft (original-gate matched control) 按 DESIGN_FREEZE 无 smoke,
+    无冻结基准可比——runner 只对 frozen_groups 内组做逐位比对
+    (2026-08-18 语义缺口修复的回归保护)。"""
+    from multimodal.step4_f1_c_readiness import SMOKE_SPECS
+    runner = (ROOT / "scripts" / "run_step4_f1_c.py").read_text(
+        encoding="utf-8")
+    assert "frozen_groups" in runner
+    groups = [SMOKE_SPECS[x]["group"] for x in SMOKE_SPECS]
+    assert set(groups) == {"F1C-C0", "F1C-I-fixed", "F1C-I-magsoft"}
+    assert "F1C-I-soft" not in groups
