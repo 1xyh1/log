@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:08:09.126339+08:00",
+  "generated_at_local": "2026-08-18T05:09:18.291383+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -3868,14 +3868,8 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-I-soft/args.yaml",
-    "runs/step4_f1_c/F1C-I-soft/manifest.json",
-    "runs/step4_f1_c/F1C-I-soft/results.csv",
-    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-soft/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/F1C-I-soft/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/F1C-I-soft/step4_growth.jsonl",
-    "runs/step4_f1_c/F1C-I-soft/step4_update_gate.json"
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_all17.json",
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_train.json",
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_val.json"
   ]
 }
