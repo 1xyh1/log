@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:00:45.189039+08:00",
+  "generated_at_local": "2026-08-18T05:01:48.722840+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -262,10 +262,10 @@
       "source_eol": "crlf"
     },
     "reports/step4_f1_c/smoke_readiness.json": {
-      "sha256": "22367cb4c1028cd15a1d458a7bc4ccdada51e7c0b19f2f773f27ac487bb5a255",
-      "size_bytes": 12205,
-      "mtime_ns": 1786965033647111200,
-      "canonical_lf_sha256": "5294809bb82f98a6644cebdcad0c942c7749a9cf0b7b3e2c5de78a12d77bf3fb",
+      "sha256": "d01961346f8e08cad6fa6b88b1face5ea2e02892b73c8d8252ad6ada0662cc4e",
+      "size_bytes": 12309,
+      "mtime_ns": 1787000456757733000,
+      "canonical_lf_sha256": "a32f36d41eda3448b1d289039e319ee921da61b048bfbf506bfb800173df769e",
       "source_eol": "crlf"
     },
     "reports/step4_f1_c_agreement/agreement_all17_growth.json": {
@@ -1785,6 +1785,27 @@
       "size_bytes": 831,
       "mtime_ns": 1787000159817314900,
       "canonical_lf_sha256": "c0d25ecc891c5060203d28ee7f26e74a49d687b6c179a6c60315a0cc04d4ccf7",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/args.yaml": {
+      "sha256": "5a82a1f15384946992baaa08dd6988417ed9ab2732a8a1cc7c93adad14454f39",
+      "size_bytes": 1926,
+      "mtime_ns": 1787000489479129400,
+      "canonical_lf_sha256": "683c318af99d94da5d6779451c7e258ff3c8d84b2b62637153b403830177ef18",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/manifest.json": {
+      "sha256": "3b3452b90e4749d51a4ccb947af652eba33ab1ed532e4e5c67416533e9f52758",
+      "size_bytes": 3735,
+      "mtime_ns": 1787000489528788700,
+      "canonical_lf_sha256": "b979dc3e35946ac0f27ae82c605950aa1fbf6b65e005d22c205418da83ff5a7c",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/results.csv": {
+      "sha256": "d3b42f06572097cd39ec4dd1d8989af033e09f8f6419468c43fc459bc10aec8d",
+      "size_bytes": 736,
+      "mtime_ns": 1787000508122249700,
+      "canonical_lf_sha256": "379e7bb8d32f9554472370d1f99e9aff02204558856df516cf14e304503623c9",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/smoke-F1C-C0-e1-r2/args.yaml": {
@@ -3784,36 +3805,6 @@
     }
   },
   "changed_in_this_sync": [
-    "reports/step4_f1_c/pretrain_audit.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/results.csv",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-C0-e1-r5/step4_update_gate.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/results.csv",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-fixed-e1-r5/step4_update_gate.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/args.yaml",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/manifest.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/results.csv",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_f1c_g9_records.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_f1c_g9_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_fp32_rgb_sha.json",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_g8_trace.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_growth.jsonl",
-    "runs/step4_f1_c/smoke-F1C-I-magsoft-e1-r5/step4_update_gate.json",
-    "scripts/run_step4_f1_c.py",
-    "src/multimodal/step4_f1_c_readiness.py",
-    "tests/test_step4_f1_c_external_closure.py"
+    "reports/step4_f1_c/smoke_readiness.json"
   ]
 }
