@@ -8,7 +8,14 @@ smoke arms from their raw artifacts instead of trusting stored ``passed`` flags:
 The fourth formal arm (F1C-I-soft, original gate) is a matched formal control and
 does not require a separate smoke according to DESIGN_FREEZE.  Formal training is
 allowed only when the current runner/audit/design/contract still match the smoke
-artifacts used to build a step4-f1-c-smoke-readiness-v1 report.
+artifacts used to build a step4-f1-c-smoke-readiness-v2 report.
+
+v2 (reviewer 2026-08-17 P0): the external runtime dependency closure is part of
+the freshness set — base checkpoint file SHA (EXPECTED_BASE_CHECKPOINT_SHA256),
+the builder module (early_fusion_yolo26.py, pinned in AUDIT/MANIFEST tables),
+a re-hash of the 17x4 raw data files against contract["file_hashes"], and the
+dataset.yaml semantics (nc=12 + names == CLASS_NAMES).  Formal re-checks these
+plus a bitwise initial-state equality after model construction.
 """
 from __future__ import annotations
 
@@ -22,9 +29,9 @@ from typing import Any
 from multimodal.step4_closeout import g8_check
 from multimodal.step4_f1_b_corruption import sample_schedule, schedule_sha256
 
-READINESS_SCHEMA = "step4-f1-c-smoke-readiness-v1"
-AUDIT_SCHEMA = "step4-f1-c-audit-v2"
-MANIFEST_SCHEMA = "step4-f1-c-manifest-v1"
+READINESS_SCHEMA = "step4-f1-c-smoke-readiness-v2"
+AUDIT_SCHEMA = "step4-f1-c-audit-v3"
+MANIFEST_SCHEMA = "step4-f1-c-manifest-v2"
 FP32_SCHEMA = "step4-f1-c-fp32-rgb-v1"
 
 SMOKE_SPECS = {
@@ -45,12 +52,24 @@ APPROVED_FORMAL_GROUPS = (
     "F1C-C0", "F1C-I-fixed", "F1C-I-magsoft", "F1C-I-soft",
 )
 
+EXPECTED_BASE_CHECKPOINT_SHA256 = (
+    "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b"
+)
+# F1-C formal/smoke 构模的外部 RGB anchor 权重 (E:/odin/yolo26s.pt)。
+# 与 reports/checkpoint_audit.md 记录及审阅者上传文件一致;本机实测
+# (mtime 2026-08-06, 20,422,725 字节)逐字节相同。任何换基座权重必须
+# 改此常量并完整重跑 audit -> smoke -> readiness 链 (reviewer 2026-08-17)。
+
+RAW_KIND_DIRS = {"visible": "visible", "infrared": "infrared", "depth": "depth"}
+RAW_KINDS = ("visible", "infrared", "depth", "label")
+
 AUDIT_TARGETS = {
     "corruption_source_sha256": "src/multimodal/step4_f1_b_corruption.py",
     "runner_source_sha256": "scripts/run_step4_f1_c.py",
     "audit_source_sha256": "scripts/audit_step4_f1_c.py",
     "gate_module_sha256": "src/multimodal/reliability_gate.py",
     "model_source_sha256": "src/multimodal/step4_f1_ir_gate_model.py",
+    "builder_source_sha256": "src/multimodal/early_fusion_yolo26.py",
     "f1c_design_freeze_sha256": "docs/step4_f1_c/DESIGN_FREEZE.md",
     "a1_v2_last_sha256": "reports/step4_f1_c_agreement/descriptor_audit_v2_last.json",
     "a1_v2_best_sha256": "reports/step4_f1_c_agreement/descriptor_audit_v2_best.json",
@@ -63,6 +82,7 @@ MANIFEST_PIN_TARGETS = {
     "runner_source_sha256": "scripts/run_step4_f1_c.py",
     "model_source_sha256": "src/multimodal/step4_f1_ir_gate_model.py",
     "gate_source_sha256": "src/multimodal/reliability_gate.py",
+    "builder_source_sha256": "src/multimodal/early_fusion_yolo26.py",
     "f0_model_source_sha256": "src/multimodal/step4_f0_model.py",
     "aux_encoder_source_sha256": "src/multimodal/aux_encoder.py",
     "feature_fusion_source_sha256": "src/multimodal/feature_fusion.py",
@@ -84,6 +104,142 @@ def sha256_json(obj: Any) -> str:
         obj, ensure_ascii=False, separators=(",", ":"), sort_keys=True
     ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
+
+
+def class_names_sha256(names: dict) -> str:
+    """规范化的类名 SHA:{str(k): v} 按 str(k) 排序后再 sha256_json。
+    runner 与 readiness 共用,杜绝两端 int/str 键规范化漂移
+    (json.dumps sort_keys 对混合键会 TypeError,必须先统一 str 键)。"""
+    canonical = {
+        str(k): v for k, v in sorted(names.items(), key=lambda kv: str(kv[0]))
+    }
+    return sha256_json(canonical)
+
+
+def verify_base_checkpoint(weights_path: Path, expected_sha: str) -> dict:
+    """base checkpoint 存在性 + SHA 复核(纯文件级,torch-free)。
+
+    返回 {"passed", "sha256", "expected_sha256", "errors"}。
+    errors 元素: BASE_CHECKPOINT_MISSING / BASE_CHECKPOINT_STALE。
+    必须在 build_reference_3ch() 之前执行——权重缺失时给出明确错误码
+    而不是 torch.load 的神秘报错。"""
+    errors: list[str] = []
+    path = Path(weights_path)
+    if not path.exists():
+        return {
+            "passed": False, "sha256": None,
+            "expected_sha256": expected_sha, "errors": ["BASE_CHECKPOINT_MISSING"],
+        }
+    actual = sha256_file(path)
+    if actual != expected_sha:
+        errors.append("BASE_CHECKPOINT_STALE")
+    return {
+        "passed": not errors, "sha256": actual,
+        "expected_sha256": expected_sha, "errors": errors,
+    }
+
+
+def verify_raw_data_freshness(contract: dict) -> dict:
+    """按 contract["file_hashes"] 重新 hash 磁盘原始文件并比对。
+
+    目录映射:visible/infrared/depth 在 _raw_dir 下,label 在 _labels_dir 下
+    (labels 带 s)。file_hashes 之外的磁盘文件(如被排除组)不校验。
+    返回 {"passed", "errors", "checked", "expected_total", "mismatches"}。
+    errors 元素:
+      RAW_DATA_CONTRACT:{sid}:{kind} / RAW_DATA_CONTRACT:COUNT / RAW_DATA_CONTRACT:ID:{sid}
+      RAW_DATA_MISSING:{sid}:{kind} / RAW_DATA_STALE:{sid}:{kind}"""
+    errors: list[str] = []
+    raw_dir = Path(contract["_raw_dir"])
+    labels_dir = Path(contract["_labels_dir"])
+    file_hashes = contract.get("file_hashes") or {}
+    all_ids = set(contract.get("all17_ids", []))
+    split_ids = set(contract.get("train_ids", [])) | set(contract.get("val_ids", []))
+    if len(file_hashes) != len(all_ids):
+        errors.append(f"RAW_DATA_CONTRACT:COUNT:{len(file_hashes)}!={len(all_ids)}")
+    for sid in sorted(split_ids):
+        if sid not in file_hashes:
+            errors.append(f"RAW_DATA_CONTRACT:ID:{sid}")
+    checked = {"visible": 0, "infrared": 0, "depth": 0, "label": 0}
+    mismatches: list[dict] = []
+    for sid in sorted(file_hashes):
+        for kind in RAW_KINDS:
+            entry = file_hashes[sid].get(kind)
+            if entry is None or not isinstance(entry, dict):
+                errors.append(f"RAW_DATA_CONTRACT:{sid}:{kind}")
+                continue
+            if kind == "label":
+                path = labels_dir / entry["file"]
+            else:
+                path = raw_dir / RAW_KIND_DIRS[kind] / entry["file"]
+            checked[kind] += 1
+            if not path.exists():
+                errors.append(f"RAW_DATA_MISSING:{sid}:{kind}")
+                continue
+            actual = sha256_file(path)
+            if actual != entry["sha256"]:
+                mismatches.append({
+                    "sample_id": sid, "kind": kind,
+                    "expected": entry["sha256"], "actual": actual,
+                })
+                errors.append(f"RAW_DATA_STALE:{sid}:{kind}")
+    return {
+        "passed": not errors,
+        "errors": errors,
+        "checked": checked,
+        "expected_total": len(file_hashes) * len(RAW_KINDS),
+        "mismatches": mismatches,
+    }
+
+
+def verify_data_yaml(data_yaml_path: Path, class_names: dict) -> dict:
+    """dataset.yaml 存在性 + SHA + 语义锁(names 数量==12 且逐项==class_names)。
+
+    返回 {"passed", "errors", "sha256", "names_sha256", "n_classes",
+          "names_matches_class_names"}。
+    errors 元素: DATA_YAML_MISSING / DATA_YAML_SEMANTICS。
+    yaml 解析用函数内 import(同 _read_yaml 风格)。"""
+    errors: list[str] = []
+    path = Path(data_yaml_path)
+    if not path.exists():
+        return {
+            "passed": False, "errors": ["DATA_YAML_MISSING"],
+            "sha256": None, "names_sha256": None, "n_classes": None,
+            "names_matches_class_names": False,
+        }
+    obj = _read_yaml(path)
+    names = obj.get("names") or {}
+    expected = {str(k): v for k, v in class_names.items()}
+    actual = {str(k): v for k, v in names.items()}
+    # 语义锁:数量与内容都等于 class_names(runner 传 CLASS_NAMES 即 nc=12)
+    semantic_ok = len(actual) == len(class_names) and actual == expected
+    if not semantic_ok:
+        errors.append("DATA_YAML_SEMANTICS")
+    return {
+        "passed": not errors,
+        "errors": errors,
+        "sha256": sha256_file(path),
+        "names_sha256": class_names_sha256(names),
+        "n_classes": len(actual),
+        "names_matches_class_names": semantic_ok,
+    }
+
+
+def check_initial_state_equality(actual_shas: dict, expected_shas: dict) -> dict:
+    """formal 构模后 5 个 initial SHA 与 readiness 冻结值比对(纯 dict,torch-free)。
+
+    返回 {"passed", "mismatches"};mismatches[key] = {expected, actual}。
+    至少 full model state SHA 必须逐位相同;实现比对全部 5 个分量。"""
+    mismatches: dict[str, dict] = {}
+    for key in (
+        "initial_rgb_backbone_sha256", "initial_aux_encoder_sha256",
+        "initial_fusion_sha256", "initial_gate_sha256",
+        "initial_model_state_sha256",
+    ):
+        expected = expected_shas.get(key)
+        actual = actual_shas.get(key)
+        if actual != expected:
+            mismatches[key] = {"expected": expected, "actual": actual}
+    return {"passed": not mismatches, "mismatches": mismatches}
 
 
 def _read_json(path: Path) -> dict:
@@ -172,6 +328,7 @@ def _manifest_check(
     expected_epochs: int,
     batch: int,
     seed: int,
+    data_yaml_state: dict | None = None,
 ) -> dict:
     errors: list[str] = []
     path = run_dir / "manifest.json"
@@ -204,6 +361,16 @@ def _manifest_check(
         errors.append("MANIFEST_STALE:pretrain_audit_sha256")
     if manifest.get("contract_sha256") != sha256_file(contract_path):
         errors.append("MANIFEST_STALE:contract_sha256")
+    if data_yaml_state is not None:
+        # dataset.yaml 在 ROOT 外(绝对路径),不进 MANIFEST_PIN_TARGETS;
+        # 其 SHA/语义由调用方重算后在此比对(v2 闭包,reviewer 2026-08-17)。
+        for field, expected in (
+            ("data_yaml_sha256", data_yaml_state.get("sha256")),
+            ("data_yaml_names_sha256", data_yaml_state.get("names_sha256")),
+            ("data_yaml_n_classes", data_yaml_state.get("n_classes")),
+        ):
+            if manifest.get(field) != expected:
+                errors.append(f"MANIFEST_STALE:{field}")
     for field, rel in MANIFEST_PIN_TARGETS.items():
         target = root / rel
         current = sha256_file(target) if target.exists() else None
@@ -395,6 +562,7 @@ def _artifact_provenance(root: Path, run_dirs: dict[str, Path], contract_path: P
         "audit_report_sha256": root / "reports/step4_f1_c/pretrain_audit.json",
         "model_source_sha256": root / "src/multimodal/step4_f1_ir_gate_model.py",
         "gate_source_sha256": root / "src/multimodal/reliability_gate.py",
+        "builder_source_sha256": root / "src/multimodal/early_fusion_yolo26.py",
         "corruption_source_sha256": root / "src/multimodal/step4_f1_b_corruption.py",
         "design_freeze_sha256": root / "docs/step4_f1_c/DESIGN_FREEZE.md",
         "contract_sha256": contract_path,
@@ -421,6 +589,9 @@ def evaluate_smoke_readiness(
     expected_epochs: int = 1,
     batch: int = 4,
     seed: int = 20260812,
+    data_yaml_path: Path | None = None,
+    base_checkpoint_path: Path | None = None,
+    class_names: dict | None = None,
 ) -> dict:
     root = Path(root).resolve()
     contract_path = Path(contract_path).resolve()
@@ -443,6 +614,18 @@ def evaluate_smoke_readiness(
     if not audit["passed"]:
         errors.extend(audit["errors"])
 
+    if contract_path.exists():
+        contract = _read_json(contract_path)
+    else:
+        contract = None
+        errors.append("CONTRACT_MISSING")
+
+    data_yaml_state: dict | None = None
+    if data_yaml_path is not None and class_names is not None:
+        data_yaml_state = verify_data_yaml(data_yaml_path, class_names)
+        if not data_yaml_state["passed"]:
+            errors.extend(f"DATA_YAML:{x}" for x in data_yaml_state["errors"])
+
     manifests = {}
     args_results = {}
     g6 = {}
@@ -454,6 +637,7 @@ def evaluate_smoke_readiness(
         manifests[tag] = _manifest_check(
             root, rd, tag, audit_path, contract_path,
             expected_epochs, batch, seed,
+            data_yaml_state=data_yaml_state,
         )
         args_results[tag] = _args_results_check(rd, expected_epochs, batch, seed)
         g6[tag] = _rejudge_g6(tag, rd, expected_epochs)
@@ -469,7 +653,9 @@ def evaluate_smoke_readiness(
                 errors.extend(f"{tag}:fp32:{x}" for x in fp32[tag]["errors"])
 
     initial_state_equal = {}
+    initial_state_frozen = {}
     if len(manifests) == 3 and all(m["passed"] for m in manifests.values()):
+        first_manifest = manifests["C0"]["manifest"]
         for key in (
             "initial_rgb_backbone_sha256", "initial_aux_encoder_sha256",
             "initial_fusion_sha256", "initial_gate_sha256",
@@ -479,6 +665,16 @@ def evaluate_smoke_readiness(
             initial_state_equal[key] = len(values) == 1 and None not in values
             if not initial_state_equal[key]:
                 errors.append(f"INITIAL_STATE_MISMATCH:{key}")
+        # 冻结三组全等的 initial SHA 供 formal 构模后逐位比对
+        # (reviewer 2026-08-17 P0: formal 此刻构造的模型必须 == r3 验证过的)。
+        initial_state_frozen = {
+            key: first_manifest.get(key) for key in (
+                "initial_rgb_backbone_sha256", "initial_aux_encoder_sha256",
+                "initial_fusion_sha256", "initial_gate_sha256",
+                "initial_model_state_sha256",
+            )
+        }
+        initial_state_frozen["passed"] = all(initial_state_equal.values())
 
     try:
         g8 = g8_check(run_dirs, expected_epochs)
@@ -487,8 +683,7 @@ def evaluate_smoke_readiness(
     if not g8.get("passed"):
         errors.append("G8_REJUDGE_FAIL")
 
-    if contract_path.exists():
-        contract = _read_json(contract_path)
+    if contract is not None:
         try:
             g9 = _rejudge_g9(run_dirs, contract, expected_epochs, seed)
         except Exception as exc:
@@ -497,6 +692,32 @@ def evaluate_smoke_readiness(
         g9 = {"passed": False, "errors": ["CONTRACT_MISSING"]}
     if not g9["passed"]:
         errors.extend(f"G9:{x}" for x in g9["errors"])
+
+    # ---- external runtime dependency closure (reviewer 2026-08-17 P0) ----
+    # ① 原始数据 freshness:重 hash 磁盘 17x4 文件 vs contract["file_hashes"]
+    data_state = {"passed": True, "errors": [], "checked": {},
+                  "expected_total": 0, "mismatches": []}
+    if contract is not None:
+        data_state = verify_raw_data_freshness(contract)
+        if not data_state["passed"]:
+            errors.extend(f"DATA:{x}" for x in data_state["errors"])
+    # ② base checkpoint:磁盘当前 SHA == 文档常量;三组 manifest 记录一致
+    base_state = {"passed": True, "errors": [], "sha256": None,
+                  "expected_sha256": EXPECTED_BASE_CHECKPOINT_SHA256}
+    if base_checkpoint_path is not None:
+        base_state = verify_base_checkpoint(
+            base_checkpoint_path, EXPECTED_BASE_CHECKPOINT_SHA256)
+        if not base_state["passed"]:
+            errors.extend(f"BASE:{x}" for x in base_state["errors"])
+    recorded_bc = {
+        m.get("base_checkpoint_sha256")
+        for m in (manifests[tag]["manifest"] for tag in manifests
+                  if manifests[tag]["passed"])
+    }
+    if len(recorded_bc) != 1 or next(iter(recorded_bc)) is None:
+        errors.append("BASE_CHECKPOINT_MISMATCH")
+    elif next(iter(recorded_bc)) != EXPECTED_BASE_CHECKPOINT_SHA256:
+        errors.append("BASE_CHECKPOINT_DOCUMENTED_MISMATCH")
 
     versions = {}
     for tag, block in manifests.items():
@@ -524,6 +745,39 @@ def evaluate_smoke_readiness(
         "g9_rejudged": g9,
         "g10_7_fp32": fp32,
         "initial_state_equal": initial_state_equal,
+        "initial_state_frozen": initial_state_frozen,
+        "base_checkpoint": {
+            "expected_sha256": EXPECTED_BASE_CHECKPOINT_SHA256,
+            "smoke_recorded": (
+                next(iter(recorded_bc)) if len(recorded_bc) == 1 else None
+            ),
+            "current_sha256": base_state.get("sha256"),
+            "current_matches_documented": bool(
+                base_state.get("sha256") == EXPECTED_BASE_CHECKPOINT_SHA256
+            ),
+            "passed": bool(
+                base_state["passed"]
+                and len(recorded_bc) == 1
+                and next(iter(recorded_bc)) == EXPECTED_BASE_CHECKPOINT_SHA256
+            ),
+        },
+        "data_freshness": {
+            "checked": data_state.get("checked"),
+            "expected_total": data_state.get("expected_total"),
+            "mismatches": data_state.get("mismatches"),
+            "passed": data_state["passed"],
+        },
+        "data_yaml": (
+            None if data_yaml_state is None else {
+                "path": str(Path(data_yaml_path).resolve()),
+                "sha256": data_yaml_state.get("sha256"),
+                "names_sha256": data_yaml_state.get("names_sha256"),
+                "n_classes": data_yaml_state.get("n_classes"),
+                "names_matches_class_names": data_yaml_state.get(
+                    "names_matches_class_names"),
+                "passed": data_yaml_state["passed"],
+            }
+        ),
         "versions": versions,
         "formal_protocol": {
             "epochs": 80, "batch": 4, "seed": 20260812, "amp": False,
@@ -548,8 +802,15 @@ def verify_readiness_report(
     contract_path: Path,
     *,
     requested_group: str,
+    data_yaml_path: Path,
+    base_checkpoint_path: Path,
+    class_names: dict,
 ) -> dict:
-    """Recompute readiness from raw smoke artifacts at formal-run time."""
+    """Recompute readiness from raw smoke artifacts at formal-run time.
+
+    data_yaml_path / base_checkpoint_path / class_names 必传 (v2 closure):
+    重算 evaluate_smoke_readiness 必须使用与报告生成时相同的语义输入,
+    否则 evidence_sha256 / provenance 整体比对会失败 (READINESS_EVIDENCE_STALE)。"""
     root = Path(root).resolve()
     report_path = Path(report_path).resolve()
     errors: list[str] = []
@@ -578,7 +839,12 @@ def verify_readiness_report(
             errors.append(f"READINESS_PATH_ESCAPE:{tag}")
         run_dirs[tag] = path
 
-    current = evaluate_smoke_readiness(root, run_dirs, contract_path)
+    current = evaluate_smoke_readiness(
+        root, run_dirs, contract_path,
+        data_yaml_path=data_yaml_path,
+        base_checkpoint_path=base_checkpoint_path,
+        class_names=class_names,
+    )
     if not current["all_passed"]:
         errors.extend(f"CURRENT:{x}" for x in current["errors"])
     if report.get("evidence_sha256") != current.get("evidence_sha256"):

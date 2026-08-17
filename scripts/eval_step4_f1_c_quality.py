@@ -108,7 +108,7 @@ def main() -> None:
         manifest = json.loads((rd / "manifest.json").read_text(encoding="utf-8"))
         group, aux_mode, gate_mode, gate_module = expected_identity[label]
         identity_ok = (
-            manifest.get("schema") == "step4-f1-c-manifest-v1"
+            manifest.get("schema") == "step4-f1-c-manifest-v2"
             and manifest.get("run_kind") == "formal"
             and manifest.get("group") == group
             and manifest.get("aux_mode") == aux_mode

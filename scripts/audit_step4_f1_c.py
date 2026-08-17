@@ -213,6 +213,37 @@ def audit_g10_7_runner_records_fp32_sha() -> dict:
     return {"checks": checks, "passed": all(checks.values())}
 
 
+def audit_external_dependency_closure() -> dict:
+    """G11 (reviewer 2026-08-17 P0): formal 构模的外部运行依赖必须进入
+    readiness freshness 闭包——base checkpoint SHA、builder 源码 pin、
+    原始数据重 hash、dataset.yaml 语义锁、构模后 initial-state 逐位比对。
+    字符串级检查 runner/readiness 已接线全部 ABORT 码与关键锚点。"""
+    from multimodal.step4_f1_c_readiness import (
+        EXPECTED_BASE_CHECKPOINT_SHA256)
+    runner = (ROOT / "scripts" / "run_step4_f1_c.py").read_text(
+        encoding="utf-8")
+    readiness = (ROOT / "src" / "multimodal" / "step4_f1_c_readiness.py") \
+        .read_text(encoding="utf-8")
+    checks = {
+        "abort_base_checkpoint_stale": "ABORT_BASE_CHECKPOINT_STALE" in runner,
+        "abort_base_checkpoint_missing": "ABORT_BASE_CHECKPOINT_MISSING" in runner,
+        "abort_raw_data_stale": "ABORT_RAW_DATA_STALE" in runner,
+        "abort_initial_state_mismatch": "ABORT_INITIAL_STATE_MISMATCH" in runner,
+        "abort_data_yaml_stale": "ABORT_DATA_YAML_STALE" in runner,
+        "abort_data_yaml_semantics": "ABORT_DATA_YAML_SEMANTICS" in runner,
+        "verify_raw_data_freshness_wired": "verify_raw_data_freshness" in runner,
+        "manifest_schema_v2": '"step4-f1-c-manifest-v2"' in runner,
+        "initial_state_frozen_in_readiness": "initial_state_frozen" in readiness,
+        "expected_base_sha_in_readiness": "EXPECTED_BASE_CHECKPOINT_SHA256" in readiness,
+        "builder_pinned_in_readiness": "builder_source_sha256" in readiness,
+        "documented_sha_matches_constant": (
+            EXPECTED_BASE_CHECKPOINT_SHA256
+            == "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b"
+        ),
+    }
+    return {"checks": checks, "passed": all(checks.values())}
+
+
 def main() -> None:
     sections = {
         "schedule_frozen": audit_schedule_frozen(),
@@ -222,9 +253,10 @@ def main() -> None:
         "docs_present": audit_docs_present(),
         "g10_magnitude_gate": audit_g10_magnitude_gate(),
         "g10_7_runner_fp32_sha": audit_g10_7_runner_records_fp32_sha(),
+        "external_dependency_closure": audit_external_dependency_closure(),
     }
     report = {
-        "schema": "step4-f1-c-audit-v2",
+        "schema": "step4-f1-c-audit-v3",
         "sections": sections,
         "provenance": {
             "corruption_source_sha256": _sha_file(
@@ -236,6 +268,8 @@ def main() -> None:
                 ROOT / "src" / "multimodal" / "reliability_gate.py"),
             "model_source_sha256": _sha_file(
                 ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py"),
+            "builder_source_sha256": _sha_file(
+                ROOT / "src" / "multimodal" / "early_fusion_yolo26.py"),
             "f1c_design_freeze_sha256": _sha_file(
                 ROOT / "docs" / "step4_f1_c" / "DESIGN_FREEZE.md"),
             "a1_v2_last_sha256": _sha_file(

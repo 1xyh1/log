@@ -25,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from multimodal.raw_sample_index import OUT_DEFAULT  # noqa: E402
+from multimodal.raw_sample_index import CLASS_NAMES, OUT_DEFAULT  # noqa: E402
 from multimodal.run_integrity import inspect_step3_run  # noqa: E402
 from multimodal.step4_closeout import g8_check  # noqa: E402
 from multimodal.step4_f1_b_corruption import (  # noqa: E402
@@ -236,6 +236,10 @@ def main() -> None:
     p.add_argument("--magsoft-run", default="F1C-I-magsoft")
     p.add_argument("--origsoft-run", default="F1C-I-soft")
     p.add_argument("--contract", default=OUT_DEFAULT)
+    p.add_argument(
+        "--data-yaml", default=(
+            "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml"))
+    p.add_argument("--base-checkpoint", default="E:/odin/yolo26s.pt")
     p.add_argument("--expected-epochs", type=int, default=80)
     p.add_argument("--seed", type=int, default=20260812)
     p.add_argument("--overwrite", action="store_true")
@@ -255,7 +259,10 @@ def main() -> None:
 
     readiness_path = ROOT / "reports" / "step4_f1_c" / "smoke_readiness.json"
     readiness = verify_readiness_report(
-        ROOT, readiness_path, contract_path, requested_group="F1C-I-magsoft"
+        ROOT, readiness_path, contract_path, requested_group="F1C-I-magsoft",
+        data_yaml_path=Path(a.data_yaml),
+        base_checkpoint_path=Path(a.base_checkpoint),
+        class_names=CLASS_NAMES,
     )
     if not readiness["passed"]:
         raise RuntimeError(f"F1C_READINESS_STALE_AT_CLOSEOUT:{readiness['errors']}")

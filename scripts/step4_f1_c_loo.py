@@ -108,7 +108,7 @@ def main() -> None:
         manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
         expected = MODEL_SPECS[tag]
         if not (
-            manifest.get("schema") == "step4-f1-c-manifest-v1"
+            manifest.get("schema") == "step4-f1-c-manifest-v2"
             and manifest.get("run_kind") == "formal"
             and manifest.get("group") == expected["group"]
             and manifest.get("aux_mode") == expected["aux_mode"]

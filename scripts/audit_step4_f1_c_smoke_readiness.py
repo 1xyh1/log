@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from multimodal.raw_sample_index import OUT_DEFAULT  # noqa: E402
+from multimodal.raw_sample_index import CLASS_NAMES, OUT_DEFAULT  # noqa: E402
 from multimodal.step4_f1_c_readiness import (  # noqa: E402
     APPROVED_FORMAL_GROUPS,
     READINESS_SCHEMA,
@@ -24,6 +24,11 @@ def main() -> None:
     p.add_argument("--fixed-smoke", required=True)
     p.add_argument("--magsoft-smoke", required=True)
     p.add_argument("--contract", default=OUT_DEFAULT)
+    p.add_argument(
+        "--data-yaml", default=(
+            "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml"))
+    p.add_argument(
+        "--base-checkpoint", default="E:/odin/yolo26s.pt")
     p.add_argument(
         "--out", default="reports/step4_f1_c/smoke_readiness.json"
     )
@@ -45,7 +50,12 @@ def main() -> None:
         "FIXED": project / a.fixed_smoke,
         "MAGSOFT": project / a.magsoft_smoke,
     }
-    result = evaluate_smoke_readiness(ROOT, smoke_runs, contract_path)
+    result = evaluate_smoke_readiness(
+        ROOT, smoke_runs, contract_path,
+        data_yaml_path=Path(a.data_yaml),
+        base_checkpoint_path=Path(a.base_checkpoint),
+        class_names=CLASS_NAMES,
+    )
     report = {
         "schema": READINESS_SCHEMA,
         "smoke_runs": {

@@ -28,12 +28,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from multimodal import modality_preprocess as mp  # noqa: E402
-from multimodal.early_fusion_yolo26 import MODEL_INIT_SEED, build_reference_3ch  # noqa: E402
+from multimodal.early_fusion_yolo26 import (  # noqa: E402
+    MODEL_INIT_SEED, WEIGHTS_DEFAULT, build_reference_3ch)
 from multimodal.modality_quality import content_mask_from_sample  # noqa: E402
-from multimodal.raw_sample_index import OUT_DEFAULT  # noqa: E402
+from multimodal.raw_sample_index import CLASS_NAMES, OUT_DEFAULT  # noqa: E402
 from multimodal.step4_f1_b_corruption import (  # noqa: E402
     KIND_PROBS, apply_schedule_to_plane, sample_schedule, schedule_for_epoch,
     schedule_sha256, sha256_plane)
+from multimodal.step4_f1_c_readiness import (  # noqa: E402
+    EXPECTED_BASE_CHECKPOINT_SHA256, check_initial_state_equality,
+    verify_base_checkpoint, verify_data_yaml, verify_raw_data_freshness)
 from multimodal.step4_f1_ir_gate_model import Step4F1IRGateModel  # noqa: E402
 from multimodal.trimodal_dataset import TriModalDataset  # noqa: E402
 from ultralytics.data.build import InfiniteDataLoader  # noqa: E402
@@ -195,6 +199,11 @@ def main() -> None:
     p.add_argument(
         "--data", default=(
             "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml"))
+    p.add_argument(
+        "--base-checkpoint", default=WEIGHTS_DEFAULT,
+        help="frozen external RGB anchor weights; SHA must equal "
+             "EXPECTED_BASE_CHECKPOINT_SHA256 (smoke+formal, checked before "
+             "model construction)")
     p.add_argument("--device", default="0")
     p.add_argument("--seed", type=int, default=20260812)
     p.add_argument("--epochs", type=int, default=80)
@@ -236,12 +245,27 @@ def main() -> None:
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     spec = GROUP_SPECS[a.group]
 
+    # ---- external runtime dependency closure (reviewer 2026-08-17 P0) ----
+    # dataset.yaml 语义锁 (nc=12 + names == CLASS_NAMES) + 原始数据 17x4 重 hash。
+    # smoke 与 formal 都执行:smoke 用错权重/数据等于整条链作废,提前失败优于
+    # readiness 事后兜底。
+    data_yaml_state = verify_data_yaml(Path(a.data), CLASS_NAMES)
+    if "DATA_YAML_MISSING" in data_yaml_state["errors"]:
+        raise RuntimeError(f"ABORT_DATA_YAML_MISSING: {a.data}")
+    if not data_yaml_state["passed"]:
+        raise RuntimeError(
+            f"ABORT_DATA_YAML_SEMANTICS: {data_yaml_state['errors']}")
+    raw_data_state = verify_raw_data_freshness(contract)
+    if not raw_data_state["passed"]:
+        raise RuntimeError(
+            f"ABORT_RAW_DATA_STALE: {raw_data_state['errors']}")
+
     # ---- hard gate: B1 pretrain audit must exist, pass, and be FRESH ----
     audit_path = Path(a.audit_report)
     if not audit_path.exists():
         raise RuntimeError(f"F1C_PRETRAIN_AUDIT_MISSING: {audit_path}")
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
-    if (audit.get("schema") != "step4-f1-c-audit-v2"
+    if (audit.get("schema") != "step4-f1-c-audit-v3"
             or audit.get("all_passed") is not True):
         raise RuntimeError("F1C_PRETRAIN_AUDIT_NOT_PASSED")
     audit_prov = audit.get("provenance") or {}
@@ -251,6 +275,7 @@ def main() -> None:
         "audit_source_sha256": ROOT / "scripts" / "audit_step4_f1_c.py",
         "gate_module_sha256": ROOT / "src" / "multimodal" / "reliability_gate.py",
         "model_source_sha256": ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py",
+        "builder_source_sha256": ROOT / "src" / "multimodal" / "early_fusion_yolo26.py",
         "f1c_design_freeze_sha256": ROOT / "docs" / "step4_f1_c" / "DESIGN_FREEZE.md",
         "a1_v2_last_sha256": ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_last.json",
         "a1_v2_best_sha256": ROOT / "reports" / "step4_f1_c_agreement" / "descriptor_audit_v2_best.json",
@@ -270,11 +295,23 @@ def main() -> None:
     if a.run_kind == "formal":
         from multimodal.step4_f1_c_readiness import verify_readiness_report
         readiness = verify_readiness_report(
-            ROOT, readiness_path, contract_path, requested_group=a.group
+            ROOT, readiness_path, contract_path, requested_group=a.group,
+            data_yaml_path=Path(a.data),
+            base_checkpoint_path=Path(a.base_checkpoint),
+            class_names=CLASS_NAMES,
         )
         if not readiness["passed"]:
             raise RuntimeError(
                 f"F1C_FORMAL_READINESS_FAIL: {readiness['errors']}"
+            )
+        # dataset.yaml SHA 必须与 smoke 时一致 (ABORT_DATA_YAML_STALE)
+        evidence_data_yaml = (
+            (readiness.get("evidence") or {}).get("data_yaml") or {})
+        if evidence_data_yaml.get("sha256") != data_yaml_state["sha256"]:
+            raise RuntimeError(
+                "ABORT_DATA_YAML_STALE: "
+                f"smoke={evidence_data_yaml.get('sha256')} "
+                f"current={data_yaml_state['sha256']}"
             )
         version_rows = list((readiness.get("evidence") or {}).get(
             "versions", {}).values())
@@ -288,6 +325,18 @@ def main() -> None:
                 f"smoke={version_rows} current={current_versions}"
             )
 
+    # ---- base checkpoint lock: must run BEFORE build_reference_3ch() ----
+    ckpt_state = verify_base_checkpoint(
+        Path(a.base_checkpoint), EXPECTED_BASE_CHECKPOINT_SHA256)
+    if "BASE_CHECKPOINT_MISSING" in ckpt_state["errors"]:
+        raise RuntimeError(f"ABORT_BASE_CHECKPOINT_MISSING: {a.base_checkpoint}")
+    if not ckpt_state["passed"]:
+        raise RuntimeError(
+            f"ABORT_BASE_CHECKPOINT_STALE: "
+            f"actual={ckpt_state['sha256']} "
+            f"expected={EXPECTED_BASE_CHECKPOINT_SHA256}"
+        )
+
     rng_state = torch.random.get_rng_state()
     torch.manual_seed(MODEL_INIT_SEED)
     model = Step4F1IRGateModel(
@@ -297,6 +346,24 @@ def main() -> None:
     )
     torch.random.set_rng_state(rng_state)
     model.nc = 12
+
+    # ---- initial-state equality (formal only): this instant's model must be
+    # bitwise identical to the r3 smoke-frozen initial state (reviewer P0).
+    # Computed once here and reused for the manifest (no duplicate SHA work).
+    initial_shas = {
+        "initial_rgb_backbone_sha256": _state_sha(model.rgb_backbone),
+        "initial_aux_encoder_sha256": _state_sha(model.aux_encoder),
+        "initial_fusion_sha256": _state_sha(model.fusions),
+        "initial_gate_sha256": _state_sha(model.reliability_gate),
+        "initial_model_state_sha256": _state_sha(model),
+    }
+    if a.run_kind == "formal":
+        frozen = (
+            (readiness.get("evidence") or {}).get("initial_state_frozen") or {})
+        state_eq = check_initial_state_equality(initial_shas, frozen)
+        if not state_eq["passed"]:
+            raise RuntimeError(
+                f"ABORT_INITIAL_STATE_MISMATCH: {state_eq['mismatches']}")
 
     requested_batch = int(a.batch)
 
@@ -552,7 +619,7 @@ def main() -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
 
     manifest = {
-        "schema": "step4-f1-c-manifest-v1",
+        "schema": "step4-f1-c-manifest-v2",
         "group": a.group,
         "physical_run_name": a.name,
         "run_kind": a.run_kind,
@@ -592,6 +659,14 @@ def main() -> None:
         "seed": a.seed,
         "model_init_seed": MODEL_INIT_SEED,
         "contract_sha256": _sha_file(contract_path),
+        # v2 external runtime dependency closure (reviewer 2026-08-17 P0)
+        "base_checkpoint_sha256": ckpt_state["sha256"],
+        "builder_source_sha256": _sha_file(
+            ROOT / "src" / "multimodal" / "early_fusion_yolo26.py"
+        ),
+        "data_yaml_sha256": data_yaml_state["sha256"],
+        "data_yaml_names_sha256": data_yaml_state["names_sha256"],
+        "data_yaml_n_classes": data_yaml_state["n_classes"],
         "runner_source_sha256": _sha_file(Path(__file__)),
         "model_source_sha256": _sha_file(
             ROOT / "src" / "multimodal" / "step4_f1_ir_gate_model.py"
@@ -620,11 +695,7 @@ def main() -> None:
         "quality_mask_source_sha256": _sha_file(
             ROOT / "src" / "multimodal" / "modality_quality.py"
         ),
-        "initial_rgb_backbone_sha256": _state_sha(model.rgb_backbone),
-        "initial_aux_encoder_sha256": _state_sha(model.aux_encoder),
-        "initial_fusion_sha256": _state_sha(model.fusions),
-        "initial_gate_sha256": _state_sha(model.reliability_gate),
-        "initial_model_state_sha256": _state_sha(model),
+        **initial_shas,
         "g8_evidence": "actual_dataloader_yield_v1",
         "g9_evidence": "actual_corruption_yield_v1",
         "ultralytics_version": __import__("ultralytics").__version__,

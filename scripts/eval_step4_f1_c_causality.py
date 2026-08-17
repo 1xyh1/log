@@ -126,7 +126,7 @@ def main() -> None:
 
     manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     expected_manifest = {
-        "schema": "step4-f1-c-manifest-v1",
+        "schema": "step4-f1-c-manifest-v2",
         "group": a.group,
         "physical_run_name": a.run_name,
         "run_kind": "formal",

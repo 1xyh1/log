@@ -64,6 +64,16 @@ C0/fixed 阈值 epoch 缩放仅 smoke。
 7. runner 在半精度 checkpoint 序列化前记录 final fp32 RGB SHA
    （`step4_fp32_rgb_sha.json`）。
 
+**G11（reviewer 2026-08-17 裁决，外部运行依赖闭包）**：formal 构模的外部
+运行依赖必须进入 readiness freshness 闭包（manifest v2 / audit v3 /
+readiness v2）——base checkpoint 文件 SHA（`EXPECTED_BASE_CHECKPOINT_SHA256`，
+`E:/odin/yolo26s.pt`，`646f8bc3…a1b`）、builder 源码
+（`early_fusion_yolo26.py`，三处 pin 表）、17×4 原始数据重 hash 与
+`contract["file_hashes"]` 比对、dataset.yaml 语义锁（nc=12 + names ==
+CLASS_NAMES）；formal 构模后、Trainer 创建前，5 个 initial state SHA 与
+smoke 冻结值逐位相同。**任一外部依赖变更强制完整重跑链
+（pytest → audit → smoke → readiness），不单独豁免。**
+
 ## 6. 晋级要求（在 B1 条件之外）
 
 - 新 magsoft 超过历史 B1-soft last **0.304028**（辅助外部基线）；

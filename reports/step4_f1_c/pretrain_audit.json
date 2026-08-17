@@ -1,5 +1,5 @@
 {
-  "schema": "step4-f1-c-audit-v2",
+  "schema": "step4-f1-c-audit-v3",
   "sections": {
     "schedule_frozen": {
       "checks": {
@@ -80,15 +80,33 @@
         "g10_7_match_asserted": true
       },
       "passed": true
+    },
+    "external_dependency_closure": {
+      "checks": {
+        "abort_base_checkpoint_stale": true,
+        "abort_base_checkpoint_missing": true,
+        "abort_raw_data_stale": true,
+        "abort_initial_state_mismatch": true,
+        "abort_data_yaml_stale": true,
+        "abort_data_yaml_semantics": true,
+        "verify_raw_data_freshness_wired": true,
+        "manifest_schema_v2": true,
+        "initial_state_frozen_in_readiness": true,
+        "expected_base_sha_in_readiness": true,
+        "builder_pinned_in_readiness": true,
+        "documented_sha_matches_constant": true
+      },
+      "passed": true
     }
   },
   "provenance": {
     "corruption_source_sha256": "4fceb384417cf845bd8256c560a161d1392fdbad25aac51ae4cdcb9cd33b608e",
-    "runner_source_sha256": "6e56f89102aea6368623a697f9fb755d47ff6674003282de2133d5aa3fe7a733",
-    "audit_source_sha256": "c271381e6235d267fda02eed39d918fd185338e9d125cfc36ee5e67615f3dadf",
+    "runner_source_sha256": "6d0a8a26fd8f59470dc7f4a577e46e440e37ec879c8af267731a9d810f41f364",
+    "audit_source_sha256": "9773a7ef7dd639381746001a4342126886ea531f607f911ce1636bf808a6e1ff",
     "gate_module_sha256": "3354ac231a452575016604588846454767fefced34fe798ffcdaebc233c2bce9",
     "model_source_sha256": "aa2e95e06006d91d510a496a7d754820b5908ad1a8ea935edfae0ec8a38f912a",
-    "f1c_design_freeze_sha256": "0d5ef908795467a36ae997b210cd03b5b2f91b7a3fc0f0d69850af09523d1232",
+    "builder_source_sha256": "ad0c23523c37791c32524a73029a108e43ac406d0e834ba79eaeecbe8f149f3b",
+    "f1c_design_freeze_sha256": "aa26dd2613c855901aa4252bc5a229d1a978debe48f4c7ce4b03f094c0c4d96e",
     "a1_v2_last_sha256": "7491d236b0506e016ea6cec5c1f5851bbb978a25ce644ce9a25b19dd8674965d",
     "a1_v2_best_sha256": "95142c7684b03a742cb7e2496692fdebb43942d2138df6d6bb68755f917aec3f",
     "b1_v22_summary_sha256": "1f73ffa9ee3754a836eb22a3136f4c3e6252d6fb23ae68523cd34ff7c43af49f"
