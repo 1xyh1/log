@@ -188,6 +188,11 @@ def main() -> None:
         default=str(ROOT / "reports" / "step4_f1_c" / "pretrain_audit.json"),
     )
     p.add_argument(
+        "--readiness-report",
+        default=str(ROOT / "reports" / "step4_f1_c" / "smoke_readiness.json"),
+        help="formal only: fresh raw-smoke readiness report",
+    )
+    p.add_argument(
         "--data", default=(
             "D:/pycharm/Python Develop/YOLO_1/v031_step1_rgb_sample/dataset.yaml"))
     p.add_argument("--device", default="0")
@@ -195,6 +200,19 @@ def main() -> None:
     p.add_argument("--epochs", type=int, default=80)
     p.add_argument("--batch", type=int, default=4)
     a = p.parse_args()
+
+    if a.run_kind == "formal":
+        formal_drift = {
+            "epochs": a.epochs if a.epochs != 80 else None,
+            "batch": a.batch if a.batch != 4 else None,
+            "seed": a.seed if a.seed != 20260812 else None,
+        }
+        formal_drift = {k: v for k, v in formal_drift.items() if v is not None}
+        if formal_drift:
+            raise RuntimeError(
+                f"FORMAL_PROTOCOL_DRIFT: {formal_drift}; "
+                "F1-C formal is frozen to epochs=80,batch=4,seed=20260812"
+            )
 
     project = Path(a.project).resolve()
     if a.run_kind == "smoke" and a.name is None:
@@ -245,6 +263,30 @@ def main() -> None:
     }
     if stale_audit:
         raise RuntimeError(f"F1C_PRETRAIN_AUDIT_STALE: {stale_audit}")
+
+    readiness_path = Path(a.readiness_report)
+    if not readiness_path.is_absolute():
+        readiness_path = (ROOT / readiness_path).resolve()
+    if a.run_kind == "formal":
+        from multimodal.step4_f1_c_readiness import verify_readiness_report
+        readiness = verify_readiness_report(
+            ROOT, readiness_path, contract_path, requested_group=a.group
+        )
+        if not readiness["passed"]:
+            raise RuntimeError(
+                f"F1C_FORMAL_READINESS_FAIL: {readiness['errors']}"
+            )
+        version_rows = list((readiness.get("evidence") or {}).get(
+            "versions", {}).values())
+        current_versions = {
+            "torch": torch.__version__,
+            "ultralytics": __import__("ultralytics").__version__,
+        }
+        if not version_rows or any(row != current_versions for row in version_rows):
+            raise RuntimeError(
+                "F1C_FORMAL_ENV_VERSION_MISMATCH: "
+                f"smoke={version_rows} current={current_versions}"
+            )
 
     rng_state = torch.random.get_rng_state()
     torch.manual_seed(MODEL_INIT_SEED)
@@ -534,6 +576,9 @@ def main() -> None:
             ROOT / "src" / "multimodal" / "reliability_gate.py"
         ),
         "pretrain_audit_sha256": _sha_file(audit_path),
+        "smoke_readiness_sha256": (
+            _sha_file(readiness_path) if a.run_kind == "formal" else None
+        ),
         "f1_v4_summary_sha256": _sha_file(
             ROOT / "runs" / "step4_f1_ir_gate" / "_summary_step4_f1.json"
         ),
