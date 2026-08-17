@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:40:04.134257+08:00",
+  "generated_at_local": "2026-08-18T05:41:54.267696+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -1843,6 +1843,13 @@
       "canonical_lf_sha256": "53265ff38efec8ee3c255fe7ab1f1d7f47a307af458585a99eeadadbe5bf1f36",
       "source_eol": "crlf"
     },
+    "runs/step4_f1_c/F1C-I-fixed/eval_step4_f1_c_causality.json": {
+      "sha256": "cd3d3b38db72af7689d5858ffa5e4ebb8163855d6c9867f2adb705d410a86db7",
+      "size_bytes": 51653,
+      "mtime_ns": 1787002838712971200,
+      "canonical_lf_sha256": "bcf9409194f44c57c5e69c8b444eb9a372811accc2a624948cab36c36b9e0ef9",
+      "source_eol": "crlf"
+    },
     "runs/step4_f1_c/F1C-I-fixed/manifest.json": {
       "sha256": "93161a0a1b565b6139090417f601a10d0fed83a67c1d1c97a7be54a6f8e18862",
       "size_bytes": 3741,
@@ -2009,6 +2016,27 @@
       "size_bytes": 12175,
       "mtime_ns": 1787002612520124500,
       "canonical_lf_sha256": "f3d602667e0632136795cb081d31d3f511a2b281c64e4e4d4de4b46f321f8c8e",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1787002842855144100,
+      "canonical_lf_sha256": "890218db791b40c0587a595a2bb0175427b391dd3ae51b7cc23f997394ef548a",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1787002842853855100,
+      "canonical_lf_sha256": "5281405cb2e492c0caf2f6a4557e5590f139093c3892a30855328bd8272d3e10",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1787002842855144100,
+      "canonical_lf_sha256": "ce0f5066b22427474afb67e63135c771a72d89147fc3e69b9872fb8e672da158",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/F1C-I-magsoft/step4_f1c_g9_records.jsonl": {
@@ -4141,9 +4169,9 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-C0/eval_step4_f1_c_causality.json",
-    "runs/step4_f1_c/F1C-I-fixed/shuffle_map_all17.json",
-    "runs/step4_f1_c/F1C-I-fixed/shuffle_map_train.json",
-    "runs/step4_f1_c/F1C-I-fixed/shuffle_map_val.json"
+    "runs/step4_f1_c/F1C-I-fixed/eval_step4_f1_c_causality.json",
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_all17.json",
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_train.json",
+    "runs/step4_f1_c/F1C-I-magsoft/shuffle_map_val.json"
   ]
 }
