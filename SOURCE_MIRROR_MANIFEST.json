@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:01:48.722840+08:00",
+  "generated_at_local": "2026-08-18T05:08:09.126339+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -1802,10 +1802,73 @@
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/F1C-I-soft/results.csv": {
-      "sha256": "d3b42f06572097cd39ec4dd1d8989af033e09f8f6419468c43fc459bc10aec8d",
-      "size_bytes": 736,
-      "mtime_ns": 1787000508122249700,
-      "canonical_lf_sha256": "379e7bb8d32f9554472370d1f99e9aff02204558856df516cf14e304503623c9",
+      "sha256": "8f372fbe5b1dcee1e79073a33a5ddd014e6cd093ed7b3f3b5de016304f403911",
+      "size_bytes": 12190,
+      "mtime_ns": 1787000830142293300,
+      "canonical_lf_sha256": "6711d996b00cd429cfba9449946f9a407a450c6ff674a8b3f194cd4639ea7285",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_all17.json": {
+      "sha256": "bfa845d2dc3f6d6a25c288be2431cf9e32b268163e0d5b09f5c07cc7d40b36f2",
+      "size_bytes": 846,
+      "mtime_ns": 1787000866996500200,
+      "canonical_lf_sha256": "890218db791b40c0587a595a2bb0175427b391dd3ae51b7cc23f997394ef548a",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_train.json": {
+      "sha256": "f8d6f2bc30c7ed1630a6097e83ae5547c6e1370b11c0bee23a398ac32a91554b",
+      "size_bytes": 566,
+      "mtime_ns": 1787000866994309700,
+      "canonical_lf_sha256": "5281405cb2e492c0caf2f6a4557e5590f139093c3892a30855328bd8272d3e10",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/shuffle_map_val.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1787000866995499000,
+      "canonical_lf_sha256": "ce0f5066b22427474afb67e63135c771a72d89147fc3e69b9872fb8e672da158",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_records.jsonl": {
+      "sha256": "2703e20f74ecfebe467567dce228ca83e591f8fc71c49411bb85c883ed26db83",
+      "size_bytes": 297685,
+      "mtime_ns": 1787000830609097700,
+      "canonical_lf_sha256": "20b52e4915776d082fe7701ff1bed7d7ec2f788a699966a73f595ddbfa9cf666",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_trace.jsonl": {
+      "sha256": "85ad6fc8ed82de09aa3f6992fd4b35883e5dd304f4ceefd02456e3be229ca294",
+      "size_bytes": 40122,
+      "mtime_ns": 1787000830604456300,
+      "canonical_lf_sha256": "3790d820e701292faf4e0e5c91b7d2e61b1bc07cba29f0117886707c259f2b17",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_fp32_rgb_sha.json": {
+      "sha256": "b0f4be97cbb4998c286c4578d933aea8a21214be437daa067f920de85ddd212a",
+      "size_bytes": 381,
+      "mtime_ns": 1787000830493035700,
+      "canonical_lf_sha256": "ac265b77c6fb33824c520eb52fd08acbd4463be2dead5b90590d0fe8d0c5e945",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_g8_trace.jsonl": {
+      "sha256": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "size_bytes": 50070,
+      "mtime_ns": 1787000830603455800,
+      "canonical_lf_sha256": "39f802c9ca3c0599c84734ca40b8a8639dd85a55d3ca614dd63a312b6ad789b1",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_growth.jsonl": {
+      "sha256": "212d5b9cede3e791d538cb881b93a7ba7891da28fa1f3412b596a2689646d9e4",
+      "size_bytes": 36371,
+      "mtime_ns": 1787000830610606700,
+      "canonical_lf_sha256": "8ae995fc002f043c184f7fb72a73d9d8f870ddd48a617c71ef06b1441773ff4a",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/F1C-I-soft/step4_update_gate.json": {
+      "sha256": "18ba720129136416db0019f5c9bf3dd8cfa82281f6c514479d65dc0aca734764",
+      "size_bytes": 836,
+      "mtime_ns": 1787000830914561900,
+      "canonical_lf_sha256": "47e901fa393e0e07874a9b88387ace531f65314030a7928b8263565b20183f67",
       "source_eol": "crlf"
     },
     "runs/step4_f1_c/smoke-F1C-C0-e1-r2/args.yaml": {
@@ -3805,6 +3868,14 @@
     }
   },
   "changed_in_this_sync": [
-    "reports/step4_f1_c/smoke_readiness.json"
+    "runs/step4_f1_c/F1C-I-soft/args.yaml",
+    "runs/step4_f1_c/F1C-I-soft/manifest.json",
+    "runs/step4_f1_c/F1C-I-soft/results.csv",
+    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_records.jsonl",
+    "runs/step4_f1_c/F1C-I-soft/step4_f1c_g9_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-soft/step4_fp32_rgb_sha.json",
+    "runs/step4_f1_c/F1C-I-soft/step4_g8_trace.jsonl",
+    "runs/step4_f1_c/F1C-I-soft/step4_growth.jsonl",
+    "runs/step4_f1_c/F1C-I-soft/step4_update_gate.json"
   ]
 }

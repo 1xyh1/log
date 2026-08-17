@@ -1,0 +1,27 @@
+{
+  "rgb_backbone_unchanged": true,
+  "aux_encoder_global_rel_l2": 0.005074676777353829,
+  "aux_encoder_max_abs_change": 0.005486011505126953,
+  "gate_global_rel_l2": 0.0075141973674523795,
+  "gate_max_abs_change": 0.003867807798087597,
+  "proj_weight_norms": [
+    0.12617512047290802,
+    0.13035869598388672,
+    0.2273026704788208
+  ],
+  "proj_bias_norms": [
+    2.5050792828551494e-05,
+    1.090106616175035e-05,
+    1.8713648387347348e-05
+  ],
+  "last_epoch_effective_q": {
+    "count": 11,
+    "mean": 0.5002719163894653,
+    "min": 0.4928756058216095,
+    "max": 0.5073831081390381
+  },
+  "q_finite_and_bounded": true,
+  "expected": "active IR/projections/gate learn beyond decay scale (>0.001 scaled to 80ep); q remains finite in [0,1]",
+  "decay_threshold_scaled_to_epochs": 0.001,
+  "passed": true
+}
