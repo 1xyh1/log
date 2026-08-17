@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:49:37.413364+08:00",
+  "generated_at_local": "2026-08-18T05:51:17.197961+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -252,6 +252,13 @@
       "size_bytes": 2022,
       "mtime_ns": 1786891928401167100,
       "canonical_lf_sha256": "e501ee4d1f82c2c26b32da62e0055c3a0f0acf3fc6da36b732fd32b54bb1403e",
+      "source_eol": "crlf"
+    },
+    "reports/step4_f1_c/posthoc_gradient_audit_c.json": {
+      "sha256": "fa8d2e3b71682a696dbfee902624bfb9ec81d301ca6b3e67663fbeef93978a9a",
+      "size_bytes": 1947,
+      "mtime_ns": 1787003413857863700,
+      "canonical_lf_sha256": "c5ccbb0d85587ccc9b3e764c3a54b3bb86a4d3adffe98c5d5a4a186075257487",
       "source_eol": "crlf"
     },
     "reports/step4_f1_c/pretrain_audit.json": {
@@ -2186,6 +2193,13 @@
       "canonical_lf_sha256": "47e901fa393e0e07874a9b88387ace531f65314030a7928b8263565b20183f67",
       "source_eol": "crlf"
     },
+    "runs/step4_f1_c/_summary_step4_f1_c.json": {
+      "sha256": "d4e64b86e221b102143bd98cc6056f8e84d7913680cad3c8c5826af4cf88942f",
+      "size_bytes": 10474,
+      "mtime_ns": 1787003416254437900,
+      "canonical_lf_sha256": "df0603084abccd07720830e1820e85c09dbc670b880b5a29965b13dc015327b2",
+      "source_eol": "crlf"
+    },
     "runs/step4_f1_c/smoke-F1C-C0-e1-r2/args.yaml": {
       "sha256": "213ec0cb03b2218e62c1e27724793ea6a6d917714021ee26550c82ac9e5e0061",
       "size_bytes": 1941,
@@ -3129,6 +3143,13 @@
       "size_bytes": 851,
       "mtime_ns": 1786904768133761200,
       "canonical_lf_sha256": "e0d8904977815f53939b2640bef05968c4195fa7f8c1f7e1ad6119ea4de10b49",
+      "source_eol": "crlf"
+    },
+    "runs/step4_f1_c/step4_f1_c_loo_last.json": {
+      "sha256": "91182f3b617aa682158fc2b547239880b1f9168dda2009897e1b1fb69872301d",
+      "size_bytes": 10025,
+      "mtime_ns": 1787003403953033000,
+      "canonical_lf_sha256": "f384ed9288eff99204d59c04a502022a3156b15dee4b8b36f8bdd0e35adc4a90",
       "source_eol": "crlf"
     },
     "runs/step4_f1_ir_gate/F1-C0/args.yaml": {
@@ -4183,6 +4204,8 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_f1_c/F1C-I-magsoft/eval_step4_f1_c_quality_last.json"
+    "reports/step4_f1_c/posthoc_gradient_audit_c.json",
+    "runs/step4_f1_c/_summary_step4_f1_c.json",
+    "runs/step4_f1_c/step4_f1_c_loo_last.json"
   ]
 }

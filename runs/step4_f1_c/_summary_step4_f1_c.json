@@ -1,0 +1,333 @@
+{
+  "schema": "step4-f1-c-summary-v1",
+  "loo_file_sha256": "91182f3b617aa682158fc2b547239880b1f9168dda2009897e1b1fb69872301d",
+  "quality_file_sha256": "244b935130bcddc338678c86b1dcf3fadbfe07a4b416d3d8abad29d54a78ffbb",
+  "posthoc_file_sha256": "fa8d2e3b71682a696dbfee902624bfb9ec81d301ca6b3e67663fbeef93978a9a",
+  "summarize_source_sha256": "782d32b9735fbba27742e7bc1721ad80ba0e84dd11a9777948bbfd619ce1337c",
+  "readiness_verified": {
+    "passed": true,
+    "evidence_sha256": "b867547de2dfeb36a90c827c9e5d221165f3323a7892cf1e57ccc24c992c6699"
+  },
+  "integrity": {
+    "C0": {
+      "run_dir": "runs\\step4_f1_c\\F1C-C0",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "F1C-C0",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": "formal",
+        "manifest_expected_epochs": 80,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "cc8d26cec1667a2253105d865e65e203f2c3b8c3820ded6efba964aeb1e5f4a1",
+          "args_sha256": "f7866b3645cb7d3ed30f659ba77f3dc1c4958a2044abc6b2df22d77e3b5f99ec",
+          "last_pt_sha256": "73abd0c275e93dde0b21b7be6b6bb405e81cdea3c1cb2541e17435be3dfc5042",
+          "best_pt_sha256": "8124cb777da7e9a3e8864602920f9de6f303547452028e39e78d951f0a16e53e"
+        }
+      }
+    },
+    "FIXED": {
+      "run_dir": "runs\\step4_f1_c\\F1C-I-fixed",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "F1C-I-fixed",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": "formal",
+        "manifest_expected_epochs": 80,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "3a81071fa7d2459111e139aebed615d89cead9d15b2a8c33f6eee4b81f077a34",
+          "args_sha256": "56cff9e0b1d2f815bc7468c87563eded653827934528b8ad227423cdd9ca4084",
+          "last_pt_sha256": "8dd636555d4f5e9d6044f183c65fcacfdb58c49645ebb3eae5f7d367cab5b577",
+          "best_pt_sha256": "ae8e03bf28ccf45869c5b845af7ce4ba2b94a867c0ab21f7db284507f32aa643"
+        }
+      }
+    },
+    "MAGSOFT": {
+      "run_dir": "runs\\step4_f1_c\\F1C-I-magsoft",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "F1C-I-magsoft",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": "formal",
+        "manifest_expected_epochs": 80,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "91a85277bcb624df39aea690ca30c6538f0f6c99fb356c45998815cf2daf6bed",
+          "args_sha256": "cf082bd222bec090d00fb6aa843bd217a38e5b43a83214a4ba6c01836fcf6171",
+          "last_pt_sha256": "adad269ee1f28d7bee2f89136f1e2e69a959144329913f43705b7a3091116538",
+          "best_pt_sha256": "e1f94fa766163b04f5fd92c8d6828e23d8fd8871b7723e5b8a31b05c7e00c468"
+        }
+      }
+    },
+    "ORIGSOFT": {
+      "run_dir": "runs\\step4_f1_c\\F1C-I-soft",
+      "expected_epochs": 80,
+      "passed": true,
+      "errors": [],
+      "warnings": [],
+      "observed": {
+        "exists": true,
+        "args_epochs": 80,
+        "args_name": "F1C-I-soft",
+        "args_exist_ok": true,
+        "results_rows": 80,
+        "results_last_epoch": 80.0,
+        "g8_rows": 80,
+        "kernel_growth_rows": 80,
+        "manifest_run_kind": "formal",
+        "manifest_expected_epochs": 80,
+        "last_pt_exists": true,
+        "best_pt_exists": true,
+        "eval_provenance_current_hashes": {
+          "results_sha256": "8f372fbe5b1dcee1e79073a33a5ddd014e6cd093ed7b3f3b5de016304f403911",
+          "args_sha256": "5a82a1f15384946992baaa08dd6988417ed9ab2732a8a1cc7c93adad14454f39",
+          "last_pt_sha256": "b3a944ff475efb7a085ec1a25a4edd4a57be3f57e6555ca4bf11a33a9489cb80",
+          "best_pt_sha256": "2508eccabec823cd0c4a8b9b059b5d18d269dea17f91f5aad1ad40aa0d6bf93a"
+        }
+      }
+    }
+  },
+  "eval_provenance_verified": {
+    "C0": {
+      "passed": true,
+      "errors": []
+    },
+    "FIXED": {
+      "passed": true,
+      "errors": []
+    },
+    "MAGSOFT": {
+      "passed": true,
+      "errors": []
+    },
+    "ORIGSOFT": {
+      "passed": true,
+      "errors": []
+    }
+  },
+  "loo_provenance_verified": {
+    "passed": true,
+    "errors": []
+  },
+  "quality_provenance_verified": {
+    "passed": true,
+    "errors": []
+  },
+  "posthoc_provenance_verified": {
+    "passed": true,
+    "errors": []
+  },
+  "g6_rejudged": {
+    "C0": {
+      "passed": true,
+      "proj_weight_norms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aux_encoder_global_rel_l2": 0.00020458213732720625,
+      "q_finite": true
+    },
+    "FIXED": {
+      "passed": true,
+      "proj_weight_norms": [
+        0.1751575917005539,
+        0.17232069373130798,
+        0.3194660246372223
+      ],
+      "aux_encoder_global_rel_l2": 0.005848853319681938,
+      "q_finite": true
+    },
+    "MAGSOFT": {
+      "passed": true,
+      "proj_weight_norms": [
+        0.12934334576129913,
+        0.13180263340473175,
+        0.22734561562538147
+      ],
+      "aux_encoder_global_rel_l2": 0.005043221255349752,
+      "q_finite": true
+    },
+    "ORIGSOFT": {
+      "passed": true,
+      "proj_weight_norms": [
+        0.12617512047290802,
+        0.13035869598388672,
+        0.2273026704788208
+      ],
+      "aux_encoder_global_rel_l2": 0.005074676777353829,
+      "q_finite": true
+    }
+  },
+  "g8": {
+    "epochs_compared": 80,
+    "row_counts": {
+      "C0": 80,
+      "FIXED": 80,
+      "MAGSOFT": 80,
+      "ORIGSOFT": 80
+    },
+    "actual_yield_fields_present_all_epochs": true,
+    "epoch_position_continuous": true,
+    "epoch_position_errors": [],
+    "expected_equals_actual_all_rows": true,
+    "expected_actual_mismatch_rows": [],
+    "actual_matches_expected_flag_all_true": true,
+    "flag_false_rows": [],
+    "order_and_flip_hashes_match": true,
+    "mismatched_epochs": [],
+    "trace_files_byte_identical": true,
+    "trace_file_sha256": {
+      "C0": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "FIXED": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "MAGSOFT": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454",
+      "ORIGSOFT": "bece47d5b4653471e1c1422e032ecc0e3ba2536fc97d2b9337cb8d0abb728454"
+    },
+    "errors": [],
+    "passed": true
+  },
+  "g9_rejudged": {
+    "errors": [],
+    "passed": true
+  },
+  "fp32_rgb_verified": {
+    "C0": {
+      "schema_ok": true,
+      "expected_matches_manifest": true,
+      "actual_matches_expected": true,
+      "match_flag": true,
+      "passed": true
+    },
+    "FIXED": {
+      "schema_ok": true,
+      "expected_matches_manifest": true,
+      "actual_matches_expected": true,
+      "match_flag": true,
+      "passed": true
+    },
+    "MAGSOFT": {
+      "schema_ok": true,
+      "expected_matches_manifest": true,
+      "actual_matches_expected": true,
+      "match_flag": true,
+      "passed": true
+    },
+    "ORIGSOFT": {
+      "schema_ok": true,
+      "expected_matches_manifest": true,
+      "actual_matches_expected": true,
+      "match_flag": true,
+      "passed": true
+    }
+  },
+  "posthoc": {
+    "passed": true
+  },
+  "primary_last_val6": {
+    "C0": 0.29168406593406593,
+    "FIXED_NORMAL": 0.25488717532467536,
+    "MAGSOFT_NORMAL": 0.2156999299719888,
+    "MAGSOFT_ZERO": 0.26674191594445995,
+    "MAGSOFT_SHUFFLE": 0.26423058878723904,
+    "ORIGSOFT_NORMAL": 0.30402820783485807,
+    "MAGSOFT_minus_C0": -0.07598413596207712,
+    "MAGSOFT_minus_FIXED": -0.039187245352686556,
+    "MAGSOFT_minus_ORIGSOFT": -0.08832827786286926,
+    "MAGSOFT_minus_HISTORICAL_B1_SOFT": -0.08832807002801121
+  },
+  "loo_conditions": {
+    "magsoft_minus_c0": {
+      "full": -0.075984,
+      "median": -0.078244,
+      "positive_folds": 1,
+      "passed": false
+    },
+    "magsoft_minus_fixed": {
+      "full": -0.039187,
+      "median": -0.042749,
+      "positive_folds": 1,
+      "passed": false
+    },
+    "magsoft_minus_origsoft": {
+      "full": -0.088328,
+      "median": -0.087561,
+      "positive_folds": 0,
+      "passed": false
+    }
+  },
+  "promotion_evidence": {
+    "own_force_qclean": 0.49976230164368945,
+    "macro_soft_fixed_qclean_orig": [
+      0.22650461580977052,
+      0.25887641817960716,
+      0.22666463443455762,
+      0.2991605623069757
+    ],
+    "worst4_keys": [
+      "noise:0.75",
+      "noise:0.50",
+      "shift:0.25",
+      "blur:0.50"
+    ],
+    "worst4_soft_fixed_qclean_orig": [
+      0.2119577472779646,
+      0.2505435365522456,
+      0.21195608719240597,
+      0.292889081025857
+    ],
+    "learned_minus_qclean_positive_count": 1,
+    "macro_pass_vs_own_qclean": false,
+    "worst4_pass_vs_own_qclean": true,
+    "adaptive_pass": false,
+    "diagnostic_beats_fixed_macro": false,
+    "diagnostic_beats_fixed_worst4": false,
+    "diagnostic_beats_origsoft_macro": false,
+    "diagnostic_beats_origsoft_worst4": false,
+    "beats_historical_b1_soft": false,
+    "frozen_protocol": {
+      "primary_pass": false,
+      "loo_pass": false,
+      "beats_historical_b1_soft": false,
+      "macro_vs_own_qclean_pass": false,
+      "worst4_vs_own_qclean_pass": true,
+      "adaptive_pass": false,
+      "full_promotion_pass": false,
+      "decision": "F1C_GATE_FAILED_CAUSAL_PROTOCOL",
+      "next_step": "stop; inspect intervention signs"
+    }
+  },
+  "decision": "F1C_GATE_FAILED_CAUSAL_PROTOCOL",
+  "next_step": "stop; inspect intervention signs",
+  "verdict_frozen": true
+}
