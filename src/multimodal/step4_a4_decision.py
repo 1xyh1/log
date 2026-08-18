@@ -70,8 +70,26 @@ def joint_p5_decision(
     paired_labels: Mapping[str, str],
     rescue_labels: Mapping[str, str],
 ) -> dict:
-    """Primary decision consumes AC_ALL only; AC_CONTENT is intentionally absent."""
+    """Primary decision consumes AC_ALL only; AC_CONTENT is intentionally absent.
+
+    Reviewer adjudication 2026-08-19 (feedback/2026-08-19_formal-review.md):
+    cross-context sign conflict (MIXED_PAIRED_CONTEXT_NO_GO) MUST be evaluated
+    BEFORE any same-context GO. The executed A4 (commit 36221d2) checked
+    go_contexts first, so conditional STRONG_NEGATIVE could never veto a
+    standalone GO; this corrected precedence replaces that behavior.
+    """
     contexts = ("standalone", "conditional")
+    positive_pair = [c for c in contexts if paired_labels.get(c) == "STRONG_POSITIVE"]
+    negative_pair = [c for c in contexts if paired_labels.get(c) == "STRONG_NEGATIVE"]
+
+    if positive_pair and negative_pair:
+        return {
+            "branch": "MIXED_PAIRED_CONTEXT_NO_GO",
+            "training_go": False,
+            "contexts": {"positive": positive_pair, "negative": negative_pair},
+            "reason": "paired AC changes sign across standalone/conditional contexts",
+        }
+
     go_contexts = [c for c in contexts
                    if paired_labels.get(c) == "STRONG_POSITIVE"
                    and rescue_labels.get(c) == "STRONG_POSITIVE_RESCUE"]
@@ -83,17 +101,8 @@ def joint_p5_decision(
             "reason": "paired AC restored and native performance rescued in the same context",
         }
 
-    positive_pair = [c for c in contexts if paired_labels.get(c) == "STRONG_POSITIVE"]
     positive_rescue = [c for c in contexts if rescue_labels.get(c) == "STRONG_POSITIVE_RESCUE"]
-    negative_pair = [c for c in contexts if paired_labels.get(c) == "STRONG_NEGATIVE"]
 
-    if positive_pair and negative_pair:
-        return {
-            "branch": "MIXED_PAIRED_CONTEXT_NO_GO",
-            "training_go": False,
-            "contexts": {"positive": positive_pair, "negative": negative_pair},
-            "reason": "paired AC changes sign across standalone/conditional contexts",
-        }
     if negative_pair:
         return {
             "branch": "STOP_CENTERING_ROUTE",

@@ -304,6 +304,20 @@ def test_mixed_paired_context_never_goes():
     )
     assert d["branch"] == "MIXED_PAIRED_CONTEXT_NO_GO" and not d["training_go"]
 
+
+def test_mixed_context_sign_conflict_beats_same_context_go():
+    # Reviewer adjudication 2026-08-19 regression: the executed A4 hit exactly
+    # this combination (standalone paired-positive + rescue-positive, conditional
+    # paired STRONG_NEGATIVE). The old implementation returned CENTERING_TRAINING_GO
+    # from the go_contexts check before MIXED_PAIRED_CONTEXT_NO_GO could veto.
+    # Corrected precedence: cross-context sign conflict MUST win.
+    d = joint_p5_decision(
+        {"standalone": "STRONG_POSITIVE", "conditional": "STRONG_NEGATIVE"},
+        {"standalone": "STRONG_POSITIVE_RESCUE", "conditional": "STRONG_POSITIVE_RESCUE"},
+    )
+    assert d["branch"] == "MIXED_PAIRED_CONTEXT_NO_GO"
+    assert d["training_go"] is False
+
 def test_inconclusive_joint_no_go():
     d = joint_p5_decision(
         {"standalone": "INCONCLUSIVE", "conditional": "INCONCLUSIVE"},
