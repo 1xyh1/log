@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T05:57:44.070302+08:00",
+  "generated_at_local": "2026-08-18T14:41:24.540881+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -43,6 +43,13 @@
       "mtime_ns": 1786838637423576200,
       "canonical_lf_sha256": "2c7bfd1b49037c552123af6755919323335663d68e1f7d604e05d0127215cab5",
       "source_eol": "crlf"
+    },
+    "docs/step4_a2/DESIGN_FREEZE.md": {
+      "sha256": "4ddd535a767542b57e48b3095825d65ad63a04d1287c931f063a467820398c37",
+      "size_bytes": 9507,
+      "mtime_ns": 1787004084000000000,
+      "canonical_lf_sha256": "4ddd535a767542b57e48b3095825d65ad63a04d1287c931f063a467820398c37",
+      "source_eol": "lf"
     },
     "docs/step4_f1_b_corruption/DESIGN_FREEZE.md": {
       "sha256": "66986231d2c179ad5d878624c31974c4e5f460e1e694fca9f1495d0af510e32d",
@@ -245,6 +252,27 @@
       "size_bytes": 3772,
       "mtime_ns": 1786694003556477000,
       "canonical_lf_sha256": "6407f2e424dc9722f5e9bb1aa3b58a8c409b7dd8dddac2b940b3813817cae8aa",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a2/preexecution_audit.json": {
+      "sha256": "249e649f7853e5db07050bc96fb0c21f0aee009897e51305f223396882a2a086",
+      "size_bytes": 1852,
+      "mtime_ns": 1787035043584580900,
+      "canonical_lf_sha256": "d161337e6e11d6447618763f1384110076373a8d27a7c39f7dd9c71d05746965",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a2/scale_ir_residual_causality.json": {
+      "sha256": "756093358153c5e203f485dce96e0f2a5e91881fb6c6e4b49c036cbfdc6d1c6b",
+      "size_bytes": 597466,
+      "mtime_ns": 1787035163105287600,
+      "canonical_lf_sha256": "5612588d42ab129b82d312301db5f41814806c7568b5c20d15df844c36aee951",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a2/val_donor_map.json": {
+      "sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+      "size_bytes": 283,
+      "mtime_ns": 1787035069530933600,
+      "canonical_lf_sha256": "ce0f5066b22427474afb67e63135c771a72d89147fc3e69b9872fb8e672da158",
       "source_eol": "crlf"
     },
     "reports/step4_f0_audit.json": {
@@ -3530,6 +3558,13 @@
       "canonical_lf_sha256": "f633b5cef610fb70d9243da794d86b72f56042ebd0aaef5e6552f420baf47d01",
       "source_eol": "lf"
     },
+    "scripts/audit_step4_a2.py": {
+      "sha256": "b9676f814d0178fc289f46a2a20456ece3ee118befbf680f6b7598f68f007a63",
+      "size_bytes": 5598,
+      "mtime_ns": 1787004084000000000,
+      "canonical_lf_sha256": "b9676f814d0178fc289f46a2a20456ece3ee118befbf680f6b7598f68f007a63",
+      "source_eol": "lf"
+    },
     "scripts/audit_step4_f0.py": {
       "sha256": "4b3f6b12ac2903700fab68a004b78651468a60be7886ed9c9ce3e63b259f8126",
       "size_bytes": 8282,
@@ -3633,6 +3668,13 @@
       "size_bytes": 10610,
       "mtime_ns": 1786756245359421900,
       "canonical_lf_sha256": "0956c8725d064f50151b454767a7b0bc25d0a0c990cb52d706f49ec916e148aa",
+      "source_eol": "lf"
+    },
+    "scripts/eval_step4_a2_scale_causality.py": {
+      "sha256": "7f879590866bfb9ad09eee5cc626a3d2bd85a5a2d5394b18ce284551542bcbb0",
+      "size_bytes": 28256,
+      "mtime_ns": 1787004084000000000,
+      "canonical_lf_sha256": "7f879590866bfb9ad09eee5cc626a3d2bd85a5a2d5394b18ce284551542bcbb0",
       "source_eol": "lf"
     },
     "scripts/eval_step4_causality.py": {
@@ -3950,6 +3992,13 @@
       "canonical_lf_sha256": "387eaa50a982ed61bdd21cbe3a07268880e08295ad1ba688d4f8180a321e864c",
       "source_eol": "lf"
     },
+    "src/multimodal/step4_a2_residual_interventions.py": {
+      "sha256": "1b50bc19248c389236ec0c47d088ba5b3726997f8955ef441a89f00eed360922",
+      "size_bytes": 9766,
+      "mtime_ns": 1787003820000000000,
+      "canonical_lf_sha256": "1b50bc19248c389236ec0c47d088ba5b3726997f8955ef441a89f00eed360922",
+      "source_eol": "lf"
+    },
     "src/multimodal/step4_closeout.py": {
       "sha256": "07fd2bf308d652fe477b64921941e756cf8576779dc44606eb7b8e8463888a92",
       "size_bytes": 13577,
@@ -4132,6 +4181,13 @@
       "canonical_lf_sha256": "836caa468882656c3f27e1b9ee073e5e845ef2bdee01212258a4e7e8793e7a4b",
       "source_eol": "lf"
     },
+    "tests/test_step4_a2_residual_causality.py": {
+      "sha256": "b1f2475f840d62534d57778554fad0a3bc7db08eac9c6c871af60f466d6408d5",
+      "size_bytes": 11785,
+      "mtime_ns": 1787004010000000000,
+      "canonical_lf_sha256": "b1f2475f840d62534d57778554fad0a3bc7db08eac9c6c871af60f466d6408d5",
+      "source_eol": "lf"
+    },
     "tests/test_step4_closeout.py": {
       "sha256": "0cf1197fa83aa5ec596e5729275e0df162cc376861dd0aff14ee4d808c054fd2",
       "size_bytes": 14952,
@@ -4211,6 +4267,13 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_f1_c/feedback/2026-08-18_formal-complete.md"
+    "docs/step4_a2/DESIGN_FREEZE.md",
+    "reports/step4_a2/preexecution_audit.json",
+    "reports/step4_a2/scale_ir_residual_causality.json",
+    "reports/step4_a2/val_donor_map.json",
+    "scripts/audit_step4_a2.py",
+    "scripts/eval_step4_a2_scale_causality.py",
+    "src/multimodal/step4_a2_residual_interventions.py",
+    "tests/test_step4_a2_residual_causality.py"
   ]
 }
