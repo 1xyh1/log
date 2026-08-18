@@ -1,0 +1,80 @@
+{
+  "schema": "step4-a4-reviewer-adjudication-v1",
+  "date": "2026-08-19",
+  "commit": "36221d2f827c411bddd66350729dfd05a3b48f49",
+  "upstream_commit": "4e15c1ec2cd64af39031d3fcfde200f2d248b65a",
+  "a4_summary_path": "reports/step4_a4/a4_summary.json",
+  "a4_summary_sha256": "721198d04b4ce54caec3d0b5c97ef5c665c3c4e8bf44e8df82e4a50a33406781",
+  "experiment_result": "ACCEPTED_DIAGNOSTIC_COMPLETE",
+  "gates_status": "G1-G14 ALL PASS",
+  "rerun_required": false,
+  "execution_artifacts_frozen": true,
+  "machine_route_decision": {
+    "branch": "CENTERING_TRAINING_GO",
+    "training_go": true,
+    "status": "REJECTED_INVALID"
+  },
+  "decision_code_defect": {
+    "file": "src/multimodal/step4_a4_decision.py",
+    "function": "joint_p5_decision",
+    "description": "go_contexts (same-context paired STRONG_POSITIVE + rescue STRONG_POSITIVE_RESCUE) was evaluated and early-returned BEFORE the MIXED_PAIRED_CONTEXT_NO_GO check (positive_pair && negative_pair), so a conditional STRONG_NEGATIVE could never veto a standalone GO.",
+    "hit_by_executed_data": {
+      "pairedness": {"standalone": "STRONG_POSITIVE", "conditional": "STRONG_NEGATIVE"},
+      "rescue": {"standalone": "STRONG_POSITIVE_RESCUE", "conditional": "STRONG_POSITIVE_RESCUE"}
+    },
+    "tests_missed_reason": "existing test_mixed_paired_context_never_goes used INCONCLUSIVE rescues, never triggering the early go_contexts return"
+  },
+  "pairedness_labels_ac_all_p5": {
+    "standalone": "STRONG_POSITIVE",
+    "conditional": "STRONG_NEGATIVE"
+  },
+  "centering_rescue_labels_ac_all_p5": {
+    "standalone": "STRONG_POSITIVE_RESCUE",
+    "conditional": "STRONG_POSITIVE_RESCUE"
+  },
+  "p5_numerics": {
+    "standalone": {
+      "dac_pair": {"FIXED": 0.00242020, "SOFT": 0.000989325},
+      "dac_pair_loo_median": {"FIXED": 0.00289061, "SOFT": 0.00135611},
+      "dac_pair_positive_folds": {"FIXED": 4, "SOFT": 5},
+      "dcenter": {"FIXED": 0.00302883, "SOFT": 0.00176688},
+      "dcenter_positive_folds": {"FIXED": 6, "SOFT": 6}
+    },
+    "conditional": {
+      "dac_pair": {"FIXED": -0.00946564, "SOFT": -0.000429751},
+      "dac_pair_loo_median": {"FIXED": -0.01020544, "SOFT": -0.000451638},
+      "dac_pair_positive_folds": {"FIXED": 0, "SOFT": 1},
+      "dcenter": {"FIXED": 0.00787241, "SOFT": 0.000255627},
+      "dcenter_positive_folds": {"FIXED": 6, "SOFT": 6}
+    }
+  },
+  "factorial_main_effect_labels": {
+    "R3": "STRONG_POSITIVE_RESCUE",
+    "R4": "STRONG_NEGATIVE_RESCUE",
+    "R5": "STRONG_POSITIVE_RESCUE"
+  },
+  "content_diagnostic_p5": {
+    "pairedness": {"standalone": "INCONCLUSIVE", "conditional": "STRONG_NEGATIVE"},
+    "centering_rescue": {"standalone": "STRONG_POSITIVE_RESCUE", "conditional": "STRONG_POSITIVE_RESCUE"},
+    "note": "diagnostic-only; does not modify primary labels; suggests letterbox/global feature statistics may participate in full-map centering paired restoration"
+  },
+  "corrected_branch": "MIXED_PAIRED_CONTEXT_NO_GO",
+  "corrected_training_go": false,
+  "a4t_status": "HOLD",
+  "scientific_conclusion": "P5 centering restores paired causal value in isolation, but that restoration collapses and reverses sign in the full multiscale residual context; issue located at cross-scale residual interaction / representation coupling, not P5 DC alone",
+  "code_change_after_execution": {
+    "declaration": "corrected code is NOT the executed code",
+    "decision_py_sha256_before": "aea5d6c8a9fe5345e0b19ce816d3fe5f7bd0fec3edee4d2abd52e22cd6bbc196",
+    "decision_py_sha256_after": "50650e2b1a3679325a2cd1b7d95eccebfeb9044d801ffb48dc08b83c89ad95a2",
+    "tests_sha256_before": "40f95f0c4fc269c41e6d642987b3fe430e165db6c1a104191461904b6e78f3b2",
+    "tests_sha256_after": "ec9b294464237869b09c788dd1f23ebeeb2194cfb138514173934718e474cbc4",
+    "audit_rerun": false,
+    "audit_note": "preexecution_audit.json kept as the execution-time snapshot"
+  },
+  "regression_test": {
+    "name": "test_mixed_context_sign_conflict_beats_same_context_go",
+    "expectation": "MIXED_PAIRED_CONTEXT_NO_GO / training_go false for the executed-data combination",
+    "pytest_result": "61 passed"
+  },
+  "next_step": "A5 — Cross-scale AC Paired Interaction Audit (evaluation-only, P5-centered; pending reviewer DESIGN_FREEZE)"
+}

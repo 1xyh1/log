@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-19T00:51:00.204407+08:00",
-  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-19T00:51:53.967013+08:00",
+  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -63,6 +63,13 @@
       "size_bytes": 21851,
       "mtime_ns": 1787068528000000000,
       "canonical_lf_sha256": "987365bf2df84a4f4db8c1bca31ec905b1cc79246322653fa9c172e8a7c23e61",
+      "source_eol": "lf"
+    },
+    "docs/step4_a4/feedback/2026-08-19_formal-review.md": {
+      "sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
+      "size_bytes": 4899,
+      "mtime_ns": 1787071852152402200,
+      "canonical_lf_sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
       "source_eol": "lf"
     },
     "docs/step4_f1_b_corruption/DESIGN_FREEZE.md": {
@@ -386,6 +393,13 @@
       "mtime_ns": 1787070660452484900,
       "canonical_lf_sha256": "64c6cd7877cc286b72ef79a821b2d0b3f1aede5f3e94e1a602a09f377bb955c3",
       "source_eol": "crlf"
+    },
+    "reports/step4_a4/reviewer_adjudication.json": {
+      "sha256": "0ca9e6e7f3e8b8d2e0c4a8542bcfff5428139b77a61280357a0ae9f4a282c898",
+      "size_bytes": 4234,
+      "mtime_ns": 1787071863371872200,
+      "canonical_lf_sha256": "0ca9e6e7f3e8b8d2e0c4a8542bcfff5428139b77a61280357a0ae9f4a282c898",
+      "source_eol": "lf"
     },
     "reports/step4_f0_audit.json": {
       "sha256": "bd21aef5656f32eb646a0799b5c0a9f55d9d205767c5eb61044cc291cd0fd522",
@@ -4477,7 +4491,7 @@
     }
   },
   "changed_in_this_sync": [
-    "src/multimodal/step4_a4_decision.py",
-    "tests/test_step4_a4.py"
+    "docs/step4_a4/feedback/2026-08-19_formal-review.md",
+    "reports/step4_a4/reviewer_adjudication.json"
   ]
 }
