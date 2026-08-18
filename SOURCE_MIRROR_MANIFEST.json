@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-18T14:41:24.540881+08:00",
+  "generated_at_local": "2026-08-18T15:29:59.139629+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -49,6 +49,13 @@
       "size_bytes": 9507,
       "mtime_ns": 1787004084000000000,
       "canonical_lf_sha256": "4ddd535a767542b57e48b3095825d65ad63a04d1287c931f063a467820398c37",
+      "source_eol": "lf"
+    },
+    "docs/step4_a3/DESIGN_FREEZE.md": {
+      "sha256": "2eb9d316b8d5d0d41cdaea290946f207bc8dd2fe122b98a491e26b64dd0ca685",
+      "size_bytes": 27778,
+      "mtime_ns": 1787008784000000000,
+      "canonical_lf_sha256": "2eb9d316b8d5d0d41cdaea290946f207bc8dd2fe122b98a491e26b64dd0ca685",
       "source_eol": "lf"
     },
     "docs/step4_f1_b_corruption/DESIGN_FREEZE.md": {
@@ -273,6 +280,55 @@
       "size_bytes": 283,
       "mtime_ns": 1787035069530933600,
       "canonical_lf_sha256": "ce0f5066b22427474afb67e63135c771a72d89147fc3e69b9872fb8e672da158",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/a3_summary.json": {
+      "sha256": "121dacc0ed50f5d24a8108ea3710e981c3c0314210729c80ed339652ea579839",
+      "size_bytes": 36489,
+      "mtime_ns": 1787038147075178600,
+      "canonical_lf_sha256": "3523cb526d7a0fde3b0f0f121f73f29326aa88167bf6ad60d0505d7fed50d9ed",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/generic_residual_bias.json": {
+      "sha256": "5268b29c31b712e1d4ab37c5027bff74ab55da049f0146919691d2d112ae70f0",
+      "size_bytes": 333408,
+      "mtime_ns": 1787038147073175600,
+      "canonical_lf_sha256": "7318385455e90f42a343697401491a9c4027b56b55833c0b87b0f19bd22f1505",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/preexecution_audit.json": {
+      "sha256": "564bc1bf14f021ec2c1b4f99cef24a9ccd2c17ca87352c0f42cf83011bf5c05b",
+      "size_bytes": 3033,
+      "mtime_ns": 1787038046067013500,
+      "canonical_lf_sha256": "cf39728509d03a41236add13207bfa933c8731d2b7bc9582c196de28059065e9",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/raw_registration.json": {
+      "sha256": "b9df7c9ac183bf1a5120816419698509e6c1de2ed2714aec4ddc277c9d7ee985",
+      "size_bytes": 2920,
+      "mtime_ns": 1787038147037140500,
+      "canonical_lf_sha256": "88f96a79beda6661656438b8150bb044dcb1ce822b1ce65e48cdfee204db4676",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/registration_rescue.json": {
+      "sha256": "d501b1f752b109f1c0fbafeadb9e4e7adff983fa431e2f312e97abeae455dda3",
+      "size_bytes": 147791,
+      "mtime_ns": 1787038147051273100,
+      "canonical_lf_sha256": "202600caf7d6a98104c6df86c0f91c06a70db6f4ea55d22d343f8736886485f0",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/semantic_agreement.json": {
+      "sha256": "6ccb0db58390718b35c3ffd1e8fb677a46023966a888c97aff39949e25e5a0d1",
+      "size_bytes": 19094,
+      "mtime_ns": 1787038147057535100,
+      "canonical_lf_sha256": "7ee263a2039d59ae3c9f0d229d52e0da8de70d8c9c88353018eea2ae982e9f5d",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a3/spatial_correspondence.json": {
+      "sha256": "8443f095384c8ba7246730f1d8e15d33e8f17ef1628cc5a52c3a76003c19a94f",
+      "size_bytes": 64517,
+      "mtime_ns": 1787038147057535100,
+      "canonical_lf_sha256": "9f26d36373f755b91e8877f1d708dd5396d882902b589665be1392898281bf06",
       "source_eol": "crlf"
     },
     "reports/step4_f0_audit.json": {
@@ -3565,6 +3621,13 @@
       "canonical_lf_sha256": "b9676f814d0178fc289f46a2a20456ece3ee118befbf680f6b7598f68f007a63",
       "source_eol": "lf"
     },
+    "scripts/audit_step4_a3.py": {
+      "sha256": "d7ea7d699a2db47cc1fb09f93ad396cd91f079adfad61100e8e388ee72e57927",
+      "size_bytes": 7360,
+      "mtime_ns": 1787008734000000000,
+      "canonical_lf_sha256": "d7ea7d699a2db47cc1fb09f93ad396cd91f079adfad61100e8e388ee72e57927",
+      "source_eol": "lf"
+    },
     "scripts/audit_step4_f0.py": {
       "sha256": "4b3f6b12ac2903700fab68a004b78651468a60be7886ed9c9ce3e63b259f8126",
       "size_bytes": 8282,
@@ -3675,6 +3738,13 @@
       "size_bytes": 28256,
       "mtime_ns": 1787004084000000000,
       "canonical_lf_sha256": "7f879590866bfb9ad09eee5cc626a3d2bd85a5a2d5394b18ce284551542bcbb0",
+      "source_eol": "lf"
+    },
+    "scripts/eval_step4_a3.py": {
+      "sha256": "fe83732bda0e13ed5137492a96cba646ecbc6ff28120004c39ab2e92b5af52d8",
+      "size_bytes": 37656,
+      "mtime_ns": 1787008852000000000,
+      "canonical_lf_sha256": "fe83732bda0e13ed5137492a96cba646ecbc6ff28120004c39ab2e92b5af52d8",
       "source_eol": "lf"
     },
     "scripts/eval_step4_causality.py": {
@@ -3999,6 +4069,41 @@
       "canonical_lf_sha256": "1b50bc19248c389236ec0c47d088ba5b3726997f8955ef441a89f00eed360922",
       "source_eol": "lf"
     },
+    "src/multimodal/step4_a3_common.py": {
+      "sha256": "b137b0b585e071c7b33429075278d6ecc4e3da52ec78dffe9b6a336a2cacb8cb",
+      "size_bytes": 11863,
+      "mtime_ns": 1787008654000000000,
+      "canonical_lf_sha256": "b137b0b585e071c7b33429075278d6ecc4e3da52ec78dffe9b6a336a2cacb8cb",
+      "source_eol": "lf"
+    },
+    "src/multimodal/step4_a3_generic_bias.py": {
+      "sha256": "d93883e5e9d60b23f967cd3cfbf564b8c8c7bd67d648b230e7ef0a8876babdc3",
+      "size_bytes": 2987,
+      "mtime_ns": 1787008356000000000,
+      "canonical_lf_sha256": "d93883e5e9d60b23f967cd3cfbf564b8c8c7bd67d648b230e7ef0a8876babdc3",
+      "source_eol": "lf"
+    },
+    "src/multimodal/step4_a3_registration.py": {
+      "sha256": "5270cb87f1fe5f3e7a3b676d7299f622afa96dd0d467285b076c4b2ca71bd74b",
+      "size_bytes": 5805,
+      "mtime_ns": 1787008322000000000,
+      "canonical_lf_sha256": "5270cb87f1fe5f3e7a3b676d7299f622afa96dd0d467285b076c4b2ca71bd74b",
+      "source_eol": "lf"
+    },
+    "src/multimodal/step4_a3_semantic.py": {
+      "sha256": "c49be83c8737e0aa80972374be5963e6b6cd29028cd09f1d659e186fd49d0da8",
+      "size_bytes": 3694,
+      "mtime_ns": 1787008342000000000,
+      "canonical_lf_sha256": "c49be83c8737e0aa80972374be5963e6b6cd29028cd09f1d659e186fd49d0da8",
+      "source_eol": "lf"
+    },
+    "src/multimodal/step4_a3_spatial.py": {
+      "sha256": "c56d0a02d37ce5e07d566dd5d6ab2798265fdbecbe9c6755c6bc190d16ddaba1",
+      "size_bytes": 1017,
+      "mtime_ns": 1787008326000000000,
+      "canonical_lf_sha256": "c56d0a02d37ce5e07d566dd5d6ab2798265fdbecbe9c6755c6bc190d16ddaba1",
+      "source_eol": "lf"
+    },
     "src/multimodal/step4_closeout.py": {
       "sha256": "07fd2bf308d652fe477b64921941e756cf8576779dc44606eb7b8e8463888a92",
       "size_bytes": 13577,
@@ -4188,6 +4293,13 @@
       "canonical_lf_sha256": "b1f2475f840d62534d57778554fad0a3bc7db08eac9c6c871af60f466d6408d5",
       "source_eol": "lf"
     },
+    "tests/test_step4_a3.py": {
+      "sha256": "72cb3ba68e94d9e9a4a6d4fbd3501ff57c598075da8289284379f8e3fe6cb8e0",
+      "size_bytes": 12338,
+      "mtime_ns": 1787038015497461900,
+      "canonical_lf_sha256": "72cb3ba68e94d9e9a4a6d4fbd3501ff57c598075da8289284379f8e3fe6cb8e0",
+      "source_eol": "lf"
+    },
     "tests/test_step4_closeout.py": {
       "sha256": "0cf1197fa83aa5ec596e5729275e0df162cc376861dd0aff14ee4d808c054fd2",
       "size_bytes": 14952,
@@ -4267,13 +4379,21 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_a2/DESIGN_FREEZE.md",
-    "reports/step4_a2/preexecution_audit.json",
-    "reports/step4_a2/scale_ir_residual_causality.json",
-    "reports/step4_a2/val_donor_map.json",
-    "scripts/audit_step4_a2.py",
-    "scripts/eval_step4_a2_scale_causality.py",
-    "src/multimodal/step4_a2_residual_interventions.py",
-    "tests/test_step4_a2_residual_causality.py"
+    "docs/step4_a3/DESIGN_FREEZE.md",
+    "reports/step4_a3/a3_summary.json",
+    "reports/step4_a3/generic_residual_bias.json",
+    "reports/step4_a3/preexecution_audit.json",
+    "reports/step4_a3/raw_registration.json",
+    "reports/step4_a3/registration_rescue.json",
+    "reports/step4_a3/semantic_agreement.json",
+    "reports/step4_a3/spatial_correspondence.json",
+    "scripts/audit_step4_a3.py",
+    "scripts/eval_step4_a3.py",
+    "src/multimodal/step4_a3_common.py",
+    "src/multimodal/step4_a3_generic_bias.py",
+    "src/multimodal/step4_a3_registration.py",
+    "src/multimodal/step4_a3_semantic.py",
+    "src/multimodal/step4_a3_spatial.py",
+    "tests/test_step4_a3.py"
   ]
 }

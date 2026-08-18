@@ -1,0 +1,488 @@
+{
+  "schema": "step4-a3-semantic-v1",
+  "systems": {
+    "FIXED": {
+      "P3": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 2228,
+            "background_cells": 4172,
+            "auroc_native": 0.8000288535521929,
+            "auroc_donor": 0.8505370934898124,
+            "delta_native_minus_donor": -0.05050823993761955,
+            "enrichment_native": 2.2014637919465216,
+            "enrichment_donor": 2.0454333101513735,
+            "log_enrichment_delta": 0.07351284443180939
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 260,
+            "background_cells": 6140,
+            "auroc_native": 0.8524097970433475,
+            "auroc_donor": 0.7140453520420947,
+            "delta_native_minus_donor": 0.13836444500125278,
+            "enrichment_native": 1.8494160051210473,
+            "enrichment_donor": 1.3789536286795878,
+            "log_enrichment_delta": 0.2935449448750619
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 108,
+            "background_cells": 6292,
+            "auroc_native": 0.9058445762991217,
+            "auroc_donor": 0.6656174212992395,
+            "delta_native_minus_donor": 0.24022715499988223,
+            "enrichment_native": 2.453347468702756,
+            "enrichment_donor": 1.2098720240717347,
+            "log_enrichment_delta": 0.7069388169704276
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 768,
+            "background_cells": 5632,
+            "auroc_native": 0.749193133729877,
+            "auroc_donor": 0.7098097367720171,
+            "delta_native_minus_donor": 0.03938339695785986,
+            "enrichment_native": 1.6578477367919016,
+            "enrichment_donor": 1.151224262697693,
+            "log_enrichment_delta": 0.36469426465210364
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 50,
+            "background_cells": 6350,
+            "auroc_native": 0.7122834645669291,
+            "auroc_donor": 0.7539496062992126,
+            "delta_native_minus_donor": -0.041666141732283446,
+            "enrichment_native": 1.4851178082956604,
+            "enrichment_donor": 1.420747814943935,
+            "log_enrichment_delta": 0.04431073805932445
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 112,
+            "background_cells": 6288,
+            "auroc_native": 0.8088663781352236,
+            "auroc_donor": 0.7842503294256634,
+            "delta_native_minus_donor": 0.024616048709560134,
+            "enrichment_native": 1.803905212730441,
+            "enrichment_donor": 1.4725614390182686,
+            "log_enrichment_delta": 0.20295051746364384
+          }
+        },
+        "delta_summary": {
+          "mean": 0.05840277733310867,
+          "median": 0.03199972283371,
+          "positive": 4,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "P4": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 596,
+            "background_cells": 1004,
+            "auroc_native": 0.8260966202304875,
+            "auroc_donor": 0.8396514612690179,
+            "delta_native_minus_donor": -0.01355484103853044,
+            "enrichment_native": 2.6057281831345236,
+            "enrichment_donor": 2.1599780625290363,
+            "log_enrichment_delta": 0.18761410360849207
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 75,
+            "background_cells": 1525,
+            "auroc_native": 0.8116021857923498,
+            "auroc_donor": 0.7347234972677595,
+            "delta_native_minus_donor": 0.07687868852459023,
+            "enrichment_native": 1.9137203467015287,
+            "enrichment_donor": 1.5904805092786638,
+            "log_enrichment_delta": 0.1850129953341343
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 35,
+            "background_cells": 1565,
+            "auroc_native": 0.8656138749429484,
+            "auroc_donor": 0.6553537197626654,
+            "delta_native_minus_donor": 0.21026015518028296,
+            "enrichment_native": 2.248112226191143,
+            "enrichment_donor": 1.2009998728107918,
+            "log_enrichment_delta": 0.6269364162731554
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 225,
+            "background_cells": 1375,
+            "auroc_native": 0.7038383838383838,
+            "auroc_donor": 0.7015692929292929,
+            "delta_native_minus_donor": 0.0022690909090908873,
+            "enrichment_native": 1.640808641448246,
+            "enrichment_donor": 1.3034280692431284,
+            "log_enrichment_delta": 0.23019142428246508
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 15,
+            "background_cells": 1585,
+            "auroc_native": 0.7274868559411146,
+            "auroc_donor": 0.7350578338590957,
+            "delta_native_minus_donor": -0.007570977917981114,
+            "enrichment_native": 1.6114557235802867,
+            "enrichment_donor": 1.454220850559812,
+            "log_enrichment_delta": 0.10266768731596998
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 36,
+            "background_cells": 1564,
+            "auroc_native": 0.7653630292696789,
+            "auroc_donor": 0.7941176470588235,
+            "delta_native_minus_donor": -0.028754617789144565,
+            "enrichment_native": 1.6844594055932485,
+            "enrichment_donor": 1.6883769134221007,
+            "log_enrichment_delta": -0.0023229764032189903
+          }
+        },
+        "delta_summary": {
+          "mean": 0.03992124964471799,
+          "median": -0.0026509435044451135,
+          "positive": 3,
+          "negative": 3,
+          "zero": 0
+        }
+      },
+      "P5": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 155,
+            "background_cells": 245,
+            "auroc_native": 0.8467676102699144,
+            "auroc_donor": 0.7822778143515471,
+            "delta_native_minus_donor": 0.06448979591836734,
+            "enrichment_native": 2.3901999355151715,
+            "enrichment_donor": 1.837230202915765,
+            "log_enrichment_delta": 0.263117904492445
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 22,
+            "background_cells": 378,
+            "auroc_native": 0.7854737854737854,
+            "auroc_donor": 0.7297979797979798,
+            "delta_native_minus_donor": 0.055675805675805656,
+            "enrichment_native": 1.83895782028417,
+            "enrichment_donor": 1.4491895522058122,
+            "log_enrichment_delta": 0.23819453847528083
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 12,
+            "background_cells": 388,
+            "auroc_native": 0.7414089347079038,
+            "auroc_donor": 0.6125429553264605,
+            "delta_native_minus_donor": 0.12886597938144329,
+            "enrichment_native": 1.5407098052562214,
+            "enrichment_donor": 1.1021582269168744,
+            "log_enrichment_delta": 0.3349729407239049
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 72,
+            "background_cells": 328,
+            "auroc_native": 0.6504065040650406,
+            "auroc_donor": 0.6866954607046071,
+            "delta_native_minus_donor": -0.03628895663956644,
+            "enrichment_native": 1.366807671199321,
+            "enrichment_donor": 1.3007469584940268,
+            "log_enrichment_delta": 0.04953917085379478
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 6,
+            "background_cells": 394,
+            "auroc_native": 0.6747038917089678,
+            "auroc_donor": 0.6810490693739425,
+            "delta_native_minus_donor": -0.006345177664974666,
+            "enrichment_native": 1.3086833006449283,
+            "enrichment_donor": 1.3370936817008086,
+            "log_enrichment_delta": -0.021476846516371384
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 11,
+            "background_cells": 389,
+            "auroc_native": 0.7162888525356391,
+            "auroc_donor": 0.7707408272960972,
+            "delta_native_minus_donor": -0.054451974760458044,
+            "enrichment_native": 1.3875103606913914,
+            "enrichment_donor": 1.6112874893850537,
+            "log_enrichment_delta": -0.14952250849272392
+          }
+        },
+        "delta_summary": {
+          "mean": 0.02532424531843619,
+          "median": 0.024665314005415495,
+          "positive": 3,
+          "negative": 3,
+          "zero": 0
+        }
+      }
+    },
+    "SOFT": {
+      "P3": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 2228,
+            "background_cells": 4172,
+            "auroc_native": 0.7958944687245568,
+            "auroc_donor": 0.860956646946128,
+            "delta_native_minus_donor": -0.06506217822157112,
+            "enrichment_native": 2.308892382155481,
+            "enrichment_donor": 2.1853546185508934,
+            "log_enrichment_delta": 0.054989809099593834
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 260,
+            "background_cells": 6140,
+            "auroc_native": 0.8629247055875721,
+            "auroc_donor": 0.6929034076672513,
+            "delta_native_minus_donor": 0.17002129792032072,
+            "enrichment_native": 1.9023302447484156,
+            "enrichment_donor": 1.3706231340162893,
+            "log_enrichment_delta": 0.3278141005297358
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 108,
+            "background_cells": 6292,
+            "auroc_native": 0.9172391161027524,
+            "auroc_donor": 0.6780244166607803,
+            "delta_native_minus_donor": 0.23921469944197216,
+            "enrichment_native": 2.6890282216557386,
+            "enrichment_donor": 1.2537861712806888,
+            "log_enrichment_delta": 0.7630119621040861
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 768,
+            "background_cells": 5632,
+            "auroc_native": 0.7464710582386364,
+            "auroc_donor": 0.7133092013272372,
+            "delta_native_minus_donor": 0.03316185691139917,
+            "enrichment_native": 1.6661068177560883,
+            "enrichment_donor": 1.1169126824453648,
+            "log_enrichment_delta": 0.39992131244822166
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 50,
+            "background_cells": 6350,
+            "auroc_native": 0.7183874015748032,
+            "auroc_donor": 0.7694834645669292,
+            "delta_native_minus_donor": -0.05109606299212599,
+            "enrichment_native": 1.5235161815910463,
+            "enrichment_donor": 1.5042415797117572,
+            "log_enrichment_delta": 0.012732103276587858
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 112,
+            "background_cells": 6288,
+            "auroc_native": 0.8068103076154126,
+            "auroc_donor": 0.7861331674845511,
+            "delta_native_minus_donor": 0.020677140130861527,
+            "enrichment_native": 1.89279706393204,
+            "enrichment_donor": 1.524041924596677,
+            "log_enrichment_delta": 0.2166896965997661
+          }
+        },
+        "delta_summary": {
+          "mean": 0.057819458865142746,
+          "median": 0.026919498521130347,
+          "positive": 4,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "P4": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 596,
+            "background_cells": 1004,
+            "auroc_native": 0.8275288109307736,
+            "auroc_donor": 0.8478986737613305,
+            "delta_native_minus_donor": -0.020369862830556973,
+            "enrichment_native": 2.5584432519454134,
+            "enrichment_donor": 2.131711190285198,
+            "log_enrichment_delta": 0.1824739359034464
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 75,
+            "background_cells": 1525,
+            "auroc_native": 0.8091016393442623,
+            "auroc_donor": 0.7357551912568306,
+            "delta_native_minus_donor": 0.07334644808743163,
+            "enrichment_native": 1.7949802502727052,
+            "enrichment_donor": 1.5563332942253056,
+            "log_enrichment_delta": 0.1426614170537432
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 35,
+            "background_cells": 1565,
+            "auroc_native": 0.8677681424007303,
+            "auroc_donor": 0.6588772250114103,
+            "delta_native_minus_donor": 0.20889091738931997,
+            "enrichment_native": 2.2534737272747085,
+            "enrichment_donor": 1.2131470307441428,
+            "log_enrichment_delta": 0.6192550693483161
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 225,
+            "background_cells": 1375,
+            "auroc_native": 0.709029494949495,
+            "auroc_donor": 0.6979523232323233,
+            "delta_native_minus_donor": 0.011077171717171708,
+            "enrichment_native": 1.7024850142466155,
+            "enrichment_donor": 1.3041721474542478,
+            "log_enrichment_delta": 0.26652048708799925
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 15,
+            "background_cells": 1585,
+            "auroc_native": 0.7163827549947424,
+            "auroc_donor": 0.7300105152471084,
+            "delta_native_minus_donor": -0.013627760252366006,
+            "enrichment_native": 1.5780809944017595,
+            "enrichment_donor": 1.4608120564310698,
+            "log_enrichment_delta": 0.07721706422563396
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 36,
+            "background_cells": 1564,
+            "auroc_native": 0.763711281614095,
+            "auroc_donor": 0.8120915032679739,
+            "delta_native_minus_donor": -0.048380221653878897,
+            "enrichment_native": 1.7388324187884763,
+            "enrichment_donor": 1.8111913943102083,
+            "log_enrichment_delta": -0.04077099333627898
+          }
+        },
+        "delta_summary": {
+          "mean": 0.03515611540952024,
+          "median": -0.001275294267597149,
+          "positive": 3,
+          "negative": 3,
+          "zero": 0
+        }
+      },
+      "P5": {
+        "valid_count": 6,
+        "expected_count": 6,
+        "per_sample": {
+          "000003_013_00000085": {
+            "valid": true,
+            "object_cells": 155,
+            "background_cells": 245,
+            "auroc_native": 0.8625938117182357,
+            "auroc_donor": 0.8157208689927584,
+            "delta_native_minus_donor": 0.04687294272547726,
+            "enrichment_native": 2.66354664523532,
+            "enrichment_donor": 2.0386693982679343,
+            "log_enrichment_delta": 0.2673612206874306
+          },
+          "000004_013_00000081": {
+            "valid": true,
+            "object_cells": 22,
+            "background_cells": 378,
+            "auroc_native": 0.804954304954305,
+            "auroc_donor": 0.7411014911014911,
+            "delta_native_minus_donor": 0.06385281385281383,
+            "enrichment_native": 1.8234439511458727,
+            "enrichment_donor": 1.498831925977783,
+            "log_enrichment_delta": 0.19604090509351674
+          },
+          "000004_014_00000001": {
+            "valid": true,
+            "object_cells": 12,
+            "background_cells": 388,
+            "auroc_native": 0.7532216494845361,
+            "auroc_donor": 0.6273625429553265,
+            "delta_native_minus_donor": 0.12585910652920962,
+            "enrichment_native": 1.6567334238471527,
+            "enrichment_donor": 1.1664203098989085,
+            "log_enrichment_delta": 0.35090835212793053
+          },
+          "000016": {
+            "valid": true,
+            "object_cells": 72,
+            "background_cells": 328,
+            "auroc_native": 0.6617547425474255,
+            "auroc_donor": 0.6894901761517616,
+            "delta_native_minus_donor": -0.027735433604336057,
+            "enrichment_native": 1.4505876734196494,
+            "enrichment_donor": 1.3029195636030653,
+            "log_enrichment_delta": 0.10736120179391567
+          },
+          "000016_001_00000001": {
+            "valid": true,
+            "object_cells": 6,
+            "background_cells": 394,
+            "auroc_native": 0.6983925549915397,
+            "auroc_donor": 0.7153130287648054,
+            "delta_native_minus_donor": -0.016920473773265665,
+            "enrichment_native": 1.4270742474687197,
+            "enrichment_donor": 1.4478787055145226,
+            "log_enrichment_delta": -0.014473155942247629
+          },
+          "000016_042_suppl_00000164": {
+            "valid": true,
+            "object_cells": 11,
+            "background_cells": 389,
+            "auroc_native": 0.7361533068473942,
+            "auroc_donor": 0.7950455713951858,
+            "delta_native_minus_donor": -0.05889226454779162,
+            "enrichment_native": 1.4672194811907389,
+            "enrichment_donor": 1.7714860543387831,
+            "log_enrichment_delta": -0.18844967282547348
+          }
+        },
+        "delta_summary": {
+          "mean": 0.02217278186368456,
+          "median": 0.014976234476105799,
+          "positive": 3,
+          "negative": 3,
+          "zero": 0
+        }
+      }
+    }
+  },
+  "labels": {
+    "P3": "STRONG_RECIPIENT_SPECIFIC",
+    "P4": "INCONCLUSIVE",
+    "P5": "INCONCLUSIVE"
+  }
+}

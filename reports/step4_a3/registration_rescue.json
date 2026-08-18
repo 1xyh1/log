@@ -1,0 +1,3864 @@
+{
+  "schema": "step4-a3-registration-rescue-v1",
+  "raw_registration_file": "raw_registration.json",
+  "systems": {
+    "FIXED": {
+      "P3": {
+        "standalone": {
+          "baseline_a2_condition": "M100",
+          "shifted": {
+            "full": {
+              "map50": 0.34273911239136806,
+              "map50_95": 0.26975499625687593,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.48031021409455843,
+                "map50_95": 0.3779422688076123,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.4094802188552189,
+                "map50_95": 0.32840109427609426,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.31536616161616166,
+                "map50_95": 0.24597366522366526,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2066666666666667,
+                "map50_95": 0.16346666666666668,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.33226260367160565,
+                "map50_95": 0.26006334451588853,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41289115646258495,
+                "map50_95": 0.33707993197278907,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085|SHIFT(0,0)",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081|SHIFT(0,0)",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001|SHIFT(0,0)",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016|SHIFT(0,0)",
+                  "P4": "000016",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001|SHIFT(0,0)",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 8,
+            "000004_013_00000081": 8,
+            "000004_014_00000001": 8,
+            "000016": 8,
+            "000016_001_00000001": 8,
+            "000016_042_suppl_00000164": 8
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3317938311688312,
+              "map50_95": 0.25488717532467536,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.4650853432282004,
+                "map50_95": 0.35712903525046386,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.3963636363636364,
+                "map50_95": 0.3109760101010101,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.30409560565220944,
+                "map50_95": 0.23104996732826924,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.1776666666666667,
+                "map50_95": 0.12312380952380954,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.32052976190476196,
+                "map50_95": 0.2514529761904762,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41317042606516285,
+                "map50_95": 0.32485221983530255,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085|SHIFT(0,0)",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081|SHIFT(0,0)",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001|SHIFT(0,0)",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016|SHIFT(0,0)",
+                  "P4": "000016",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001|SHIFT(0,0)",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 8,
+            "000004_013_00000081": 8,
+            "000004_014_00000001": 8,
+            "000016": 8,
+            "000016_001_00000001": 8,
+            "000016_042_suppl_00000164": 8
+          }
+        }
+      },
+      "P4": {
+        "standalone": {
+          "baseline_a2_condition": "M010",
+          "shifted": {
+            "full": {
+              "map50": 0.34326814058956917,
+              "map50_95": 0.26990532879818596,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.4810833333333334,
+                "map50_95": 0.3781722222222223,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.40970285336356765,
+                "map50_95": 0.32853467498110356,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.3160121462378055,
+                "map50_95": 0.24617451463343962,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.20846666666666666,
+                "map50_95": 0.16382666666666665,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.3328299379453274,
+                "map50_95": 0.26021887113054176,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41300595238095233,
+                "map50_95": 0.33714880952380955,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085|SHIFT(0,0)",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081|SHIFT(0,0)",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001|SHIFT(0,0)",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016|SHIFT(0,0)",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001|SHIFT(0,0)",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 16,
+            "000004_013_00000081": 16,
+            "000004_014_00000001": 16,
+            "000016": 16,
+            "000016_001_00000001": 16,
+            "000016_042_suppl_00000164": 16
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3317938311688312,
+              "map50_95": 0.25488717532467536,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.4650853432282004,
+                "map50_95": 0.35712903525046386,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.3963636363636364,
+                "map50_95": 0.3109760101010101,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.30409560565220944,
+                "map50_95": 0.23104996732826924,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.1776666666666667,
+                "map50_95": 0.12312380952380954,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.32052976190476196,
+                "map50_95": 0.2514529761904762,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41317042606516285,
+                "map50_95": 0.32485221983530255,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085|SHIFT(0,0)",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081|SHIFT(0,0)",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001|SHIFT(0,0)",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016|SHIFT(0,0)",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001|SHIFT(0,0)",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 16,
+            "000004_013_00000081": 16,
+            "000004_014_00000001": 16,
+            "000016": 16,
+            "000016_001_00000001": 16,
+            "000016_042_suppl_00000164": 16
+          }
+        }
+      },
+      "P5": {
+        "standalone": {
+          "baseline_a2_condition": "M001",
+          "shifted": {
+            "full": {
+              "map50": 0.3390683229813665,
+              "map50_95": 0.2651589026915114,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.475304347826087,
+                "map50_95": 0.3715876811594203,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.40529255974377926,
+                "map50_95": 0.32315912170485345,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.31166017316017314,
+                "map50_95": 0.24141060606060608,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.19729743589743598,
+                "map50_95": 0.15093282051282053,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.3284013605442177,
+                "map50_95": 0.25759693877551026,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41325396825396826,
+                "map50_95": 0.33253571428571427,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016",
+                  "P5": "000016|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 32,
+            "000004_013_00000081": 32,
+            "000004_014_00000001": 32,
+            "000016": 32,
+            "000016_001_00000001": 32,
+            "000016_042_suppl_00000164": 32
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3317938311688312,
+              "map50_95": 0.25488717532467536,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.4650853432282004,
+                "map50_95": 0.35712903525046386,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.3963636363636364,
+                "map50_95": 0.3109760101010101,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.30409560565220944,
+                "map50_95": 0.23104996732826924,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.1776666666666667,
+                "map50_95": 0.12312380952380954,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.32052976190476196,
+                "map50_95": 0.2514529761904762,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.41317042606516285,
+                "map50_95": 0.32485221983530255,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "used_residual_sha256": {
+                  "P3": "e892b1cfbd499673d341070d59f87c6c0d3c0c781de620e88dc2bedd5d81e7b0",
+                  "P4": "124ac5889e6e69b91c4212cade1f014e9cb0d0b410a12744cebba0ddc58feffe",
+                  "P5": "c4fa004c8346404a5beaff945e99cb3429029c967a66c205ad4a0c2d5f91299d"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "used_residual_sha256": {
+                  "P3": "f2ba457588b6e117540f5a04a2fb68dd8bf8f70667cbdf7b295b19ce6568b80c",
+                  "P4": "446f97989903e169f83cd12de656d2858fd75c1d99bdc508601939ea71c11027",
+                  "P5": "1b3fc09ef384407f7ca54b3c8e4a9faa8dd6ed37349fbb613b90e4f3d5609893"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "used_residual_sha256": {
+                  "P3": "6641856f28bb15ab2909621ff4ef45478ee94678ce25f6613eda2b86b7495b89",
+                  "P4": "2c5209f61f579cd800de524b4d14cbfeb65155af081a58cb80b1ac561cfdb79a",
+                  "P5": "e8bfa68cf17cedb10c742492886298a5f7cfabe6d3f41333cad5254f114905b4"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016",
+                  "P5": "000016|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "used_residual_sha256": {
+                  "P3": "053246567cb810eeecde935e594e05c302c38d551352a184c58018d55cbe88f2",
+                  "P4": "f04e047e17221a2d25b0b331ffc94bf235390f454c0f84322f8f907e04e490b4",
+                  "P5": "4ccaaa88dc3b6d72e0ca778d5c2c73cd418f837588e9110d8ab3f628c2b62e87"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "used_residual_sha256": {
+                  "P3": "f48a6aed063174cec8b2c5a9c8b10674127cee7159a182c792b0621fb0a8d1a6",
+                  "P4": "1b588bfda80d38df1fe2dd56ee4b0d5bf0d5098b128f3ce666b6c95bcb736cde",
+                  "P5": "494111d7a410c84c44e40e4374b2348ededbf1cb5c2e4487dfa9992d238d5d23"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  1.0
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    1.0
+                  ],
+                  "P4": [
+                    1.0
+                  ],
+                  "P5": [
+                    1.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "used_residual_sha256": {
+                  "P3": "b4b487de1e453735b8fcc10d89c8ff85fb8d2af3ed92a900f4335b15ad90fdac",
+                  "P4": "104913e1b6b864362cdfeeda5b5ade7ae0b9254af5d0c70cdd8f7ba995435134",
+                  "P5": "ac4231de48fc91d61377dde17d3d1d26ce52445d3e555f1b15abe054fd335f0e"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 32,
+            "000004_013_00000081": 32,
+            "000004_014_00000001": 32,
+            "000016": 32,
+            "000016_001_00000001": 32,
+            "000016_042_suppl_00000164": 32
+          }
+        }
+      }
+    },
+    "SOFT": {
+      "P3": {
+        "standalone": {
+          "baseline_a2_condition": "M100",
+          "shifted": {
+            "full": {
+              "map50": 0.3802967563837129,
+              "map50_95": 0.30456297446514835,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5328253968253969,
+                "map50_95": 0.426634126984127,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.4162964588820603,
+                "map50_95": 0.3358391498390401,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.35617826617826615,
+                "map50_95": 0.2804490231990232,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2858,
+                "map50_95": 0.2361,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.37480236757624397,
+                "map50_95": 0.299390349117175,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44822784810126587,
+                "map50_95": 0.36890099457504527,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085|SHIFT(0,0)",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5021638870239258
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081|SHIFT(0,0)",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4989209771156311
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001|SHIFT(0,0)",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5004788041114807
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016|SHIFT(0,0)",
+                  "P4": "000016",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4998939335346222
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001|SHIFT(0,0)",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.49985936284065247
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P3_STANDALONE",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P3"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5020602345466614
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 8,
+            "000004_013_00000081": 8,
+            "000004_014_00000001": 8,
+            "000016": 8,
+            "000016_001_00000001": 8,
+            "000016_042_suppl_00000164": 8
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3792165141918836,
+              "map50_95": 0.30402820783485807,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5317647058823529,
+                "map50_95": 0.42610882352941176,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.41584656084656085,
+                "map50_95": 0.3356236772486773,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.35508843537414964,
+                "map50_95": 0.2799085034013606,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2812307692307693,
+                "map50_95": 0.23381538461538465,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.37346401718582173,
+                "map50_95": 0.2987269065520945,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44830115830115835,
+                "map50_95": 0.3689449806949808,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085|SHIFT(0,0)",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5021638870239258
+                  ],
+                  "P4": [
+                    0.5021638870239258
+                  ],
+                  "P5": [
+                    0.5021638870239258
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081|SHIFT(0,0)",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4989209771156311
+                  ],
+                  "P4": [
+                    0.4989209771156311
+                  ],
+                  "P5": [
+                    0.4989209771156311
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001|SHIFT(0,0)",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5004788041114807
+                  ],
+                  "P4": [
+                    0.5004788041114807
+                  ],
+                  "P5": [
+                    0.5004788041114807
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016|SHIFT(0,0)",
+                  "P4": "000016",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4998939335346222
+                  ],
+                  "P4": [
+                    0.4998939335346222
+                  ],
+                  "P5": [
+                    0.4998939335346222
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001|SHIFT(0,0)",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.49985936284065247
+                  ],
+                  "P4": [
+                    0.49985936284065247
+                  ],
+                  "P5": [
+                    0.49985936284065247
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P3_CONDITIONAL",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5020602345466614
+                  ],
+                  "P4": [
+                    0.5020602345466614
+                  ],
+                  "P5": [
+                    0.5020602345466614
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 8,
+            "000004_013_00000081": 8,
+            "000004_014_00000001": 8,
+            "000016": 8,
+            "000016_001_00000001": 8,
+            "000016_042_suppl_00000164": 8
+          }
+        }
+      },
+      "P4": {
+        "standalone": {
+          "baseline_a2_condition": "M010",
+          "shifted": {
+            "full": {
+              "map50": 0.3798592225243961,
+              "map50_95": 0.3025565109582467,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5321929824561404,
+                "map50_95": 0.42381315789473684,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.4157298474945534,
+                "map50_95": 0.33347031590413945,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.3557198551935394,
+                "map50_95": 0.27843003341687556,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2858,
+                "map50_95": 0.22940000000000002,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.37427170868347337,
+                "map50_95": 0.2991239495798319,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44822784810126587,
+                "map50_95": 0.3653295660036167,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085|SHIFT(0,0)",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.5021638870239258
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081|SHIFT(0,0)",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.4989209771156311
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001|SHIFT(0,0)",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.5004788041114807
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016|SHIFT(0,0)",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.4998939335346222
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001|SHIFT(0,0)",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.49985936284065247
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P4_STANDALONE",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P4"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.5020602345466614
+                  ],
+                  "P5": [
+                    0.0
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 16,
+            "000004_013_00000081": 16,
+            "000004_014_00000001": 16,
+            "000016": 16,
+            "000016_001_00000001": 16,
+            "000016_042_suppl_00000164": 16
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3792165141918836,
+              "map50_95": 0.30402820783485807,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5317647058823529,
+                "map50_95": 0.42610882352941176,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.41584656084656085,
+                "map50_95": 0.3356236772486773,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.35508843537414964,
+                "map50_95": 0.2799085034013606,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2812307692307693,
+                "map50_95": 0.23381538461538465,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.37346401718582173,
+                "map50_95": 0.2987269065520945,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44830115830115835,
+                "map50_95": 0.3689449806949808,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085|SHIFT(0,0)",
+                  "P5": "000003_013_00000085"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5021638870239258
+                  ],
+                  "P4": [
+                    0.5021638870239258
+                  ],
+                  "P5": [
+                    0.5021638870239258
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081|SHIFT(0,0)",
+                  "P5": "000004_013_00000081"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4989209771156311
+                  ],
+                  "P4": [
+                    0.4989209771156311
+                  ],
+                  "P5": [
+                    0.4989209771156311
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001|SHIFT(0,0)",
+                  "P5": "000004_014_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5004788041114807
+                  ],
+                  "P4": [
+                    0.5004788041114807
+                  ],
+                  "P5": [
+                    0.5004788041114807
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016|SHIFT(0,0)",
+                  "P5": "000016"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4998939335346222
+                  ],
+                  "P4": [
+                    0.4998939335346222
+                  ],
+                  "P5": [
+                    0.4998939335346222
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001|SHIFT(0,0)",
+                  "P5": "000016_001_00000001"
+                },
+                "alpha": {
+                  "P3": [
+                    0.49985936284065247
+                  ],
+                  "P4": [
+                    0.49985936284065247
+                  ],
+                  "P5": [
+                    0.49985936284065247
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P4_CONDITIONAL",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164|SHIFT(0,0)",
+                  "P5": "000016_042_suppl_00000164"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5020602345466614
+                  ],
+                  "P4": [
+                    0.5020602345466614
+                  ],
+                  "P5": [
+                    0.5020602345466614
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 16,
+            "000004_013_00000081": 16,
+            "000004_014_00000001": 16,
+            "000016": 16,
+            "000016_001_00000001": 16,
+            "000016_042_suppl_00000164": 16
+          }
+        }
+      },
+      "P5": {
+        "standalone": {
+          "baseline_a2_condition": "M001",
+          "shifted": {
+            "full": {
+              "map50": 0.37861377752682096,
+              "map50_95": 0.30194000564652734,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5308556149732621,
+                "map50_95": 0.4231542780748663,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.4145238095238095,
+                "map50_95": 0.3328789682539683,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.35448185681595284,
+                "map50_95": 0.2778179960771494,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2825,
+                "map50_95": 0.22774999999999998,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.3727430972388956,
+                "map50_95": 0.2983652460984394,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44830115830115835,
+                "map50_95": 0.3653735521235522,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.5021638870239258
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.4989209771156311
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.5004788041114807
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016",
+                  "P5": "000016|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.4998939335346222
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.49985936284065247
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P5_STANDALONE",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.0
+                  ],
+                  "P4": [
+                    0.0
+                  ],
+                  "P5": [
+                    0.5020602345466614
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 32,
+            "000004_013_00000081": 32,
+            "000004_014_00000001": 32,
+            "000016": 32,
+            "000016_001_00000001": 32,
+            "000016_042_suppl_00000164": 32
+          }
+        },
+        "conditional": {
+          "baseline_a2_condition": "M111",
+          "shifted": {
+            "full": {
+              "map50": 0.3792165141918836,
+              "map50_95": 0.30402820783485807,
+              "n_images": 6
+            },
+            "loo": {
+              "000003_013_00000085": {
+                "map50": 0.5317647058823529,
+                "map50_95": 0.42610882352941176,
+                "n_images": 5
+              },
+              "000004_013_00000081": {
+                "map50": 0.41584656084656085,
+                "map50_95": 0.3356236772486773,
+                "n_images": 5
+              },
+              "000004_014_00000001": {
+                "map50": 0.35508843537414964,
+                "map50_95": 0.2799085034013606,
+                "n_images": 5
+              },
+              "000016": {
+                "map50": 0.2812307692307693,
+                "map50_95": 0.23381538461538465,
+                "n_images": 5
+              },
+              "000016_001_00000001": {
+                "map50": 0.37346401718582173,
+                "map50_95": 0.2987269065520945,
+                "n_images": 5
+              },
+              "000016_042_suppl_00000164": {
+                "map50": 0.44830115830115835,
+                "map50_95": 0.3689449806949808,
+                "n_images": 5
+              }
+            },
+            "trace": {
+              "000003_013_00000085": {
+                "recipient_id": "000003_013_00000085",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.5021638870239258
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000003_013_00000085",
+                  "P4": "000003_013_00000085",
+                  "P5": "000003_013_00000085|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5021638870239258
+                  ],
+                  "P4": [
+                    0.5021638870239258
+                  ],
+                  "P5": [
+                    0.5021638870239258
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "used_residual_sha256": {
+                  "P3": "9cecfd026e100bbfa7bc7e92232d55a1b6a76850d94352c010c7ff8028d94460",
+                  "P4": "7325dd276bb389e2289a2f82b4540958e2dab24634136b1f59fabf4607cf6512",
+                  "P5": "c426ad53d06e075e5aefdd70a16c74377ed594c827888bbce6f8ab528c5aadb9"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_013_00000081": {
+                "recipient_id": "000004_013_00000081",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.4989209771156311
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_013_00000081",
+                  "P4": "000004_013_00000081",
+                  "P5": "000004_013_00000081|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4989209771156311
+                  ],
+                  "P4": [
+                    0.4989209771156311
+                  ],
+                  "P5": [
+                    0.4989209771156311
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "used_residual_sha256": {
+                  "P3": "0660d0933059c50fbfa70b5837d35a2403c5a9ac9f4a2f1674c676a3bc0ef432",
+                  "P4": "9848d6075b401e3677f6695088262e3498e1fc09f27686476b3082e93b7c7f22",
+                  "P5": "59bbe9e0bb6e3e562cc189beefb9e7f9c165e2664af476aad2feab0516b111ee"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000004_014_00000001": {
+                "recipient_id": "000004_014_00000001",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.5004788041114807
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000004_014_00000001",
+                  "P4": "000004_014_00000001",
+                  "P5": "000004_014_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5004788041114807
+                  ],
+                  "P4": [
+                    0.5004788041114807
+                  ],
+                  "P5": [
+                    0.5004788041114807
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "used_residual_sha256": {
+                  "P3": "f19f3d842fcab52d8654f8bdb0b9ecef1861d518add7f5240b0571e2055cd631",
+                  "P4": "149b0e18f05b605fd3732fa8f71947c84a97645ab72406e7548618077dfbadc5",
+                  "P5": "0af46b7e55d45e3421241d1d243f899da297c2463575b373b7212a816ccaa57c"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016": {
+                "recipient_id": "000016",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.4998939335346222
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016",
+                  "P4": "000016",
+                  "P5": "000016|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.4998939335346222
+                  ],
+                  "P4": [
+                    0.4998939335346222
+                  ],
+                  "P5": [
+                    0.4998939335346222
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "used_residual_sha256": {
+                  "P3": "b8efd5102893ec62fe66ca3e4e34062ee688f4ccc5e6312e4b328c59756074fc",
+                  "P4": "0d5f013c8bd374cef0429d4a3f57f7bc2261eb7e70670467ead50f2fc69dcf53",
+                  "P5": "e3c1293b905331450919342190e96c5af25b7b16467d27582775e80df323b4bf"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_001_00000001": {
+                "recipient_id": "000016_001_00000001",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.49985936284065247
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_001_00000001",
+                  "P4": "000016_001_00000001",
+                  "P5": "000016_001_00000001|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.49985936284065247
+                  ],
+                  "P4": [
+                    0.49985936284065247
+                  ],
+                  "P5": [
+                    0.49985936284065247
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "used_residual_sha256": {
+                  "P3": "52d71a14c30d7eb2f66bf68426461bfc8cc4b55a890dd5cd92819d7218827af0",
+                  "P4": "7fc189b48e42613aac0dad838737c14db33c5240aa1ffdaf38d39e4c46cbe7d4",
+                  "P5": "1491f1f415142ee69275f579aa441ead451dde9a7b8f651472d24c64cfecaa75"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              },
+              "000016_042_suppl_00000164": {
+                "recipient_id": "000016_042_suppl_00000164",
+                "condition": "SHIFT_P5_CONDITIONAL",
+                "q_native": [
+                  0.5020602345466614
+                ],
+                "active_scales": [
+                  "P3",
+                  "P4",
+                  "P5"
+                ],
+                "residual_source_ids": {
+                  "P3": "000016_042_suppl_00000164",
+                  "P4": "000016_042_suppl_00000164",
+                  "P5": "000016_042_suppl_00000164|SHIFT(0,0)"
+                },
+                "alpha": {
+                  "P3": [
+                    0.5020602345466614
+                  ],
+                  "P4": [
+                    0.5020602345466614
+                  ],
+                  "P5": [
+                    0.5020602345466614
+                  ]
+                },
+                "native_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "used_residual_sha256": {
+                  "P3": "4737c30d17d71b0b5960618bcd56d329e326c7e001f21e2fb1e991cc9eeb23f7",
+                  "P4": "5ed0846c26f5d3b35d3d8350e270607d6107b11dac335b7f800c0ec4fbfc6662",
+                  "P5": "6826538395aa75c81b1d2fd276da0a57e039aea99978b47e167482c87257b923"
+                },
+                "feature_strides": {
+                  "P3": 8,
+                  "P4": 16,
+                  "P5": 32
+                }
+              }
+            }
+          },
+          "effect": {
+            "full": 0.0,
+            "loo": {
+              "000003_013_00000085": 0.0,
+              "000004_013_00000081": 0.0,
+              "000004_014_00000001": 0.0,
+              "000016": 0.0,
+              "000016_001_00000001": 0.0,
+              "000016_042_suppl_00000164": 0.0
+            },
+            "loo_median": 0.0,
+            "positive_folds": 0,
+            "negative_folds": 0,
+            "zero_folds": 6
+          },
+          "feature_stride_by_sample": {
+            "000003_013_00000085": 32,
+            "000004_013_00000081": 32,
+            "000004_014_00000001": 32,
+            "000016": 32,
+            "000016_001_00000001": 32,
+            "000016_042_suppl_00000164": 32
+          }
+        }
+      }
+    }
+  },
+  "labels": {
+    "P3": {
+      "standalone": "INCONCLUSIVE",
+      "conditional": "INCONCLUSIVE"
+    },
+    "P4": {
+      "standalone": "INCONCLUSIVE",
+      "conditional": "INCONCLUSIVE"
+    },
+    "P5": {
+      "standalone": "INCONCLUSIVE",
+      "conditional": "INCONCLUSIVE"
+    }
+  }
+}
