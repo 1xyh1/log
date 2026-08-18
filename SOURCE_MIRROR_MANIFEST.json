@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T01:19:04.921463+08:00",
+  "generated_at_local": "2026-08-19T01:20:32.207975+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -407,6 +407,41 @@
       "mtime_ns": 1787071863371872200,
       "canonical_lf_sha256": "0ca9e6e7f3e8b8d2e0c4a8542bcfff5428139b77a61280357a0ae9f4a282c898",
       "source_eol": "lf"
+    },
+    "reports/step4_a5/a5_summary.json": {
+      "sha256": "f1dbd1bc828b55674406337a12add25dc0a1cdd3ee96ad46c3c9976014cb7950",
+      "size_bytes": 18753,
+      "mtime_ns": 1787073569057745900,
+      "canonical_lf_sha256": "0e3ebb5cc64362ee44a0de68899885f36842ac8f8c40556d26cd541002347915",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a5/context_paired_effects.json": {
+      "sha256": "1ab6f127ed72245c5863593cb73925344f0d6626e2b858673cd34ca5d702a90b",
+      "size_bytes": 838198,
+      "mtime_ns": 1787073569040033400,
+      "canonical_lf_sha256": "0d628a8d5ec5a41a8cdb227725e1d8e6d9b6767bc2103fe003dea17e8a49a1d6",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a5/context_shifts.json": {
+      "sha256": "1d4132a2d789b1614f9662772a9503dd5d2158ea2ffb48a3ea6c66e9c60828ca",
+      "size_bytes": 10335,
+      "mtime_ns": 1787073569051531500,
+      "canonical_lf_sha256": "27be4883a1d06e037d4f077eb2a916c25f04415187d388fc1d1de8d2aa7799ea",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a5/cross_scale_interactions.json": {
+      "sha256": "9dacc32b208086cdb2c63d80101148423d38dfb1de33a12de510eb10e9d3c631",
+      "size_bytes": 12907,
+      "mtime_ns": 1787073569053038100,
+      "canonical_lf_sha256": "d7757a1a8c7e163963d86811b50052595360ee96d755411196421b52fd93f571",
+      "source_eol": "crlf"
+    },
+    "reports/step4_a5/native_ap_secondary.json": {
+      "sha256": "66513a21a2432edac47d358b736d244b05bba8eaec1b6e55afab53b97ee5fe32",
+      "size_bytes": 31105,
+      "mtime_ns": 1787073569055743000,
+      "canonical_lf_sha256": "b9ce2e7fd5b5bf4b39664fd56a2e0f071b8ce19918272e2923f1ec46d7a76c94",
+      "source_eol": "crlf"
     },
     "reports/step4_a5/preexecution_audit.json": {
       "sha256": "0a15105a5932b37377b329770f572de647213d7638d1b55f5ea2729218fbce7e",
@@ -4540,7 +4575,10 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_a4/feedback/2026-08-19_formal-review.md",
-    "reports/step4_a5/preexecution_audit.json"
+    "reports/step4_a5/a5_summary.json",
+    "reports/step4_a5/context_paired_effects.json",
+    "reports/step4_a5/context_shifts.json",
+    "reports/step4_a5/cross_scale_interactions.json",
+    "reports/step4_a5/native_ap_secondary.json"
   ]
 }
