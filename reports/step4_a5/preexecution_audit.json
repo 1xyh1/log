@@ -1,0 +1,424 @@
+{
+  "schema": "step4-a5-preexecution-audit-v1",
+  "mode": "repo-full",
+  "all_passed": false,
+  "passed_count": 129,
+  "total_count": 130,
+  "failed": [
+    "R_feedback_sha"
+  ],
+  "checks": {
+    "S01_design_evaluation_only": {
+      "passed": true
+    },
+    "S02_design_p5_centered": {
+      "passed": true
+    },
+    "S03_design_a4t_hold": {
+      "passed": true
+    },
+    "S04_design_mixed_no_go": {
+      "passed": true
+    },
+    "S05_design_no_training_go": {
+      "passed": true
+    },
+    "S06_design_fixed_primary": {
+      "passed": true
+    },
+    "S07_design_soft_replication": {
+      "passed": true
+    },
+    "S08_design_same_val6": {
+      "passed": true
+    },
+    "S09_design_donor_hash": {
+      "passed": true
+    },
+    "S10_context_OO": {
+      "passed": true
+    },
+    "S11_context_FO": {
+      "passed": true
+    },
+    "S12_context_OF": {
+      "passed": true
+    },
+    "S13_context_FF": {
+      "passed": true
+    },
+    "S14_context_AO": {
+      "passed": true
+    },
+    "S15_context_OA": {
+      "passed": true
+    },
+    "S16_context_AF": {
+      "passed": true
+    },
+    "S17_context_FA": {
+      "passed": true
+    },
+    "S18_context_AA": {
+      "passed": true
+    },
+    "S19_context_count_9": {
+      "passed": true
+    },
+    "S20_context_states_only_OFA": {
+      "passed": true
+    },
+    "S21_p3p4_recipient_comment": {
+      "passed": true
+    },
+    "S22_p5_role_source_switch": {
+      "passed": true
+    },
+    "S23_donor_self_match_forbidden": {
+      "passed": true
+    },
+    "S24_context_trace_validator": {
+      "passed": true
+    },
+    "S25_pair_isolation_validator": {
+      "passed": true
+    },
+    "S26_p3_donor_contamination_guard": {
+      "passed": true
+    },
+    "S27_donor_mean_source_guard": {
+      "passed": true
+    },
+    "S28_effect_native_minus_donor": {
+      "passed": true
+    },
+    "S29_paired_positive_label": {
+      "passed": true
+    },
+    "S30_paired_negative_label": {
+      "passed": true
+    },
+    "S31_shift_antagonistic_label": {
+      "passed": true
+    },
+    "S32_shift_rescuing_label": {
+      "passed": true
+    },
+    "S33_interaction_D3F": {
+      "passed": true
+    },
+    "S34_interaction_D4F": {
+      "passed": true
+    },
+    "S35_interaction_IFF": {
+      "passed": true
+    },
+    "S36_interaction_D3A": {
+      "passed": true
+    },
+    "S37_interaction_D4A": {
+      "passed": true
+    },
+    "S38_interaction_IAA": {
+      "passed": true
+    },
+    "S39_interaction_IAF": {
+      "passed": true
+    },
+    "S40_interaction_IFA": {
+      "passed": true
+    },
+    "S41_no_margin_constant": {
+      "passed": true
+    },
+    "S42_shift_not_flip_guard": {
+      "passed": true
+    },
+    "S43_flag_P3_FULL_SUFFICIENT_FLIP": {
+      "passed": true
+    },
+    "S44_flag_P4_FULL_SUFFICIENT_FLIP": {
+      "passed": true
+    },
+    "S45_flag_BOTH_FULL_INDIVIDUALLY_SUFFICIENT": {
+      "passed": true
+    },
+    "S46_flag_JOINT_FULL_CONTEXT_REQUIRED": {
+      "passed": true
+    },
+    "S47_flag_FULL_CONTEXT_FLIP_WITH_UNRESOLVED_INTERACTION": {
+      "passed": true
+    },
+    "S48_flag_P3_CENTERING_RESCUES_WITH_P4_FULL": {
+      "passed": true
+    },
+    "S49_flag_P4_CENTERING_RESCUES_WITH_P3_FULL": {
+      "passed": true
+    },
+    "S50_flag_BOTH_CENTERED_RESTORE": {
+      "passed": true
+    },
+    "S51_flag_CENTERING_FAILS_TO_RESTORE": {
+      "passed": true
+    },
+    "S52_route_training_false": {
+      "passed": true
+    },
+    "S53_route_no_training_doc": {
+      "passed": true
+    },
+    "S54_eval_uses_a3_forward": {
+      "passed": true
+    },
+    "S55_eval_no_gate_cache": {
+      "passed": true
+    },
+    "S56_eval_gate_guard": {
+      "passed": true
+    },
+    "S57_eval_step3_validator": {
+      "passed": true
+    },
+    "S58_eval_stock_batch_move": {
+      "passed": true
+    },
+    "S59_eval_exact_oo_anchor": {
+      "passed": true
+    },
+    "S60_eval_exact_ff_anchor": {
+      "passed": true
+    },
+    "S61_eval_detection_sha": {
+      "passed": true
+    },
+    "S62_eval_pair_isolation": {
+      "passed": true
+    },
+    "S63_eval_context_trace": {
+      "passed": true
+    },
+    "S64_eval_q_freeze": {
+      "passed": true
+    },
+    "S65_eval_state_mutation": {
+      "passed": true
+    },
+    "S66_eval_donor_map_drift": {
+      "passed": true
+    },
+    "S67_eval_context_complete": {
+      "passed": true
+    },
+    "S68_eval_paired_semantics": {
+      "passed": true
+    },
+    "S69_eval_interaction_semantics": {
+      "passed": true
+    },
+    "S70_eval_training_forbidden": {
+      "passed": true
+    },
+    "S71_eval_condition_18": {
+      "passed": true
+    },
+    "S72_eval_total_36": {
+      "passed": true
+    },
+    "S73_eval_transactional_json": {
+      "passed": true
+    },
+    "S74_eval_refuse_overwrite": {
+      "passed": true
+    },
+    "S75_eval_no_backward": {
+      "passed": true
+    },
+    "S76_eval_no_optimizer": {
+      "passed": true
+    },
+    "S77_eval_no_train_call": {
+      "passed": true
+    },
+    "S78_pin_a4_execution_commit": {
+      "passed": true
+    },
+    "S79_pin_a4_reviewer_head": {
+      "passed": true
+    },
+    "S80_pin_adjudication_sha": {
+      "passed": true
+    },
+    "S81_pin_summary_sha": {
+      "passed": true
+    },
+    "S82_pin_standalone_sha": {
+      "passed": true
+    },
+    "S83_pin_conditional_sha": {
+      "passed": true
+    },
+    "S84_pin_corrected_decision": {
+      "passed": true
+    },
+    "S85_pin_corrected_tests": {
+      "passed": true
+    },
+    "S86_machine_history_preserved": {
+      "passed": true
+    },
+    "S87_dual_track_declaration": {
+      "passed": true
+    },
+    "S88_test_oo_ff_contract": {
+      "passed": true
+    },
+    "S89_test_only_p5_identity": {
+      "passed": true
+    },
+    "S90_test_donor_mean": {
+      "passed": true
+    },
+    "S91_test_p3_contamination": {
+      "passed": true
+    },
+    "S92_test_p4_contamination": {
+      "passed": true
+    },
+    "S93_test_context_shift": {
+      "passed": true
+    },
+    "S94_test_iff": {
+      "passed": true
+    },
+    "S95_test_negative_shift_not_flip": {
+      "passed": true
+    },
+    "S96_test_centered_no_training": {
+      "passed": true
+    },
+    "S97_test_no_optimizer": {
+      "passed": true
+    },
+    "S98_audit_has_repo_full": {
+      "passed": true
+    },
+    "S99_audit_has_package_only": {
+      "passed": true
+    },
+    "S100_source_count_complete": {
+      "passed": true
+    },
+    "R_a2_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a2\\scale_ir_residual_causality.json"
+    },
+    "R_a2_sha": {
+      "passed": true,
+      "detail": "756093358153c5e203f485dce96e0f2a5e91881fb6c6e4b49c036cbfdc6d1c6b"
+    },
+    "R_donor_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a2\\val_donor_map.json"
+    },
+    "R_donor_sha": {
+      "passed": true,
+      "detail": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5"
+    },
+    "R_a4_summary_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a4\\a4_summary.json"
+    },
+    "R_a4_summary_sha": {
+      "passed": true,
+      "detail": "721198d04b4ce54caec3d0b5c97ef5c665c3c4e8bf44e8df82e4a50a33406781"
+    },
+    "R_a4_standalone_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a4\\ac_paired_standalone.json"
+    },
+    "R_a4_standalone_sha": {
+      "passed": true,
+      "detail": "e1d9c95b84af300feea0148bfecde678fec257e6a2ba709cd4e26215265d90e5"
+    },
+    "R_a4_conditional_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a4\\ac_paired_conditional.json"
+    },
+    "R_a4_conditional_sha": {
+      "passed": true,
+      "detail": "c0ce169c33d835c5e5d262f0b05029f8d63a2180acdec277158b2fc4450edcf7"
+    },
+    "R_adjudication_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a4\\reviewer_adjudication.json"
+    },
+    "R_adjudication_sha": {
+      "passed": true,
+      "detail": "0ca9e6e7f3e8b8d2e0c4a8542bcfff5428139b77a61280357a0ae9f4a282c898"
+    },
+    "R_feedback_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\docs\\step4_a4\\feedback\\2026-08-19_formal-review.md"
+    },
+    "R_feedback_sha": {
+      "passed": false,
+      "detail": "2799827d88794f2a5e3369ab890121aa4fa9b1021d5bda94035dca0ec7f69301"
+    },
+    "R_a4_summary_canonical": {
+      "passed": true
+    },
+    "R_corrected_decision_exists": {
+      "passed": true
+    },
+    "R_corrected_tests_exists": {
+      "passed": true
+    },
+    "R_corrected_decision_sha": {
+      "passed": true
+    },
+    "R_corrected_tests_sha": {
+      "passed": true
+    },
+    "R_adj_schema": {
+      "passed": true
+    },
+    "R_adj_experiment_accepted": {
+      "passed": true
+    },
+    "R_adj_corrected_branch": {
+      "passed": true
+    },
+    "R_adj_training_false": {
+      "passed": true
+    },
+    "R_adj_a4t_hold": {
+      "passed": true
+    },
+    "R_adj_no_rerun": {
+      "passed": true
+    },
+    "R_adj_execution_frozen": {
+      "passed": true
+    },
+    "R_adj_execution_commit": {
+      "passed": true
+    },
+    "R_adj_summary_link": {
+      "passed": true
+    },
+    "R_adj_dual_track": {
+      "passed": true
+    },
+    "R_adj_audit_not_rerun": {
+      "passed": true
+    }
+  },
+  "provenance": {
+    "design_sha256": "a249118de1f6c74700bb2561ab7af446714b4ed0c5e1e7c8bab816b3fea07565",
+    "context_sha256": "858850d6d58661b419567746336aee6db19781fba3ba4ffd93f03e13d43ef54e",
+    "effects_sha256": "8e987c81d4bed09bd3c40f4ea75b33ff1fbe81f8660d07a91941ba38e4559d31",
+    "evaluator_sha256": "b882d8165383b45002264df09d9dbc2eb159f4b883b21f3ce8bb5159bfaae55c",
+    "tests_sha256": "72cfd66223ad9582dd185e31b217be2887b178418614c9820dc6e74e15661f56",
+    "audit_source_sha256": "a15be9c0c8cdf8d7899761c52ba49b2e861c8a0ec98b1908297ec76a686651e7"
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "generated_at_local": "2026-08-19T00:51:53.967013+08:00",
-  "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
+  "generated_at_local": "2026-08-19T01:17:32.522073+08:00",
+  "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
       "sha256": "151c46b14b4a03b6686dcaf9226b5624340756974d761feb9d47bbfc136a0ddb",
@@ -66,10 +66,17 @@
       "source_eol": "lf"
     },
     "docs/step4_a4/feedback/2026-08-19_formal-review.md": {
-      "sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
-      "size_bytes": 4899,
-      "mtime_ns": 1787071852152402200,
-      "canonical_lf_sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
+      "sha256": "2799827d88794f2a5e3369ab890121aa4fa9b1021d5bda94035dca0ec7f69301",
+      "size_bytes": 4903,
+      "mtime_ns": 1787073364884729300,
+      "canonical_lf_sha256": "2799827d88794f2a5e3369ab890121aa4fa9b1021d5bda94035dca0ec7f69301",
+      "source_eol": "lf"
+    },
+    "docs/step4_a5/DESIGN_FREEZE.md": {
+      "sha256": "a249118de1f6c74700bb2561ab7af446714b4ed0c5e1e7c8bab816b3fea07565",
+      "size_bytes": 18188,
+      "mtime_ns": 1787044040000000000,
+      "canonical_lf_sha256": "a249118de1f6c74700bb2561ab7af446714b4ed0c5e1e7c8bab816b3fea07565",
       "source_eol": "lf"
     },
     "docs/step4_f1_b_corruption/DESIGN_FREEZE.md": {
@@ -400,6 +407,13 @@
       "mtime_ns": 1787071863371872200,
       "canonical_lf_sha256": "0ca9e6e7f3e8b8d2e0c4a8542bcfff5428139b77a61280357a0ae9f4a282c898",
       "source_eol": "lf"
+    },
+    "reports/step4_a5/preexecution_audit.json": {
+      "sha256": "5b303e5dcdd45c1567eb215395f4f2cbb9cfdb66790df4676474260d916d38df",
+      "size_bytes": 10702,
+      "mtime_ns": 1787073392279068200,
+      "canonical_lf_sha256": "abfb5cc3ac67e8dcb03fc71c386479493e77bcf0011d36787e57ffabb89ea47b",
+      "source_eol": "crlf"
     },
     "reports/step4_f0_audit.json": {
       "sha256": "bd21aef5656f32eb646a0799b5c0a9f55d9d205767c5eb61044cc291cd0fd522",
@@ -3705,6 +3719,13 @@
       "canonical_lf_sha256": "f38b97960f16e76eb1b81a9c55fcf9c58253b17171d467b87607f8e51db0dfeb",
       "source_eol": "lf"
     },
+    "scripts/audit_step4_a5.py": {
+      "sha256": "a15be9c0c8cdf8d7899761c52ba49b2e861c8a0ec98b1908297ec76a686651e7",
+      "size_bytes": 15223,
+      "mtime_ns": 1787044326000000000,
+      "canonical_lf_sha256": "a15be9c0c8cdf8d7899761c52ba49b2e861c8a0ec98b1908297ec76a686651e7",
+      "source_eol": "lf"
+    },
     "scripts/audit_step4_f0.py": {
       "sha256": "4b3f6b12ac2903700fab68a004b78651468a60be7886ed9c9ce3e63b259f8126",
       "size_bytes": 8282,
@@ -3829,6 +3850,13 @@
       "size_bytes": 42062,
       "mtime_ns": 1787068958000000000,
       "canonical_lf_sha256": "49959fceb4c643b59b9f463b206df174eea72cb1f907397947b4d2b12fc5f25c",
+      "source_eol": "lf"
+    },
+    "scripts/eval_step4_a5.py": {
+      "sha256": "b882d8165383b45002264df09d9dbc2eb159f4b883b21f3ce8bb5159bfaae55c",
+      "size_bytes": 39414,
+      "mtime_ns": 1787044178000000000,
+      "canonical_lf_sha256": "b882d8165383b45002264df09d9dbc2eb159f4b883b21f3ce8bb5159bfaae55c",
       "source_eol": "lf"
     },
     "scripts/eval_step4_causality.py": {
@@ -4209,6 +4237,20 @@
       "canonical_lf_sha256": "50650e2b1a3679325a2cd1b7d95eccebfeb9044d801ffb48dc08b83c89ad95a2",
       "source_eol": "lf"
     },
+    "src/multimodal/step4_a5_context.py": {
+      "sha256": "858850d6d58661b419567746336aee6db19781fba3ba4ffd93f03e13d43ef54e",
+      "size_bytes": 9245,
+      "mtime_ns": 1787044040000000000,
+      "canonical_lf_sha256": "858850d6d58661b419567746336aee6db19781fba3ba4ffd93f03e13d43ef54e",
+      "source_eol": "lf"
+    },
+    "src/multimodal/step4_a5_effects.py": {
+      "sha256": "8e987c81d4bed09bd3c40f4ea75b33ff1fbe81f8660d07a91941ba38e4559d31",
+      "size_bytes": 9882,
+      "mtime_ns": 1787044040000000000,
+      "canonical_lf_sha256": "8e987c81d4bed09bd3c40f4ea75b33ff1fbe81f8660d07a91941ba38e4559d31",
+      "source_eol": "lf"
+    },
     "src/multimodal/step4_closeout.py": {
       "sha256": "07fd2bf308d652fe477b64921941e756cf8576779dc44606eb7b8e8463888a92",
       "size_bytes": 13577,
@@ -4412,6 +4454,13 @@
       "canonical_lf_sha256": "ec9b294464237869b09c788dd1f23ebeeb2194cfb138514173934718e474cbc4",
       "source_eol": "lf"
     },
+    "tests/test_step4_a5.py": {
+      "sha256": "72cfd66223ad9582dd185e31b217be2887b178418614c9820dc6e74e15661f56",
+      "size_bytes": 21754,
+      "mtime_ns": 1787044264000000000,
+      "canonical_lf_sha256": "72cfd66223ad9582dd185e31b217be2887b178418614c9820dc6e74e15661f56",
+      "source_eol": "lf"
+    },
     "tests/test_step4_closeout.py": {
       "sha256": "0cf1197fa83aa5ec596e5729275e0df162cc376861dd0aff14ee4d808c054fd2",
       "size_bytes": 14952,
@@ -4492,6 +4541,12 @@
   },
   "changed_in_this_sync": [
     "docs/step4_a4/feedback/2026-08-19_formal-review.md",
-    "reports/step4_a4/reviewer_adjudication.json"
+    "docs/step4_a5/DESIGN_FREEZE.md",
+    "reports/step4_a5/preexecution_audit.json",
+    "scripts/audit_step4_a5.py",
+    "scripts/eval_step4_a5.py",
+    "src/multimodal/step4_a5_context.py",
+    "src/multimodal/step4_a5_effects.py",
+    "tests/test_step4_a5.py"
   ]
 }
