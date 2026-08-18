@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T01:17:32.522073+08:00",
+  "generated_at_local": "2026-08-19T01:19:04.921463+08:00",
   "source_root": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3",
   "files": {
     "docs/PROBLEM_DIAGNOSIS.md": {
@@ -66,10 +66,10 @@
       "source_eol": "lf"
     },
     "docs/step4_a4/feedback/2026-08-19_formal-review.md": {
-      "sha256": "2799827d88794f2a5e3369ab890121aa4fa9b1021d5bda94035dca0ec7f69301",
-      "size_bytes": 4903,
-      "mtime_ns": 1787073364884729300,
-      "canonical_lf_sha256": "2799827d88794f2a5e3369ab890121aa4fa9b1021d5bda94035dca0ec7f69301",
+      "sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
+      "size_bytes": 4899,
+      "mtime_ns": 1787073487707515400,
+      "canonical_lf_sha256": "3bd2331d3e618f280b6c8a67699a93780aef1806a09c86bdad2b88ece8dd434a",
       "source_eol": "lf"
     },
     "docs/step4_a5/DESIGN_FREEZE.md": {
@@ -409,10 +409,10 @@
       "source_eol": "lf"
     },
     "reports/step4_a5/preexecution_audit.json": {
-      "sha256": "5b303e5dcdd45c1567eb215395f4f2cbb9cfdb66790df4676474260d916d38df",
-      "size_bytes": 10702,
-      "mtime_ns": 1787073392279068200,
-      "canonical_lf_sha256": "abfb5cc3ac67e8dcb03fc71c386479493e77bcf0011d36787e57ffabb89ea47b",
+      "sha256": "0a15105a5932b37377b329770f572de647213d7638d1b55f5ea2729218fbce7e",
+      "size_bytes": 10674,
+      "mtime_ns": 1787073492850931000,
+      "canonical_lf_sha256": "f6b7a1f841938e824fa6a3f90a726d2e2634d757c6e9235d73e9e72cebf60b59",
       "source_eol": "crlf"
     },
     "reports/step4_f0_audit.json": {
@@ -4541,12 +4541,6 @@
   },
   "changed_in_this_sync": [
     "docs/step4_a4/feedback/2026-08-19_formal-review.md",
-    "docs/step4_a5/DESIGN_FREEZE.md",
-    "reports/step4_a5/preexecution_audit.json",
-    "scripts/audit_step4_a5.py",
-    "scripts/eval_step4_a5.py",
-    "src/multimodal/step4_a5_context.py",
-    "src/multimodal/step4_a5_effects.py",
-    "tests/test_step4_a5.py"
+    "reports/step4_a5/preexecution_audit.json"
   ]
 }

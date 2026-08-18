@@ -40,7 +40,7 @@ rescue 双 STRONG_POSITIVE_RESCUE）的用例。
 ## 4. P5 关键数值（原始，来自冻结 a4_summary.json，SHA `721198d0…`）
 
 - **standalone**：ΔAC-pair FIXED **+0.00242020**（LOO median +0.00289061，4/6 正）、SOFT **+0.000989325**（LOO median +0.00135611，5/6 正）；Δcenter FIXED **+0.00302883**（6/6 正）、SOFT **+0.00176688**
-- **conditional**：ΔAC-pair FIXED **−0.00946564**（LOO median −0.01020544，0/6 正）、SOFT **−0.000429751**（LOO median −0.000451638，**1/6 正**）；Δcenter FIXED **+0.00787241**（6/6 正）、SOFT **+0.000255627**（6/6 正）
+- **conditional**：ΔAC-pair FIXED **−0.00946564**（LOO median −0.01020544，0/6 正）、SOFT **−0.000429751**（LOO median −0.000451638，1/5 正）；Δcenter FIXED **+0.00787241**（6/6 正）、SOFT **+0.000255627**（6/6 正）
 
 **科学结论（审阅者冻结表述）**：P5 centering restores paired causal value in isolation,
 but that restoration collapses and reverses sign in the full multiscale residual context.
