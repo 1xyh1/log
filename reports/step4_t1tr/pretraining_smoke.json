@@ -1,0 +1,21 @@
+{
+  "schema": "step4-t1tr-pretraining-smoke-v1",
+  "all_dynamic_gates_passed": true,
+  "gates": {
+    "initial_identity_exact_t1": true,
+    "optimizer_exact_t1": true,
+    "completed_one_epoch": true,
+    "no_self_match": true,
+    "actual_mapping_matches_schedule": true,
+    "n_train_samples": true,
+    "shift_epoch0_is_1": true
+  },
+  "run_dir": "runs\\step4_t1tr_smoke\\smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1",
+  "manifest_sha256": "2d07db244573964e84f9d19fd09876d11671b503411fa051dab5e85c6b206d5f",
+  "schedule_sha256": "8d47e766c308d5c475d3e1875e8d55ffe307479bf447a758bb6c4d86646dc7e3",
+  "source_hashes": {
+    "runner": "c29355da6a389bea28bab8b9c2fc04f0e27a3e4f468317399934930a324dd3c8",
+    "core": "dadad75ddc29d0376a90dd9b0648d7eaaa413c90a7ef9d5dc46287cd45e67599",
+    "design": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc"
+  }
+}

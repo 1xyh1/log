@@ -1,0 +1,136 @@
+{
+  "schema": "step4-t1tr-pretraining-audit-v1",
+  "phase": "static",
+  "all_passed": true,
+  "passed_count": 34,
+  "total_count": 34,
+  "failed": [],
+  "checks": {
+    "S01_design_frozen": {
+      "passed": true
+    },
+    "S02_one_new_arm": {
+      "passed": true
+    },
+    "S03_zero_primary": {
+      "passed": true
+    },
+    "S04_no_depth": {
+      "passed": true
+    },
+    "S05_no_gate": {
+      "passed": true
+    },
+    "S06_no_centering": {
+      "passed": true
+    },
+    "S07_balanced_schedule": {
+      "passed": true
+    },
+    "S08_each_pair_8": {
+      "passed": true
+    },
+    "S09_core_shift": {
+      "passed": true
+    },
+    "S10_core_schedule_balance": {
+      "passed": true
+    },
+    "S11_runner_aux_id_map": {
+      "passed": true
+    },
+    "S12_runner_no_self_runtime": {
+      "passed": true
+    },
+    "S13_runner_initial_anchor": {
+      "passed": true
+    },
+    "S14_runner_optimizer_anchor": {
+      "passed": true
+    },
+    "S15_runner_t1_full": {
+      "passed": true
+    },
+    "S16_runner_group_c1i": {
+      "passed": true
+    },
+    "S17_eval_zero": {
+      "passed": true
+    },
+    "S18_eval_t0_bitwise": {
+      "passed": true
+    },
+    "S19_eval_t1s_zero_anchor": {
+      "passed": true
+    },
+    "S20_summary_no_margin": {
+      "passed": true
+    },
+    "S21_summary_depth_false": {
+      "passed": true
+    },
+    "S22_summary_production_false": {
+      "passed": true
+    },
+    "S23_no_modify_dataset": {
+      "passed": true
+    },
+    "S24_verify_80ep": {
+      "passed": true
+    },
+    "FILE_design_sha256": {
+      "passed": true,
+      "detail": "docs/step4_t1tr/DESIGN_FREEZE.md"
+    },
+    "FILE_core_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/t1tr_training_source.py"
+    },
+    "FILE_runner_sha256": {
+      "passed": true,
+      "detail": "scripts/run_t1tr.py"
+    },
+    "FILE_smoke_sha256": {
+      "passed": true,
+      "detail": "scripts/smoke_t1tr.py"
+    },
+    "FILE_audit_sha256": {
+      "passed": true,
+      "detail": "scripts/audit_t1tr.py"
+    },
+    "FILE_eval_sha256": {
+      "passed": true,
+      "detail": "scripts/eval_t1tr.py"
+    },
+    "FILE_summary_sha256": {
+      "passed": true,
+      "detail": "scripts/summarize_t1tr.py"
+    },
+    "FILE_verify_sha256": {
+      "passed": true,
+      "detail": "scripts/verify_t1tr_run.py"
+    },
+    "FILE_tests_sha256": {
+      "passed": true,
+      "detail": "tests/test_t1tr.py"
+    },
+    "FILE_readme_sha256": {
+      "passed": true,
+      "detail": "T1TR_README.md"
+    }
+  },
+  "gates": {},
+  "source_hashes": {
+    "design_sha256": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc",
+    "core_sha256": "dadad75ddc29d0376a90dd9b0648d7eaaa413c90a7ef9d5dc46287cd45e67599",
+    "runner_sha256": "c29355da6a389bea28bab8b9c2fc04f0e27a3e4f468317399934930a324dd3c8",
+    "smoke_sha256": "52dc45b5038de54aaaeeead4a3d72622769dc50dffae7d559a22e347ad160c9f",
+    "audit_sha256": "ef490928e209ab6f867f9f0d619f6651993e5e42fcfd9cd85ef08791bde4309e",
+    "eval_sha256": "6aba8336bff01f580c0f68b30bdc6c7d7c27976f29120fd26cc67d2dc4db4002",
+    "summary_sha256": "e3da9aa9360d646be12cf4a900a6c45f3c09793d5e16cf687580c716103b67cb",
+    "verify_sha256": "dcf0003fe0d80ee547d4ba3e6858742129c8dba02081a960abadcd0dc1b4bc60",
+    "tests_sha256": "c9d039a3d6a1b199e4d5b7f245257d03d3941a4f7017b0b80dbf698e13d5e3c8",
+    "readme_sha256": "bb72096e1fa5dd7ca8a1832aa56fed2334a620bcb282d8c8b3ffbcfcbda63629"
+  },
+  "upstream": {}
+}

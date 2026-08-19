@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T16:49:14.736433+08:00",
+  "generated_at_local": "2026-08-19T17:30:44.958131+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1S_IMPLEMENTATION_VALIDATION.json": {
@@ -14,6 +14,20 @@
       "size_bytes": 3501,
       "mtime_ns": 1787129161111886000,
       "canonical_lf_sha256": "ab892183eb63268d6d97c18c248025ec8542dd09a5937b6e4b7df614c204a2d4",
+      "source_eol": "lf"
+    },
+    "T1TR_IMPLEMENTATION_VALIDATION.json": {
+      "sha256": "4d0870cda864af72c09a59e137137114ba73c028c6f73ea203936ef16bac4669",
+      "size_bytes": 3909,
+      "mtime_ns": 1787131163842758400,
+      "canonical_lf_sha256": "4d0870cda864af72c09a59e137137114ba73c028c6f73ea203936ef16bac4669",
+      "source_eol": "lf"
+    },
+    "T1TR_README.md": {
+      "sha256": "bb72096e1fa5dd7ca8a1832aa56fed2334a620bcb282d8c8b3ffbcfcbda63629",
+      "size_bytes": 3954,
+      "mtime_ns": 1787131163834166100,
+      "canonical_lf_sha256": "bb72096e1fa5dd7ca8a1832aa56fed2334a620bcb282d8c8b3ffbcfcbda63629",
       "source_eol": "lf"
     },
     "T_SERIES_IMPLEMENTATION_VALIDATION.json": {
@@ -301,6 +315,13 @@
       "size_bytes": 8121,
       "mtime_ns": 1787129161111886000,
       "canonical_lf_sha256": "0a4390a10ad4715a96284d32bf36a38d3647498b23416003c539234449ccb5ab",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1tr/DESIGN_FREEZE.md": {
+      "sha256": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc",
+      "size_bytes": 9949,
+      "mtime_ns": 1787131163834166100,
+      "canonical_lf_sha256": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc",
       "source_eol": "lf"
     },
     "docs/step4_tseries/IMPLEMENTATION_ADJUDICATION.md": {
@@ -644,6 +665,41 @@
       "size_bytes": 3727,
       "mtime_ns": 1787129218601966700,
       "canonical_lf_sha256": "a474af8a940ff6968de339f3d9ea7faf254684df57bb13d72b9359be67423fd3",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1tr/posttrain_zero_eval.json": {
+      "sha256": "5eed012ca40e79fb6ebf85d8f44dc1cdd2689a76e8d3100a123f7f6861698043",
+      "size_bytes": 22400,
+      "mtime_ns": 1787131722728025200,
+      "canonical_lf_sha256": "f3875092e51c3d41b4382bd97b46817f70656ba7b8dd5cb2cb85284f37e1fe9f",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1tr/pretraining_audit.json": {
+      "sha256": "ad59f35b1842f01aee307a77beeae06994b7d93491eb020a2ba46482cf2d2f2f",
+      "size_bytes": 16430,
+      "mtime_ns": 1787131373771260200,
+      "canonical_lf_sha256": "3d74bd27c3df6134f4c15e50810c848740804aa7c9639e576b816f7d38f7c439",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1tr/pretraining_smoke.json": {
+      "sha256": "f6ead7d6d3f75a087cbfe2efa1f0686a0ed82ff24d2e32094f8dc4f97303ebc1",
+      "size_bytes": 898,
+      "mtime_ns": 1787131354551685600,
+      "canonical_lf_sha256": "1ac27f9b4ca45bf65eefe8fd801fc9733cc2c48213427cdde9cc103bd845b7fd",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1tr/pretraining_static_audit.json": {
+      "sha256": "7c96421fd390a8d03f4472cf3200e4ed386ab0fdc92c29a1eabba6d2b83c9b23",
+      "size_bytes": 3609,
+      "mtime_ns": 1787131331159172400,
+      "canonical_lf_sha256": "0bc158e85052417ed496a5ad308ab45af5bcdf2f744e944cbeec13c3fa0730a3",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1tr/t1tr_summary.json": {
+      "sha256": "eed8a52f7dd266454aba781d5fb5c2c1539e45ea1ab1e5d5d9b8dbc8914c81e9",
+      "size_bytes": 6071,
+      "mtime_ns": 1787131775400401100,
+      "canonical_lf_sha256": "582ba8881f97cddb0b2fd112069d2ec862357054a1a45fc715a397d82fb3df64",
       "source_eol": "crlf"
     },
     "reports/step4_tseries/posttrain_paired.json": {
@@ -4216,6 +4272,13 @@
       "canonical_lf_sha256": "4b0df740b3955986f6f8dfbb59a6b08f74ce3f47ef126f4c067d135bff911ee8",
       "source_eol": "lf"
     },
+    "scripts/audit_t1tr.py": {
+      "sha256": "ef490928e209ab6f867f9f0d619f6651993e5e42fcfd9cd85ef08791bde4309e",
+      "size_bytes": 13542,
+      "mtime_ns": 1787131163834166100,
+      "canonical_lf_sha256": "ef490928e209ab6f867f9f0d619f6651993e5e42fcfd9cd85ef08791bde4309e",
+      "source_eol": "lf"
+    },
     "scripts/audit_tseries.py": {
       "sha256": "be599a2047d39ad0528a3390edd68ac195a633a9daecf70e473bcb2a6153dddc",
       "size_bytes": 15232,
@@ -4349,6 +4412,13 @@
       "canonical_lf_sha256": "af39bfeb2a3f63d5ea2e52c6f899cef956d95494076272c284a7c0bcd7115e03",
       "source_eol": "lf"
     },
+    "scripts/eval_t1tr.py": {
+      "sha256": "6aba8336bff01f580c0f68b30bdc6c7d7c27976f29120fd26cc67d2dc4db4002",
+      "size_bytes": 7442,
+      "mtime_ns": 1787131163834166100,
+      "canonical_lf_sha256": "6aba8336bff01f580c0f68b30bdc6c7d7c27976f29120fd26cc67d2dc4db4002",
+      "source_eol": "lf"
+    },
     "scripts/eval_tseries_paired.py": {
       "sha256": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e",
       "size_bytes": 8449,
@@ -4447,6 +4517,13 @@
       "canonical_lf_sha256": "40d88c6aafcbe0082a70a0cc6fdcda1f16a780a883bf522a431de5afcec018f5",
       "source_eol": "crlf"
     },
+    "scripts/run_t1tr.py": {
+      "sha256": "c29355da6a389bea28bab8b9c2fc04f0e27a3e4f468317399934930a324dd3c8",
+      "size_bytes": 16153,
+      "mtime_ns": 1787131163834166100,
+      "canonical_lf_sha256": "c29355da6a389bea28bab8b9c2fc04f0e27a3e4f468317399934930a324dd3c8",
+      "source_eol": "lf"
+    },
     "scripts/run_tseries.py": {
       "sha256": "75c47827b613cb87b92c3a7065f58134050b03da2dfc22f3c08161dd7f278d8c",
       "size_bytes": 22921,
@@ -4459,6 +4536,13 @@
       "size_bytes": 3326,
       "mtime_ns": 1787125705280161100,
       "canonical_lf_sha256": "a4a56bfece1b526741b590f60d3bb1b576233632674d36627ab314d3527b557f",
+      "source_eol": "lf"
+    },
+    "scripts/smoke_t1tr.py": {
+      "sha256": "52dc45b5038de54aaaeeead4a3d72622769dc50dffae7d559a22e347ad160c9f",
+      "size_bytes": 3749,
+      "mtime_ns": 1787131163838410900,
+      "canonical_lf_sha256": "52dc45b5038de54aaaeeead4a3d72622769dc50dffae7d559a22e347ad160c9f",
       "source_eol": "lf"
     },
     "scripts/smoke_tseries_suite.py": {
@@ -4538,6 +4622,13 @@
       "canonical_lf_sha256": "782d32b9735fbba27742e7bc1721ad80ba0e84dd11a9777948bbfd619ce1337c",
       "source_eol": "lf"
     },
+    "scripts/summarize_t1tr.py": {
+      "sha256": "e3da9aa9360d646be12cf4a900a6c45f3c09793d5e16cf687580c716103b67cb",
+      "size_bytes": 4050,
+      "mtime_ns": 1787131163838410900,
+      "canonical_lf_sha256": "e3da9aa9360d646be12cf4a900a6c45f3c09793d5e16cf687580c716103b67cb",
+      "source_eol": "lf"
+    },
     "scripts/summarize_tseries.py": {
       "sha256": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6",
       "size_bytes": 7786,
@@ -4571,6 +4662,13 @@
       "size_bytes": 5560,
       "mtime_ns": 1786474743814824000,
       "canonical_lf_sha256": "0e013b348c464acbc89d77d54ea822d4effe87122619ddba9c4ab42091020075",
+      "source_eol": "lf"
+    },
+    "scripts/verify_t1tr_run.py": {
+      "sha256": "dcf0003fe0d80ee547d4ba3e6858742129c8dba02081a960abadcd0dc1b4bc60",
+      "size_bytes": 3654,
+      "mtime_ns": 1787131163839542800,
+      "canonical_lf_sha256": "dcf0003fe0d80ee547d4ba3e6858742129c8dba02081a960abadcd0dc1b4bc60",
       "source_eol": "lf"
     },
     "src/multimodal/__init__.py": {
@@ -4802,6 +4900,13 @@
       "size_bytes": 5227,
       "mtime_ns": 1787129161115982400,
       "canonical_lf_sha256": "e8a5feaf3453d5d735e55832df04b9db0783574b5bb33f1f5b27c8e199474581",
+      "source_eol": "lf"
+    },
+    "src/multimodal/t1tr_training_source.py": {
+      "sha256": "dadad75ddc29d0376a90dd9b0648d7eaaa413c90a7ef9d5dc46287cd45e67599",
+      "size_bytes": 6010,
+      "mtime_ns": 1787131163839542800,
+      "canonical_lf_sha256": "dadad75ddc29d0376a90dd9b0648d7eaaa413c90a7ef9d5dc46287cd45e67599",
       "source_eol": "lf"
     },
     "src/multimodal/trainability.py": {
@@ -5056,6 +5161,13 @@
       "canonical_lf_sha256": "3167bc33833919301ba85181f53aa4ab6f9dc910a89623b42bf7523911eb351c",
       "source_eol": "lf"
     },
+    "tests/test_t1tr.py": {
+      "sha256": "c9d039a3d6a1b199e4d5b7f245257d03d3941a4f7017b0b80dbf698e13d5e3c8",
+      "size_bytes": 7997,
+      "mtime_ns": 1787131235883530600,
+      "canonical_lf_sha256": "c9d039a3d6a1b199e4d5b7f245257d03d3941a4f7017b0b80dbf698e13d5e3c8",
+      "source_eol": "lf"
+    },
     "tests/test_tseries.py": {
       "sha256": "c2c51ba60b04a821464272d5e82e04ec1af134124b774dbf61a3a19c90456437",
       "size_bytes": 12452,
@@ -5065,17 +5177,21 @@
     }
   },
   "changed_in_this_sync": [
-    "T1S_IMPLEMENTATION_VALIDATION.json",
-    "T1S_README.md",
-    "docs/step4_t1s/DESIGN_FREEZE.md",
-    "reports/step4_t1s/derangements.json",
-    "reports/step4_t1s/preexecution_audit.json",
-    "reports/step4_t1s/preexecution_static_audit.json",
-    "reports/step4_t1s/source_matrix.json",
-    "reports/step4_t1s/t1s_summary.json",
-    "scripts/audit_t1s.py",
-    "scripts/eval_t1s_source_specificity.py",
-    "src/multimodal/t1s_source_specificity.py",
-    "tests/test_t1s.py"
+    "T1TR_IMPLEMENTATION_VALIDATION.json",
+    "T1TR_README.md",
+    "docs/step4_t1tr/DESIGN_FREEZE.md",
+    "reports/step4_t1tr/posttrain_zero_eval.json",
+    "reports/step4_t1tr/pretraining_audit.json",
+    "reports/step4_t1tr/pretraining_smoke.json",
+    "reports/step4_t1tr/pretraining_static_audit.json",
+    "reports/step4_t1tr/t1tr_summary.json",
+    "scripts/audit_t1tr.py",
+    "scripts/eval_t1tr.py",
+    "scripts/run_t1tr.py",
+    "scripts/smoke_t1tr.py",
+    "scripts/summarize_t1tr.py",
+    "scripts/verify_t1tr_run.py",
+    "src/multimodal/t1tr_training_source.py",
+    "tests/test_t1tr.py"
   ]
 }
