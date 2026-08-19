@@ -1,0 +1,79 @@
+{
+  "schema": "step4-t1s-implementation-validation-v1",
+  "status": "IMPLEMENTATION_READY_RESULT_NOT_RUN",
+  "upstream": {
+    "tseries_accepted_commit": "1d318d0bfcbd9f6e2ebd88870c9ea571f984be2c",
+    "t1_last_pt_sha256": "8380e21504fabd0d8c3715398739bbb0bed5aaafd9c822dfc14c9503af2daeee",
+    "t1_manifest_sha256": "081afec392d96ee2d570a3424e5f015f05ee308297daed8900ece5584c707312",
+    "posttrain_performance_sha256": "4b38f3ef8d7defac4b91b42e8651b667ca8320e990666af225dea4e6886ea93a",
+    "posttrain_paired_sha256": "249702b5542055d7bf36595b28cb1e5a0b42312d05c55d459a8b0890e3a2b5cd",
+    "a2_donor_map_sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5"
+  },
+  "package_regression": {
+    "pytest": {
+      "passed": 37,
+      "failed": 0
+    },
+    "py_compile": {
+      "passed": true,
+      "files": 4
+    },
+    "static_audit": {
+      "passed": 31,
+      "total": 31,
+      "all_passed": true
+    }
+  },
+  "formal_runtime_not_executed_here": {
+    "formal_preexecution_audit": false,
+    "source_matrix_6x6": false,
+    "zero_condition": false,
+    "derangements_265": false,
+    "t1s_summary": false,
+    "reason": "Artifact environment does not contain the user formal T1 last.pt, val6 dataset/contract, A2 donor-map checkout, or Ultralytics 8.4.56 host repository runtime."
+  },
+  "design": {
+    "training": false,
+    "checkpoint_modification": false,
+    "matrix_cells": 36,
+    "zero_recipient_conditions": 6,
+    "derangements_exact": 265,
+    "alpha": 0.05,
+    "depth_go_always_false": true,
+    "production_go_always_false": true
+  },
+  "expected_formal_preexecution": {
+    "checks": 62,
+    "hard_gates": 15,
+    "required": "62/62 checks PASS and G1-G15 all true"
+  },
+  "payload": {
+    "file_count_without_validation": 6,
+    "files": {
+      "T1S_README.md": {
+        "sha256": "ab892183eb63268d6d97c18c248025ec8542dd09a5937b6e4b7df614c204a2d4",
+        "bytes": 3501
+      },
+      "docs/step4_t1s/DESIGN_FREEZE.md": {
+        "sha256": "0a4390a10ad4715a96284d32bf36a38d3647498b23416003c539234449ccb5ab",
+        "bytes": 8121
+      },
+      "scripts/audit_t1s.py": {
+        "sha256": "4b0df740b3955986f6f8dfbb59a6b08f74ce3f47ef126f4c067d135bff911ee8",
+        "bytes": 12462
+      },
+      "scripts/eval_t1s_source_specificity.py": {
+        "sha256": "af39bfeb2a3f63d5ea2e52c6f899cef956d95494076272c284a7c0bcd7115e03",
+        "bytes": 17494
+      },
+      "src/multimodal/t1s_source_specificity.py": {
+        "sha256": "e8a5feaf3453d5d735e55832df04b9db0783574b5bb33f1f5b27c8e199474581",
+        "bytes": 5227
+      },
+      "tests/test_t1s.py": {
+        "sha256": "3167bc33833919301ba85181f53aa4ab6f9dc910a89623b42bf7523911eb351c",
+        "bytes": 6537
+      }
+    }
+  }
+}

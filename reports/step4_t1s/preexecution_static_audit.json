@@ -1,0 +1,123 @@
+{
+  "schema": "step4-t1s-preexecution-audit-v1",
+  "phase": "static",
+  "all_passed": true,
+  "passed_count": 31,
+  "total_count": 31,
+  "failed": [],
+  "checks": {
+    "S01_design_frozen": {
+      "passed": true
+    },
+    "S02_eval_only": {
+      "passed": true
+    },
+    "S03_t1_only": {
+      "passed": true
+    },
+    "S04_full_residual": {
+      "passed": true
+    },
+    "S05_matrix_6x6": {
+      "passed": true
+    },
+    "S06_zero": {
+      "passed": true
+    },
+    "S07_265": {
+      "passed": true
+    },
+    "S08_native_anchor": {
+      "passed": true
+    },
+    "S09_donor_anchor": {
+      "passed": true
+    },
+    "S10_alpha": {
+      "passed": true
+    },
+    "S11_no_training": {
+      "passed": true
+    },
+    "S12_no_depth": {
+      "passed": true
+    },
+    "S13_core_permutations": {
+      "passed": true
+    },
+    "S14_core_expected_265": {
+      "passed": true
+    },
+    "S15_core_priority_wrong_source": {
+      "passed": true
+    },
+    "S16_core_zero_branch": {
+      "passed": true
+    },
+    "S17_core_source_specificity_branch": {
+      "passed": true
+    },
+    "S18_evaluator_matrix": {
+      "passed": true
+    },
+    "S19_evaluator_no_265_forward": {
+      "passed": true
+    },
+    "S20_evaluator_native_bitwise": {
+      "passed": true
+    },
+    "S21_evaluator_donor_bitwise": {
+      "passed": true
+    },
+    "S22_evaluator_zero": {
+      "passed": true
+    },
+    "S23_evaluator_refuse_overwrite": {
+      "passed": true
+    },
+    "S24_no_t2": {
+      "passed": true
+    },
+    "S25_no_training_calls": {
+      "passed": true
+    },
+    "FILE_design_sha256": {
+      "passed": true,
+      "detail": "docs/step4_t1s/DESIGN_FREEZE.md"
+    },
+    "FILE_core_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/t1s_source_specificity.py"
+    },
+    "FILE_evaluator_sha256": {
+      "passed": true,
+      "detail": "scripts/eval_t1s_source_specificity.py"
+    },
+    "FILE_audit_sha256": {
+      "passed": true,
+      "detail": "scripts/audit_t1s.py"
+    },
+    "FILE_tests_sha256": {
+      "passed": true,
+      "detail": "tests/test_t1s.py"
+    },
+    "FILE_readme_sha256": {
+      "passed": true,
+      "detail": "T1S_README.md"
+    }
+  },
+  "gates": {},
+  "source_hashes": {
+    "design_sha256": "0a4390a10ad4715a96284d32bf36a38d3647498b23416003c539234449ccb5ab",
+    "core_sha256": "e8a5feaf3453d5d735e55832df04b9db0783574b5bb33f1f5b27c8e199474581",
+    "evaluator_sha256": "af39bfeb2a3f63d5ea2e52c6f899cef956d95494076272c284a7c0bcd7115e03",
+    "audit_sha256": "4b0df740b3955986f6f8dfbb59a6b08f74ce3f47ef126f4c067d135bff911ee8",
+    "tests_sha256": "3167bc33833919301ba85181f53aa4ab6f9dc910a89623b42bf7523911eb351c",
+    "readme_sha256": "ab892183eb63268d6d97c18c248025ec8542dd09a5937b6e4b7df614c204a2d4"
+  },
+  "upstream": {
+    "tseries_accepted_commit": "1d318d0bfcbd9f6e2ebd88870c9ea571f984be2c",
+    "git_ancestry_not_used_as_evidence": true,
+    "content_hashes_are_authoritative": true
+  }
+}

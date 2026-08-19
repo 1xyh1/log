@@ -1,0 +1,291 @@
+{
+  "schema": "step4-t1s-preexecution-audit-v1",
+  "phase": "formal",
+  "all_passed": true,
+  "passed_count": 62,
+  "total_count": 62,
+  "failed": [],
+  "checks": {
+    "S01_design_frozen": {
+      "passed": true
+    },
+    "S02_eval_only": {
+      "passed": true
+    },
+    "S03_t1_only": {
+      "passed": true
+    },
+    "S04_full_residual": {
+      "passed": true
+    },
+    "S05_matrix_6x6": {
+      "passed": true
+    },
+    "S06_zero": {
+      "passed": true
+    },
+    "S07_265": {
+      "passed": true
+    },
+    "S08_native_anchor": {
+      "passed": true
+    },
+    "S09_donor_anchor": {
+      "passed": true
+    },
+    "S10_alpha": {
+      "passed": true
+    },
+    "S11_no_training": {
+      "passed": true
+    },
+    "S12_no_depth": {
+      "passed": true
+    },
+    "S13_core_permutations": {
+      "passed": true
+    },
+    "S14_core_expected_265": {
+      "passed": true
+    },
+    "S15_core_priority_wrong_source": {
+      "passed": true
+    },
+    "S16_core_zero_branch": {
+      "passed": true
+    },
+    "S17_core_source_specificity_branch": {
+      "passed": true
+    },
+    "S18_evaluator_matrix": {
+      "passed": true
+    },
+    "S19_evaluator_no_265_forward": {
+      "passed": true
+    },
+    "S20_evaluator_native_bitwise": {
+      "passed": true
+    },
+    "S21_evaluator_donor_bitwise": {
+      "passed": true
+    },
+    "S22_evaluator_zero": {
+      "passed": true
+    },
+    "S23_evaluator_refuse_overwrite": {
+      "passed": true
+    },
+    "S24_no_t2": {
+      "passed": true
+    },
+    "S25_no_training_calls": {
+      "passed": true
+    },
+    "FILE_design_sha256": {
+      "passed": true,
+      "detail": "docs/step4_t1s/DESIGN_FREEZE.md"
+    },
+    "FILE_core_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/t1s_source_specificity.py"
+    },
+    "FILE_evaluator_sha256": {
+      "passed": true,
+      "detail": "scripts/eval_t1s_source_specificity.py"
+    },
+    "FILE_audit_sha256": {
+      "passed": true,
+      "detail": "scripts/audit_t1s.py"
+    },
+    "FILE_tests_sha256": {
+      "passed": true,
+      "detail": "tests/test_t1s.py"
+    },
+    "FILE_readme_sha256": {
+      "passed": true,
+      "detail": "T1S_README.md"
+    },
+    "R01_performance_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_tseries\\posttrain_performance.json"
+    },
+    "R02_paired_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_tseries\\posttrain_paired.json"
+    },
+    "R03_summary_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_tseries\\tseries_summary.json"
+    },
+    "R04_donor_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\reports\\step4_a2\\val_donor_map.json"
+    },
+    "R05_manifest_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\runs\\step4_tseries\\T1-F_P5_FULL_seed20260812\\manifest.json"
+    },
+    "R06_last_exists": {
+      "passed": true,
+      "detail": "C:\\Users\\xyh23\\Documents\\ChatGPT\\多模态模型\\multimodal_yolo26_qaf_v0_3\\runs\\step4_tseries\\T1-F_P5_FULL_seed20260812\\weights\\last.pt"
+    },
+    "R07_contract_exists": {
+      "passed": true,
+      "detail": "D:\\pycharm\\Python Develop\\YOLO_1\\step3_data_contract.json"
+    },
+    "R08_performance_sha": {
+      "passed": true,
+      "detail": "4b38f3ef8d7defac4b91b42e8651b667ca8320e990666af225dea4e6886ea93a"
+    },
+    "R09_performance_schema": {
+      "passed": true
+    },
+    "R10_paired_sha": {
+      "passed": true,
+      "detail": "249702b5542055d7bf36595b28cb1e5a0b42312d05c55d459a8b0890e3a2b5cd"
+    },
+    "R11_paired_schema": {
+      "passed": true
+    },
+    "R12_t1_paired_negative": {
+      "passed": true
+    },
+    "R13_summary_schema": {
+      "passed": true
+    },
+    "R14_summary_branch": {
+      "passed": true
+    },
+    "R15_summary_replication_hold": {
+      "passed": true
+    },
+    "R16_summary_depth_hold": {
+      "passed": true
+    },
+    "R17_t1_vs_t0_stable_positive": {
+      "passed": true
+    },
+    "R18_donor_sha": {
+      "passed": true,
+      "detail": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5"
+    },
+    "R19_donor_semantics": {
+      "passed": true,
+      "detail": {
+        "000016_042_suppl_00000164": "000003_013_00000085",
+        "000016_001_00000001": "000004_013_00000081",
+        "000016": "000004_014_00000001",
+        "000003_013_00000085": "000016",
+        "000004_014_00000001": "000016_001_00000001",
+        "000004_013_00000081": "000016_042_suppl_00000164"
+      }
+    },
+    "R20_manifest_sha": {
+      "passed": true,
+      "detail": "081afec392d96ee2d570a3424e5f015f05ee308297daed8900ece5584c707312"
+    },
+    "R21_manifest_treatment": {
+      "passed": true
+    },
+    "R22_manifest_80ep": {
+      "passed": true
+    },
+    "R23_manifest_seed": {
+      "passed": true
+    },
+    "R24_last_sha": {
+      "passed": true,
+      "detail": "8380e21504fabd0d8c3715398739bbb0bed5aaafd9c822dfc14c9503af2daeee"
+    },
+    "R25_val6_exact": {
+      "passed": true,
+      "detail": [
+        "000003_013_00000085",
+        "000004_013_00000081",
+        "000004_014_00000001",
+        "000016",
+        "000016_001_00000001",
+        "000016_042_suppl_00000164"
+      ]
+    },
+    "R26_derangement_family": {
+      "passed": true,
+      "detail": {
+        "count": 265,
+        "unique_count": 265,
+        "all_valid": true,
+        "passed": true
+      }
+    },
+    "R27_source_fresh_tseries_p5_model.py": {
+      "passed": true,
+      "detail": {
+        "path": "src/multimodal/tseries_p5_model.py",
+        "expected": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d",
+        "current": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d"
+      }
+    },
+    "R28_source_fresh_tseries_core.py": {
+      "passed": true,
+      "detail": {
+        "path": "src/multimodal/tseries_core.py",
+        "expected": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec",
+        "current": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec"
+      }
+    },
+    "R29_source_fresh_tseries_runtime.py": {
+      "passed": true,
+      "detail": {
+        "path": "src/multimodal/tseries_runtime.py",
+        "expected": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a",
+        "current": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a"
+      }
+    },
+    "R30_source_fresh_eval_tseries_paired.py": {
+      "passed": true,
+      "detail": {
+        "path": "scripts/eval_tseries_paired.py",
+        "expected": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e",
+        "current": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e"
+      }
+    },
+    "R31_source_fresh_summarize_tseries.py": {
+      "passed": true,
+      "detail": {
+        "path": "scripts/summarize_tseries.py",
+        "expected": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6",
+        "current": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6"
+      }
+    }
+  },
+  "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true,
+    "G6": true,
+    "G7": true,
+    "G8": true,
+    "G9": true,
+    "G10": true,
+    "G11": true,
+    "G12": true,
+    "G13": true,
+    "G14": true,
+    "G15": true
+  },
+  "source_hashes": {
+    "design_sha256": "0a4390a10ad4715a96284d32bf36a38d3647498b23416003c539234449ccb5ab",
+    "core_sha256": "e8a5feaf3453d5d735e55832df04b9db0783574b5bb33f1f5b27c8e199474581",
+    "evaluator_sha256": "af39bfeb2a3f63d5ea2e52c6f899cef956d95494076272c284a7c0bcd7115e03",
+    "audit_sha256": "4b0df740b3955986f6f8dfbb59a6b08f74ce3f47ef126f4c067d135bff911ee8",
+    "tests_sha256": "3167bc33833919301ba85181f53aa4ab6f9dc910a89623b42bf7523911eb351c",
+    "readme_sha256": "ab892183eb63268d6d97c18c248025ec8542dd09a5937b6e4b7df614c204a2d4"
+  },
+  "upstream": {
+    "tseries_accepted_commit": "1d318d0bfcbd9f6e2ebd88870c9ea571f984be2c",
+    "git_ancestry_not_used_as_evidence": true,
+    "content_hashes_are_authoritative": true
+  }
+}

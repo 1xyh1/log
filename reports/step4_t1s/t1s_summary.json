@@ -1,0 +1,111 @@
+{
+  "schema": "step4-t1s-summary-v1",
+  "evaluation_only": true,
+  "t1_architecture_gain_upstream": {
+    "map50": 0.33952973497091143,
+    "map50_95": 0.27951034259857793,
+    "n_images": 6
+  },
+  "identity_native": {
+    "map50": 0.33952973497091143,
+    "map50_95": 0.27951034259857793,
+    "n_images": 6
+  },
+  "zero_residual": {
+    "map50": 0.38528528528528533,
+    "map50_95": 0.29596085371085373,
+    "n_images": 6
+  },
+  "frozen_a2_donor": {
+    "map50": 0.37944531658817376,
+    "map50_95": 0.2904392987964417,
+    "n_images": 6
+  },
+  "derangements": {
+    "count": 265,
+    "map50_95": {
+      "n": 265,
+      "min": 0.21851776726950944,
+      "q1": 0.24995065613471884,
+      "median": 0.2762406530885447,
+      "q3": 0.29167567567567565,
+      "max": 0.30689075630252105,
+      "mean": 0.2721389477931218
+    },
+    "map50": {
+      "n": 265,
+      "min": 0.2720114409400124,
+      "q1": 0.3103184165232357,
+      "median": 0.35666666666666674,
+      "q3": 0.37255469755469756,
+      "max": 0.3953308596165739,
+      "mean": 0.34420570875976697
+    }
+  },
+  "ranks": {
+    "identity_vs_derangements": {
+      "greater": 122,
+      "equal": 0,
+      "lower": 143,
+      "descending_rank_min": 123,
+      "descending_rank_max": 123,
+      "strict_percentile_vs_distribution": 0.539622641509434
+    },
+    "frozen_a2_donor_vs_derangements": {
+      "greater": 73,
+      "equal": 1,
+      "lower": 191,
+      "descending_rank_min": 74,
+      "descending_rank_max": 75,
+      "strict_percentile_vs_distribution": 0.720754716981132
+    },
+    "zero_vs_derangements": {
+      "greater": 49,
+      "equal": 0,
+      "lower": 216,
+      "descending_rank_min": 50,
+      "descending_rank_max": 50,
+      "strict_percentile_vs_distribution": 0.8150943396226416
+    }
+  },
+  "contrasts": {
+    "identity_minus_zero_map50_95": -0.0164505111122758,
+    "identity_minus_derangement_median_map50_95": 0.003269689510033258,
+    "derangement_median_minus_zero_map50_95": -0.01972020062230906
+  },
+  "decision": {
+    "branch": "INFERENCE_RESIDUAL_NOT_SUPPORTED_TRAINING_DYNAMICS_CANDIDATE",
+    "replication_seed_go": false,
+    "depth_go": false,
+    "production_go": false,
+    "next_step": "training-time-IR / inference-RGB ablation design",
+    "identity_minus_zero": -0.0164505111122758,
+    "identity_minus_derangement_median": 0.003269689510033258,
+    "derangement_median_minus_zero": -0.01972020062230906,
+    "randomization": {
+      "alpha": 0.05,
+      "count_derangements_ge_identity": 122,
+      "denominator": 266,
+      "p_one_sided": 0.462406015037594,
+      "significant": false
+    }
+  },
+  "training_go": false,
+  "depth_go": false,
+  "production_go": false,
+  "interpretation_discipline": {
+    "fixed_donor_is_one_of_265_not_the_only_causal_test": true,
+    "zero_is_t1_checkpoint_inference_ablation_not_t0_checkpoint": true,
+    "architecture_gain_is_not_equated_with_paired_multimodal_gain": true,
+    "single_seed_source_specificity_is_not_replication": true,
+    "no_new_training_performed": true
+  },
+  "provenance": {
+    "preexecution_audit_sha256": "9fe73981b35e1b321e4ddea0100dd22db05c4b1d0131da715b41bcb2c6dac14f",
+    "t1_last_pt_sha256": "8380e21504fabd0d8c3715398739bbb0bed5aaafd9c822dfc14c9503af2daeee",
+    "t1_manifest_sha256": "081afec392d96ee2d570a3424e5f015f05ee308297daed8900ece5584c707312",
+    "posttrain_paired_sha256": "249702b5542055d7bf36595b28cb1e5a0b42312d05c55d459a8b0890e3a2b5cd",
+    "matrix_sha256": "8f8dbca1a6da64f90d9c13af7c1d3dbe295d8eb62fbfadb9a59a69190973c77c",
+    "derangements_sha256": "49b60a364d812df329f2ec3d4773d6eb780a4d28df6ca4858b006ef4b61de200"
+  }
+}

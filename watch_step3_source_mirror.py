@@ -35,6 +35,8 @@ SYNC_PREFIXES = (
     "reports/step",
     "T_SERIES_README.md",
     "T_SERIES_IMPLEMENTATION_VALIDATION.json",
+    "T1S_README.md",
+    "T1S_IMPLEMENTATION_VALIDATION.json",
 )
 
 # 结果目录：只同步文本与必要图（results.png = val 曲线）。
@@ -167,7 +169,8 @@ def stage_whitelist():
     specs = ["src/multimodal", "scripts", "tests", "docs", "reports", "runs",
              MANIFEST_NAME, "watch_step3_source_mirror.py",
              "start_step3_source_mirror.bat", ".gitignore", "README.md",
-             "T_SERIES_README.md", "T_SERIES_IMPLEMENTATION_VALIDATION.json"]
+             "T_SERIES_README.md", "T_SERIES_IMPLEMENTATION_VALIDATION.json",
+             "T1S_README.md", "T1S_IMPLEMENTATION_VALIDATION.json"]
     existing = [s for s in specs if (MIRROR_REPO / s).exists()]
     if existing:
         git("add", "--", *existing, check=False)
