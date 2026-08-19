@@ -1,0 +1,17 @@
+{
+  "schema": "t1gr-e5-synthetic-gate-v1",
+  "checks": {
+    "zip_4x2000": true,
+    "same_request_idempotent": true,
+    "concurrent_writer_rejected": true,
+    "view_1504_198": true,
+    "holdout_ids_not_in_train_dev_artifact": true,
+    "holdout_ids_not_in_view_manifest": true,
+    "extra_file_rejected": true,
+    "file_tamper_rejected": true
+  },
+  "passed": 8,
+  "total": 8,
+  "all_passed": true,
+  "formal": false
+}

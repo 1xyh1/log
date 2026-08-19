@@ -1,0 +1,49 @@
+{
+  "base_checkpoint_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "dev_count": 198,
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_runtime_version": "12.1",
+    "cudnn_version": 90100,
+    "device_compute_capability": "8.9",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "ultralytics_analytics_disabled_for_process": true,
+    "ultralytics_source_sha256": {
+      "default_yaml": "01c969e50e699320f06c88b126f08f602cde5a3d7836b4455ba24575abac1e15",
+      "events_py": "91fbbc8fe24a1bb74d9fc007364ca5527d60e1d73f8324dbe34832d925a4fe59",
+      "tasks_py": "ccaafe4101ba0fcb54983130d97a6ed99d0e7069d672f17256ace9de444837ea",
+      "trainer_py": "5232397fd8893c513dff824b52965de3394d75abea588a3b63a4b523de8f8111",
+      "yolo26_yaml": "b1d1fa0c69eced64f9939536038bd8d697c32e72200b34187a767de431af7ef0"
+    },
+    "ultralytics_version": "8.4.56"
+  },
+  "final_holdout_ids_available_to_preflight": false,
+  "formal_step1_authorized": false,
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "model_preflight": {
+    "destination_state_keys": 708,
+    "end2end": true,
+    "physical_nc": 12,
+    "source_state_keys": 708,
+    "transfer_fraction_of_destination": 0.9830508474576272,
+    "transferred_state_keys": 696
+  },
+  "payload_sha256": "5a6fd4d621d0181c4ba01a4178c9ff82d7ea314bd47305f8c7aab4517ea76d1d",
+  "preflight_gate_passed": true,
+  "recipe_public_sha256": "9489800bcb9cabf13d3ed8173c83d96f95492f1ac7e58e1e4747076e1d3ce9b6",
+  "request_fingerprint": "1c3492381f8e3bf74e883f3da75581745ac5ec6bc79e25243d23265aacc856a8",
+  "schema": "t1gr-e5-step1-preflight-public-v1",
+  "script_version": "t1gr-e5-step1-preflight-hardened-v1",
+  "smoke_authorized": true,
+  "train_count": 1504,
+  "train_dev_access_private_sha256": "770e52c63536f5f13f2958d28cc47bb7601afbe7fcbf59d2c281fa58a4ed3b28",
+  "view_manifest_private_sha256": "9cada97bdc78af14697d169380c4192c760dcc1eb650b0e51a0eb303ec981c16",
+  "view_public_sha256": "7742a6a9749b581861b2e2185cc45e97d6ed3ec2981f1f93bf946235a36a1e2b"
+}

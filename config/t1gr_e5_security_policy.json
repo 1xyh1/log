@@ -1,0 +1,23 @@
+{
+  "schema": "t1gr-e5-security-policy-v1",
+  "public_output_prefix": "reports/step4_t1gr",
+  "private_parent_must_preexist": true,
+  "max_private_json_bytes": 67108864,
+  "max_public_json_bytes": 2097152,
+  "max_zip_members": 12000,
+  "max_label_member_bytes": 1000000,
+  "max_total_label_bytes": 100000000,
+  "recipe_hash_timeout_seconds": 1800,
+  "view_build_timeout_seconds": 3600,
+  "view_verify_timeout_seconds": 1800,
+  "run_root_must_be_outside_repo": true,
+  "view_root_must_be_outside_repo": true,
+  "dataset_view_mode": "COPY_ONLY",
+  "public_reports_must_not_contain_paths_or_sample_ids": true,
+  "final_holdout_sealed_artifact_is_not_an_E5_input": true,
+  "ultralytics_external_integrations": "DISABLED_DURING_TRAIN_AND_EVAL",
+  "ultralytics_usage_analytics": "DISABLED_FOR_E5_PROCESS",
+  "amp_network_probe": "BYPASSED; AMP is qualified by mandatory 1-epoch smoke before formal train",
+  "posix_private_artifact_umask": "0077",
+  "windows_private_acl_claim": "NOT_PROVEN_BY_PYTHON; private roots must be user-controlled"
+}

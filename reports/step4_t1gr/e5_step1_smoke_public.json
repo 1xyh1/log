@@ -1,0 +1,143 @@
+{
+  "actual_amp": true,
+  "actual_batch_size": 4,
+  "actual_train_workers": 8,
+  "base_checkpoint_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "best_pt_sha256": "e6abe0fb90cac4fa13f7b69fcbdbac4edf231ed8eb99acfe7a1109f27cfa67e4",
+  "dev_count": 198,
+  "dev_eval_authorized": false,
+  "e4_freeze_precedes_training": true,
+  "effective_args_yaml_sha256": "2dbb260308ac9b743d4e90df25ad9d0ff6e47b470f934d9d71440043613f3260",
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_runtime_version": "12.1",
+    "cudnn_version": 90100,
+    "device_compute_capability": "8.9",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "ultralytics_analytics_disabled_for_process": true,
+    "ultralytics_source_sha256": {
+      "default_yaml": "01c969e50e699320f06c88b126f08f602cde5a3d7836b4455ba24575abac1e15",
+      "events_py": "91fbbc8fe24a1bb74d9fc007364ca5527d60e1d73f8324dbe34832d925a4fe59",
+      "tasks_py": "ccaafe4101ba0fcb54983130d97a6ed99d0e7069d672f17256ace9de444837ea",
+      "trainer_py": "5232397fd8893c513dff824b52965de3394d75abea588a3b63a4b523de8f8111",
+      "yolo26_yaml": "b1d1fa0c69eced64f9939536038bd8d697c32e72200b34187a767de431af7ef0"
+    },
+    "ultralytics_version": "8.4.56"
+  },
+  "epochs_completed": 1,
+  "epochs_expected": 1,
+  "external_network_integrations": {
+    "amp_download_probe_bypassed": true,
+    "analytics_disabled": true,
+    "integration_callbacks_disabled": true
+  },
+  "final_holdout_ids_available_to_runner": false,
+  "final_holdout_open_authorized": false,
+  "formal_step1_authorized_after_smoke": true,
+  "head_end2end": true,
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "last_pt_sha256": "15062a4c4653506cc3d9a3f59e97b018192abf7c7b66192f6c2186842710eb81",
+  "mode": "smoke",
+  "optimizer": {
+    "class_name": "MuSGD",
+    "groups": [
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 0,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 0,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 24,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 90,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 30,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 96,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 30,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 96,
+        "weight_decay": 0.0005
+      }
+    ],
+    "module": "ultralytics.optim.muon",
+    "param_group_count": 8
+  },
+  "payload_sha256": "54cc1fdcd9a054dde899abf5125201c92f6cb46fede49aba385134ee8c515101",
+  "physical_head_nc": 12,
+  "preflight_public_sha256": "a2d7cfe5c3a81d771e354f4c6681802199115058775569835d20060b329b7a19",
+  "pretrained_destination_key_count": 708,
+  "pretrained_transfer_key_count": 696,
+  "private_artifact_permissions": {
+    "posix_umask_applied": false,
+    "windows_acl_proven": false
+  },
+  "recipe_freeze_precedes_training": true,
+  "recipe_public_sha256": "9489800bcb9cabf13d3ed8173c83d96f95492f1ac7e58e1e4747076e1d3ce9b6",
+  "request_fingerprint": "6e40eb398b169ac093bd0585ee5611aedc7b741edd82f2f1419d4ca6fc189e36",
+  "results_csv_sha256": "622b07114ff83d29d00448e559420a1c0380fa70c132e5b0e6bbd85049544b87",
+  "run_gate_passed": true,
+  "schema": "t1gr-e5-step1-run-public-v1",
+  "script_version": "t1gr-e5-step1-trainer-hardened-v1",
+  "smoke_report_sha256": null,
+  "status": "STEP1_SMOKE_COMPLETE",
+  "timeout_seconds": 1800.0,
+  "train_count": 1504,
+  "training_finished_at_utc": "2026-08-19T19:02:02.525409Z",
+  "training_started_at_utc": "2026-08-19T18:59:37.357996Z",
+  "view_manifest_private_sha256": "9cada97bdc78af14697d169380c4192c760dcc1eb650b0e51a0eb303ec981c16",
+  "view_public_sha256": "7742a6a9749b581861b2e2185cc45e97d6ed3ec2981f1f93bf946235a36a1e2b"
+}
