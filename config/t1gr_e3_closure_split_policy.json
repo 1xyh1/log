@@ -1,0 +1,82 @@
+{
+  "schema": "t1gr-e3-closure-split-policy-v1.2",
+  "status": "PRE_REGISTERED_BEFORE_CONSERVATIVE_CLOSURE_AND_SPLIT",
+  "source_visual_leakage": {
+    "schema": "t1gr-visual-leakage-private-v1",
+    "source_policy_sha256": "c27cf1275482c9360dc5c88c291e55c3db269caee616133bfd046b855928d35d",
+    "expected_formal_n": 2000,
+    "expected_historical_seed_ids": 18,
+    "expected_strong_edges": 808,
+    "expected_review_edges": 180,
+    "accepted_public_commit": "b15f74a",
+    "expected_strong_only_component_count": 1880,
+    "expected_strong_only_nontrivial_components": 25,
+    "expected_strong_only_max_component": 27,
+    "public_report": "reports/step4_t1gr/visual_leakage_public.json",
+    "expected_historical_n": 17,
+    "expected_historical_hash_entries_verified": 34
+  },
+  "review_edge_adjudication": "MERGE_ALL_CONSERVATIVELY",
+  "component_edges": [
+    "EXACT_BOTH_MODALITIES",
+    "STRONG_NEAR_DUPLICATE",
+    "REVIEW_NEAR_DUPLICATE"
+  ],
+  "historical_quarantine": {
+    "source": "visual_leakage_private.force_train_ids_due_historical_contamination",
+    "propagation": "WHOLE_FINAL_COMPONENT_FORCE_TRAIN",
+    "final_holdout_forbidden": true
+  },
+  "component_gate": {
+    "max_component_abs": 100,
+    "max_component_fraction": 0.05
+  },
+  "domain_rule": {
+    "jpg_png": "STRATIFICATION_FACTOR_ONLY",
+    "scene_identity_claim": false
+  },
+  "split": {
+    "train_fraction": 0.75,
+    "dev_fraction": 0.1,
+    "final_holdout_fraction": 0.15,
+    "split_seed": 20260820,
+    "force_train_overrides_fraction": true,
+    "hard_min_class_images": {
+      "train": 5,
+      "dev": 2,
+      "final_holdout": 3
+    },
+    "objective_weights": {
+      "sample_count": 4.0,
+      "jpg_count": 3.0,
+      "class_image_count": 2.0,
+      "class_box_count": 1.0
+    },
+    "candidate_generation": "DETERMINISTIC_GREEDY_PLUS_FIXED_SEED_LOCAL_SWAP",
+    "n_local_passes": 12
+  },
+  "security": {
+    "fail_closed": true,
+    "private_output_must_be_outside_repo": true,
+    "private_parent_must_preexist": true,
+    "public_output_prefix": "reports/step4_t1gr",
+    "idempotent_same_request": true,
+    "reject_conflicting_existing_output": true,
+    "atomic_replace": true,
+    "fsync": true,
+    "lock_wait_seconds": 5.0,
+    "lock_stale_seconds": 3600.0,
+    "closure_timeout_seconds": 120.0,
+    "split_timeout_seconds": 300.0,
+    "max_private_json_bytes": 67108864,
+    "max_policy_json_bytes": 1048576,
+    "max_zip_members": 10000,
+    "max_label_member_bytes": 1048576,
+    "max_total_label_bytes": 67108864,
+    "reject_encrypted_zip_members": true,
+    "reject_unsafe_zip_member_names": true,
+    "public_sensitive_key_scan": true,
+    "public_path_string_scan": true
+  },
+  "claim_boundary": "No exact/review-near-duplicate leakage under frozen visual leakage-component rule; not true scene independence."
+}
