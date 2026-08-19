@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T17:31:35.363894+08:00",
+  "generated_at_local": "2026-08-19T17:39:37.963663+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1S_IMPLEMENTATION_VALIDATION.json": {
@@ -322,6 +322,13 @@
       "size_bytes": 9949,
       "mtime_ns": 1787131163834166100,
       "canonical_lf_sha256": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1tr/feedback/2026-08-19_harness_erratum.md": {
+      "sha256": "655fcbf828e6138bcbea49fc66f15c6ff988e740911cff9cb76a813235ac3ac3",
+      "size_bytes": 2226,
+      "mtime_ns": 1787132350953789000,
+      "canonical_lf_sha256": "655fcbf828e6138bcbea49fc66f15c6ff988e740911cff9cb76a813235ac3ac3",
       "source_eol": "lf"
     },
     "docs/step4_tseries/IMPLEMENTATION_ADJUDICATION.md": {
@@ -5261,17 +5268,6 @@
     }
   },
   "changed_in_this_sync": [
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/args.yaml",
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/manifest.json",
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/optimizer_manifest.json",
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/results.csv",
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_mechanism.jsonl",
-    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_source_schedule.jsonl",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/args.yaml",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/manifest.json",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/optimizer_manifest.json",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/results.csv",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_mechanism.jsonl",
-    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_source_schedule.jsonl"
+    "docs/step4_t1tr/feedback/2026-08-19_harness_erratum.md"
   ]
 }
