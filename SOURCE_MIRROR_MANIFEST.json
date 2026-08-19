@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-20T01:17:03.284732+08:00",
+  "generated_at_local": "2026-08-20T02:52:33.070401+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -70,6 +70,13 @@
       "size_bytes": 2825,
       "mtime_ns": 1787159686298058600,
       "canonical_lf_sha256": "9f60361ae393983b1f972b428005f354429f2b9abd71c2ee50459706b7ebe9ae",
+      "source_eol": "lf"
+    },
+    "config/t1gr_e4_seal_policy.json": {
+      "sha256": "d3d45142abb9c9a8625efa00f25e9dd6ac1071ef270d7ac9be25b961dd8a7ca9",
+      "size_bytes": 2381,
+      "mtime_ns": 1787163129111980100,
+      "canonical_lf_sha256": "d3d45142abb9c9a8625efa00f25e9dd6ac1071ef270d7ac9be25b961dd8a7ca9",
       "source_eol": "lf"
     },
     "config/t1gr_layout_observed_facts.partial.json": {
@@ -387,6 +394,13 @@
       "canonical_lf_sha256": "c3c160f4d221998018b1f66477bb6ea4480a61aebf687fb1fe5820ad8f3cb1c0",
       "source_eol": "lf"
     },
+    "docs/step4_t1gr/E3_FINAL_CLOSEOUT_E4_FREEZE.md": {
+      "sha256": "3a417ed0729c0e5b5a3caa8154d719bcce7b8e2fdd147e1d62ff19b7f9bcb2ec",
+      "size_bytes": 1466,
+      "mtime_ns": 1787163129111980100,
+      "canonical_lf_sha256": "3a417ed0729c0e5b5a3caa8154d719bcce7b8e2fdd147e1d62ff19b7f9bcb2ec",
+      "source_eol": "lf"
+    },
     "docs/step4_t1gr/E3_HARDENING_SECURITY_REVIEW.md": {
       "sha256": "c224dbe194c02090aca7add021b3fd69fc3ba4f564b9d120d6ac5d377b7b285b",
       "size_bytes": 3774,
@@ -413,6 +427,13 @@
       "size_bytes": 2563,
       "mtime_ns": 1787151934551500400,
       "canonical_lf_sha256": "efe97f7557b400ad7d28b57e71e5b4010e6ffe6d44829e31407ee3c32ee301e1",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1gr/feedback/2026-08-20_e4_public_privacy_scanner_key_erratum.md": {
+      "sha256": "b9d210688a3a6319eb91dc6084af49aada2d22d612e24ba92ddc1a706f243b5d",
+      "size_bytes": 3330,
+      "mtime_ns": 1787165528137790800,
+      "canonical_lf_sha256": "b9d210688a3a6319eb91dc6084af49aada2d22d612e24ba92ddc1a706f243b5d",
       "source_eol": "lf"
     },
     "docs/step4_t1s/DESIGN_FREEZE.md": {
@@ -784,6 +805,27 @@
       "size_bytes": 1369,
       "mtime_ns": 1787159693588151900,
       "canonical_lf_sha256": "bc4148b14fe0feda46e471f089a08d99023adc0bf9dcf46e1f36eee372bf929e",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/e4_seal_verification_public.json": {
+      "sha256": "725cd510df9ec18d91f4a610eff0320c4f3c03f0d5cfe7e5cc6d78050ea5c29e",
+      "size_bytes": 1109,
+      "mtime_ns": 1787165505973316700,
+      "canonical_lf_sha256": "725cd510df9ec18d91f4a610eff0320c4f3c03f0d5cfe7e5cc6d78050ea5c29e",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/e4_split_freeze_public.json": {
+      "sha256": "f551403adaa11885563c388e1c51addf2fd918d8559433729d795752ed69a641",
+      "size_bytes": 2351,
+      "mtime_ns": 1787163354429732300,
+      "canonical_lf_sha256": "f551403adaa11885563c388e1c51addf2fd918d8559433729d795752ed69a641",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/e4_static_audit.json": {
+      "sha256": "0c466324b6664efe1d65b91c28bd4a2bfef4a33650ab55a3907c3ca789c6e45f",
+      "size_bytes": 1078,
+      "mtime_ns": 1787165505790337700,
+      "canonical_lf_sha256": "28b664d72a156594ede6283c7a84763e75e3ece22bcee6bfa540d9095c2dc5ba",
       "source_eol": "crlf"
     },
     "reports/step4_t1gr/label_error_taxonomy_public.json": {
@@ -4958,6 +5000,27 @@
       "canonical_lf_sha256": "446398e1dc6318310ddcafe51ae253497170fb54b35151275ac88ca87324907a",
       "source_eol": "lf"
     },
+    "scripts/t1gr_e4_seal_split.py": {
+      "sha256": "e4286536a4ffd8b8ae2812d32f4d6ba48f17ad69b202de50c7a54d0be10fc435",
+      "size_bytes": 17450,
+      "mtime_ns": 1787163319139773700,
+      "canonical_lf_sha256": "e4286536a4ffd8b8ae2812d32f4d6ba48f17ad69b202de50c7a54d0be10fc435",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_e4_static_audit.py": {
+      "sha256": "def03dff3c09875121626330bba1107c9787e2d1041c2f2cfa4cf39d0b45de7c",
+      "size_bytes": 2680,
+      "mtime_ns": 1787163129114797600,
+      "canonical_lf_sha256": "def03dff3c09875121626330bba1107c9787e2d1041c2f2cfa4cf39d0b45de7c",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_e4_verify_seal.py": {
+      "sha256": "84d6d5a3f50d695473c29feaa5fa46f53330b75b3caafda08a283f1d21a51a08",
+      "size_bytes": 5839,
+      "mtime_ns": 1787165457486010800,
+      "canonical_lf_sha256": "84d6d5a3f50d695473c29feaa5fa46f53330b75b3caafda08a283f1d21a51a08",
+      "source_eol": "lf"
+    },
     "scripts/t1gr_eval_step1_baseline.py": {
       "sha256": "4c5ea4298ba6262f3f254b4d4069f40753cdc9077a34a6031598b6764ec57600",
       "size_bytes": 5837,
@@ -5078,10 +5141,10 @@
       "source_eol": "lf"
     },
     "src/multimodal/__init__.py": {
-      "sha256": "31832a50c5d990b46be95f0edad6d222ab4f48af0de2c9e5fafd3682e0f50b33",
-      "size_bytes": 68,
-      "mtime_ns": 1786677889955302600,
-      "canonical_lf_sha256": "31832a50c5d990b46be95f0edad6d222ab4f48af0de2c9e5fafd3682e0f50b33",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "mtime_ns": 1787163129114797600,
+      "canonical_lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "source_eol": "lf"
     },
     "src/multimodal/aux_encoder.py": {
@@ -5311,7 +5374,7 @@
     "src/multimodal/t1gr_secure_io.py": {
       "sha256": "18d88bad87dc51c54cee4881fabb31d03708c1b998e97dd1764317d8e1ddc691",
       "size_bytes": 13874,
-      "mtime_ns": 1787159686303891500,
+      "mtime_ns": 1787163129116363500,
       "canonical_lf_sha256": "18d88bad87dc51c54cee4881fabb31d03708c1b998e97dd1764317d8e1ddc691",
       "source_eol": "lf"
     },
@@ -5602,6 +5665,13 @@
       "canonical_lf_sha256": "51497f228c397c4827636db1811572f907d0304924d014ea21ee47fd508a7dae",
       "source_eol": "lf"
     },
+    "tests/test_t1gr_e4_seal.py": {
+      "sha256": "61a6fd6321e17f7c5d0957c8d20c9605ba859dd1617a7bfba2e8bec97be5aabc",
+      "size_bytes": 6144,
+      "mtime_ns": 1787165491157154400,
+      "canonical_lf_sha256": "61a6fd6321e17f7c5d0957c8d20c9605ba859dd1617a7bfba2e8bec97be5aabc",
+      "source_eol": "lf"
+    },
     "tests/test_t1gr_visual_leakage.py": {
       "sha256": "c28c62b5aca35ece234f47136a991fb923d1c88020bd4e93e04352f486233f31",
       "size_bytes": 2228,
@@ -5639,19 +5709,16 @@
     }
   },
   "changed_in_this_sync": [
-    "config/t1gr_e3_closure_split_policy.json",
-    "docs/step4_t1gr/E3_HARDENING_SECURITY_REVIEW.md",
-    "docs/step4_t1gr/E3_LEAKAGE_ADJUDICATION_FREEZE.md",
-    "docs/step4_t1gr/V1_1_TO_V1_2_HARDENING.md",
-    "reports/step4_t1gr/e3_hardened_static_audit.json",
-    "reports/step4_t1gr/leakage_components_final_public.json",
-    "reports/step4_t1gr/split_candidate_public.json",
-    "scripts/t1gr_e3_hardened_static_audit.py",
-    "scripts/t1gr_e3_hardened_synthetic_gate.py",
-    "scripts/t1gr_finalize_leakage_components.py",
-    "scripts/t1gr_propose_component_split.py",
-    "src/multimodal/t1gr_secure_io.py",
-    "tests/test_t1gr_e3_closure_split.py",
-    "tests/test_t1gr_e3_hardened.py"
+    "config/t1gr_e4_seal_policy.json",
+    "docs/step4_t1gr/E3_FINAL_CLOSEOUT_E4_FREEZE.md",
+    "docs/step4_t1gr/feedback/2026-08-20_e4_public_privacy_scanner_key_erratum.md",
+    "reports/step4_t1gr/e4_seal_verification_public.json",
+    "reports/step4_t1gr/e4_split_freeze_public.json",
+    "reports/step4_t1gr/e4_static_audit.json",
+    "scripts/t1gr_e4_seal_split.py",
+    "scripts/t1gr_e4_static_audit.py",
+    "scripts/t1gr_e4_verify_seal.py",
+    "src/multimodal/__init__.py",
+    "tests/test_t1gr_e4_seal.py"
   ]
 }

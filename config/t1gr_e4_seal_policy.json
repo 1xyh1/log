@@ -1,0 +1,51 @@
+{
+  "schema": "t1gr-e4-seal-policy-v1",
+  "status": "PRE_REGISTERED_AFTER_E3_FINAL_ADJUDICATION_BEFORE_E4_SEAL",
+  "reviewed_e3": {
+    "commit_full": "9835262acd8a23aa86ff7076909abbceb18060dc",
+    "closure_public_relpath": "reports/step4_t1gr/leakage_components_final_public.json",
+    "closure_public_sha256": "7bd2b276622bc7155e16640cb5e4f3d5e14c5a753cb363db53e2dfab85aa6a74",
+    "closure_request_fingerprint": "59e3d6be356e061074f920f6da95fbf236858f537b0e2c5d40ab889c595195fe",
+    "split_public_relpath": "reports/step4_t1gr/split_candidate_public.json",
+    "split_public_sha256": "af50eecc90d17336e14a71aa486e5f3a52b24572aa72219ad68315f18c353159",
+    "split_request_fingerprint": "da1a0b1a57484d10a82cafb63b06538efbf755b28703e83fff8bbe0435637289",
+    "e3_policy_sha256": "9f60361ae393983b1f972b428005f354429f2b9abd71c2ee50459706b7ebe9ae",
+    "formal_zip_metadata_commitment": "f4312eb222c5dc62a7caeca1f904e2287f576aa065aebacc64d7ea6c1d9e0a33",
+    "labels_commitment": "b72c9ad2ac4207f02cc8d814e1ab812415ecd3985888d36f91c340913c75f25b",
+    "counts": {
+      "train": 1504,
+      "dev": 198,
+      "final_holdout": 298
+    },
+    "ids_commitments": {
+      "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b",
+      "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00"
+    },
+    "component_count": 1829,
+    "max_component_size": 31,
+    "force_train_id_count": 18
+  },
+  "seal": {
+    "train_dev_access": "TRAIN_DEV_IDS_ONLY",
+    "final_holdout_storage": "SEPARATE_PRIVATE_ARTIFACT",
+    "final_holdout_open_policy": "DO_NOT_OPEN_UNTIL_T1GR_FINAL_ADJUDICATION",
+    "final_holdout_training_access": "FORBIDDEN",
+    "final_holdout_tuning_access": "FORBIDDEN",
+    "final_holdout_seed_selection_access": "FORBIDDEN",
+    "final_holdout_early_stopping_access": "FORBIDDEN",
+    "e5_entry_after_verified_seal": true,
+    "step1_training_authorized_by_e4_alone": false,
+    "human_secrecy_claimed": false
+  },
+  "security": {
+    "public_output_prefix": "reports/step4_t1gr",
+    "private_parent_must_preexist": true,
+    "max_private_json_bytes": 8388608,
+    "max_public_json_bytes": 1048576,
+    "lock_wait_seconds": 5.0,
+    "lock_stale_seconds": 900.0,
+    "seal_timeout_seconds": 120.0,
+    "verify_timeout_seconds": 120.0
+  }
+}

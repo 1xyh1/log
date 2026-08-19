@@ -1,0 +1,27 @@
+{
+  "any_raw_sample_id_present": false,
+  "e5_entry_authorized": true,
+  "final_holdout_artifact_matches_freeze": true,
+  "final_holdout_open_authorized": false,
+  "freeze_timestamp_utc": "2026-08-19T18:13:16.070586Z",
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "payload_sha256": "7783023a751cc760dd8c11f641676a1a340f98fd328b2e8e6d09bb181da174c8",
+  "request_fingerprint": "21be0997da110c86b2fcd24136453641381a789f066d1e5e522ae548a5dbe598",
+  "reviewed_e3_commit": "9835262acd8a23aa86ff7076909abbceb18060dc",
+  "sample_counts": {
+    "dev": 198,
+    "final_holdout": 298,
+    "train": 1504
+  },
+  "schema": "t1gr-e4-seal-verification-public-v1",
+  "script_version": "t1gr-e4-seal-verifier-v1",
+  "seal_verification_passed": true,
+  "split_disjoint": true,
+  "split_union_equals_2000": true,
+  "step1_training_authorized": false,
+  "train_dev_artifact_matches_freeze": true
+}
