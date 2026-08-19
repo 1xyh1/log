@@ -1,0 +1,1051 @@
+{
+  "schema": "t1gr-zip-forensic-public-v1",
+  "read_only": true,
+  "expected_samples": 2000,
+  "member_counts": {
+    "visible": 2000,
+    "infrared": 2000,
+    "depth": 2000,
+    "labels": 2000
+  },
+  "extension_counts": {
+    "visible": {
+      ".jpg": 149,
+      ".png": 1851
+    },
+    "infrared": {
+      ".jpg": 149,
+      ".png": 1851
+    },
+    "depth": {
+      ".jpg": 149,
+      ".png": 1851
+    },
+    "labels": {
+      ".txt": 2000
+    }
+  },
+  "id_sets_equal": true,
+  "common_id_count": 2000,
+  "duplicate_id_counts": {
+    "visible": 0,
+    "infrared": 0,
+    "depth": 0,
+    "labels": 0
+  },
+  "triplet_extension_mismatch_count": 0,
+  "triplet_header_dimension_mismatch_count": 0,
+  "header_error_count": 0,
+  "header_counts": {
+    "visible": [
+      {
+        "extension": ".jpg",
+        "format": "JPEG",
+        "precision_or_bit_depth": 8,
+        "encoded_channels": 3,
+        "width": 640,
+        "height": 360,
+        "header_ok": true,
+        "count": 149
+      },
+      {
+        "extension": ".png",
+        "format": "PNG",
+        "precision_or_bit_depth": 8,
+        "encoded_channels": 3,
+        "width": 1920,
+        "height": 1080,
+        "header_ok": true,
+        "count": 1851
+      }
+    ],
+    "infrared": [
+      {
+        "extension": ".jpg",
+        "format": "JPEG",
+        "precision_or_bit_depth": 8,
+        "encoded_channels": 3,
+        "width": 640,
+        "height": 360,
+        "header_ok": true,
+        "count": 149
+      },
+      {
+        "extension": ".png",
+        "format": "PNG",
+        "precision_or_bit_depth": 8,
+        "encoded_channels": 3,
+        "width": 1920,
+        "height": 1080,
+        "header_ok": true,
+        "count": 1851
+      }
+    ],
+    "depth": [
+      {
+        "extension": ".jpg",
+        "format": "JPEG",
+        "precision_or_bit_depth": 8,
+        "encoded_channels": 3,
+        "width": 640,
+        "height": 360,
+        "header_ok": true,
+        "count": 149
+      },
+      {
+        "extension": ".png",
+        "format": "PNG",
+        "precision_or_bit_depth": 16,
+        "encoded_channels": 1,
+        "width": 1920,
+        "height": 1080,
+        "header_ok": true,
+        "count": 1851
+      }
+    ]
+  },
+  "decode_samples_redacted": [
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 19,
+        "channel_max_abs_diff_12": 26
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 17,
+        "channel_max_abs_diff_12": 29
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 15,
+        "channel_max_abs_diff_12": 19
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 20,
+        "channel_max_abs_diff_12": 20
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 19,
+        "channel_max_abs_diff_12": 28
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 20,
+        "channel_max_abs_diff_12": 26
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 21,
+        "channel_max_abs_diff_12": 36
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 17,
+        "channel_max_abs_diff_12": 28
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 212,
+        "channel_max_abs_diff_12": 171
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 91,
+        "channel_max_abs_diff_12": 70
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 90,
+        "channel_max_abs_diff_12": 124
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 92,
+        "channel_max_abs_diff_12": 108
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 101,
+        "channel_max_abs_diff_12": 96
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 84,
+        "channel_max_abs_diff_12": 158
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 184,
+        "channel_max_abs_diff_12": 154
+      }
+    },
+    {
+      "modality": "visible",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 120,
+        "channel_max_abs_diff_12": 123
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 246,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 246,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 254,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 253,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 243,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 253,
+        "channel_max_abs_diff_12": 253
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 252,
+        "channels": 3,
+        "channel_max_abs_diff_01": 14,
+        "channel_max_abs_diff_12": 11
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 254,
+        "channels": 3,
+        "channel_max_abs_diff_01": 14,
+        "channel_max_abs_diff_12": 19
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 253,
+        "channels": 3,
+        "channel_max_abs_diff_01": 14,
+        "channel_max_abs_diff_12": 17
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 242,
+        "channels": 3,
+        "channel_max_abs_diff_01": 15,
+        "channel_max_abs_diff_12": 15
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 252,
+        "channels": 3,
+        "channel_max_abs_diff_01": 12,
+        "channel_max_abs_diff_12": 23
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 250,
+        "channels": 3,
+        "channel_max_abs_diff_01": 28,
+        "channel_max_abs_diff_12": 23
+      }
+    },
+    {
+      "modality": "infrared",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 210,
+        "channels": 3,
+        "channel_max_abs_diff_01": 18,
+        "channel_max_abs_diff_12": 19
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".jpg",
+      "decode": {
+        "ok": true,
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "channels": 3,
+        "channel_max_abs_diff_01": 0,
+        "channel_max_abs_diff_12": 0
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    },
+    {
+      "modality": "depth",
+      "extension": ".png",
+      "decode": {
+        "ok": true,
+        "shape": [
+          1080,
+          1920
+        ],
+        "dtype": "uint16",
+        "min": 0,
+        "max": 19999,
+        "channels": 1
+      }
+    }
+  ],
+  "labels": {
+    "error_sample_count": 332,
+    "box_count_by_class": {
+      "0": 5499,
+      "1": 135,
+      "2": 3061,
+      "3": 621,
+      "4": 809,
+      "5": 666,
+      "6": 1571,
+      "7": 89,
+      "8": 1455,
+      "9": 282,
+      "10": 204,
+      "11": 25
+    },
+    "image_count_by_class": {
+      "0": 1113,
+      "1": 62,
+      "2": 799,
+      "3": 315,
+      "4": 441,
+      "5": 213,
+      "6": 403,
+      "7": 75,
+      "8": 467,
+      "9": 231,
+      "10": 148,
+      "11": 21
+    },
+    "class_names": [
+      "person",
+      "boat",
+      "animal",
+      "seat",
+      "sign",
+      "bicycle",
+      "car",
+      "ball",
+      "light",
+      "garbage can",
+      "uav",
+      "tricycle"
+    ]
+  },
+  "id_grammar_aggregate": {
+    "token_count_distribution": {
+      "1": 1052,
+      "3": 831,
+      "4": 53,
+      "5": 64
+    },
+    "n_unique_first_token": 1072,
+    "first_token_size_distribution": {
+      "1": 1047,
+      "11": 1,
+      "13": 1,
+      "14": 1,
+      "15": 2,
+      "16": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "23": 1,
+      "25": 1,
+      "26": 2,
+      "30": 1,
+      "34": 1,
+      "370": 1,
+      "45": 1,
+      "5": 2,
+      "52": 1,
+      "6": 1,
+      "60": 1,
+      "7": 1,
+      "89": 1,
+      "9": 1
+    },
+    "n_unique_first_two_tokens": 733,
+    "first_two_token_size_distribution": {
+      "1": 600,
+      "2": 75,
+      "3": 37,
+      "4": 18,
+      "5": 3
+    }
+  },
+  "extension_run_count": 12,
+  "zip_member_names_sha256_commitment": "7201d1a39c1202b9774112315a56a46a27c397a6ac304ec1720800e479578361",
+  "formal_gate": {
+    "counts_2000_each": true,
+    "id_sets_equal": true,
+    "no_duplicate_ids": true,
+    "triplet_extensions_equal": true,
+    "triplet_dimensions_equal": true,
+    "all_image_headers_parse": true,
+    "labels_exact_valid": false,
+    "all_structural_checks_pass": false
+  },
+  "depth_semantics_status": "REQUIRES_REVIEW_OF_HEADER_AND_DECODE_EVIDENCE",
+  "group_rule_status": "UNRESOLVED_DO_NOT_SPLIT",
+  "step1_status": "HOLD"
+}
