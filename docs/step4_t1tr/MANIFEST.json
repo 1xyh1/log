@@ -1,0 +1,13 @@
+{
+  "schema": "t1tr-closeout-t1gr-handoff-v1",
+  "files": {
+    "T1GR_HANDOFF_PROTOCOL.md": {
+      "sha256": "4e2385b1981926b153e26b442a5afd44123963b976dec25386867a7b3e88f62b",
+      "bytes": 3672
+    },
+    "T1TR_FORMAL_CLOSEOUT.md": {
+      "sha256": "470a76ec64f21e10bba7a1fbd842110cf038253e81643ccc58e812d3ab89eb63",
+      "bytes": 3281
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T17:39:37.963663+08:00",
+  "generated_at_local": "2026-08-19T18:02:59.613300+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1S_IMPLEMENTATION_VALIDATION.json": {
@@ -322,6 +322,27 @@
       "size_bytes": 9949,
       "mtime_ns": 1787131163834166100,
       "canonical_lf_sha256": "334957e57efb6ebb07109b689bf9eff6371f13b2273bb45e8dae5239d04a22bc",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1tr/MANIFEST.json": {
+      "sha256": "daea6a80bfabd617522916bf9afd21060e065251b10bbdf2aba1261461d464bb",
+      "size_bytes": 353,
+      "mtime_ns": 1787133749641517700,
+      "canonical_lf_sha256": "daea6a80bfabd617522916bf9afd21060e065251b10bbdf2aba1261461d464bb",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1tr/T1GR_HANDOFF_PROTOCOL.md": {
+      "sha256": "4e2385b1981926b153e26b442a5afd44123963b976dec25386867a7b3e88f62b",
+      "size_bytes": 3672,
+      "mtime_ns": 1787133749643032300,
+      "canonical_lf_sha256": "4e2385b1981926b153e26b442a5afd44123963b976dec25386867a7b3e88f62b",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1tr/T1TR_FORMAL_CLOSEOUT.md": {
+      "sha256": "470a76ec64f21e10bba7a1fbd842110cf038253e81643ccc58e812d3ab89eb63",
+      "size_bytes": 3281,
+      "mtime_ns": 1787133749643032300,
+      "canonical_lf_sha256": "470a76ec64f21e10bba7a1fbd842110cf038253e81643ccc58e812d3ab89eb63",
       "source_eol": "lf"
     },
     "docs/step4_t1tr/feedback/2026-08-19_harness_erratum.md": {
@@ -5268,6 +5289,8 @@
     }
   },
   "changed_in_this_sync": [
-    "docs/step4_t1tr/feedback/2026-08-19_harness_erratum.md"
+    "docs/step4_t1tr/MANIFEST.json",
+    "docs/step4_t1tr/T1GR_HANDOFF_PROTOCOL.md",
+    "docs/step4_t1tr/T1TR_FORMAL_CLOSEOUT.md"
   ]
 }
