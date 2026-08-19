@@ -1,0 +1,36 @@
+{
+  "schema": "t1gr-visual-leakage-policy-v1",
+  "status": "PRE_REGISTERED_BEFORE_FORMAL_SPLIT",
+  "modalities": ["visible", "infrared"],
+  "fingerprint": {"phash_size": 8, "phash_dct_size": 32, "corr_thumb_size": 32, "edge_thumb_size": 32},
+  "candidate_gate": {"visible_phash_hamming_max": 14, "infrared_phash_hamming_max": 14},
+  "strong_edge": {
+    "visible_phash_hamming_max": 8,
+    "infrared_phash_hamming_max": 10,
+    "visible_corr_min": 0.96,
+    "infrared_corr_min": 0.95,
+    "visible_edge_corr_min": 0.88,
+    "infrared_edge_corr_min": 0.86
+  },
+  "review_edge": {
+    "visible_phash_hamming_max": 12,
+    "infrared_phash_hamming_max": 12,
+    "visible_corr_min": 0.92,
+    "infrared_corr_min": 0.90,
+    "visible_edge_corr_min": 0.80,
+    "infrared_edge_corr_min": 0.78
+  },
+  "historical_policy": {
+    "strong_match": "FORCE_TRAIN",
+    "review_match": "FORCE_TRAIN_CONSERVATIVE",
+    "no_match": "ELIGIBLE_FOR_LATER_SPLIT",
+    "old17_exact_or_visual_match_never_final_holdout": true
+  },
+  "internal_graph_policy": {
+    "connected_component_edges": "STRONG_ONLY",
+    "review_edges": "REPORT_ONLY_UNTIL_REVIEW",
+    "max_component_abs_before_manual_review": 50,
+    "max_component_fraction_before_manual_review": 0.05
+  },
+  "claim_boundary": "If no official scene metadata is found, the maximum allowed claim is 'no exact/strong-near-duplicate leakage under the frozen visual leakage-component rule', not true scene-independent generalization."
+}

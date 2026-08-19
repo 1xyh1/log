@@ -1,0 +1,49 @@
+{
+  "schema": "t1gr-visual-leakage-public-v1",
+  "read_only": true,
+  "formal_n": 2000,
+  "historical_n": 17,
+  "policy_sha256": "c27cf1275482c9360dc5c88c291e55c3db269caee616133bfd046b855928d35d",
+  "historical_contract_sha256": "26ce7df8b03294c5084decb1e97d2b90e003867462375305333d3b68474e2b8c",
+  "historical_hash_entries_verified": 34,
+  "formal_zip_member_metadata_commitment": "89a20f393661701e7567270d045029ebd963b21d1090f11e16a57e27f8130194",
+  "historical_match_class_counts": {
+    "EXACT_BOTH_MODALITIES": 17,
+    "REVIEW_NEAR_DUPLICATE": 1
+  },
+  "historical_contaminated_formal_count": 18,
+  "historical_contaminated_domain_counts": {
+    ".png": 18
+  },
+  "force_train_ids_commitment": "6d4d5cb16289e64266b54879536dc205f0907c4dfc79d9c1eb0a9168db4633aa",
+  "internal_candidate_pairs_after_phash": 1492,
+  "internal_strong_edge_count": 808,
+  "internal_review_edge_count": 180,
+  "internal_component_count": 1880,
+  "internal_nontrivial_component_count": 25,
+  "internal_component_size_distribution": {
+    "1": 1855,
+    "2": 14,
+    "3": 3,
+    "5": 2,
+    "6": 1,
+    "10": 1,
+    "11": 1,
+    "20": 1,
+    "24": 1,
+    "27": 1
+  },
+  "internal_max_component_size": 27,
+  "internal_component_review_limit": 100,
+  "internal_graph_gate": "PASS",
+  "private_ids_in_public_report": false,
+  "adjudication": {
+    "historical_matches": "all STRONG/REVIEW matches conservatively ineligible for FINAL HOLDOUT",
+    "internal_strong_edges": "minimum indivisible leakage components",
+    "internal_review_edges": "review before final split freeze; not auto-connected",
+    "jpg_png": "stratification factor only, not a scene group",
+    "scene_independence_claim": "FORBIDDEN_WITHOUT_INDEPENDENT_METADATA"
+  },
+  "e3_status": "HOLD_PENDING_REVIEW_EDGES_AND_COMPONENT_ADJUDICATION",
+  "step1_status": "HOLD"
+}
