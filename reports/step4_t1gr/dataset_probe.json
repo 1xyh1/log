@@ -1,0 +1,23 @@
+{
+  "schema": "t1gr-dataset-probe-v1",
+  "read_only": true,
+  "dataset_root": "E:\\BaiduNetdiskDownload\\初赛数据集-面向城市场景的多模态目标检测\\训练集",
+  "total_files": 1,
+  "extension_counts": {
+    ".zip": 1
+  },
+  "directories_by_file_count": [
+    {
+      "relative_dir": ".",
+      "file_count": 1
+    }
+  ],
+  "first_200_files": [
+    {
+      "relative_path": "AIC2026_Train_2000.zip",
+      "suffix": ".zip",
+      "bytes": 12623232865
+    }
+  ],
+  "next_action": "fill config/t1gr_layout_spec.json from observed structure; do not split/train yet"
+}

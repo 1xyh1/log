@@ -1,0 +1,132 @@
+{
+  "schema": "t1gr-e2-e5-implementation-validation-v2",
+  "status": "IMPLEMENTATION_V2_PASS_FORMAL_E2_E5_NOT_RUN",
+  "review_fixes": {
+    "P0_holdout_private_public_chain": "FIXED",
+    "P0_runner_evaluator_arbitrary_data": "FIXED",
+    "P0_format_and_full_hash_gate": "FIXED",
+    "P0_step1_effective_recipe_freeze": "FIXED",
+    "P1_group_class_stratification": "FIXED",
+    "P1_duplicate_multimodal_gate": "FIXED",
+    "P1_strict_label_parser": "FIXED",
+    "P1_freeze_order_derived_runtime": "FIXED"
+  },
+  "local_nonformal_validation": {
+    "pytest": {
+      "passed": 24,
+      "failed": 0
+    },
+    "py_compile": {
+      "passed": true,
+      "python_files": 13
+    },
+    "static_audit": {
+      "passed": 37,
+      "total": 37,
+      "all_passed": true
+    },
+    "synthetic_integration": {
+      "passed": 6,
+      "total": 6,
+      "all_passed": true,
+      "cases": [
+        "bad_depth_contract_fails",
+        "formal_full_hash_unconditional",
+        "rare_class_coverage_blocks_split",
+        "forged_holdout_in_view_fails",
+        "arbitrary_data_cli_rejected",
+        "checkpoint_same_path_content_change_fails"
+      ]
+    }
+  },
+  "formal_runtime_not_executed_here": {
+    "official_dataset_probe": false,
+    "formal_contract": false,
+    "fresh_split": false,
+    "split_freeze": false,
+    "step1_recipe_freeze": false,
+    "step1_rgb_view": false,
+    "step1_training": false,
+    "step1_dev_eval": false,
+    "e2_e5_formal_audit": false,
+    "t1gr_training_authorized": false,
+    "reason": "Formal Windows dataset/GPU/Ultralytics runtime is user-side. This package must pass there before Step1 training."
+  },
+  "payload": {
+    "file_count_without_validation": 18,
+    "files": {
+      "T1GR_E2_E5_README.md": {
+        "sha256": "780fb6f3f1ad897e6af2103483837360ae3a3cfbcc5bd3c9c140140ab32e2b35",
+        "bytes": 9165
+      },
+      "config/step1_training_spec.template.json": {
+        "sha256": "97d9c56dbda98a76ba236988a392229f90490aee2d6cff481b597241696a8c83",
+        "bytes": 1419
+      },
+      "config/t1gr_layout_spec.template.json": {
+        "sha256": "fbe20af9adbf6889a7eb714c2cfb6731e52574035959b8536656a263a81d08e4",
+        "bytes": 1845
+      },
+      "docs/step4_t1gr/E2_E5_ENTRY_FREEZE.md": {
+        "sha256": "bead214a545a6b7d729b9c2c88180809da80593615f2c818051a3354b4b1212f",
+        "bytes": 5069
+      },
+      "docs/step4_t1gr/V1_REVIEW_FIXES.md": {
+        "sha256": "efe97f7557b400ad7d28b57e71e5b4010e6ffe6d44829e31407ee3c32ee301e1",
+        "bytes": 2563
+      },
+      "scripts/t1gr_audit_e2_e5.py": {
+        "sha256": "f0b5b8978501531818537d5adb255f668649843f9ecc744a72509e2116e4d996",
+        "bytes": 7193
+      },
+      "scripts/t1gr_build_contract.py": {
+        "sha256": "35ae2ad0d46326d55034bd5af18900cfadf51a980475f3ad7779b80e35d07073",
+        "bytes": 14227
+      },
+      "scripts/t1gr_build_step1_recipe.py": {
+        "sha256": "862f1b732469773cea874d5f35737a1a9895836680a66556868033834260ed2f",
+        "bytes": 5426
+      },
+      "scripts/t1gr_build_step1_rgb_view.py": {
+        "sha256": "bef2dd451a5a79cae36b6f87b74c750dbe47a1240becd847eac841dd99bb5978",
+        "bytes": 6138
+      },
+      "scripts/t1gr_eval_step1_baseline.py": {
+        "sha256": "4c5ea4298ba6262f3f254b4d4069f40753cdc9077a34a6031598b6764ec57600",
+        "bytes": 5837
+      },
+      "scripts/t1gr_freeze_split.py": {
+        "sha256": "b959225e6c431745e0503c631f07a3c097be373fccc3be0a89a208c54cccb1ad",
+        "bytes": 5879
+      },
+      "scripts/t1gr_probe_dataset.py": {
+        "sha256": "6e2b981562eafdc208ed5dc578cbbf6791a383fefde8c40a846d00c52161c0cd",
+        "bytes": 1592
+      },
+      "scripts/t1gr_propose_split.py": {
+        "sha256": "6c6565516257891900b15749759168d6d578d1c9a48b5a8e893c18c3d837e783",
+        "bytes": 7642
+      },
+      "scripts/t1gr_run_step1_baseline.py": {
+        "sha256": "1dbdacdff99b3e95b7ea14e9f3cb9d05b8c1efa7ab4a4cdb0f1fac7020fced5b",
+        "bytes": 9593
+      },
+      "scripts/t1gr_static_audit.py": {
+        "sha256": "2d9dd5cd2d56714fce0d89ec1b0728d6c0eae1e57cbe0f4e4fb82e81a3b57310",
+        "bytes": 5666
+      },
+      "scripts/t1gr_synthetic_integration_gate.py": {
+        "sha256": "136f572b398f991170ad9e191acce3df6b5091519c8d5736754cef3702adf7b8",
+        "bytes": 10500
+      },
+      "src/multimodal/t1gr_e2e5.py": {
+        "sha256": "30d9d930ee41cd95d7be62cd968270b77201a39c7732de7fce82f3cd56083477",
+        "bytes": 16543
+      },
+      "tests/test_t1gr_e2e5.py": {
+        "sha256": "7db97e75eb5d68ba72537b6ccd02ea47abfb559cfb3ebd3a33fa6563399dd356",
+        "bytes": 7004
+      }
+    }
+  }
+}

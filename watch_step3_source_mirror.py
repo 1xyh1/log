@@ -39,6 +39,9 @@ SYNC_PREFIXES = (
     "T1S_IMPLEMENTATION_VALIDATION.json",
     "T1TR_README.md",
     "T1TR_IMPLEMENTATION_VALIDATION.json",
+    "config/",
+    "T1GR_E2_E5_README.md",
+    "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json",
 )
 
 # 结果目录：只同步文本与必要图（results.png = val 曲线）。
@@ -54,6 +57,7 @@ RESULTS_PREFIXES = (
     "runs/step4_tseries_smoke/",
     "runs/step4_t1tr/",
     "runs/step4_t1tr_smoke/",
+    "runs/step4_t1gr/",
 )
 RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
 RESULTS_FIGURE_NAMES = {"results.png"}
@@ -175,7 +179,8 @@ def stage_whitelist():
              "start_step3_source_mirror.bat", ".gitignore", "README.md",
              "T_SERIES_README.md", "T_SERIES_IMPLEMENTATION_VALIDATION.json",
              "T1S_README.md", "T1S_IMPLEMENTATION_VALIDATION.json",
-             "T1TR_README.md", "T1TR_IMPLEMENTATION_VALIDATION.json"]
+             "T1TR_README.md", "T1TR_IMPLEMENTATION_VALIDATION.json",
+             "config", "T1GR_E2_E5_README.md", "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json"]
     existing = [s for s in specs if (MIRROR_REPO / s).exists()]
     if existing:
         git("add", "--", *existing, check=False)

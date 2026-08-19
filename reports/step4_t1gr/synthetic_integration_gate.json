@@ -1,0 +1,12 @@
+{
+  "schema": "t1gr-e2-e5-synthetic-integration-gate-v2",
+  "all_passed": true,
+  "cases": {
+    "bad_depth_contract_fails": true,
+    "formal_full_hash_unconditional": true,
+    "rare_class_coverage_blocks_split": true,
+    "forged_holdout_in_view_fails": true,
+    "arbitrary_data_cli_rejected": true,
+    "checkpoint_same_path_content_change_fails": true
+  }
+}

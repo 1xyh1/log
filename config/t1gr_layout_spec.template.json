@@ -1,0 +1,47 @@
+{
+  "schema": "t1gr-layout-spec-v2",
+  "dataset_root": "E:/BaiduNetdiskDownload/初赛数据集-面向城市场景的多模态目标检测/训练集",
+  "expected_sample_count": null,
+  "modalities": {
+    "rgb": {"dir": null, "extensions": [".jpg", ".jpeg", ".png", ".bmp"]},
+    "ir": {"dir": null, "extensions": [".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"]},
+    "depth": {"dir": null, "extensions": [".png", ".tif", ".tiff", ".npy"]},
+    "labels": {"dir": null, "extensions": [".txt"]}
+  },
+  "sample_id": {"mode": "stem", "regex": null, "regex_group": null},
+  "label_format": {
+    "type": "yolo_xywh_normalized_detect",
+    "exact_fields": 5,
+    "edge_tolerance": 1e-6,
+    "num_classes": null,
+    "class_names": null
+  },
+  "format_expectations": {
+    "rgb": {"allowed_dtypes": ["uint8"], "allowed_ndim": [3], "allowed_channels": [3], "height": null, "width": null},
+    "ir": {"allowed_dtypes": null, "allowed_ndim": null, "allowed_channels": null, "height": null, "width": null},
+    "depth": {"allowed_dtypes": null, "allowed_ndim": null, "allowed_channels": null, "height": null, "width": null},
+    "require_cross_modal_hw_match": true
+  },
+  "group_rule": {
+    "type": null,
+    "description": null,
+    "regex": null,
+    "regex_group": null,
+    "metadata_file": null,
+    "metadata_id_field": null,
+    "metadata_group_field": null,
+    "parent_level": null
+  },
+  "split_policy": {
+    "train_fraction": null,
+    "dev_fraction": null,
+    "final_holdout_fraction": null,
+    "split_seed": null,
+    "objective_weights": {"samples": 1.0, "class_images": 2.0, "class_boxes": 1.0},
+    "coverage_policy": {
+      "min_image_count_by_split": {"train": null, "dev": null, "final_holdout": null},
+      "min_box_count_by_split": {"train": null, "dev": null, "final_holdout": null},
+      "exempt_classes": []
+    }
+  }
+}

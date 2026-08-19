@@ -1,0 +1,120 @@
+{
+  "schema": "t1gr-e2-e5-static-audit-v2",
+  "passed_count": 37,
+  "total_count": 37,
+  "failed": [],
+  "all_passed": true,
+  "checks": {
+    "S01_private_contract_outside_repo": {
+      "passed": true
+    },
+    "S02_private_split_proposal_outside_repo": {
+      "passed": true
+    },
+    "S03_public_contract_no_ids": {
+      "passed": true
+    },
+    "S04_public_freeze_no_ids": {
+      "passed": true
+    },
+    "S05_no_frozen_before_training_literal": {
+      "passed": true
+    },
+    "S06_runner_proves_time_order": {
+      "passed": true
+    },
+    "S07_runner_no_data_cli": {
+      "passed": true
+    },
+    "S08_eval_no_data_cli": {
+      "passed": true
+    },
+    "S09_runner_view_manifest": {
+      "passed": true
+    },
+    "S10_eval_view_manifest": {
+      "passed": true
+    },
+    "S11_view_manifest_every_mapping": {
+      "passed": true
+    },
+    "S12_view_copy_only": {
+      "passed": true
+    },
+    "S13_runtime_checkpoint_hash": {
+      "passed": true
+    },
+    "S14_ultralytics_pin": {
+      "passed": true
+    },
+    "S15_effective_args_pre": {
+      "passed": true
+    },
+    "S16_effective_args_post": {
+      "passed": true
+    },
+    "S17_physical_nc_pre": {
+      "passed": true
+    },
+    "S18_physical_nc_eval": {
+      "passed": true
+    },
+    "S19_full_hash_unconditional": {
+      "passed": true
+    },
+    "S20_format_hard_gate": {
+      "passed": true
+    },
+    "S21_spatial_hard_gate": {
+      "passed": true
+    },
+    "S22_expected_count_gate": {
+      "passed": true
+    },
+    "S23_class_names_count_gate": {
+      "passed": true
+    },
+    "S24_label_exact_fields": {
+      "passed": true
+    },
+    "S25_label_edge_geometry": {
+      "passed": true
+    },
+    "S26_group_rule_executed": {
+      "passed": true
+    },
+    "S27_group_class_stratified": {
+      "passed": true
+    },
+    "S28_class_image_support": {
+      "passed": true
+    },
+    "S29_class_box_support": {
+      "passed": true
+    },
+    "S30_nonempty_split_gate": {
+      "passed": true
+    },
+    "S31_duplicate_all_modalities": {
+      "passed": true
+    },
+    "S32_duplicate_split_gate": {
+      "passed": true
+    },
+    "S33_synthetic_gate": {
+      "passed": true
+    },
+    "S34_layout_format_expectations": {
+      "passed": true
+    },
+    "S35_training_spec_optimizer": {
+      "passed": true
+    },
+    "S36_training_spec_eval": {
+      "passed": true
+    },
+    "S37_no_t1gr_arm_runner": {
+      "passed": true
+    }
+  }
+}
