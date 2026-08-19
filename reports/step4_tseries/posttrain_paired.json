@@ -1,0 +1,511 @@
+{
+  "schema": "step4-tseries-posttrain-paired-v1",
+  "authority": "single-seed retrained paired causality; not multi-seed replication",
+  "donor_map_sha256": "c5cd8e852663eae3243bc5e4c263c6f2c26c7b2faa977ae3b60cb5c1ea122af5",
+  "val_ids": [
+    "000003_013_00000085",
+    "000004_013_00000081",
+    "000004_014_00000001",
+    "000016",
+    "000016_001_00000001",
+    "000016_042_suppl_00000164"
+  ],
+  "systems": {
+    "T1-F": {
+      "run_dir": "runs\\step4_tseries\\T1-F_P5_FULL_seed20260812",
+      "last_pt_sha256": "8380e21504fabd0d8c3715398739bbb0bed5aaafd9c822dfc14c9503af2daeee",
+      "manifest_sha256": "081afec392d96ee2d570a3424e5f015f05ee308297daed8900ece5584c707312",
+      "residual_definition": "P5_FULL",
+      "native": {
+        "full": {
+          "map50": 0.33952973497091143,
+          "map50_95": 0.27951034259857793,
+          "n_images": 6
+        },
+        "loo": {
+          "000003_013_00000085": {
+            "map50": 0.47626470588235287,
+            "map50_95": 0.39205294117647055,
+            "n_images": 5
+          },
+          "000004_013_00000081": {
+            "map50": 0.36965277777777783,
+            "map50_95": 0.30130555555555555,
+            "n_images": 5
+          },
+          "000004_014_00000001": {
+            "map50": 0.3158111954459203,
+            "map50_95": 0.2581069395500135,
+            "n_images": 5
+          },
+          "000016": {
+            "map50": 0.284,
+            "map50_95": 0.2297,
+            "n_images": 5
+          },
+          "000016_001_00000001": {
+            "map50": 0.32979984301412874,
+            "map50_95": 0.2719929356357928,
+            "n_images": 5
+          },
+          "000016_042_suppl_00000164": {
+            "map50": 0.4143831168831169,
+            "map50_95": 0.3527207792207792,
+            "n_images": 5
+          }
+        },
+        "trace": {
+          "000003_013_00000085": {
+            "role": "recipient",
+            "recipient_id": "000003_013_00000085",
+            "residual_source_id": "000003_013_00000085",
+            "residual_definition": "FULL",
+            "residual_sha256": "bb72bd04c162cfe121f6c84dfd5696c748c4b3da64fdc48c0501605c57c75b82",
+            "post_center_channel_mean_abs_max": 0.06605344265699387,
+            "native_raw_sha256": "29993b007605be36a7e06e97033725eba4ac9728c429b4f453efebececdc8e1b",
+            "override_raw_sha256": "29993b007605be36a7e06e97033725eba4ac9728c429b4f453efebececdc8e1b",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "29993b007605be36a7e06e97033725eba4ac9728c429b4f453efebececdc8e1b"
+          },
+          "000004_013_00000081": {
+            "role": "recipient",
+            "recipient_id": "000004_013_00000081",
+            "residual_source_id": "000004_013_00000081",
+            "residual_definition": "FULL",
+            "residual_sha256": "8422053f8fe120cf4fe09d6d535a2fa4a8205f71a037bb46a854dc74e076caed",
+            "post_center_channel_mean_abs_max": 0.12390068173408508,
+            "native_raw_sha256": "60f78531c09ae99942e8d2501b8ec0728363eb0565854a179f7ed62082619276",
+            "override_raw_sha256": "60f78531c09ae99942e8d2501b8ec0728363eb0565854a179f7ed62082619276",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "60f78531c09ae99942e8d2501b8ec0728363eb0565854a179f7ed62082619276"
+          },
+          "000004_014_00000001": {
+            "role": "recipient",
+            "recipient_id": "000004_014_00000001",
+            "residual_source_id": "000004_014_00000001",
+            "residual_definition": "FULL",
+            "residual_sha256": "361cd87efeac1159f71368ee6dc3fef9bae4c2de6ef95f4ac00e805abd01c175",
+            "post_center_channel_mean_abs_max": 0.06864828616380692,
+            "native_raw_sha256": "d4eb408989fa9c4efcb643fd0f487006ad8cffa6166c35755c30a0b1cd06bff5",
+            "override_raw_sha256": "d4eb408989fa9c4efcb643fd0f487006ad8cffa6166c35755c30a0b1cd06bff5",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "d4eb408989fa9c4efcb643fd0f487006ad8cffa6166c35755c30a0b1cd06bff5"
+          },
+          "000016": {
+            "role": "recipient",
+            "recipient_id": "000016",
+            "residual_source_id": "000016",
+            "residual_definition": "FULL",
+            "residual_sha256": "27f50cee94a954df207c32055807d404397a9976a73b4d478e9cef9223ddcb6b",
+            "post_center_channel_mean_abs_max": 0.09494210034608841,
+            "native_raw_sha256": "37b7e4b867aae7a50e4928278a6d1f2462ebb9b172ea00365dff114a351def46",
+            "override_raw_sha256": "37b7e4b867aae7a50e4928278a6d1f2462ebb9b172ea00365dff114a351def46",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "37b7e4b867aae7a50e4928278a6d1f2462ebb9b172ea00365dff114a351def46"
+          },
+          "000016_001_00000001": {
+            "role": "recipient",
+            "recipient_id": "000016_001_00000001",
+            "residual_source_id": "000016_001_00000001",
+            "residual_definition": "FULL",
+            "residual_sha256": "da3bd05ca065637d75b1a0f71e367983506e66920644281dc534eee2d2ad6702",
+            "post_center_channel_mean_abs_max": 0.0762946829199791,
+            "native_raw_sha256": "db6d390a19b9ccfb75ac439028fa5d10715a70eccfa0e4ae37e47db0335b0470",
+            "override_raw_sha256": "db6d390a19b9ccfb75ac439028fa5d10715a70eccfa0e4ae37e47db0335b0470",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "db6d390a19b9ccfb75ac439028fa5d10715a70eccfa0e4ae37e47db0335b0470"
+          },
+          "000016_042_suppl_00000164": {
+            "role": "recipient",
+            "recipient_id": "000016_042_suppl_00000164",
+            "residual_source_id": "000016_042_suppl_00000164",
+            "residual_definition": "FULL",
+            "residual_sha256": "2b793ea5ff050a7881e4132d0f22c31e48ca1d5ebd7a716cec0aa1f4006e59fe",
+            "post_center_channel_mean_abs_max": 0.062417060136795044,
+            "native_raw_sha256": "93e02065f8e9bcc6d878a82170ea37b4ea2d15c39542c3a72f5a3921a158c06a",
+            "override_raw_sha256": "93e02065f8e9bcc6d878a82170ea37b4ea2d15c39542c3a72f5a3921a158c06a",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "93e02065f8e9bcc6d878a82170ea37b4ea2d15c39542c3a72f5a3921a158c06a"
+          }
+        }
+      },
+      "donor": {
+        "full": {
+          "map50": 0.37944531658817376,
+          "map50_95": 0.2904392987964417,
+          "n_images": 6
+        },
+        "loo": {
+          "000003_013_00000085": {
+            "map50": 0.5317229437229438,
+            "map50_95": 0.4069147186147187,
+            "n_images": 5
+          },
+          "000004_013_00000081": {
+            "map50": 0.4332822168415389,
+            "map50_95": 0.3302034570890503,
+            "n_images": 5
+          },
+          "000004_014_00000001": {
+            "map50": 0.3355832332933173,
+            "map50_95": 0.2509434773909564,
+            "n_images": 5
+          },
+          "000016": {
+            "map50": 0.277,
+            "map50_95": 0.18650000000000003,
+            "n_images": 5
+          },
+          "000016_001_00000001": {
+            "map50": 0.3738202247191012,
+            "map50_95": 0.2837921348314607,
+            "n_images": 5
+          },
+          "000016_042_suppl_00000164": {
+            "map50": 0.4362707974756167,
+            "map50_95": 0.36192914515203667,
+            "n_images": 5
+          }
+        },
+        "trace": {
+          "000003_013_00000085": {
+            "role": "donor",
+            "recipient_id": "000003_013_00000085",
+            "residual_source_id": "000016",
+            "donor_id": "000016",
+            "residual_definition": "FULL",
+            "residual_sha256": "27f50cee94a954df207c32055807d404397a9976a73b4d478e9cef9223ddcb6b",
+            "post_center_channel_mean_abs_max": 0.09494210034608841,
+            "donor_self_centered": true,
+            "detection_sha256": "6dd4c3f7f7c766fb0bd3c3bbee310ba7ab73ed92d7f033df4e37f39e170b5c7c"
+          },
+          "000004_013_00000081": {
+            "role": "donor",
+            "recipient_id": "000004_013_00000081",
+            "residual_source_id": "000016_042_suppl_00000164",
+            "donor_id": "000016_042_suppl_00000164",
+            "residual_definition": "FULL",
+            "residual_sha256": "2b793ea5ff050a7881e4132d0f22c31e48ca1d5ebd7a716cec0aa1f4006e59fe",
+            "post_center_channel_mean_abs_max": 0.062417060136795044,
+            "donor_self_centered": true,
+            "detection_sha256": "5768d5bb69d387b58eff0d1159332530337b1a01ba9250360dbce3a727639e73"
+          },
+          "000004_014_00000001": {
+            "role": "donor",
+            "recipient_id": "000004_014_00000001",
+            "residual_source_id": "000016_001_00000001",
+            "donor_id": "000016_001_00000001",
+            "residual_definition": "FULL",
+            "residual_sha256": "da3bd05ca065637d75b1a0f71e367983506e66920644281dc534eee2d2ad6702",
+            "post_center_channel_mean_abs_max": 0.0762946829199791,
+            "donor_self_centered": true,
+            "detection_sha256": "0d258648f64bdc219a74a25417c855ffac5ff6ab2fb76de7adaed3a5d45939e8"
+          },
+          "000016": {
+            "role": "donor",
+            "recipient_id": "000016",
+            "residual_source_id": "000004_014_00000001",
+            "donor_id": "000004_014_00000001",
+            "residual_definition": "FULL",
+            "residual_sha256": "361cd87efeac1159f71368ee6dc3fef9bae4c2de6ef95f4ac00e805abd01c175",
+            "post_center_channel_mean_abs_max": 0.06864828616380692,
+            "donor_self_centered": true,
+            "detection_sha256": "e6a70cdd85e1a4cb0588c3976fa08688fc0cbce53a48e4984e2337b62d8c3a73"
+          },
+          "000016_001_00000001": {
+            "role": "donor",
+            "recipient_id": "000016_001_00000001",
+            "residual_source_id": "000004_013_00000081",
+            "donor_id": "000004_013_00000081",
+            "residual_definition": "FULL",
+            "residual_sha256": "8422053f8fe120cf4fe09d6d535a2fa4a8205f71a037bb46a854dc74e076caed",
+            "post_center_channel_mean_abs_max": 0.12390068173408508,
+            "donor_self_centered": true,
+            "detection_sha256": "97903d9cd8240a51284d570255523d5a89c4b977e79b8228b34f08fd5397a501"
+          },
+          "000016_042_suppl_00000164": {
+            "role": "donor",
+            "recipient_id": "000016_042_suppl_00000164",
+            "residual_source_id": "000003_013_00000085",
+            "donor_id": "000003_013_00000085",
+            "residual_definition": "FULL",
+            "residual_sha256": "bb72bd04c162cfe121f6c84dfd5696c748c4b3da64fdc48c0501605c57c75b82",
+            "post_center_channel_mean_abs_max": 0.06605344265699387,
+            "donor_self_centered": true,
+            "detection_sha256": "b474f4e5c4adfc35662d298a4671629ed2811ef8df94c2d83484a6e5b61381a5"
+          }
+        }
+      },
+      "paired_effect_native_minus_donor": {
+        "full": -0.01092895619786377,
+        "loo": {
+          "000003_013_00000085": -0.014861777438248125,
+          "000004_013_00000081": -0.028897901533494752,
+          "000004_014_00000001": 0.00716346215905711,
+          "000016": 0.04319999999999996,
+          "000016_001_00000001": -0.011799199195667909,
+          "000016_042_suppl_00000164": -0.009208365931257456
+        },
+        "loo_median": -0.010503782563462682,
+        "positive_folds": 2,
+        "negative_folds": 4,
+        "zero_folds": 0
+      },
+      "single_seed_label": "SEED20260812_NEGATIVE_PAIRED_EVIDENCE",
+      "native_override_equivalence": "bitwise_per_sample"
+    },
+    "T2-A": {
+      "run_dir": "runs\\step4_tseries\\T2-A_P5_ACALL_seed20260812",
+      "last_pt_sha256": "069fbb12bebec09923e1303ee110fb5d2a3fa468a9fae0de8649ea74796c46fe",
+      "manifest_sha256": "6420e8a2bb122f7ed84899b86adc8e86ca6ee0bd6dbd9183767c5691d9e8de56",
+      "residual_definition": "P5_AC_ALL_OWN_MEAN",
+      "native": {
+        "full": {
+          "map50": 0.27775599713569643,
+          "map50_95": 0.22784237379162195,
+          "n_images": 6
+        },
+        "loo": {
+          "000003_013_00000085": {
+            "map50": 0.38938628287135757,
+            "map50_95": 0.31929605543710027,
+            "n_images": 5
+          },
+          "000004_013_00000081": {
+            "map50": 0.3329960317460318,
+            "map50_95": 0.27376785714285723,
+            "n_images": 5
+          },
+          "000004_014_00000001": {
+            "map50": 0.24994897959183676,
+            "map50_95": 0.202765306122449,
+            "n_images": 5
+          },
+          "000016": {
+            "map50": 0.19966666666666671,
+            "map50_95": 0.15770000000000003,
+            "n_images": 5
+          },
+          "000016_001_00000001": {
+            "map50": 0.25846927803379416,
+            "map50_95": 0.20870299539170506,
+            "n_images": 5
+          },
+          "000016_042_suppl_00000164": {
+            "map50": 0.365503663003663,
+            "map50_95": 0.3144093406593407,
+            "n_images": 5
+          }
+        },
+        "trace": {
+          "000003_013_00000085": {
+            "role": "recipient",
+            "recipient_id": "000003_013_00000085",
+            "residual_source_id": "000003_013_00000085",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "80080712a307a34f2f4263ee7f4b32033348c4c5af177277d2a5c0808f15f447",
+            "post_center_channel_mean_abs_max": 4.470348535789981e-09,
+            "native_raw_sha256": "97335adfb490c20c804f6948f3d9d5ac15c63fdb1fd7d89fa13a47536621672f",
+            "override_raw_sha256": "97335adfb490c20c804f6948f3d9d5ac15c63fdb1fd7d89fa13a47536621672f",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "97335adfb490c20c804f6948f3d9d5ac15c63fdb1fd7d89fa13a47536621672f"
+          },
+          "000004_013_00000081": {
+            "role": "recipient",
+            "recipient_id": "000004_013_00000081",
+            "residual_source_id": "000004_013_00000081",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "f0ad213d3e6c6600b312b81a884f192bcfb4471fe3a2b6b6f15413bc2c01ddbf",
+            "post_center_channel_mean_abs_max": 7.1525572131747595e-09,
+            "native_raw_sha256": "45bc463262c783af85729c79c3897b064c187a64e96810643dfd1757683a42e5",
+            "override_raw_sha256": "45bc463262c783af85729c79c3897b064c187a64e96810643dfd1757683a42e5",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "45bc463262c783af85729c79c3897b064c187a64e96810643dfd1757683a42e5"
+          },
+          "000004_014_00000001": {
+            "role": "recipient",
+            "recipient_id": "000004_014_00000001",
+            "residual_source_id": "000004_014_00000001",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "5a80581fdf68ac4223714e6a9a805aaba85af9ddfb9c548a33ce6764332f9599",
+            "post_center_channel_mean_abs_max": 4.023313682210983e-09,
+            "native_raw_sha256": "442517c0552422c9315b01450e2c130d29aaa70b573488af07b6f2331de34316",
+            "override_raw_sha256": "442517c0552422c9315b01450e2c130d29aaa70b573488af07b6f2331de34316",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "442517c0552422c9315b01450e2c130d29aaa70b573488af07b6f2331de34316"
+          },
+          "000016": {
+            "role": "recipient",
+            "recipient_id": "000016",
+            "residual_source_id": "000016",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "c7690db445c243caf8f6745c255037017bc73efbd32a95d5fd24675f7a26d416",
+            "post_center_channel_mean_abs_max": 7.450580596923828e-09,
+            "native_raw_sha256": "9fb970b699f82bb69f7d07f1a405bce23936f8148acb62932b59a4a7aa4faa0d",
+            "override_raw_sha256": "9fb970b699f82bb69f7d07f1a405bce23936f8148acb62932b59a4a7aa4faa0d",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "9fb970b699f82bb69f7d07f1a405bce23936f8148acb62932b59a4a7aa4faa0d"
+          },
+          "000016_001_00000001": {
+            "role": "recipient",
+            "recipient_id": "000016_001_00000001",
+            "residual_source_id": "000016_001_00000001",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "5b5feb65df1cbf4d3f58ba9f944cdd40f5c4388a5f357953dd6b45d399ef1d1a",
+            "post_center_channel_mean_abs_max": 6.034970301271869e-09,
+            "native_raw_sha256": "c49dda39dbdc4c3d7b50beb4f4c8e84a1305105f3b72f7f3972549653d23164d",
+            "override_raw_sha256": "c49dda39dbdc4c3d7b50beb4f4c8e84a1305105f3b72f7f3972549653d23164d",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "c49dda39dbdc4c3d7b50beb4f4c8e84a1305105f3b72f7f3972549653d23164d"
+          },
+          "000016_042_suppl_00000164": {
+            "role": "recipient",
+            "recipient_id": "000016_042_suppl_00000164",
+            "residual_source_id": "000016_042_suppl_00000164",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "07ce9806d90d93a277683ccbe6f1f69bfe2b61a7d05a0c4ca75a606c4dc96fbc",
+            "post_center_channel_mean_abs_max": 4.395842356785806e-09,
+            "native_raw_sha256": "0849814f4bfec9bd74802a8bf93ad07d6e1deb0b065d4096da84675454c3f1ea",
+            "override_raw_sha256": "0849814f4bfec9bd74802a8bf93ad07d6e1deb0b065d4096da84675454c3f1ea",
+            "bitwise_native_override_equal": true,
+            "detection_sha256": "0849814f4bfec9bd74802a8bf93ad07d6e1deb0b065d4096da84675454c3f1ea"
+          }
+        }
+      },
+      "donor": {
+        "full": {
+          "map50": 0.3472571920334399,
+          "map50_95": 0.28200104499631184,
+          "n_images": 6
+        },
+        "loo": {
+          "000003_013_00000085": {
+            "map50": 0.48716326530612253,
+            "map50_95": 0.3953030612244898,
+            "n_images": 5
+          },
+          "000004_013_00000081": {
+            "map50": 0.414970584970585,
+            "map50_95": 0.3428225940725941,
+            "n_images": 5
+          },
+          "000004_014_00000001": {
+            "map50": 0.31949053534457267,
+            "map50_95": 0.25453438331854483,
+            "n_images": 5
+          },
+          "000016": {
+            "map50": 0.22795238095238105,
+            "map50_95": 0.19719285714285717,
+            "n_images": 5
+          },
+          "000016_001_00000001": {
+            "map50": 0.3373880135928329,
+            "map50_95": 0.27284876870117836,
+            "n_images": 5
+          },
+          "000016_042_suppl_00000164": {
+            "map50": 0.41277983920841066,
+            "map50_95": 0.3461637291280148,
+            "n_images": 5
+          }
+        },
+        "trace": {
+          "000003_013_00000085": {
+            "role": "donor",
+            "recipient_id": "000003_013_00000085",
+            "residual_source_id": "000016",
+            "donor_id": "000016",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "c7690db445c243caf8f6745c255037017bc73efbd32a95d5fd24675f7a26d416",
+            "post_center_channel_mean_abs_max": 7.450580596923828e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "d0fde24144de95880e202c88be6482d353eae17f9fb7955c3fa7c53c2cc2ad9f"
+          },
+          "000004_013_00000081": {
+            "role": "donor",
+            "recipient_id": "000004_013_00000081",
+            "residual_source_id": "000016_042_suppl_00000164",
+            "donor_id": "000016_042_suppl_00000164",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "07ce9806d90d93a277683ccbe6f1f69bfe2b61a7d05a0c4ca75a606c4dc96fbc",
+            "post_center_channel_mean_abs_max": 4.395842356785806e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "3de444d9f4a703134f3262b0cc57bc56d880328767191abdb4a77440c14467cb"
+          },
+          "000004_014_00000001": {
+            "role": "donor",
+            "recipient_id": "000004_014_00000001",
+            "residual_source_id": "000016_001_00000001",
+            "donor_id": "000016_001_00000001",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "5b5feb65df1cbf4d3f58ba9f944cdd40f5c4388a5f357953dd6b45d399ef1d1a",
+            "post_center_channel_mean_abs_max": 6.034970301271869e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "711c942ef4813f6774ee0ece028b2026068d0318b75c42eba794f6d0e389f6b9"
+          },
+          "000016": {
+            "role": "donor",
+            "recipient_id": "000016",
+            "residual_source_id": "000004_014_00000001",
+            "donor_id": "000004_014_00000001",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "5a80581fdf68ac4223714e6a9a805aaba85af9ddfb9c548a33ce6764332f9599",
+            "post_center_channel_mean_abs_max": 4.023313682210983e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "b5f03b488c5a792b98394bd5050c1c9d93ee2ef5edbf043128d848dc2a123063"
+          },
+          "000016_001_00000001": {
+            "role": "donor",
+            "recipient_id": "000016_001_00000001",
+            "residual_source_id": "000004_013_00000081",
+            "donor_id": "000004_013_00000081",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "f0ad213d3e6c6600b312b81a884f192bcfb4471fe3a2b6b6f15413bc2c01ddbf",
+            "post_center_channel_mean_abs_max": 7.1525572131747595e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "fbbaf6ab99164935a8969f6d1693b9676ff5d923cbf87eaea94e6e2def629871"
+          },
+          "000016_042_suppl_00000164": {
+            "role": "donor",
+            "recipient_id": "000016_042_suppl_00000164",
+            "residual_source_id": "000003_013_00000085",
+            "donor_id": "000003_013_00000085",
+            "residual_definition": "AC_ALL",
+            "residual_sha256": "80080712a307a34f2f4263ee7f4b32033348c4c5af177277d2a5c0808f15f447",
+            "post_center_channel_mean_abs_max": 4.470348535789981e-09,
+            "donor_self_centered": true,
+            "detection_sha256": "a797552a0482bbbee1a98b33d67878edda9bc63a3a636bcc16c442c7478687f3"
+          }
+        }
+      },
+      "paired_effect_native_minus_donor": {
+        "full": -0.054158671204689895,
+        "loo": {
+          "000003_013_00000085": -0.07600700578738956,
+          "000004_013_00000081": -0.06905473692973685,
+          "000004_014_00000001": -0.05176907719609583,
+          "000016": -0.039492857142857135,
+          "000016_001_00000001": -0.0641457733094733,
+          "000016_042_suppl_00000164": -0.03175438846867412
+        },
+        "loo_median": -0.057957425252784564,
+        "positive_folds": 0,
+        "negative_folds": 6,
+        "zero_folds": 0
+      },
+      "single_seed_label": "SEED20260812_NEGATIVE_PAIRED_EVIDENCE",
+      "native_override_equivalence": "bitwise_per_sample"
+    }
+  },
+  "provenance": {
+    "evaluator_sha256": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e",
+    "model_source_sha256": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d",
+    "core_source_sha256": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec"
+  },
+  "interpretation_discipline": {
+    "performance_gain_is_not_paired_causality": true,
+    "single_seed_is_not_replication": true,
+    "t2_donor_ac_uses_donor_own_projected_residual_and_own_spatial_mean": true
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "schema": "step4-tseries-pretraining-audit-v1",
+  "phase": "formal",
+  "all_passed": true,
+  "passed_count": 106,
+  "total_count": 106,
+  "failed": [],
+  "checks": {
+    "S01_design_frozen": {
+      "passed": true
+    },
+    "S02_p5_only_term": {
+      "passed": true
+    },
+    "S03_no_p3_direct": {
+      "passed": true
+    },
+    "S04_no_p4_direct": {
+      "passed": true
+    },
+    "S05_no_gate": {
+      "passed": true
+    },
+    "S06_no_depth": {
+      "passed": true
+    },
+    "S07_t0_present": {
+      "passed": true
+    },
+    "S08_t1_present": {
+      "passed": true
+    },
+    "S09_t2_present": {
+      "passed": true
+    },
+    "S10_ac_all_primary": {
+      "passed": true
+    },
+    "S11_no_ac_content": {
+      "passed": true
+    },
+    "S12_g18_present": {
+      "passed": true
+    },
+    "S13_model_has_one_p5_fusion": {
+      "passed": true
+    },
+    "S14_model_no_reliability_gate": {
+      "passed": true
+    },
+    "S15_model_p3_count_zero": {
+      "passed": true
+    },
+    "S16_model_p4_count_zero": {
+      "passed": true
+    },
+    "S17_model_p5_count_one": {
+      "passed": true
+    },
+    "S18_model_y10_handoff": {
+      "passed": true
+    },
+    "S19_model_x_y10_handoff": {
+      "passed": true
+    },
+    "S20_t0_no_grad": {
+      "passed": true
+    },
+    "S21_t0_direct_r5": {
+      "passed": true
+    },
+    "S22_t0_no_zero_mul": {
+      "passed": true
+    },
+    "S23_t2_center_function": {
+      "passed": true
+    },
+    "S24_bias_true_inherited": {
+      "passed": true
+    },
+    "S25_runner_explicit_weights": {
+      "passed": true
+    },
+    "S26_runtime_explicit_builder_weights": {
+      "passed": true
+    },
+    "S27_runner_formal_80": {
+      "passed": true
+    },
+    "S28_runner_formal_seed": {
+      "passed": true
+    },
+    "S29_runner_formal_batch": {
+      "passed": true
+    },
+    "S30_runner_refuse_existing_dir": {
+      "passed": true
+    },
+    "S31_gradient_probe": {
+      "passed": true
+    },
+    "S32_t2_bias_pre_optimizer_guard": {
+      "passed": true
+    },
+    "S33_t2_bias_dust_logged": {
+      "passed": true
+    },
+    "S34_t0_silent_update_gate": {
+      "passed": true
+    },
+    "S35_t2_silent_bias_gate": {
+      "passed": true
+    },
+    "S35_optimizer_manifest": {
+      "passed": true
+    },
+    "S36_mechanism_log": {
+      "passed": true
+    },
+    "S37_data_order_log": {
+      "passed": true
+    },
+    "S38_paired_recipient_donor": {
+      "passed": true
+    },
+    "S39_posttrain_train11": {
+      "passed": true
+    },
+    "S40_posttrain_all17": {
+      "passed": true
+    },
+    "S41_posttrain_late10": {
+      "passed": true
+    },
+    "S42_bias_guard_adjudicated": {
+      "passed": true
+    },
+    "S43_bias_guard_pre_optimizer": {
+      "passed": true
+    },
+    "S44_summary_no_margin": {
+      "passed": true
+    },
+    "S45_summary_single_seed_not_replication": {
+      "passed": true
+    },
+    "S46_formal_suite_exists": {
+      "passed": true
+    },
+    "FILE_design_sha256": {
+      "passed": true,
+      "detail": "docs/step4_tseries/TRAINING_DESIGN_FREEZE.md"
+    },
+    "FILE_model_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/tseries_p5_model.py"
+    },
+    "FILE_core_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/tseries_core.py"
+    },
+    "FILE_runtime_sha256": {
+      "passed": true,
+      "detail": "src/multimodal/tseries_runtime.py"
+    },
+    "FILE_runner_sha256": {
+      "passed": true,
+      "detail": "scripts/run_tseries.py"
+    },
+    "FILE_suite_sha256": {
+      "passed": true,
+      "detail": "scripts/smoke_tseries_suite.py"
+    },
+    "FILE_audit_sha256": {
+      "passed": true,
+      "detail": "scripts/audit_tseries.py"
+    },
+    "FILE_posttrain_eval_sha256": {
+      "passed": true,
+      "detail": "scripts/eval_tseries_posttrain.py"
+    },
+    "FILE_paired_eval_sha256": {
+      "passed": true,
+      "detail": "scripts/eval_tseries_paired.py"
+    },
+    "FILE_formal_suite_sha256": {
+      "passed": true,
+      "detail": "scripts/run_tseries_formal_suite.py"
+    },
+    "FILE_summary_sha256": {
+      "passed": true,
+      "detail": "scripts/summarize_tseries.py"
+    },
+    "FILE_implementation_adjudication_sha256": {
+      "passed": true,
+      "detail": "docs/step4_tseries/IMPLEMENTATION_ADJUDICATION.md"
+    },
+    "FILE_tests_sha256": {
+      "passed": true,
+      "detail": "tests/test_tseries.py"
+    },
+    "FILE_readme_sha256": {
+      "passed": true,
+      "detail": "T_SERIES_README.md"
+    },
+    "R01_a5_summary_exists": {
+      "passed": true
+    },
+    "R02_a5_raw_sha": {
+      "passed": true,
+      "detail": "f1dbd1bc828b55674406337a12add25dc0a1cdd3ee96ad46c3c9976014cb7950"
+    },
+    "R03_a5_canonical_sha": {
+      "passed": true
+    },
+    "R04_a5_schema": {
+      "passed": true
+    },
+    "R05_a5_all_gates": {
+      "passed": true
+    },
+    "R06_a5_training_false": {
+      "passed": true
+    },
+    "R07_p3_flip": {
+      "passed": true
+    },
+    "R08_p4_flip": {
+      "passed": true
+    },
+    "R09_both_antagonistic": {
+      "passed": true
+    },
+    "R10_centering_fails": {
+      "passed": true
+    },
+    "R11_a5_commit_is_ancestor": {
+      "passed": true
+    },
+    "R12_original_feedback_exists": {
+      "passed": true
+    },
+    "R13_original_feedback_sha": {
+      "passed": true
+    },
+    "R14_erratum_exists": {
+      "passed": true
+    },
+    "R15_erratum_1_6": {
+      "passed": true
+    },
+    "R16_erratum_documentation_only": {
+      "passed": true
+    },
+    "R17_contract_exists": {
+      "passed": true,
+      "detail": "D:\\pycharm\\Python Develop\\YOLO_1\\step3_data_contract.json"
+    },
+    "R18_raw_data_fresh": {
+      "passed": true,
+      "detail": []
+    },
+    "R19_data_yaml": {
+      "passed": true,
+      "detail": []
+    },
+    "R20_base_checkpoint": {
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+        "expected_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+        "errors": []
+      }
+    },
+    "M01_smoke_exists": {
+      "passed": true
+    },
+    "M02_smoke_schema": {
+      "passed": true
+    },
+    "M03_dynamic_passed": {
+      "passed": true
+    },
+    "M_G2_identical_model_class": {
+      "passed": true
+    },
+    "M_G3_no_reliability_gate": {
+      "passed": true
+    },
+    "M_G4_p5_only_topology": {
+      "passed": true
+    },
+    "M_G5_neck_handoff": {
+      "passed": true
+    },
+    "M_G6_matched_initial_state": {
+      "passed": true
+    },
+    "M_G7_epoch0_prediction_equivalence": {
+      "passed": true
+    },
+    "M_G8_zero_init_projection": {
+      "passed": true
+    },
+    "M_G9_trainability_map_matched": {
+      "passed": true
+    },
+    "M_G10_optimizer_groups_matched": {
+      "passed": true
+    },
+    "M_G11_t0_null_loss_graph": {
+      "passed": true
+    },
+    "M_G12_t0_no_silent_optimizer_update": {
+      "passed": true
+    },
+    "M_G13_t2_bias_cancellation": {
+      "passed": true
+    },
+    "M_G14_t2_bias_optimizer_safety": {
+      "passed": true
+    },
+    "M_G15_bn_policy_matched": {
+      "passed": true
+    },
+    "M_G17_rng_data_order_closure": {
+      "passed": true
+    },
+    "M_G18_protocol_equality": {
+      "passed": true
+    },
+    "M_FRESH_model_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d",
+        "current": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d"
+      }
+    },
+    "M_FRESH_core_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec",
+        "current": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec"
+      }
+    },
+    "M_FRESH_runtime_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a",
+        "current": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a"
+      }
+    },
+    "M_FRESH_runner_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "75c47827b613cb87b92c3a7065f58134050b03da2dfc22f3c08161dd7f278d8c",
+        "current": "75c47827b613cb87b92c3a7065f58134050b03da2dfc22f3c08161dd7f278d8c"
+      }
+    },
+    "M_FRESH_suite_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "92f987fc412a42904bbd287bfc3d99dcb3b133fe02268fb35e8dfdaacf64a711",
+        "current": "92f987fc412a42904bbd287bfc3d99dcb3b133fe02268fb35e8dfdaacf64a711"
+      }
+    },
+    "M_FRESH_design_sha256": {
+      "passed": true,
+      "detail": {
+        "recorded": "75b3a5dcf0f3e01b6d72b27e671b4c473eaee95747e2fb2c7f16886497041419",
+        "current": "75b3a5dcf0f3e01b6d72b27e671b4c473eaee95747e2fb2c7f16886497041419"
+      }
+    }
+  },
+  "source_hashes": {
+    "design_sha256": "75b3a5dcf0f3e01b6d72b27e671b4c473eaee95747e2fb2c7f16886497041419",
+    "model_sha256": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d",
+    "core_sha256": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec",
+    "runtime_sha256": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a",
+    "runner_sha256": "75c47827b613cb87b92c3a7065f58134050b03da2dfc22f3c08161dd7f278d8c",
+    "suite_sha256": "92f987fc412a42904bbd287bfc3d99dcb3b133fe02268fb35e8dfdaacf64a711",
+    "audit_sha256": "be599a2047d39ad0528a3390edd68ac195a633a9daecf70e473bcb2a6153dddc",
+    "posttrain_eval_sha256": "8108a4e41c5110d0cc79620d9b7539cbc3dbadbae300962ca43c92e486dac757",
+    "paired_eval_sha256": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e",
+    "formal_suite_sha256": "a4a56bfece1b526741b590f60d3bb1b576233632674d36627ab314d3527b557f",
+    "summary_sha256": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6",
+    "implementation_adjudication_sha256": "b0edf0ee51b00fe65b5a59163fa89a4c03b4399ce2702e95c1e8a2f859d267c8",
+    "tests_sha256": "c2c51ba60b04a821464272d5e82e04ec1af134124b774dbf61a3a19c90456437",
+    "readme_sha256": "ae64333d17b24a7ed26340f7f3d877a8c5992f1a8cd29dd96ab3d6abdc64e9c7"
+  },
+  "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true,
+    "G6": true,
+    "G7": true,
+    "G8": true,
+    "G9": true,
+    "G10": true,
+    "G11": true,
+    "G12": true,
+    "G13": true,
+    "G14": true,
+    "G15": true,
+    "G16": true,
+    "G17": true,
+    "G18": true
+  }
+}

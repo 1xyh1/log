@@ -1,0 +1,121 @@
+{
+  "schema": "step4-tseries-summary-v1",
+  "primary_endpoints": {
+    "T0-N": {
+      "last_val6": 0.26443877551020406,
+      "late10_median_val6": 0.263695,
+      "train11": 0.9725827205882351
+    },
+    "T1-F": {
+      "last_val6": 0.27951034259857793,
+      "late10_median_val6": 0.26749,
+      "train11": 0.9818217364532019
+    },
+    "T2-A": {
+      "last_val6": 0.22784237379162195,
+      "late10_median_val6": 0.270085,
+      "train11": 0.9818946428571428
+    }
+  },
+  "contrasts": {
+    "T1_minus_T0": {
+      "deltas": {
+        "last_val6": 0.015071567088373872,
+        "late10_median_val6": 0.003794999999999993,
+        "train11": 0.009239015864966782
+      },
+      "label": "STABLE_POSITIVE"
+    },
+    "T2_minus_T1": {
+      "deltas": {
+        "last_val6": -0.05166796880695598,
+        "late10_median_val6": 0.002595000000000014,
+        "train11": 7.290640394086445e-05
+      },
+      "label": "MIXED"
+    },
+    "T2_minus_T0": {
+      "deltas": {
+        "last_val6": -0.03659640171858211,
+        "late10_median_val6": 0.006390000000000007,
+        "train11": 0.009311922268907646
+      },
+      "label": "MIXED"
+    }
+  },
+  "paired_causality": {
+    "T1-F": "SEED20260812_NEGATIVE_PAIRED_EVIDENCE",
+    "T2-A": "SEED20260812_NEGATIVE_PAIRED_EVIDENCE"
+  },
+  "loo_sensitivity": {
+    "T1_minus_T0": {
+      "loo": {
+        "000003_013_00000085": 0.021302941176470525,
+        "000004_013_00000081": -0.015527777777777751,
+        "000004_014_00000001": 0.018587708780782752,
+        "000016": 0.09502499999999997,
+        "000016_001_00000001": 0.006855849653859047,
+        "000016_042_suppl_00000164": 0.022188824333561175
+      },
+      "median": 0.01994532497862664,
+      "positive_folds": 5,
+      "negative_folds": 1,
+      "zero_folds": 0,
+      "authority": "secondary_sensitivity_only"
+    },
+    "T2_minus_T1": {
+      "loo": {
+        "000003_013_00000085": -0.07275688573937028,
+        "000004_013_00000081": -0.02753769841269832,
+        "000004_014_00000001": -0.05534163342756451,
+        "000016": -0.07199999999999995,
+        "000016_001_00000001": -0.06328994024408774,
+        "000016_042_suppl_00000164": -0.03831143856143854
+      },
+      "median": -0.059315786835826126,
+      "positive_folds": 0,
+      "negative_folds": 6,
+      "zero_folds": 0,
+      "authority": "secondary_sensitivity_only"
+    },
+    "T2_minus_T0": {
+      "loo": {
+        "000003_013_00000085": -0.051453944562899756,
+        "000004_013_00000081": -0.04306547619047607,
+        "000004_014_00000001": -0.03675392464678176,
+        "000016": 0.023025000000000018,
+        "000016_001_00000001": -0.05643409059022869,
+        "000016_042_suppl_00000164": -0.016122614227877363
+      },
+      "median": -0.039909700418628916,
+      "positive_folds": 1,
+      "negative_folds": 5,
+      "zero_folds": 0,
+      "authority": "secondary_sensitivity_only"
+    }
+  },
+  "secondary_all17": {
+    "T0-N": 0.7174711751029454,
+    "T1-F": 0.734556411702065,
+    "T2-A": 0.7244202114646353
+  },
+  "decision": {
+    "branch": "T1_ARCHITECTURAL_GAIN_PAIRED_COMPLEMENTARITY_UNPROVEN",
+    "replication_seed_go": false,
+    "depth_go": false,
+    "production_go": false,
+    "reason": "T1 improves performance over NULL, but correct-pair IR dependence is not stably positive."
+  },
+  "provenance": {
+    "performance_sha256": "4b38f3ef8d7defac4b91b42e8651b667ca8320e990666af225dea4e6886ea93a",
+    "paired_sha256": "249702b5542055d7bf36595b28cb1e5a0b42312d05c55d459a8b0890e3a2b5cd",
+    "summary_source_sha256": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6"
+  },
+  "interpretation_discipline": {
+    "no_arbitrary_ap_margin": true,
+    "best_epoch_is_descriptive_only": true,
+    "single_seed_is_not_replication": true,
+    "performance_gain_is_not_paired_causality": true,
+    "depth_remains_hold": true
+  }
+}

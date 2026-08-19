@@ -1,0 +1,108 @@
+{
+  "schema": "step4-tseries-implementation-validation-v1",
+  "status": "IMPLEMENTATION_READY_FORMAL_TRAINING_NOT_EXECUTED",
+  "upstream": {
+    "a5_accepted_commit": "f154c1ff9af6d31e60bc2c9a2c4fd5baafc3d8b8",
+    "a5_summary_raw_sha256": "f1dbd1bc828b55674406337a12add25dc0a1cdd3ee96ad46c3c9976014cb7950",
+    "a5_summary_canonical_lf_sha256": "0e3ebb5cc64362ee44a0de68899885f36842ac8f8c40556d26cd541002347915"
+  },
+  "package_regression": {
+    "pytest": {
+      "passed": 85,
+      "failed": 0
+    },
+    "py_compile": {
+      "passed": true
+    },
+    "static_audit": {
+      "schema": "step4-tseries-pretraining-audit-v1",
+      "phase": "static",
+      "passed": 61,
+      "total": 61,
+      "all_passed": true
+    }
+  },
+  "formal_runtime_not_executed_here": {
+    "one_epoch_smokes": false,
+    "repo_full_g1_g18_audit": false,
+    "t0_80ep": false,
+    "t1_80ep": false,
+    "t2_80ep": false,
+    "posttrain_performance": false,
+    "posttrain_paired_causality": false,
+    "reason": "Current artifact environment does not contain the user's formal raw dataset, frozen Windows paths/checkpoint runtime, Ultralytics 8.4.56 training environment, or formal training GPU."
+  },
+  "implementation_hardening": {
+    "t0_loss_graph": "prediction is exactly R5; aux/projection is no_grad for matched BN exposure",
+    "t2_forward": "post-projection AC_ALL; Conv2d bias=True retained",
+    "t2_bias_numerical_guard": "raw FP32 bias-gradient dust logged, then proj.bias.grad zeroed immediately before optimizer step",
+    "t2_bias_optimizer_gate": "bias group weight_decay must be 0 and one-epoch real smoke must leave bias bitwise unchanged",
+    "base_checkpoint": "verified path is explicitly consumed by build_reference_3ch(weights=...)",
+    "formal_decision_authority": "G1-G18 formal audit must pass before 80ep runs"
+  },
+  "payload": {
+    "file_count_without_validation": 15,
+    "files": {
+      "T_SERIES_README.md": {
+        "sha256": "ae64333d17b24a7ed26340f7f3d877a8c5992f1a8cd29dd96ab3d6abdc64e9c7",
+        "bytes": 5301
+      },
+      "docs/step4_a4/feedback/2026-08-19_erratum.md": {
+        "sha256": "d6395c32673b9f41dcb36cb47b039db530fec43187f9c5650f07f8e64c61c1cb",
+        "bytes": 540
+      },
+      "docs/step4_tseries/IMPLEMENTATION_ADJUDICATION.md": {
+        "sha256": "b0edf0ee51b00fe65b5a59163fa89a4c03b4399ce2702e95c1e8a2f859d267c8",
+        "bytes": 1827
+      },
+      "docs/step4_tseries/TRAINING_DESIGN_FREEZE.md": {
+        "sha256": "75b3a5dcf0f3e01b6d72b27e671b4c473eaee95747e2fb2c7f16886497041419",
+        "bytes": 12707
+      },
+      "scripts/audit_tseries.py": {
+        "sha256": "be599a2047d39ad0528a3390edd68ac195a633a9daecf70e473bcb2a6153dddc",
+        "bytes": 15232
+      },
+      "scripts/eval_tseries_paired.py": {
+        "sha256": "ebdf65012f21786c6f7e083f4fd74b41055f44a11e2f0b9b547632a410468d3e",
+        "bytes": 8449
+      },
+      "scripts/eval_tseries_posttrain.py": {
+        "sha256": "8108a4e41c5110d0cc79620d9b7539cbc3dbadbae300962ca43c92e486dac757",
+        "bytes": 5193
+      },
+      "scripts/run_tseries.py": {
+        "sha256": "75c47827b613cb87b92c3a7065f58134050b03da2dfc22f3c08161dd7f278d8c",
+        "bytes": 22921
+      },
+      "scripts/run_tseries_formal_suite.py": {
+        "sha256": "a4a56bfece1b526741b590f60d3bb1b576233632674d36627ab314d3527b557f",
+        "bytes": 3326
+      },
+      "scripts/smoke_tseries_suite.py": {
+        "sha256": "92f987fc412a42904bbd287bfc3d99dcb3b133fe02268fb35e8dfdaacf64a711",
+        "bytes": 8635
+      },
+      "scripts/summarize_tseries.py": {
+        "sha256": "3ae8d0d6da70074e744c096485214dd25da20c2fce7d09e10df9ccad17bd91a6",
+        "bytes": 7786
+      },
+      "src/multimodal/tseries_core.py": {
+        "sha256": "9f8f3ae1eade6feee5688fb13a3d91e1cfc33805fe71c3a3b5981e18df1863ec",
+        "bytes": 6838
+      },
+      "src/multimodal/tseries_p5_model.py": {
+        "sha256": "987c041d80d85cfc18626febad308529e927944d02cfea4bdaf9d0d63cc2af0d",
+        "bytes": 8513
+      },
+      "src/multimodal/tseries_runtime.py": {
+        "sha256": "5daf47bdff07afdc1fe4e6790143d4f363d175b61d866a6f7d1ac4ec0b14230a",
+        "bytes": 7894
+      },
+      "tests/test_tseries.py": {
+        "sha256": "c2c51ba60b04a821464272d5e82e04ec1af134124b774dbf61a3a19c90456437",
+        "bytes": 12452
+      }
+    }
+  }
+}
