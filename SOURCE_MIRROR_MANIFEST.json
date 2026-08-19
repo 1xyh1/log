@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-19T17:30:44.958131+08:00",
+  "generated_at_local": "2026-08-19T17:31:35.363894+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1S_IMPLEMENTATION_VALIDATION.json": {
@@ -3908,6 +3908,90 @@
       "canonical_lf_sha256": "64b4c0967d1298a45257600a71cfc31419c5148afa9ef250921ad22b03688a58",
       "source_eol": "crlf"
     },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/args.yaml": {
+      "sha256": "232744c851463c2ccb3232b99aab9a710887a94701d862d1fc8ee796d2fd0824",
+      "size_bytes": 1992,
+      "mtime_ns": 1787131387088672500,
+      "canonical_lf_sha256": "111c0b859cce6f954637d5f85f7e5d5510473b033e2052530a2374b1314537a2",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/manifest.json": {
+      "sha256": "0ab17525497881eef8debe5c981c2c70a7fe47d20c0a5294df44e7ab75f2cc5b",
+      "size_bytes": 90019,
+      "mtime_ns": 1787131693124564900,
+      "canonical_lf_sha256": "841c8daf94cf663aa90a45084dbfe629cd3b90f74996cfc87e21b521cfc2ea66",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/optimizer_manifest.json": {
+      "sha256": "2b44b44f48bae8afc92e6b42eb4ae8755a78475a3cf858f7ff1cf10b68cf4ffe",
+      "size_bytes": 37934,
+      "mtime_ns": 1787131693129156500,
+      "canonical_lf_sha256": "822ae6f53b196637959cff011fd70ffe5323dfd8208f831e91db7db0ea75af20",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/results.csv": {
+      "sha256": "bcb24537cfd7337af3d6f2b27f7925e2d744ca6737c1526d87113ba14edf6451",
+      "size_bytes": 12176,
+      "mtime_ns": 1787131692669686200,
+      "canonical_lf_sha256": "417a442f005d9466183fffa5782bac43713553859409f14e8311a53c0678e341",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_mechanism.jsonl": {
+      "sha256": "6a3d8aee379a70512a4a311863f447264bcb1a6f62cdcdf0bf1470426b73400a",
+      "size_bytes": 30011,
+      "mtime_ns": 1787131693129156500,
+      "canonical_lf_sha256": "794f68372d4fad0f78281562ef7a61fcd1a71a11208833299b3c0e23ee152f12",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_source_schedule.jsonl": {
+      "sha256": "051495ceb1a36bbd2a7132ad726b9969995e7b149cbf827c955310aceb143001",
+      "size_bytes": 38398,
+      "mtime_ns": 1787131693129156500,
+      "canonical_lf_sha256": "9ead9513334192a1adc75993a07c6c6124edbab62924e9f81212c9253868bf8e",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/args.yaml": {
+      "sha256": "bfd816d51520df1635e665b8e7caefbec0861bd13bd4d6236940a8213e0e10f5",
+      "size_bytes": 2021,
+      "mtime_ns": 1787131347136712200,
+      "canonical_lf_sha256": "ff4a3c879f11106ecc359847d681da5affea9dc44d41a5bc3534e15f26177355",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/manifest.json": {
+      "sha256": "2d07db244573964e84f9d19fd09876d11671b503411fa051dab5e85c6b206d5f",
+      "size_bytes": 89963,
+      "mtime_ns": 1787131353833982300,
+      "canonical_lf_sha256": "47b9216adf4073d143f327351d20b9c11edb291d4168764924870da96e388283",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/optimizer_manifest.json": {
+      "sha256": "2b44b44f48bae8afc92e6b42eb4ae8755a78475a3cf858f7ff1cf10b68cf4ffe",
+      "size_bytes": 37934,
+      "mtime_ns": 1787131353833982300,
+      "canonical_lf_sha256": "822ae6f53b196637959cff011fd70ffe5323dfd8208f831e91db7db0ea75af20",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/results.csv": {
+      "sha256": "e986f652c9098ec5d49660fa02e1f888d28062ea4aa07ec6e0eed3fd4d2bbb7d",
+      "size_bytes": 287,
+      "mtime_ns": 1787131352849170600,
+      "canonical_lf_sha256": "fb8d10123b747bfbe247d728c3250be0e8301bd05cd8234d503c67955fe23422",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_mechanism.jsonl": {
+      "sha256": "d4419e284ab6ee7f6e5e1d7ab31bbbcc6a553b8ba952a65fe2e870795e58078e",
+      "size_bytes": 383,
+      "mtime_ns": 1787131353833982300,
+      "canonical_lf_sha256": "9a1979223e208efd73aa6ed3dd18167d9f510da04fa0fe124da58d9299c45a62",
+      "source_eol": "crlf"
+    },
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_source_schedule.jsonl": {
+      "sha256": "8d47e766c308d5c475d3e1875e8d55ffe307479bf447a758bb6c4d86646dc7e3",
+      "size_bytes": 479,
+      "mtime_ns": 1787131353833982300,
+      "canonical_lf_sha256": "d4ede6ab330b6652afde71bae20ae18099d0a320a7dd5a486ccbf98c846fab68",
+      "source_eol": "crlf"
+    },
     "runs/step4_tseries/T0-N_P5_NULL_seed20260812/args.yaml": {
       "sha256": "3c0f3dd7bdc4b0441ab0d1230b9e40879ece4c0a60cdb00c1986a7c72da94479",
       "size_bytes": 1962,
@@ -5177,21 +5261,17 @@
     }
   },
   "changed_in_this_sync": [
-    "T1TR_IMPLEMENTATION_VALIDATION.json",
-    "T1TR_README.md",
-    "docs/step4_t1tr/DESIGN_FREEZE.md",
-    "reports/step4_t1tr/posttrain_zero_eval.json",
-    "reports/step4_t1tr/pretraining_audit.json",
-    "reports/step4_t1tr/pretraining_smoke.json",
-    "reports/step4_t1tr/pretraining_static_audit.json",
-    "reports/step4_t1tr/t1tr_summary.json",
-    "scripts/audit_t1tr.py",
-    "scripts/eval_t1tr.py",
-    "scripts/run_t1tr.py",
-    "scripts/smoke_t1tr.py",
-    "scripts/summarize_t1tr.py",
-    "scripts/verify_t1tr_run.py",
-    "src/multimodal/t1tr_training_source.py",
-    "tests/test_t1tr.py"
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/args.yaml",
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/manifest.json",
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/optimizer_manifest.json",
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/results.csv",
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_mechanism.jsonl",
+    "runs/step4_t1tr/U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812/t1tr_source_schedule.jsonl",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/args.yaml",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/manifest.json",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/optimizer_manifest.json",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/results.csv",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_mechanism.jsonl",
+    "runs/step4_t1tr_smoke/smoke-U2-S_P5_FULL_BALANCED_SHUFFLED_seed20260812-e1/t1tr_source_schedule.jsonl"
   ]
 }

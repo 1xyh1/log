@@ -52,6 +52,8 @@ RESULTS_PREFIXES = (
     "runs/step4_f1_c/",
     "runs/step4_tseries/",
     "runs/step4_tseries_smoke/",
+    "runs/step4_t1tr/",
+    "runs/step4_t1tr_smoke/",
 )
 RESULTS_TEXT_SUFFIXES = {".json", ".jsonl", ".csv", ".yaml", ".txt"}
 RESULTS_FIGURE_NAMES = {"results.png"}
