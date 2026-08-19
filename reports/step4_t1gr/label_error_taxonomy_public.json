@@ -1,0 +1,62 @@
+{
+  "schema": "t1gr-label-error-taxonomy-public-v1",
+  "read_only": true,
+  "n_label_visible_pairs": 2000,
+  "class_names": [
+    "person",
+    "boat",
+    "animal",
+    "seat",
+    "sign",
+    "bicycle",
+    "car",
+    "ball",
+    "light",
+    "garbage can",
+    "uav",
+    "tricycle"
+  ],
+  "sample_category_counts": {
+    "CLEAN": 1667,
+    "DERIVED_CORNER_OVERFLOW": 332,
+    "DUPLICATE_ROWS": 2,
+    "STRICT_[0,1]_ONLY": 3
+  },
+  "sample_category_counts_by_visible_extension": {
+    ".jpg": {
+      "CLEAN": 142,
+      "DERIVED_CORNER_OVERFLOW": 7
+    },
+    ".png": {
+      "CLEAN": 1525,
+      "DERIVED_CORNER_OVERFLOW": 325,
+      "DUPLICATE_ROWS": 2,
+      "STRICT_[0,1]_ONLY": 3
+    }
+  },
+  "derived_corner_overflow_box_bins": {
+    "<=1e-6": 329,
+    "(1e-3,1e-2]": 26,
+    "(1e-2,5e-2]": 20,
+    "(1e-4,1e-3]": 27,
+    ">5e-2": 7
+  },
+  "adjudication_counts": {
+    "hard_schema_or_class_samples": 0,
+    "ultralytics_8_4_56_reject_samples": 0,
+    "strict_[0,1]_but_ultralytics_tolerates_samples": 3,
+    "corner_overflow_without_hard_or_ultralytics_reject": 332,
+    "corner_overflow_only_samples": 328,
+    "duplicate_row_samples": 2,
+    "empty_background_samples": 0
+  },
+  "policy_notes": {
+    "hard_schema_or_class": "formal blocker",
+    "ultralytics_8_4_56_reject": "formal Step1 blocker",
+    "strict_[0,1]_only": "review/record; trainer tolerance differs from strict documentation",
+    "derived_corner_overflow": "diagnostic only unless another hard category is present",
+    "duplicate_rows": "record effective loader behavior; do not silently edit raw labels",
+    "empty_background": "valid if intentional"
+  },
+  "raw_sample_ids_in_public_report": false
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "t1gr-layout-observed-facts-partial-v1",
+  "status": "PARTIAL_FACT_FREEZE_NOT_FINAL_LAYOUT",
+  "n_samples": 2000,
+  "classes": [
+    "person",
+    "boat",
+    "animal",
+    "seat",
+    "sign",
+    "bicycle",
+    "car",
+    "ball",
+    "light",
+    "garbage can",
+    "uav",
+    "tricycle"
+  ],
+  "label_format": {
+    "type": "yolo_xywh_normalized",
+    "fields": 5,
+    "label_validity_status": "PENDING_TAXONOMY"
+  },
+  "domains": {
+    "JPG_149": {
+      "count": 149,
+      "shape": [
+        360,
+        640
+      ],
+      "visible": {
+        "dtype": "uint8",
+        "channels": 3
+      },
+      "infrared": {
+        "dtype": "uint8",
+        "channels": 3,
+        "sampled_channel_relation": "equal"
+      },
+      "depth": {
+        "dtype": "uint8",
+        "channels": 3,
+        "semantic_class": "DEPTH_U8_GRAY_DERIVED_UNKNOWN_SCALE"
+      }
+    },
+    "PNG_1851": {
+      "count": 1851,
+      "shape": [
+        1080,
+        1920
+      ],
+      "visible": {
+        "dtype": "uint8",
+        "channels": 3
+      },
+      "infrared": {
+        "dtype": "uint8",
+        "channels": 3,
+        "sampled_channel_relation": "not_equal"
+      },
+      "depth": {
+        "dtype": "uint16",
+        "channels": 1,
+        "semantic_class": "DEPTH_METRIC_U16_MM"
+      }
+    }
+  },
+  "depth_policy": {
+    "t1gr_use": "QUARANTINED",
+    "d_series": "HOLD",
+    "jpg_mm_reconstruction": "FORBIDDEN"
+  },
+  "ir_preprocess_policy": "UNRESOLVED_UNTIL_TRAIN_DEV_FROZEN",
+  "group_rule": {
+    "status": "UNRESOLVED",
+    "id_prefix_proxy_forbidden": true
+  },
+  "step1_status": "HOLD"
+}
