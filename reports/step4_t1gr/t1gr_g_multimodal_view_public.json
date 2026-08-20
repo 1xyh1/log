@@ -1,0 +1,30 @@
+{
+  "any_raw_sample_id_present": false,
+  "dataset_yaml_sha256": "532dd76d4544099552b629443102c14a3c03cafae2d528af6e027a07528d66f6",
+  "depth_present": false,
+  "dev_count": 198,
+  "final_holdout_count": 298,
+  "final_holdout_ids_available_to_view": false,
+  "final_holdout_open_authorized": false,
+  "formal_zip_sha256": "791d84337b8cc2e6428c36db895570cc846f9937cb451cd5ae2ca42527954116",
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "implementation_spec_sha256": "e9f84bf8b06968c83bcd2c9b18b6eb74a040ecb8434b3aaf148a8e1720b724bb",
+  "mapping_commitment": "7738d553747dfdac5ffb8d9f21126bcc08fec1c3013c80d5e71fe4e5c1e97b3b",
+  "modalities": {
+    "infrared": true,
+    "labels": true,
+    "visible": true
+  },
+  "payload_sha256": "e21e3475f5082ad5396fd3f2b147f8fd712165d5a3f00c07c6fece5c2bd81c82",
+  "recipe_public_sha256": "c603ac3ffea27a0f82ec65c9a1bbf14a7db2432a456db781521e7282e21cc671",
+  "request_fingerprint": "6cce296beaa89996bdc79ceabfd5bf40ef213f5342f5625d45440b4e02831d3d",
+  "schema": "t1gr-g-multimodal-view-public-v1",
+  "script_version": "t1gr-g-build-multimodal-view-v1",
+  "train_count": 1504,
+  "view_gate_passed": true,
+  "view_manifest_private_sha256": "ae53b002a0ac0c00ab7491e2af79fd0d061c4a52f527d73706d94412d9922726"
+}

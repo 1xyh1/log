@@ -1,0 +1,121 @@
+{
+  "schema": "t1gr-g-implementation-freeze-v1",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_SMOKE",
+  "experiment": "T1-GR",
+  "upstream": {
+    "design_commit": "3b0a304",
+    "design_schema": "t1gr-g-design-freeze-v1",
+    "design_payload_sha256": "b27c84a5f37a68948f1e215f315a7e7096f3a8fef4130c450a02487f5a833562",
+    "design_file_sha256": "94af19188f1c2a6aff38acd6d94b071b1ec6fed042104d27097e43f2d44b209a",
+    "e5_v2_recipe_schema": "t1gr-e5-v2-step1-recipe-public-v2",
+    "e5_v2_recipe_payload_sha256": "91e479f62087c6d7caf20e512f0350f2c6be8caf8f520a982549e27f8cfa6196",
+    "e5_v2_final_payload_sha256": "cdf772bcbefe99ac46908bdb674c2f5aa89eb997fb14ffadd30c898ecdc6c35b",
+    "e5_v2_dev_map50_95": 0.3519127675021732
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "torch": "2.5.1+cu121",
+    "ultralytics": "8.4.56",
+    "single_gpu_only": true,
+    "train_workers": 8,
+    "validation_workers": 16,
+    "epoch_fresh_worker_iterators": true,
+    "epoch_fresh_worker_reason": "Prevent persistent-worker prefetch from consuming a G2 donor map from the previous epoch.",
+    "private_failure_traceback": true
+  },
+  "input_tensor": {
+    "channels": 4,
+    "layout_before_format": "BGR visible channels 0:3 plus one grayscale IR channel 3",
+    "layout_after_format": "RGB visible channels 0:3 plus one grayscale IR channel 3",
+    "model_split": "visible=x[:,0:3], auxiliary=concat(infrared=x[:,3:4], zero_depth)",
+    "depth_used": false
+  },
+  "augmentation": {
+    "geometry": "Ultralytics 8.4.56 E5 v2 detection geometry on a single four-channel array",
+    "mosaic": 1.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "degrees": 0.0,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "close_mosaic": 10,
+    "visible_hsv": "E5_V2_EXACT_VISIBLE_ONLY",
+    "visible_albumentations": "ULTRALYTICS_8_4_56_DEFAULT_NONSPATIAL_VISIBLE_ONLY",
+    "ir_photometric": "NONE_EXCEPT_RESIZE_AND_NORMALIZATION",
+    "ir_geometry_border_fill": "ZERO",
+    "rgb_reference_parity_required": true,
+    "same_seed_cross_arm_visible_bitwise_identity_required": true
+  },
+  "source_conditions": {
+    "G0-N": "paired IR is loaded and passed through the auxiliary branch under no_grad; P5 residual is NULL",
+    "G1-P": "correctly paired IR drives P5 FULL residual",
+    "G2-S": "seed-keyed epoch derangement IR drives the same P5 FULL residual",
+    "G2_order_of_operations": "select donor identity, normalize donor IR to recipient native grid, concatenate, then apply recipient-keyed shared geometry"
+  },
+  "model": {
+    "class": "T1GRP5Model",
+    "topology": "P5-only direct IR; no P3/P4 direct injection; no gate",
+    "rgb_backbone_frozen": false,
+    "end2end": true,
+    "loss": "Ultralytics E2ELoss",
+    "same_seed_complete_initial_state_required": true,
+    "initialization_claim": "AUDITABLE_INITIALIZATION_ONLY",
+    "numerical_repeatability_claim": false
+  },
+  "training": {
+    "inherit_e5_v2": true,
+    "optimizer": "MuSGD",
+    "epochs": 80,
+    "smoke_epochs": 1,
+    "batch": 4,
+    "nbs": 64,
+    "imgsz": 640,
+    "lr0": 0.01,
+    "momentum": 0.9,
+    "weight_decay": 0.0005,
+    "primary_checkpoint": "last.pt",
+    "best_checkpoint_role": "DIAGNOSTIC_ONLY"
+  },
+  "evaluation": {
+    "primary_inference_ir": "ZERO_IR",
+    "rationale": "Preserve the T1-TR training-source replication endpoint; native paired-IR inference remains diagnostic only.",
+    "split": "DEV",
+    "metric": "mAP50-95",
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 100,
+    "fold_count": 5,
+    "fold_unit": "E3 leakage component",
+    "native_paired_ir_metric_role": "DIAGNOSTIC_ONLY"
+  },
+  "smoke": {
+    "matrix": "3 arms x 3 frozen seeds",
+    "run_count": 9,
+    "optimizer_group_identity_required": true,
+    "same_seed_initial_state_identity_required": true,
+    "g2_epoch_mapping_runtime_trace_required": true,
+    "formal_authorization_requires_all_nine": true
+  },
+  "formal": {
+    "run_count": 9,
+    "order": "design-frozen 3x3 Latin square",
+    "suite_only_entry": true,
+    "selective_rerun_forbidden": true,
+    "fail_closed_recovery": true
+  },
+  "authority": {
+    "implementation_entry_authorized": true,
+    "preflight_authorized": true,
+    "smoke_training_authorized_before_preflight": false,
+    "multiseed_training_authorized_before_smoke_audit": false,
+    "final_holdout_open_authorized": false,
+    "depth_go": false,
+    "production_go": false
+  },
+  "payload_sha256": "0bf75a3209fd97c0979898c026edec6aa9db005db40bad1a492719f5dc6aa5e7"
+}

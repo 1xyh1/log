@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Suite-only compatibility entry; individual arm/seed launch is intentionally unsupported."""
+"""Run or resume the frozen nine-run one-epoch smoke suite."""
 from __future__ import annotations
 
 import argparse
@@ -16,7 +16,6 @@ from multimodal.t1gr_secure_io import safe_error_message  # noqa: E402
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", required=True, choices=("smoke", "formal"))
     parser.add_argument("--view-manifest", required=True)
     parser.add_argument("--base-checkpoint", required=True)
     parser.add_argument("--run-root", required=True)
@@ -25,18 +24,13 @@ def main() -> None:
     try:
         result = run_suite(
             repo=ROOT,
-            mode=args.mode,
+            mode="smoke",
             design_path=ROOT / "config/t1gr_g_design.frozen.json",
             preflight_path=ROOT / "reports/step4_t1gr/t1gr_g_implementation_preflight_public.json",
             view_manifest=Path(args.view_manifest),
             base_checkpoint=Path(args.base_checkpoint),
             run_root=Path(args.run_root),
             suite_state_path=Path(args.suite_state),
-            smoke_audit_path=(
-                ROOT / "reports/step4_t1gr/t1gr_g_smoke_audit_public.json"
-                if args.mode == "formal"
-                else None
-            ),
         )
         print(json.dumps(result, ensure_ascii=False, indent=2))
     except KeyboardInterrupt:

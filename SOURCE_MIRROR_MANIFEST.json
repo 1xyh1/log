@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-20T23:21:42.829794+08:00",
+  "generated_at_local": "2026-08-21T02:37:57.539016+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -112,6 +112,13 @@
       "size_bytes": 6713,
       "mtime_ns": 1787239191412232000,
       "canonical_lf_sha256": "94af19188f1c2a6aff38acd6d94b071b1ec6fed042104d27097e43f2d44b209a",
+      "source_eol": "lf"
+    },
+    "config/t1gr_g_implementation_spec.frozen.json": {
+      "sha256": "e9f84bf8b06968c83bcd2c9b18b6eb74a040ecb8434b3aaf148a8e1720b724bb",
+      "size_bytes": 4555,
+      "mtime_ns": 1787248050750715000,
+      "canonical_lf_sha256": "e9f84bf8b06968c83bcd2c9b18b6eb74a040ecb8434b3aaf148a8e1720b724bb",
       "source_eol": "lf"
     },
     "config/t1gr_layout_observed_facts.partial.json": {
@@ -497,6 +504,13 @@
       "size_bytes": 3019,
       "mtime_ns": 1787165726852186100,
       "canonical_lf_sha256": "690612dd0639cd6e93cb7e4c79ddf2180fa82361bd34832ecd0c313882ddb8c4",
+      "source_eol": "lf"
+    },
+    "docs/step4_t1gr/G_IMPLEMENTATION_FREEZE.md": {
+      "sha256": "d7550df04dcda4154fcb08b95e36f11ff35e34e3418d0072410a06d26dea5c96",
+      "size_bytes": 3764,
+      "mtime_ns": 1787248051009188000,
+      "canonical_lf_sha256": "d7550df04dcda4154fcb08b95e36f11ff35e34e3418d0072410a06d26dea5c96",
       "source_eol": "lf"
     },
     "docs/step4_t1gr/V1_1_TO_V1_2_HARDENING.md": {
@@ -1094,11 +1108,95 @@
       "canonical_lf_sha256": "892335dc809a9fb362554ea317a6d0e1c0140f72e73a238e9a369a60877f22af",
       "source_eol": "lf"
     },
+    "reports/step4_t1gr/t1gr_g_implementation_preflight_public.json": {
+      "sha256": "2df41f88c04170f1def3186dc44a84998720de32751f7f2542238380de3d4978",
+      "size_bytes": 7892,
+      "mtime_ns": 1787248706254097500,
+      "canonical_lf_sha256": "2df41f88c04170f1def3186dc44a84998720de32751f7f2542238380de3d4978",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_multimodal_view_public.json": {
+      "sha256": "2dbb519630996183192cc95123f66f0b6c245fe1e47b67b6657c142ce808b96c",
+      "size_bytes": 1474,
+      "mtime_ns": 1787248294414128300,
+      "canonical_lf_sha256": "2dbb519630996183192cc95123f66f0b6c245fe1e47b67b6657c142ce808b96c",
+      "source_eol": "lf"
+    },
     "reports/step4_t1gr/t1gr_g_run_plan_public.json": {
       "sha256": "61c6abd7f45ea60e170c01ede9856af806b26a4a3e5c25cee1c824373ca8c6b0",
       "size_bytes": 2831,
       "mtime_ns": 1787239265702040300,
       "canonical_lf_sha256": "61c6abd7f45ea60e170c01ede9856af806b26a4a3e5c25cee1c824373ca8c6b0",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_audit_public.json": {
+      "sha256": "b93794986737107f86444c692ee2d62e09588662e015524d6f65031f99e92b86",
+      "size_bytes": 5580,
+      "mtime_ns": 1787251038487762100,
+      "canonical_lf_sha256": "b93794986737107f86444c692ee2d62e09588662e015524d6f65031f99e92b86",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g0_n_public.json": {
+      "sha256": "4736bb55d516f41d9a4863112436306cbd729df382180d7814ae2259ffa479f6",
+      "size_bytes": 6400,
+      "mtime_ns": 1787248970538509200,
+      "canonical_lf_sha256": "4736bb55d516f41d9a4863112436306cbd729df382180d7814ae2259ffa479f6",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g1_p_public.json": {
+      "sha256": "7ea02be78743fe9abc3bb6f3e59524088dd1ac5ce9b7a663c743657dc8120e9e",
+      "size_bytes": 6514,
+      "mtime_ns": 1787249242922825200,
+      "canonical_lf_sha256": "7ea02be78743fe9abc3bb6f3e59524088dd1ac5ce9b7a663c743657dc8120e9e",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g2_s_public.json": {
+      "sha256": "040645120693d2fea0ed221edd71a2fd7c277089ba7fcc5dcaf8e471786c7322",
+      "size_bytes": 6513,
+      "mtime_ns": 1787249532867755600,
+      "canonical_lf_sha256": "040645120693d2fea0ed221edd71a2fd7c277089ba7fcc5dcaf8e471786c7322",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g0_n_public.json": {
+      "sha256": "ccf6e2adcb159c841203beeeb51cde2e9ddff1e098d3491b24762e159bdbf341",
+      "size_bytes": 6400,
+      "mtime_ns": 1787250275827883000,
+      "canonical_lf_sha256": "ccf6e2adcb159c841203beeeb51cde2e9ddff1e098d3491b24762e159bdbf341",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g1_p_public.json": {
+      "sha256": "b1fc2c632abd5e845e8ec591e7a67508b38d421bcb760a239bd8ba7e17ebb79d",
+      "size_bytes": 6514,
+      "mtime_ns": 1787249783530905500,
+      "canonical_lf_sha256": "b1fc2c632abd5e845e8ec591e7a67508b38d421bcb760a239bd8ba7e17ebb79d",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g2_s_public.json": {
+      "sha256": "90f13752c2ed61edeb91ba7e066998cdc489847855b4385ccfdfc04273817d7d",
+      "size_bytes": 6511,
+      "mtime_ns": 1787250032651875800,
+      "canonical_lf_sha256": "90f13752c2ed61edeb91ba7e066998cdc489847855b4385ccfdfc04273817d7d",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g0_n_public.json": {
+      "sha256": "5eb37f3b228815de74c5f5e335dd4abc96d339f8725391c835e77bf5708912f1",
+      "size_bytes": 6400,
+      "mtime_ns": 1787250772968730200,
+      "canonical_lf_sha256": "5eb37f3b228815de74c5f5e335dd4abc96d339f8725391c835e77bf5708912f1",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g1_p_public.json": {
+      "sha256": "032816c814a1022d63b9ec007fea4ab08219363eca1eb578a99d0846a4e6962c",
+      "size_bytes": 6514,
+      "mtime_ns": 1787251022702991000,
+      "canonical_lf_sha256": "032816c814a1022d63b9ec007fea4ab08219363eca1eb578a99d0846a4e6962c",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g2_s_public.json": {
+      "sha256": "9fd320a6b1af7424afa9e0c9bcd2c00a8828b46d4c55fe7892fe290fb961dd68",
+      "size_bytes": 6510,
+      "mtime_ns": 1787250525280036100,
+      "canonical_lf_sha256": "9fd320a6b1af7424afa9e0c9bcd2c00a8828b46d4c55fe7892fe290fb961dd68",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/t1gr_g_synthetic_gate_public.json": {
@@ -5357,6 +5455,13 @@
       "canonical_lf_sha256": "b959225e6c431745e0503c631f07a3c097be373fccc3be0a89a208c54cccb1ad",
       "source_eol": "lf"
     },
+    "scripts/t1gr_g_build_multimodal_view.py": {
+      "sha256": "828aa62f61921207fe7184a59b9b29570325ed1cddeab8e5e9d044c78e304c6e",
+      "size_bytes": 14857,
+      "mtime_ns": 1787248050930330900,
+      "canonical_lf_sha256": "828aa62f61921207fe7184a59b9b29570325ed1cddeab8e5e9d044c78e304c6e",
+      "source_eol": "lf"
+    },
     "scripts/t1gr_g_design_audit.py": {
       "sha256": "a2e0da2e40833ca3b1358a037316fd128b2ff9c5b283a58a6798f11a358117e8",
       "size_bytes": 5287,
@@ -5364,11 +5469,53 @@
       "canonical_lf_sha256": "a2e0da2e40833ca3b1358a037316fd128b2ff9c5b283a58a6798f11a358117e8",
       "source_eol": "lf"
     },
+    "scripts/t1gr_g_eval_suite.py": {
+      "sha256": "968f84f5af40017286acc578a5847c87a5fcbb0ece715f97f3739160f9e74b13",
+      "size_bytes": 18060,
+      "mtime_ns": 1787248050871451300,
+      "canonical_lf_sha256": "968f84f5af40017286acc578a5847c87a5fcbb0ece715f97f3739160f9e74b13",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_g_implementation_preflight.py": {
+      "sha256": "774440799e1c9a3e925620ecfcfb77c7a51c9565b5e58e19bd60677c1d78c03a",
+      "size_bytes": 16243,
+      "mtime_ns": 1787248050908860000,
+      "canonical_lf_sha256": "774440799e1c9a3e925620ecfcfb77c7a51c9565b5e58e19bd60677c1d78c03a",
+      "source_eol": "lf"
+    },
     "scripts/t1gr_g_make_run_plan.py": {
       "sha256": "81f8cf7c3901c48355b9fafe6392017d29859586ea28f91b11abd25ee429b159",
       "size_bytes": 3375,
       "mtime_ns": 1787239191417378400,
       "canonical_lf_sha256": "81f8cf7c3901c48355b9fafe6392017d29859586ea28f91b11abd25ee429b159",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_g_run_formal_suite.py": {
+      "sha256": "12c645d851f0e3d3939693305ff22a62b682d5d8cdb7a48b0859cba19d33ec76",
+      "size_bytes": 1604,
+      "mtime_ns": 1787248050923211700,
+      "canonical_lf_sha256": "12c645d851f0e3d3939693305ff22a62b682d5d8cdb7a48b0859cba19d33ec76",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_g_run_one.py": {
+      "sha256": "312eee558f97d2827e11c6ec562612536fa9a8deb977309b479a3f2332a5c0ad",
+      "size_bytes": 23040,
+      "mtime_ns": 1787248050892595400,
+      "canonical_lf_sha256": "312eee558f97d2827e11c6ec562612536fa9a8deb977309b479a3f2332a5c0ad",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_g_run_smoke_suite.py": {
+      "sha256": "1a83d959e6737c30b80a796d0ce51fef848504677037a4980069d4f8e98c6a0a",
+      "size_bytes": 1503,
+      "mtime_ns": 1787248050897817400,
+      "canonical_lf_sha256": "1a83d959e6737c30b80a796d0ce51fef848504677037a4980069d4f8e98c6a0a",
+      "source_eol": "lf"
+    },
+    "scripts/t1gr_g_smoke_audit.py": {
+      "sha256": "db6a51f175d4c44e8e4338a64a1424f9ac4b46bfccb78813f7de1b115fe36061",
+      "size_bytes": 8455,
+      "mtime_ns": 1787248050915736300,
+      "canonical_lf_sha256": "db6a51f175d4c44e8e4338a64a1424f9ac4b46bfccb78813f7de1b115fe36061",
       "source_eol": "lf"
     },
     "scripts/t1gr_g_summarize.py": {
@@ -5386,10 +5533,10 @@
       "source_eol": "lf"
     },
     "scripts/t1gr_g_train_entry.py": {
-      "sha256": "b4b6039195a5c6cddffaf84ede8aa69ae70a64928241409fd40978b9b628ef90",
-      "size_bytes": 867,
-      "mtime_ns": 1787239191415872200,
-      "canonical_lf_sha256": "b4b6039195a5c6cddffaf84ede8aa69ae70a64928241409fd40978b9b628ef90",
+      "sha256": "7853933585ef6a4eea80b62993be7a29cacc69f69306ea2155148e548a83a040",
+      "size_bytes": 1803,
+      "mtime_ns": 1787248050883241500,
+      "canonical_lf_sha256": "7853933585ef6a4eea80b62993be7a29cacc69f69306ea2155148e548a83a040",
       "source_eol": "lf"
     },
     "scripts/t1gr_label_error_taxonomy.py": {
@@ -5735,11 +5882,39 @@
       "canonical_lf_sha256": "76470fa0b78557302d0cd3eff5572d91c20ad09083e4b94f15bc395c74ba09f8",
       "source_eol": "lf"
     },
+    "src/multimodal/t1gr_g_dataset.py": {
+      "sha256": "b30783cc6667f979e85c352f4c99d425469e7668e861b916ce9f00c208b9bd8d",
+      "size_bytes": 16099,
+      "mtime_ns": 1787248565321698100,
+      "canonical_lf_sha256": "b30783cc6667f979e85c352f4c99d425469e7668e861b916ce9f00c208b9bd8d",
+      "source_eol": "lf"
+    },
+    "src/multimodal/t1gr_g_impl_core.py": {
+      "sha256": "98841d8964c169ce27a8bf639b2e6b1480ac9c809f31a26494d5da032d9ed927",
+      "size_bytes": 12229,
+      "mtime_ns": 1787248050814598800,
+      "canonical_lf_sha256": "98841d8964c169ce27a8bf639b2e6b1480ac9c809f31a26494d5da032d9ed927",
+      "source_eol": "lf"
+    },
     "src/multimodal/t1gr_g_model.py": {
-      "sha256": "3be3d032ad4b3c46f329d3fb7b61f90a2f663eec0d6afcaa0e2d9199f7f4f3c4",
-      "size_bytes": 4156,
-      "mtime_ns": 1787239191413237300,
-      "canonical_lf_sha256": "3be3d032ad4b3c46f329d3fb7b61f90a2f663eec0d6afcaa0e2d9199f7f4f3c4",
+      "sha256": "1d77abc367404bc968cb17191559f92034f38b55bd9f70d7780965a9e19ba9f1",
+      "size_bytes": 6456,
+      "mtime_ns": 1787248674544896800,
+      "canonical_lf_sha256": "1d77abc367404bc968cb17191559f92034f38b55bd9f70d7780965a9e19ba9f1",
+      "source_eol": "lf"
+    },
+    "src/multimodal/t1gr_g_runtime.py": {
+      "sha256": "4f7a70242e500a1771bc34e0c412ba7322be66a414984422c075a023ef2a646b",
+      "size_bytes": 16003,
+      "mtime_ns": 1787248050823038600,
+      "canonical_lf_sha256": "4f7a70242e500a1771bc34e0c412ba7322be66a414984422c075a023ef2a646b",
+      "source_eol": "lf"
+    },
+    "src/multimodal/t1gr_g_suite.py": {
+      "sha256": "14470c5b6efc60022bf7855780a8117c0a65e5b41d6ce25d1447659b3bddfbc1",
+      "size_bytes": 7287,
+      "mtime_ns": 1787248050791549500,
+      "canonical_lf_sha256": "14470c5b6efc60022bf7855780a8117c0a65e5b41d6ce25d1447659b3bddfbc1",
       "source_eol": "lf"
     },
     "src/multimodal/t1gr_secure_io.py": {
@@ -6057,6 +6232,13 @@
       "canonical_lf_sha256": "fb1c4f31a5966832c6687235341cc11299da8ef981d572830114e5b38aaffb0d",
       "source_eol": "lf"
     },
+    "tests/test_t1gr_g_implementation.py": {
+      "sha256": "efbe18bc5651cdcece26ad434c023e9893cf8c4e601b79cbae2df37976b359ea",
+      "size_bytes": 7459,
+      "mtime_ns": 1787248050971398900,
+      "canonical_lf_sha256": "efbe18bc5651cdcece26ad434c023e9893cf8c4e601b79cbae2df37976b359ea",
+      "source_eol": "lf"
+    },
     "tests/test_t1gr_visual_leakage.py": {
       "sha256": "c28c62b5aca35ece234f47136a991fb923d1c88020bd4e93e04352f486233f31",
       "size_bytes": 2228,
@@ -6094,18 +6276,33 @@
     }
   },
   "changed_in_this_sync": [
-    "config/t1gr_g_design.frozen.json",
-    "docs/step4_t1gr/DESIGN_FREEZE.md",
-    "reports/step4_t1gr/t1gr_g_design_audit_public.json",
-    "reports/step4_t1gr/t1gr_g_run_plan_public.json",
-    "reports/step4_t1gr/t1gr_g_synthetic_gate_public.json",
-    "scripts/t1gr_g_design_audit.py",
-    "scripts/t1gr_g_make_run_plan.py",
-    "scripts/t1gr_g_summarize.py",
-    "scripts/t1gr_g_synthetic_gate.py",
+    "config/t1gr_g_implementation_spec.frozen.json",
+    "docs/step4_t1gr/G_IMPLEMENTATION_FREEZE.md",
+    "reports/step4_t1gr/t1gr_g_implementation_preflight_public.json",
+    "reports/step4_t1gr/t1gr_g_multimodal_view_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_audit_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g0_n_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260812_g2_s_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g0_n_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260813_g2_s_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g0_n_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_smoke_s20260814_g2_s_public.json",
+    "scripts/t1gr_g_build_multimodal_view.py",
+    "scripts/t1gr_g_eval_suite.py",
+    "scripts/t1gr_g_implementation_preflight.py",
+    "scripts/t1gr_g_run_formal_suite.py",
+    "scripts/t1gr_g_run_one.py",
+    "scripts/t1gr_g_run_smoke_suite.py",
+    "scripts/t1gr_g_smoke_audit.py",
     "scripts/t1gr_g_train_entry.py",
-    "src/multimodal/t1gr_g_core.py",
+    "src/multimodal/t1gr_g_dataset.py",
+    "src/multimodal/t1gr_g_impl_core.py",
     "src/multimodal/t1gr_g_model.py",
-    "tests/test_t1gr_g.py"
+    "src/multimodal/t1gr_g_runtime.py",
+    "src/multimodal/t1gr_g_suite.py",
+    "tests/test_t1gr_g_implementation.py"
   ]
 }
