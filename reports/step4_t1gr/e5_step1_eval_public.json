@@ -1,0 +1,75 @@
+{
+  "actual_eval_count": 198,
+  "actual_eval_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+  "authority": "DEV_ONLY_DIAGNOSTIC_BASELINE",
+  "dev_metrics": {
+    "map50": 0.5876862675735176,
+    "map50_95": 0.3466061595000106,
+    "per_class_map50_95": {
+      "0": 0.4100294524209837,
+      "1": 0.3742393939393939,
+      "10": 0.3435745411507325,
+      "11": 0.297,
+      "2": 0.4059757574713882,
+      "3": 0.3325822661916499,
+      "4": 0.2810767732356376,
+      "5": 0.3135289401626039,
+      "6": 0.4404276691549794,
+      "7": 0.18732873964803312,
+      "8": 0.4208051592308764,
+      "9": 0.352705221393848
+    }
+  },
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_runtime_version": "12.1",
+    "cudnn_version": 90100,
+    "device_compute_capability": "8.9",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "ultralytics_analytics_disabled_for_process": true,
+    "ultralytics_source_sha256": {
+      "default_yaml": "01c969e50e699320f06c88b126f08f602cde5a3d7836b4455ba24575abac1e15",
+      "events_py": "91fbbc8fe24a1bb74d9fc007364ca5527d60e1d73f8324dbe34832d925a4fe59",
+      "tasks_py": "ccaafe4101ba0fcb54983130d97a6ed99d0e7069d672f17256ace9de444837ea",
+      "trainer_py": "5232397fd8893c513dff824b52965de3394d75abea588a3b63a4b523de8f8111",
+      "yolo26_yaml": "b1d1fa0c69eced64f9939536038bd8d697c32e72200b34187a767de431af7ef0"
+    },
+    "ultralytics_version": "8.4.56"
+  },
+  "eval_args": {
+    "conf": 0.001,
+    "dnn": false,
+    "half": false,
+    "iou": 0.7,
+    "max_det": 300,
+    "plots": false,
+    "save_json": false,
+    "split": "val"
+  },
+  "eval_gate_passed": true,
+  "external_network_integrations": {
+    "amp_download_probe_bypassed": false,
+    "analytics_disabled": true,
+    "integration_callbacks_disabled": true
+  },
+  "final_holdout_ids_available_to_evaluator": false,
+  "final_holdout_open_authorized": false,
+  "formal_run_public_sha256": "84e4e5de4afc607c0419bb73531f30b5833b05e9babf18c4b2902147c7d9efda",
+  "head_end2end": true,
+  "last_pt_sha256": "ba7d28db97cfd6565cf8fdc7cbe9ed16460ee7b583928b4857a6e2b19565c365",
+  "payload_sha256": "f8cccdb79d17d67cdb2fb5d1c5d9623d87a68ac6fe6de80e2cad8f016af7b237",
+  "physical_head_nc": 12,
+  "private_artifact_permissions": {
+    "posix_umask_applied": false,
+    "windows_acl_proven": false
+  },
+  "recipe_public_sha256": "9489800bcb9cabf13d3ed8173c83d96f95492f1ac7e58e1e4747076e1d3ce9b6",
+  "request_fingerprint": "43be40a10f6d9f45216f088301ba9e2817d624aaaa4c6c62a6716c4e308961ba",
+  "schema": "t1gr-e5-step1-eval-public-v1",
+  "script_version": "t1gr-e5-step1-dev-eval-hardened-v1",
+  "view_manifest_private_sha256": "9cada97bdc78af14697d169380c4192c760dcc1eb650b0e51a0eb303ec981c16",
+  "view_public_sha256": "7742a6a9749b581861b2e2185cc45e97d6ed3ec2981f1f93bf946235a36a1e2b"
+}

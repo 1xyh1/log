@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-20T15:09:13.238303+08:00",
+  "generated_at_local": "2026-08-20T15:11:37.681604+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -877,12 +877,26 @@
       "canonical_lf_sha256": "28b664d72a156594ede6283c7a84763e75e3ece22bcee6bfa540d9095c2dc5ba",
       "source_eol": "crlf"
     },
+    "reports/step4_t1gr/e5_final_audit_public.json": {
+      "sha256": "8f296abc6a1b5f8d90024725a5cb658c4166d50fa0a953f79a6a39b258b7dd59",
+      "size_bytes": 1450,
+      "mtime_ns": 1787209857226114800,
+      "canonical_lf_sha256": "8f296abc6a1b5f8d90024725a5cb658c4166d50fa0a953f79a6a39b258b7dd59",
+      "source_eol": "lf"
+    },
     "reports/step4_t1gr/e5_static_audit.json": {
       "sha256": "0ad6b19b904730845b2aaa2f0547f61f8772334f209132edbb163ecfea61ba8f",
       "size_bytes": 3715,
       "mtime_ns": 1787165746658169400,
       "canonical_lf_sha256": "8a30358342a1c5f4e5594a1d4b2fb9b5a59214f9b12c981cc69dda4a4f7214df",
       "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/e5_step1_eval_public.json": {
+      "sha256": "ae0ed7ca5f1f4677cfa3892eb199cefd9db0f9d33302911e4bfd2c7183d8cc62",
+      "size_bytes": 2924,
+      "mtime_ns": 1787209825441206400,
+      "canonical_lf_sha256": "ae0ed7ca5f1f4677cfa3892eb199cefd9db0f9d33302911e4bfd2c7183d8cc62",
+      "source_eol": "lf"
     },
     "reports/step4_t1gr/e5_step1_formal_run_public.json": {
       "sha256": "84e4e5de4afc607c0419bb73531f30b5833b05e9babf18c4b2902147c7d9efda",
@@ -5134,10 +5148,10 @@
       "source_eol": "lf"
     },
     "scripts/t1gr_e5_final_audit.py": {
-      "sha256": "f1667f3b86dbb2f361a1e438ca7921f05609ee4bc263c93bc9aac0ed1f7d4594",
+      "sha256": "a85f28159eb427774952e65c4b3a6d01ed759fb13ebf50a7bf5c6480e0e1e222",
       "size_bytes": 7132,
-      "mtime_ns": 1787165726855307900,
-      "canonical_lf_sha256": "f1667f3b86dbb2f361a1e438ca7921f05609ee4bc263c93bc9aac0ed1f7d4594",
+      "mtime_ns": 1787209856906208900,
+      "canonical_lf_sha256": "a85f28159eb427774952e65c4b3a6d01ed759fb13ebf50a7bf5c6480e0e1e222",
       "source_eol": "lf"
     },
     "scripts/t1gr_e5_freeze_recipe.py": {
@@ -5877,7 +5891,8 @@
     }
   },
   "changed_in_this_sync": [
-    "reports/step4_t1gr/e5_step1_formal_run_public.json",
-    "reports/step4_t1gr/e5_step1_formal_run_public.json.lock (deleted)"
+    "reports/step4_t1gr/e5_final_audit_public.json",
+    "reports/step4_t1gr/e5_step1_eval_public.json",
+    "scripts/t1gr_e5_final_audit.py"
   ]
 }

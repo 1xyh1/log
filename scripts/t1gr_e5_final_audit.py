@@ -84,7 +84,7 @@ def run(a):
    "final_holdout_open_authorized":False,
    "t1gr_design_entry_authorized":passed,
    "t1gr_multiseed_training_authorized":False,
-   "next_action":"freeze T1-GR G0/G1/G2 multi-seed design; FINAL HOLDOUT remains sealed" if passed else "fix E5 evidence gates",
+   "next_action":"freeze T1-GR G0-G1-G2 multi-seed design; FINAL HOLDOUT remains sealed" if passed else "fix E5 evidence gates",
   }
   assert_public_safe(report)
   sh,reuse=atomic_json_write(out,report,private=False,request_fingerprint=request_fp)
