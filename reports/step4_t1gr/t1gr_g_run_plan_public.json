@@ -1,0 +1,97 @@
+{
+  "adaptive_reordering_forbidden": true,
+  "experiment": "T1-GR",
+  "final_holdout_open_authorized": false,
+  "implementation_entry_authorized": true,
+  "multiseed_training_authorized": false,
+  "n_runs": 9,
+  "next_action": "implementation and matched-arm smoke audit",
+  "order_frozen": true,
+  "payload_sha256": "7412426f53b86efce02f0d0155dfc6bf8df84ad8a06f15396f0a5b1d8d3e0013",
+  "rows": [
+    {
+      "arm": "G0-N",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 1,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G0-N_seed20260812",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 2,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G1-P_seed20260812",
+      "seed": 20260812
+    },
+    {
+      "arm": "G2-S",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 3,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G2-S_seed20260812",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 4,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G1-P_seed20260813",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 5,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G2-S_seed20260813",
+      "seed": 20260813
+    },
+    {
+      "arm": "G0-N",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 6,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G0-N_seed20260813",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 7,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G2-S_seed20260814",
+      "seed": 20260814
+    },
+    {
+      "arm": "G0-N",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 8,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G0-N_seed20260814",
+      "seed": 20260814
+    },
+    {
+      "arm": "G1-P",
+      "execution_status": "BLOCKED_PENDING_IMPLEMENTATION_SMOKE_AUDIT",
+      "expected_epochs": 80,
+      "position": 9,
+      "primary_checkpoint": "last.pt",
+      "run_name": "G1-P_seed20260814",
+      "seed": 20260814
+    }
+  ],
+  "schema": "t1gr-g-run-plan-public-v1",
+  "selective_rerun_forbidden": true,
+  "smoke_training_authorized": false
+}

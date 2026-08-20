@@ -1,0 +1,69 @@
+{
+  "checks": {
+    "base_checkpoint_pin": true,
+    "design_entry_authorized": true,
+    "design_payload_valid": true,
+    "dev_commitment_pin": true,
+    "dev_max_det_100": true,
+    "e5_baseline_accepted_dev_only": true,
+    "e5_dev_metric_pin": true,
+    "e5_final_payload_pin": true,
+    "e5_final_payload_valid": true,
+    "e5_final_schema": true,
+    "e5_gate_passed": true,
+    "e5_recipe_payload_pin": true,
+    "e5_recipe_payload_valid": true,
+    "e5_recipe_schema": true,
+    "e5_recipe_self_pin": true,
+    "explicit_musgd_pin": true,
+    "final_holdout_not_an_input": true,
+    "holdout_commitment_pin": true,
+    "holdout_still_blocked": true,
+    "last_checkpoint_primary": true,
+    "multiseed_training_still_blocked": true,
+    "sample_count_pin": true,
+    "train_commitment_pin": true
+  },
+  "depth_go": false,
+  "design": {
+    "arms": [
+      "G0-N",
+      "G1-P",
+      "G2-S"
+    ],
+    "launch_positions": {
+      "G0-N": [
+        0,
+        2,
+        1
+      ],
+      "G1-P": [
+        1,
+        0,
+        2
+      ],
+      "G2-S": [
+        2,
+        1,
+        0
+      ]
+    },
+    "n_runs": 9,
+    "seeds": [
+      20260812,
+      20260813,
+      20260814
+    ]
+  },
+  "design_freeze_passed": true,
+  "final_holdout_open_authorized": false,
+  "implementation_entry_authorized": true,
+  "multiseed_training_authorized": false,
+  "next_action": "implement and audit a one-epoch matched-arm smoke; FINAL HOLDOUT remains sealed",
+  "passed_count": 23,
+  "payload_sha256": "cc132d18bf2d5ee13693b4cd0297b7351356663bdebdfd412f5b8a368f74f670",
+  "production_go": false,
+  "schema": "t1gr-g-design-audit-public-v1",
+  "smoke_training_authorized": false,
+  "total_count": 23
+}

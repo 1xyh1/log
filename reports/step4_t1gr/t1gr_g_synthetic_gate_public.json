@@ -1,0 +1,77 @@
+{
+  "checks": {
+    "all_frozen_decision_branches_reachable": true,
+    "all_recipients_have_80_distinct_donors": true,
+    "all_schedules_no_self": true,
+    "all_schedules_one_donor_use_per_epoch": true,
+    "all_three_seed_schedules_pass": true,
+    "final_holdout_remains_blocked": true,
+    "multiseed_training_remains_blocked": true
+  },
+  "decision_branch_probes": {
+    "GENERIC_TRAINING_BENEFIT_SOURCE_IDENTITY_NOT_ESTABLISHED": {
+      "actual": "GENERIC_TRAINING_BENEFIT_SOURCE_IDENTITY_NOT_ESTABLISHED",
+      "passed": true
+    },
+    "PAIRED_SOURCE_SPECIFICITY_FAILED": {
+      "actual": "PAIRED_SOURCE_SPECIFICITY_FAILED",
+      "passed": true
+    },
+    "PAIRED_TRAINING_GENERALIZATION_SUPPORTED": {
+      "actual": "PAIRED_TRAINING_GENERALIZATION_SUPPORTED",
+      "passed": true
+    },
+    "SMALL_SAMPLE_SIGNAL_DID_NOT_TRANSFER": {
+      "actual": "SMALL_SAMPLE_SIGNAL_DID_NOT_TRANSFER",
+      "passed": true
+    }
+  },
+  "final_holdout_open_authorized": false,
+  "multiseed_training_authorized": false,
+  "payload_sha256": "7c3fe7282157bb15a11000dcf45a0f005f8c3e70bd691f37a8b3793a188160eb",
+  "private_data_accessed": false,
+  "schedule_summaries": [
+    {
+      "donor_use_per_epoch_max": 1,
+      "donor_use_per_epoch_min": 1,
+      "epochs": 80,
+      "expected_distinct_donors": 80,
+      "mapping_hashes_sha256": "f8fb688bc294c2b5c1035d1b7989be89c4a630cbd28592a1f211292b76d3853d",
+      "n_ids": 1504,
+      "passed": true,
+      "recipient_distinct_donor_max": 80,
+      "recipient_distinct_donor_min": 80,
+      "seed": 20260812,
+      "self_pair_count": 0
+    },
+    {
+      "donor_use_per_epoch_max": 1,
+      "donor_use_per_epoch_min": 1,
+      "epochs": 80,
+      "expected_distinct_donors": 80,
+      "mapping_hashes_sha256": "526d19f1d28234b46132083c41434cbc8e8145a00de65807f2d0aa4a92df4626",
+      "n_ids": 1504,
+      "passed": true,
+      "recipient_distinct_donor_max": 80,
+      "recipient_distinct_donor_min": 80,
+      "seed": 20260813,
+      "self_pair_count": 0
+    },
+    {
+      "donor_use_per_epoch_max": 1,
+      "donor_use_per_epoch_min": 1,
+      "epochs": 80,
+      "expected_distinct_donors": 80,
+      "mapping_hashes_sha256": "99705866171b3d1be346aa5b4e33a629426c44f15c3893e44e2eb3c87d345323",
+      "n_ids": 1504,
+      "passed": true,
+      "recipient_distinct_donor_max": 80,
+      "recipient_distinct_donor_min": 80,
+      "seed": 20260814,
+      "self_pair_count": 0
+    }
+  ],
+  "schema": "t1gr-g-synthetic-gate-public-v1",
+  "smoke_training_authorized": false,
+  "synthetic_gate_passed": true
+}

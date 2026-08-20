@@ -1,0 +1,189 @@
+{
+  "schema": "t1gr-g-design-freeze-v1",
+  "status": "FROZEN_FOR_IMPLEMENTATION_REVIEW",
+  "experiment": "T1-GR",
+  "objective": "Test whether correctly paired IR training improves fresh DEV generalization over NULL and balanced fully-wrong IR training.",
+  "upstream": {
+    "e5_v2_commit": "6f14392358b6fdb35b9b9e4a6e1c814a90442902",
+    "e5_recipe_schema": "t1gr-e5-v2-step1-recipe-public-v2",
+    "e5_recipe_sha256_self": "c5db01d5b21b3340f299626e611635d8099130398cce33923ca2f54733b00177",
+    "e5_recipe_payload_sha256": "91e479f62087c6d7caf20e512f0350f2c6be8caf8f520a982549e27f8cfa6196",
+    "e5_final_schema": "t1gr-e5-v2-final-audit-public-v2",
+    "e5_final_payload_sha256": "cdf772bcbefe99ac46908bdb674c2f5aa89eb997fb14ffadd30c898ecdc6c35b",
+    "e5_dev_map50_95": 0.3519127675021732,
+    "base_checkpoint_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+    "train_ids_commitment": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b",
+    "dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout_ids_commitment": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00"
+  },
+  "authority": {
+    "design_entry_authorized": true,
+    "implementation_entry_authorized_after_design_audit": true,
+    "smoke_training_authorized": false,
+    "multiseed_training_authorized": false,
+    "final_holdout_open_authorized": false,
+    "depth_go": false,
+    "production_go": false
+  },
+  "sample_counts": {
+    "train": 1504,
+    "dev": 198,
+    "final_holdout": 298
+  },
+  "seeds": [
+    20260812,
+    20260813,
+    20260814
+  ],
+  "arms": {
+    "G0-N": {
+      "label": "NULL training",
+      "model_treatment_id": "T0-N",
+      "training_ir_source": "RECIPIENT_PAIRED_BUFFER_ONLY",
+      "detection_residual": "NULL"
+    },
+    "G1-P": {
+      "label": "correctly paired P5 FULL IR training",
+      "model_treatment_id": "T1-F",
+      "training_ir_source": "RECIPIENT_PAIRED",
+      "detection_residual": "P5_FULL"
+    },
+    "G2-S": {
+      "label": "balanced fully-wrong P5 FULL IR training",
+      "model_treatment_id": "T1-F",
+      "training_ir_source": "SEED_KEYED_CYCLIC_DERANGEMENT",
+      "detection_residual": "P5_FULL"
+    }
+  },
+  "launch_order": [
+    {
+      "seed": 20260812,
+      "arms": ["G0-N", "G1-P", "G2-S"]
+    },
+    {
+      "seed": 20260813,
+      "arms": ["G1-P", "G2-S", "G0-N"]
+    },
+    {
+      "seed": 20260814,
+      "arms": ["G2-S", "G0-N", "G1-P"]
+    }
+  ],
+  "model": {
+    "architecture": "yolo26s",
+    "model_yaml": "yolo26s.yaml",
+    "num_classes": 12,
+    "end2end": true,
+    "topology": "P5-only direct IR injection; no P3/P4 direct injection; no reliability gate",
+    "p5_tap": 10,
+    "p5_channels": 512,
+    "fusion_initialization": "ZERO_INIT_RESIDUAL",
+    "rgb_backbone_frozen": false,
+    "pretrained_transfer_policy": "fresh physical nc=12 YOLO26s + shape-compatible partial transfer from pinned checkpoint",
+    "same_seed_initial_identity_required": true
+  },
+  "training": {
+    "inheritance": "E5_V2_EXACT_EXCEPT_INPUT_MODALITY_TREATMENT",
+    "epochs": 80,
+    "batch": 4,
+    "nbs": 64,
+    "imgsz": 640,
+    "optimizer": "MuSGD",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.9,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.0,
+    "amp": true,
+    "deterministic": true,
+    "workers": 8,
+    "checkpoint_primary": "last.pt",
+    "checkpoint_diagnostic_only": "best.pt",
+    "validation_cadence": "EVERY_EPOCH_DEV_ONLY",
+    "matching_contract_fields": [
+      "base_checkpoint",
+      "model_class",
+      "state_dict_keys",
+      "initialization",
+      "requires_grad_map",
+      "optimizer_groups",
+      "optimizer_hyperparameters",
+      "batch",
+      "nbs",
+      "imgsz",
+      "augmentation",
+      "sampling",
+      "epochs",
+      "checkpoint_policy",
+      "validation_cadence"
+    ]
+  },
+  "augmentation_contract": {
+    "visible_recipe": "E5_V2_EXACT",
+    "geometric_randomness_key": "recipient sample id + seed + epoch + draw index",
+    "rgb_ir_geometry": "IDENTICAL_RECIPIENT_KEYED_TRANSFORM",
+    "g2_rule": "Replace only the IR source before applying the recipient-keyed geometry",
+    "rgb_photometric": "E5_V2_EXACT",
+    "ir_photometric": "NONE_EXCEPT_DETERMINISTIC_NORMALIZATION",
+    "formal_runner_blocked_until_proven": true
+  },
+  "g2_schedule": {
+    "canonical_order": "sha256(seed || NUL || sample_id), then sample_id",
+    "epoch_shift": "1 + (epoch_zero_based mod (N-1))",
+    "mapping": "permuted_ids[i] -> permuted_ids[(i + shift) mod N]",
+    "per_epoch_bijection_required": true,
+    "self_match_count_required": 0,
+    "donor_use_per_epoch": 1,
+    "distinct_donors_per_recipient_over_80_epochs": 80,
+    "exhaustive_all_pairs_claimed": false,
+    "runtime_pair_log_required": true
+  },
+  "evaluation": {
+    "selection_split": "DEV",
+    "final_holdout": "SEALED",
+    "metric": "mAP50-95",
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 100,
+    "primary_checkpoint": "last.pt",
+    "fold_count": 5,
+    "fold_unit": "E3 leakage component",
+    "fold_assignment": "hash-sort components then round-robin",
+    "fold_sensitivity": "leave-one-fold-out recomputation",
+    "stable_fold_rule": "at least 4 of 5 LOFO deltas are strictly positive for each required contrast in each seed"
+  },
+  "contrasts": [
+    "G1-P_minus_G0-N",
+    "G1-P_minus_G2-S",
+    "G2-S_minus_G0-N"
+  ],
+  "decision_rules": {
+    "PAIRED_TRAINING_GENERALIZATION_SUPPORTED": "G1-G0 and G1-G2 are strictly positive in every frozen seed and each required seed/contrast has at least 4 of 5 positive LOFO deltas",
+    "GENERIC_TRAINING_BENEFIT_SOURCE_IDENTITY_NOT_ESTABLISHED": "G1-G0 and G2-G0 are strictly positive in every frozen seed while G1-G2 is MIXED or EXACT_TIE",
+    "PAIRED_SOURCE_SPECIFICITY_FAILED": "G1-G2 is STABLE_NEGATIVE or EXACT_TIE",
+    "SMALL_SAMPLE_SIGNAL_DID_NOT_TRANSFER": "G1-G0 and G2-G0 are each STABLE_NEGATIVE or EXACT_TIE",
+    "INCONCLUSIVE_REPLICATION": "all remaining patterns"
+  },
+  "diagnostics_only": [
+    "training AP",
+    "train-set mAP",
+    "train plus holdout all-set AP",
+    "old val6",
+    "best epoch",
+    "loss minimum",
+    "optimization speed",
+    "residual RMS",
+    "native-vs-zero inference"
+  ],
+  "required_outputs": [
+    "docs/step4_t1gr/DESIGN_FREEZE.md",
+    "reports/step4_t1gr/t1gr_g_design_audit_public.json",
+    "reports/step4_t1gr/t1gr_g_run_plan_public.json",
+    "reports/step4_t1gr/per_seed_results.json",
+    "reports/step4_t1gr/cross_seed_summary.json",
+    "reports/step4_t1gr/t1gr_summary.json"
+  ],
+  "payload_sha256": "b27c84a5f37a68948f1e215f315a7e7096f3a8fef4130c450a02487f5a833562"
+}
