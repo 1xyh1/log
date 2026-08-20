@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-20T15:51:03.343212+08:00",
+  "generated_at_local": "2026-08-20T17:44:44.958309+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -981,6 +981,41 @@
       "mtime_ns": 1787211943790908600,
       "canonical_lf_sha256": "99a2c149ee95202765548ac30c479b98c7d738b171f2bf85fa93fc63dea5e930",
       "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/e5_v2_final_audit_public.json": {
+      "sha256": "a5a44effc1061f6713a93b1a3f636a7b091bd797dce549b8101e6edccd239e65",
+      "size_bytes": 1747,
+      "mtime_ns": 1787219050338980100,
+      "canonical_lf_sha256": "a5a44effc1061f6713a93b1a3f636a7b091bd797dce549b8101e6edccd239e65",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/e5_v2_run_evidence/args.yaml": {
+      "sha256": "d797eb05ea50b1af9c24846902fba1d68f1c5334815649716cae5bec5c3c21f7",
+      "size_bytes": 1785,
+      "mtime_ns": 1787219060207925100,
+      "canonical_lf_sha256": "343874749fd3a09b957d42c535e72ad741a55dbb180746f1bc351e9009c2f17e",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/e5_v2_run_evidence/results.csv": {
+      "sha256": "e8ab22371d4e286596523c4d9ba3991a5472fef77e7c6d877f8c32d925658663",
+      "size_bytes": 13883,
+      "mtime_ns": 1787219060197970500,
+      "canonical_lf_sha256": "31a2a7348e021b3bcb3ba146a1c4dee19bd6ac0e234d46c95f819b66ed2c033f",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/e5_v2_step1_eval_public.json": {
+      "sha256": "82d73455e4470d785ea7b0f679a281daea2e00c57216c2870bb3e18c6e4900fb",
+      "size_bytes": 2936,
+      "mtime_ns": 1787219028021638900,
+      "canonical_lf_sha256": "82d73455e4470d785ea7b0f679a281daea2e00c57216c2870bb3e18c6e4900fb",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/e5_v2_step1_formal_run_public.json": {
+      "sha256": "3592ba1aeec1a502f530e31104b247fd335143513afd1102cea2317ed5b4fdd4",
+      "size_bytes": 5380,
+      "mtime_ns": 1787216849197031700,
+      "canonical_lf_sha256": "3592ba1aeec1a502f530e31104b247fd335143513afd1102cea2317ed5b4fdd4",
+      "source_eol": "lf"
     },
     "reports/step4_t1gr/e5_v2_step1_preflight_public.json": {
       "sha256": "9cc0c4bcfa4af8a024676d5d3f7a94391aa33aed785c0256986f500866541c55",
@@ -5218,10 +5253,10 @@
       "source_eol": "lf"
     },
     "scripts/t1gr_e5_final_audit.py": {
-      "sha256": "afd6324d760297f5b4e37c5f5614cbbfe14d653cc92a1ba00d857efe4166acdb",
+      "sha256": "f992a42a7d2bdaf1a8240fcb4ca84cd6b35517441e82a0f2bd51541d879623f7",
       "size_bytes": 8537,
-      "mtime_ns": 1787211810828940500,
-      "canonical_lf_sha256": "afd6324d760297f5b4e37c5f5614cbbfe14d653cc92a1ba00d857efe4166acdb",
+      "mtime_ns": 1787219050031650900,
+      "canonical_lf_sha256": "f992a42a7d2bdaf1a8240fcb4ca84cd6b35517441e82a0f2bd51541d879623f7",
       "source_eol": "lf"
     },
     "scripts/t1gr_e5_freeze_recipe.py": {
@@ -5968,28 +6003,11 @@
     }
   },
   "changed_in_this_sync": [
-    "config/t1gr_e5_security_policy.json",
-    "config/t1gr_e5_training_spec.candidate.json",
-    "config/t1gr_e5_training_spec.frozen.json",
-    "config/t1gr_e5_training_spec.template.json",
-    "docs/E5_V2_FAILURE_AND_OPTIMIZER_ADJUDICATION.md",
-    "docs/E5_V2_FULL_IMPLEMENTATION_DIFF.md",
-    "docs/E5_V2_IMPLEMENTATION_LOG.md",
-    "reports/step4_t1gr/e5_v1_reeval_public.json",
-    "reports/step4_t1gr/e5_v1_run_evidence/args.yaml",
-    "reports/step4_t1gr/e5_v1_run_evidence/results.csv",
-    "reports/step4_t1gr/e5_v2_step1_preflight_public.json",
-    "reports/step4_t1gr/e5_v2_step1_recipe_public.json",
-    "reports/step4_t1gr/e5_v2_step1_smoke_public.json",
-    "reports/step4_t1gr/e5_v2_step1_view_public.json",
-    "scripts/t1gr_e5_build_rgb_view.py",
-    "scripts/t1gr_e5_eval_step1.py",
-    "scripts/t1gr_e5_final_audit.py",
-    "scripts/t1gr_e5_freeze_recipe.py",
-    "scripts/t1gr_e5_preflight.py",
-    "scripts/t1gr_e5_run_step1.py",
-    "scripts/t1gr_e5_v2_regression_gate.py",
-    "src/multimodal/t1gr_e5_core.py",
-    "tests/test_t1gr_e5_hardened.py"
+    "reports/step4_t1gr/e5_v2_final_audit_public.json",
+    "reports/step4_t1gr/e5_v2_run_evidence/args.yaml",
+    "reports/step4_t1gr/e5_v2_run_evidence/results.csv",
+    "reports/step4_t1gr/e5_v2_step1_eval_public.json",
+    "reports/step4_t1gr/e5_v2_step1_formal_run_public.json",
+    "scripts/t1gr_e5_final_audit.py"
   ]
 }

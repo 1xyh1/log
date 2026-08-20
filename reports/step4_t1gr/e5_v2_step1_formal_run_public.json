@@ -1,0 +1,148 @@
+{
+  "actual_amp": true,
+  "actual_batch_size": 4,
+  "actual_train_workers": 8,
+  "base_checkpoint_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "best_pt_sha256": "a4c89ab782fb69c5214d41e5017a70800c6677d5624f565eb7769f9cec64674c",
+  "dev_count": 198,
+  "dev_eval_authorized": true,
+  "e4_freeze_precedes_training": true,
+  "effective_args_yaml_sha256": "d797eb05ea50b1af9c24846902fba1d68f1c5334815649716cae5bec5c3c21f7",
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_runtime_version": "12.1",
+    "cudnn_version": 90100,
+    "device_compute_capability": "8.9",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "ultralytics_analytics_disabled_for_process": true,
+    "ultralytics_source_sha256": {
+      "default_yaml": "01c969e50e699320f06c88b126f08f602cde5a3d7836b4455ba24575abac1e15",
+      "events_py": "91fbbc8fe24a1bb74d9fc007364ca5527d60e1d73f8324dbe34832d925a4fe59",
+      "tasks_py": "ccaafe4101ba0fcb54983130d97a6ed99d0e7069d672f17256ace9de444837ea",
+      "trainer_py": "5232397fd8893c513dff824b52965de3394d75abea588a3b63a4b523de8f8111",
+      "yolo26_yaml": "b1d1fa0c69eced64f9939536038bd8d697c32e72200b34187a767de431af7ef0"
+    },
+    "ultralytics_version": "8.4.56"
+  },
+  "epochs_completed": 80,
+  "epochs_expected": 80,
+  "external_network_integrations": {
+    "amp_download_probe_bypassed": true,
+    "analytics_disabled": true,
+    "integration_callbacks_disabled": true
+  },
+  "final_holdout_ids_available_to_runner": false,
+  "final_holdout_open_authorized": false,
+  "formal_step1_authorized_after_smoke": false,
+  "head_end2end": true,
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "last_pt_sha256": "0f4753d10c77b58e21bba39cc90e6bd6b3b66e71be816442ca410f6cdece9efe",
+  "mode": "formal",
+  "model_initial_state_sha256": "974b9c3b25d8b99bb09a24dcf50b122162bef719bc577529c561e1b901cd9b2c",
+  "model_initialization_effective_seed": 20260812,
+  "optimizer": {
+    "class_name": "MuSGD",
+    "groups": [
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 0,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 0,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 24,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 90,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 30,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 96,
+        "weight_decay": 0.0
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.03,
+        "lr": 0.03,
+        "momentum": 0.9,
+        "parameter_count": 30,
+        "weight_decay": 0.0005
+      },
+      {
+        "betas": null,
+        "initial_lr": 0.01,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "parameter_count": 96,
+        "weight_decay": 0.0005
+      }
+    ],
+    "module": "ultralytics.optim.muon",
+    "param_group_count": 8
+  },
+  "payload_sha256": "a72e679bd4f82e909acb2e60a36c6df7362c18a72e208e434b8605b3a47d1ea7",
+  "physical_head_nc": 12,
+  "preflight_public_sha256": "9cc0c4bcfa4af8a024676d5d3f7a94391aa33aed785c0256986f500866541c55",
+  "pretrained_destination_key_count": 708,
+  "pretrained_transfer_key_count": 696,
+  "private_artifact_permissions": {
+    "posix_umask_applied": false,
+    "windows_acl_proven": false
+  },
+  "recipe_freeze_precedes_training": true,
+  "recipe_public_sha256": "c603ac3ffea27a0f82ec65c9a1bbf14a7db2432a456db781521e7282e21cc671",
+  "request_fingerprint": "f0f24c2f1089a8307e9d37ca37c2fbb8cf84add9f4e8fb58d19a38498eac2390",
+  "results_csv_sha256": "e8ab22371d4e286596523c4d9ba3991a5472fef77e7c6d877f8c32d925658663",
+  "run_gate_passed": true,
+  "schema": "t1gr-e5-v2-step1-run-public-v2",
+  "script_version": "t1gr-e5-v2-step1-trainer-hardened-v2",
+  "smoke_report_sha256": "8a0c14eb60cbbc117bea87c7eb1eb62d161d602cbd89696651580a3b110fd090",
+  "status": "STEP1_FORMAL_TRAIN_COMPLETE",
+  "timeout_seconds": 43200.0,
+  "train_count": 1504,
+  "training_finished_at_utc": "2026-08-20T09:07:29.137659Z",
+  "training_start_state_sha256": "974b9c3b25d8b99bb09a24dcf50b122162bef719bc577529c561e1b901cd9b2c",
+  "training_started_at_utc": "2026-08-20T07:54:57.960544Z",
+  "untransferred_initial_state_sha256": "c594bcd2271d8dac7e2f209d1cf13be757b081366882b83d7bf5bc9429d40de8",
+  "untransferred_state_key_count": 12,
+  "view_manifest_private_sha256": "cc06572ee443f630d85e87966a5389a19b5914969e514b751535ae9cd53fd494",
+  "view_public_sha256": "42c21f9c58fe64e05c703fa00bab09cfef376cd4ae776fa9ed108768194c9b05"
+}
