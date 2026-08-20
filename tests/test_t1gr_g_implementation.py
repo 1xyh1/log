@@ -99,7 +99,6 @@ class ImplementationCoreTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 finite_metric(bad)
 
-
 class StaticSafetyTests(unittest.TestCase):
     def source(self, relative: str) -> str:
         return (ROOT / relative).read_text(encoding="utf-8")
@@ -115,6 +114,14 @@ class StaticSafetyTests(unittest.TestCase):
         self.assertIn("T1GRFormat", source)
         self.assertIn("class T1GRLetterBox", source)
         self.assertIn("padded[:, :, 3] = 0", source)
+
+    def test_ultralytics_hwc1_grayscale_is_squeezed_before_concat(self):
+        source = self.source("src/multimodal/t1gr_g_dataset.py")
+        branch = "ir = ir[:, :, 0] if ir.shape[2] == 1 else cv2.cvtColor(ir, cv2.COLOR_BGR2GRAY)"
+        concat = "np.concatenate((visible, ir[:, :, None]), axis=2)"
+        self.assertIn("if ir.ndim == 3:", source)
+        self.assertIn(branch, source)
+        self.assertLess(source.index(branch), source.index(concat))
 
     def test_epoch_worker_reset_is_synchronous(self):
         source = self.source("src/multimodal/t1gr_g_runtime.py")
@@ -133,6 +140,13 @@ class StaticSafetyTests(unittest.TestCase):
         self.assertIn("zeros_like(infrared)", source)
         self.assertNotIn("repeat(1, 2", source)
         self.assertNotIn("freeze_rgb_backbone=True", source)
+
+    def test_stock_reference_nc_is_bound_before_tseries_adapter(self):
+        source = self.source("src/multimodal/t1gr_g_model.py")
+        binding = "reference.nc = int(reference.model[-1].nc)"
+        construction = "model = T1GRP5Model("
+        self.assertIn(binding, source)
+        self.assertLess(source.index(binding), source.index(construction))
 
     def test_formal_entry_requires_smoke_authority_and_suite_state(self):
         run_one = self.source("scripts/t1gr_g_run_one.py")
