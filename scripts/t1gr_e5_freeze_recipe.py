@@ -18,7 +18,7 @@ from multimodal.t1gr_e5_core import (
     utc_now, validate_e2_evidence, validate_e4_evidence, validate_training_spec, parse_utc,
 )
 
-SCRIPT_VERSION="t1gr-e5-freeze-recipe-hardened-v1"
+SCRIPT_VERSION="t1gr-e5-v2-freeze-recipe-hardened-v2"
 
 def git_head(repo:Path)->str:
     try:
@@ -33,7 +33,7 @@ def run(a):
     repo=ROOT.resolve(strict=True)
     secp=ensure_repo_input(repo,"config/t1gr_e5_security_policy.json","config")
     if sha256_file(secp)!=FROZEN_E5_SECURITY_POLICY_SHA256: fail("E5_SECURITY_POLICY_SHA_DRIFT")
-    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v1")
+    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v2")
     tsp=ensure_repo_input(repo,"config/t1gr_e5_training_spec.frozen.json","config")
     if sha256_file(tsp)!=FROZEN_E5_TRAINING_SPEC_SHA256: fail("E5_FROZEN_TRAINING_SPEC_SHA_DRIFT")
     forensic_p=ensure_repo_input(repo,"reports/step4_t1gr/zip_forensic_public.json","reports/step4_t1gr")
@@ -41,7 +41,7 @@ def run(a):
     e4f_p=ensure_repo_input(repo,"reports/step4_t1gr/e4_split_freeze_public.json","reports/step4_t1gr")
     e4v_p=ensure_repo_input(repo,"reports/step4_t1gr/e4_seal_verification_public.json","reports/step4_t1gr")
     td_p=ensure_private_input(Path(a.train_dev_access),repo)
-    out=ensure_public_output(repo,"reports/step4_t1gr/e5_step1_recipe_public.json",sec["public_output_prefix"])
+    out=ensure_public_output(repo,"reports/step4_t1gr/e5_v2_step1_recipe_public.json",sec["public_output_prefix"])
     zp=Path(a.formal_zip).expanduser().resolve(strict=False)
     ck=Path(a.base_checkpoint).expanduser().resolve(strict=False)
     if not zp.is_file(): fail("FORMAL_ZIP_NOT_FOUND")
@@ -56,7 +56,7 @@ def run(a):
         e4f=read_json_bounded(e4f_p,int(sec["max_public_json_bytes"]))
         e4v=read_json_bounded(e4v_p,int(sec["max_public_json_bytes"]))
         td=read_json_bounded(td_p,int(sec["max_private_json_bytes"]))
-        spec=read_json_bounded(tsp,int(sec["max_public_json_bytes"]),"t1gr-e5-training-spec-v1")
+        spec=read_json_bounded(tsp,int(sec["max_public_json_bytes"]),"t1gr-e5-training-spec-v2")
         validate_e2_evidence(forensic,taxonomy)
         validate_training_spec(spec)
         td_sha=sha256_file(td_p,deadline)
@@ -118,6 +118,8 @@ def run(a):
             "train_args":spec["train_args"],
             "eval_args":spec["eval_args"],
             "runtime":spec["runtime"],
+            "optimizer_adjudication":spec["review_freeze"]["optimizer_adjudication"],
+            "evaluation_detection_cap":spec["review_freeze"]["evaluation_detection_cap"],
             "view_policy":{
                 "mode":"COPY_ONLY",
                 "modalities":"VISIBLE_PLUS_LABELS",

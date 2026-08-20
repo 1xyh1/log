@@ -12,6 +12,7 @@ import zipfile
 import contextlib
 import threading
 import _thread
+import traceback
 from pathlib import Path
 from typing import Any
 
@@ -26,13 +27,13 @@ CLASS_NAMES = [
 ]
 CLASS_NAME_MAP = {str(i): name for i, name in enumerate(CLASS_NAMES)}
 
-SCHEMA_RECIPE = "t1gr-e5-step1-recipe-public-v1"
-SCHEMA_VIEW_PRIVATE = "t1gr-e5-step1-view-private-v1"
-SCHEMA_VIEW_PUBLIC = "t1gr-e5-step1-view-public-v1"
-SCHEMA_PREFLIGHT = "t1gr-e5-step1-preflight-public-v1"
-SCHEMA_RUN = "t1gr-e5-step1-run-public-v1"
-SCHEMA_EVAL = "t1gr-e5-step1-eval-public-v1"
-SCHEMA_FINAL = "t1gr-e5-final-audit-public-v1"
+SCHEMA_RECIPE = "t1gr-e5-v2-step1-recipe-public-v2"
+SCHEMA_VIEW_PRIVATE = "t1gr-e5-v2-step1-view-private-v2"
+SCHEMA_VIEW_PUBLIC = "t1gr-e5-v2-step1-view-public-v2"
+SCHEMA_PREFLIGHT = "t1gr-e5-v2-step1-preflight-public-v2"
+SCHEMA_RUN = "t1gr-e5-v2-step1-run-public-v2"
+SCHEMA_EVAL = "t1gr-e5-v2-step1-eval-public-v2"
+SCHEMA_FINAL = "t1gr-e5-v2-final-audit-public-v2"
 
 E4_FREEZE_SCHEMA = "t1gr-e4-split-freeze-public-v1"
 E4_VERIFY_SCHEMA = "t1gr-e4-seal-verification-public-v1"
@@ -41,8 +42,8 @@ E4_TRAIN_DEV_SCHEMA = "t1gr-e4-train-dev-access-private-v1"
 FORENSIC_SCHEMA = "t1gr-zip-forensic-public-v1"
 TAXONOMY_SCHEMA = "t1gr-label-error-taxonomy-public-v1"
 
-FROZEN_E5_TRAINING_SPEC_SHA256 = "01be2a9443d068fca13ce7b4fdaee481fb16de9ca4bc12ad2ef756d64cdfd32e"
-FROZEN_E5_SECURITY_POLICY_SHA256 = "656fcacb191aa7e85d463c1abb46203cd3a2eb2347cfec72dd09bb7ae4a18c52"
+FROZEN_E5_TRAINING_SPEC_SHA256 = "a6b83b6c28a2b794978d787bbc4e75278b41fd6556a56c026e15341830d335f2"
+FROZEN_E5_SECURITY_POLICY_SHA256 = "4b105a66e1a06b3cb5adb0c1446054487ae379060e70b84eb08936bb3d1d1b98"
 
 REQUIRED_TRAIN_ARGS = (
     "epochs", "batch", "imgsz", "patience", "optimizer", "lr0", "lrf", "momentum",
@@ -58,6 +59,7 @@ REQUIRED_EVAL_ARGS = ("split", "conf", "iou", "max_det", "half", "dnn", "plots",
 REQUIRED_RUNTIME = (
     "device", "smoke_epochs", "smoke_timeout_seconds", "formal_timeout_seconds",
     "eval_timeout_seconds", "lock_wait_seconds", "lock_stale_seconds",
+    "private_traceback_max_bytes",
 )
 
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
@@ -207,9 +209,9 @@ def _need_numeric(d: dict, key: str, *, minv=None, maxv=None, integer=False) -> 
 
 
 def validate_training_spec(spec: dict) -> None:
-    if spec.get("schema") != "t1gr-e5-training-spec-v1":
+    if spec.get("schema") != "t1gr-e5-training-spec-v2":
         fail("E5_TRAINING_SPEC_SCHEMA_FAIL")
-    if spec.get("status") != "REVIEWED_FROZEN":
+    if spec.get("status") != "REVIEWED_FROZEN_V2":
         fail("E5_TRAINING_SPEC_NOT_REVIEWED")
     train = require_dict(spec.get("train_args"), "E5_TRAIN_ARGS_MISSING")
     eva = require_dict(spec.get("eval_args"), "E5_EVAL_ARGS_MISSING")
@@ -218,11 +220,8 @@ def validate_training_spec(spec: dict) -> None:
     require_keys(eva, REQUIRED_EVAL_ARGS, "E5_EVAL_ARGS_UNRESOLVED")
     require_keys(runtime, REQUIRED_RUNTIME, "E5_RUNTIME_UNRESOLVED")
 
-    allowed_opt={"sgd","musgd","adam","adamax","adamw","nadam","radam","rmsprop","auto"}
-    if not isinstance(train["optimizer"],str) or train["optimizer"].lower() not in allowed_opt:
-        fail("E5_OPTIMIZER_INVALID")
-    if str(train["optimizer"]).lower() == "auto":
-        fail("E5_OPTIMIZER_AUTO_FORBIDDEN")
+    if str(train.get("optimizer")).lower() != "musgd":
+        fail("E5_V2_OPTIMIZER_MUST_BE_ADJUDICATED_MUSGD")
     if train["deterministic"] is not True:
         fail("E5_DETERMINISTIC_REQUIRED")
     if train["end2end"] is not True:
@@ -231,6 +230,8 @@ def validate_training_spec(spec: dict) -> None:
         fail("E5_CORE_TRAIN_POLICY_FAIL")
     if eva["split"] != "val":
         fail("E5_EVAL_MUST_BE_DEV_VAL")
+    if int(eva.get("max_det", -1)) != 100:
+        fail("E5_EVAL_MAX_DET_MUST_BE_100")
     if spec.get("architecture") != "yolo26s" or spec.get("model_yaml") != "yolo26s.yaml":
         fail("E5_MODEL_ARCH_DRIFT")
     if int(spec.get("num_classes", -1)) != 12:
@@ -253,8 +254,9 @@ def validate_training_spec(spec: dict) -> None:
         _need_numeric(eva, k, minv=0.0, maxv=1.0)
     _need_numeric(eva, "max_det", minv=1, integer=True)
     for k in ("smoke_epochs","smoke_timeout_seconds","formal_timeout_seconds","eval_timeout_seconds",
-              "lock_wait_seconds","lock_stale_seconds"):
+              "lock_wait_seconds","lock_stale_seconds","private_traceback_max_bytes"):
         _need_numeric(runtime, k, minv=1.0)
+    _need_numeric(runtime, "private_traceback_max_bytes", minv=65536, integer=True)
     if int(runtime["smoke_epochs"]) != 1:
         fail("E5_SMOKE_EPOCHS_MUST_BE_ONE")
     if not isinstance(runtime["device"], (str, int)) or str(runtime["device"]).strip() == "":
@@ -267,6 +269,38 @@ def validate_training_spec(spec: dict) -> None:
     bool_eval=("half","dnn","plots","save_json")
     if any(not isinstance(eva[k],bool) for k in bool_eval): fail("E5_EVAL_SPEC_BOOL_TYPE_FAIL")
     if train["copy_paste_mode"] not in {"flip","mixup"}: fail("E5_COPY_PASTE_MODE_INVALID")
+
+    review = require_dict(spec.get("review_freeze"), "E5_V2_REVIEW_FREEZE_MISSING")
+    adjudication = require_dict(review.get("optimizer_adjudication"), "E5_V2_OPTIMIZER_ADJUDICATION_MISSING")
+    require_keys(adjudication, (
+        "decision", "selected_optimizer", "framework_auto_would_select",
+        "train_sample_count", "nominal_batch", "nbs", "epochs",
+        "framework_iteration_formula", "framework_estimated_iterations",
+        "auto_threshold_iterations", "not_auto_equivalent", "rationale",
+    ), "E5_V2_OPTIMIZER_ADJUDICATION_UNRESOLVED")
+    expected_iterations = math.ceil(
+        int(adjudication["train_sample_count"]) /
+        max(int(adjudication["nominal_batch"]), int(adjudication["nbs"]))
+    ) * int(adjudication["epochs"])
+    if (
+        adjudication["decision"] != "KEEP_PROJECT_FROZEN_MUSGD"
+        or adjudication["selected_optimizer"] != train["optimizer"]
+        or adjudication["framework_auto_would_select"] != "AdamW"
+        or int(adjudication["train_sample_count"]) != 1504
+        or int(adjudication["nominal_batch"]) != int(train["batch"])
+        or int(adjudication["nbs"]) != int(train["nbs"])
+        or int(adjudication["epochs"]) != int(train["epochs"])
+        or adjudication["framework_iteration_formula"] != "ceil(train_sample_count/max(nominal_batch,nbs))*epochs"
+        or int(adjudication["framework_estimated_iterations"]) != expected_iterations
+        or expected_iterations != 1920
+        or int(adjudication["auto_threshold_iterations"]) != 10000
+        or adjudication["not_auto_equivalent"] is not True
+        or not isinstance(adjudication["rationale"], str)
+        or not adjudication["rationale"].strip()
+    ):
+        fail("E5_V2_OPTIMIZER_ADJUDICATION_DRIFT")
+    if int(review.get("evaluation_detection_cap", -1)) != int(eva["max_det"]):
+        fail("E5_V2_EVALUATION_CAP_DRIFT")
 
 
 def zip_modality(name: str) -> str | None:
@@ -340,6 +374,138 @@ def scan_formal_zip(zp: Path, deadline: Deadline, *, max_members: int = 12000,
         "labels_commitment": sha256_json(label_hashes),
         "member_counts": {m: len(maps[m]) for m in maps},
     }
+
+
+def state_dict_sha256(state: dict[str, Any], keys: list[str] | None = None) -> str:
+    """Hash tensor names, metadata and bytes in a stable key order."""
+    try:
+        import torch
+    except Exception:
+        fail("E5_MODEL_HASH_IMPORT_FAIL")
+    selected = sorted(state) if keys is None else sorted(keys)
+    h = hashlib.sha256()
+    for name in selected:
+        if name not in state:
+            fail("E5_MODEL_HASH_KEY_MISSING")
+        tensor = state[name]
+        if not isinstance(tensor, torch.Tensor):
+            fail("E5_MODEL_HASH_NON_TENSOR_STATE")
+        value = tensor.detach().cpu().contiguous()
+        metadata = json.dumps(
+            {"name": name, "dtype": str(value.dtype), "shape": list(value.shape)},
+            sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+        ).encode("utf-8")
+        byte_view_source = value.reshape(1) if value.ndim == 0 else value
+        raw = byte_view_source.view(torch.uint8).reshape(-1).numpy().tobytes()
+        h.update(len(metadata).to_bytes(8, "big")); h.update(metadata)
+        h.update(len(raw).to_bytes(8, "big")); h.update(raw)
+    return h.hexdigest()
+
+
+def build_seeded_model(checkpoint: Path, recipe: dict) -> tuple[Any, dict]:
+    """Seed before nc=12 head construction, transfer the pinned checkpoint and hash the exact initial state."""
+    try:
+        import torch
+        from ultralytics.nn.tasks import DetectionModel, yaml_model_load
+        from ultralytics.utils import RANK
+        from ultralytics.utils.torch_utils import init_seeds
+    except Exception:
+        fail("E5_MODEL_IMPORT_FAIL")
+    if int(RANK) != -1:
+        fail("E5_DISTRIBUTED_RANK_FORBIDDEN")
+    effective_seed = int(recipe["train_args"]["seed"]) + 1 + int(RANK)
+    try:
+        init_seeds(effective_seed, deterministic=bool(recipe["train_args"]["deterministic"]))
+        definition = yaml_model_load(recipe["model_yaml"])
+        definition["nc"] = 12
+        definition["end2end"] = True
+        model = DetectionModel(definition, ch=3, nc=12, verbose=False)
+        checkpoint_obj = torch.load(checkpoint, map_location="cpu", weights_only=False)
+        source = checkpoint_obj["model"].float().state_dict()
+        destination = model.state_dict()
+        compatible = {
+            key: value for key, value in source.items()
+            if key in destination and tuple(value.shape) == tuple(destination[key].shape)
+        }
+        if not compatible:
+            fail("E5_PRETRAIN_TRANSFER_EMPTY")
+        model.load_state_dict(compatible, strict=False)
+        initialized = model.state_dict()
+        untransferred = sorted(set(initialized) - set(compatible))
+        head = model.model[-1]
+        return model, {
+            "physical_nc": int(getattr(head, "nc", -1)),
+            "end2end": bool(getattr(head, "end2end", getattr(model, "end2end", False))),
+            "destination_state_keys": len(destination),
+            "source_state_keys": len(source),
+            "transferred_state_keys": len(compatible),
+            "transfer_fraction_of_destination": len(compatible) / max(1, len(destination)),
+            "untransferred_state_keys": len(untransferred),
+            "model_initialization_rank": int(RANK),
+            "model_initialization_effective_seed": effective_seed,
+            "model_initial_state_sha256": state_dict_sha256(initialized),
+            "untransferred_initial_state_sha256": state_dict_sha256(initialized, untransferred),
+        }
+    except KeyError:
+        fail("E5_CHECKPOINT_MODEL_KEY_MISSING")
+    except Exception as exc:
+        if hasattr(exc, "code"):
+            raise
+        fail("E5_MODEL_BUILD_OR_LOAD_FAIL")
+
+
+def write_private_failure_report(run_dir: Path, exc: BaseException, phase: str, max_bytes: int) -> Path:
+    """Persist the full local traceback in the private run directory; public stderr remains sanitized."""
+    if not isinstance(max_bytes, int) or max_bytes < 65536:
+        fail("E5_PRIVATE_TRACEBACK_LIMIT_INVALID")
+    run_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
+    path = run_dir / "E5_PRIVATE_FAILURE.json"
+    temp = run_dir / f".E5_PRIVATE_FAILURE.{os.getpid()}.tmp"
+    tb = "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+    csv_path = run_dir / "results.csv"
+    completed_rows = None
+    if csv_path.is_file():
+        try:
+            with csv_path.open("r", encoding="utf-8-sig", newline="") as stream:
+                completed_rows = sum(1 for _ in csv.DictReader(stream))
+        except OSError:
+            completed_rows = None
+    report = {
+        "schema": "t1gr-e5-v2-private-failure-v1",
+        "recorded_at_utc": utc_now(),
+        "phase": str(phase),
+        "exception_type": type(exc).__name__,
+        "exception_message": str(exc)[: max_bytes // 8],
+        "traceback": tb,
+        "partial_artifacts": {
+            "results_csv_present": csv_path.is_file(),
+            "completed_result_rows": completed_rows,
+            "args_yaml_present": (run_dir / "args.yaml").is_file(),
+            "last_pt_present": (run_dir / "weights" / "last.pt").is_file(),
+            "best_pt_present": (run_dir / "weights" / "best.pt").is_file(),
+        },
+        "public_pass_issued": False,
+    }
+    data = json.dumps(report, ensure_ascii=False, indent=2).encode("utf-8")
+    if len(data) > max_bytes:
+        report["traceback"] = tb.encode("utf-8")[: max_bytes // 2].decode("utf-8", errors="replace")
+        report["traceback_truncated"] = True
+        data = json.dumps(report, ensure_ascii=False, indent=2).encode("utf-8")
+    if len(data) > max_bytes:
+        fail("E5_PRIVATE_TRACEBACK_REPORT_TOO_LARGE")
+    try:
+        with temp.open("xb") as stream:
+            stream.write(data); stream.flush(); os.fsync(stream.fileno())
+        if os.name != "nt":
+            os.chmod(temp, 0o600)
+        os.replace(temp, path)
+    except OSError:
+        try:
+            temp.unlink(missing_ok=True)
+        except OSError:
+            pass
+        fail("E5_PRIVATE_TRACEBACK_WRITE_FAIL")
+    return path
 
 
 def environment_probe() -> dict:

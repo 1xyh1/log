@@ -1,5 +1,5 @@
 {
-  "schema": "t1gr-e5-security-policy-v1",
+  "schema": "t1gr-e5-security-policy-v2",
   "public_output_prefix": "reports/step4_t1gr",
   "private_parent_must_preexist": true,
   "max_private_json_bytes": 67108864,
@@ -19,5 +19,7 @@
   "ultralytics_usage_analytics": "DISABLED_FOR_E5_PROCESS",
   "amp_network_probe": "BYPASSED; AMP is qualified by mandatory 1-epoch smoke before formal train",
   "posix_private_artifact_umask": "0077",
-  "windows_private_acl_claim": "NOT_PROVEN_BY_PYTHON; private roots must be user-controlled"
+  "windows_private_acl_claim": "NOT_PROVEN_BY_PYTHON; private roots must be user-controlled",
+  "private_failure_traceback": "PRIVATE_RUN_DIRECTORY_ONLY; NEVER COPIED TO PUBLIC REPORTS",
+  "private_failure_traceback_max_bytes": 1048576
 }

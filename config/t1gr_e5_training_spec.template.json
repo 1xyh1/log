@@ -1,7 +1,7 @@
 {
-  "schema": "t1gr-e5-training-spec-v1",
-  "status": "TEMPLATE_UNRESOLVED",
-  "notes": "Fill every null and review explicitly. Formal recipe builder accepts only status=REVIEWED_FROZEN.",
+  "schema": "t1gr-e5-training-spec-v2",
+  "status": "TEMPLATE_ONLY",
+  "notes": "Template copy. Review all fields and the explicit optimizer adjudication before freezing.",
   "architecture": "yolo26s",
   "model_yaml": "yolo26s.yaml",
   "num_classes": 12,
@@ -26,7 +26,7 @@
     "dfl": 1.5,
     "cos_lr": false,
     "amp": true,
-    "workers": null,
+    "workers": 8,
     "deterministic": true,
     "cache": false,
     "rect": false,
@@ -63,19 +63,41 @@
     "split": "val",
     "conf": 0.001,
     "iou": 0.7,
-    "max_det": 300,
+    "max_det": 100,
     "half": false,
     "dnn": false,
     "plots": false,
     "save_json": false
   },
   "runtime": {
-    "device": null,
+    "device": "0",
     "smoke_epochs": 1,
     "smoke_timeout_seconds": 1800,
     "formal_timeout_seconds": 43200,
     "eval_timeout_seconds": 3600,
     "lock_wait_seconds": 5.0,
-    "lock_stale_seconds": 900.0
+    "lock_stale_seconds": 900.0,
+    "private_traceback_max_bytes": 1048576
+  },
+  "review_freeze": {
+    "date": "2026-08-20",
+    "basis": "project-original E5 recipe retained after v2 optimizer adjudication",
+    "workers_device_policy": "workers=8 and device=0 are frozen; no CLI override",
+    "authority": "E5 Step1 mother baseline; subsequent matched comparisons inherit all non-treatment settings",
+    "optimizer_adjudication": {
+      "decision": "KEEP_PROJECT_FROZEN_MUSGD",
+      "selected_optimizer": "MuSGD",
+      "framework_auto_would_select": "AdamW",
+      "train_sample_count": 1504,
+      "nominal_batch": 4,
+      "nbs": 64,
+      "epochs": 80,
+      "framework_iteration_formula": "ceil(train_sample_count/max(nominal_batch,nbs))*epochs",
+      "framework_estimated_iterations": 1920,
+      "auto_threshold_iterations": 10000,
+      "not_auto_equivalent": true,
+      "rationale": "Preserve the already frozen mother-baseline optimizer and downstream comparison continuity. The scientific choice is explicit MuSGD, not runtime auto-selection."
+    },
+    "evaluation_detection_cap": 100
   }
 }

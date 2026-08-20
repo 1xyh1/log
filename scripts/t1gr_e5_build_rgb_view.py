@@ -18,7 +18,7 @@ from multimodal.t1gr_e5_core import (
     scan_formal_zip, validate_e4_evidence, verify_view_tree,
 )
 
-SCRIPT_VERSION="t1gr-e5-build-rgb-view-hardened-v1"
+SCRIPT_VERSION="t1gr-e5-v2-build-rgb-view-hardened-v2"
 
 def raw_sha(b:bytes)->str: return hashlib.sha256(b).hexdigest()
 
@@ -36,8 +36,8 @@ def run(a):
     repo=ROOT.resolve(strict=True)
     secp=ensure_repo_input(repo,"config/t1gr_e5_security_policy.json","config")
     if sha256_file(secp)!=FROZEN_E5_SECURITY_POLICY_SHA256: fail("E5_SECURITY_POLICY_SHA_DRIFT")
-    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v1")
-    rp=ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_recipe_public.json","reports/step4_t1gr")
+    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v2")
+    rp=ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_recipe_public.json","reports/step4_t1gr")
     fp=ensure_repo_input(repo,"reports/step4_t1gr/e4_split_freeze_public.json","reports/step4_t1gr")
     vp=ensure_repo_input(repo,"reports/step4_t1gr/e4_seal_verification_public.json","reports/step4_t1gr")
     td_p=ensure_private_input(Path(a.train_dev_access),repo)
@@ -46,7 +46,7 @@ def run(a):
     if not out_root.parent.is_dir(): fail("E5_VIEW_PARENT_NOT_FOUND")
     if not os.access(out_root.parent,os.W_OK): fail("E5_VIEW_PARENT_NOT_WRITABLE")
     if out_root.exists() and not out_root.is_dir(): fail("E5_VIEW_ROOT_NOT_DIRECTORY")
-    pub=ensure_public_output(repo,"reports/step4_t1gr/e5_step1_view_public.json",sec["public_output_prefix"])
+    pub=ensure_public_output(repo,"reports/step4_t1gr/e5_v2_step1_view_public.json",sec["public_output_prefix"])
     zp=Path(a.formal_zip).expanduser().resolve(strict=False)
     if not zp.is_file():fail("FORMAL_ZIP_NOT_FOUND")
     deadline=Deadline(float(a.timeout_seconds or sec["view_build_timeout_seconds"]))

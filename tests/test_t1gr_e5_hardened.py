@@ -7,7 +7,7 @@ from multimodal.t1gr_e5_core import *
 
 def candidate():
     x=json.loads((ROOT/"config/t1gr_e5_training_spec.candidate.json").read_text())
-    x["status"]="REVIEWED_FROZEN"
+    x["status"]="REVIEWED_FROZEN_V2"
     return x
 
 def with_payload(o,fp="x"):
@@ -53,7 +53,7 @@ def test_reviewed_candidate_validates():
 def test_optimizer_auto_rejected():
     x=candidate();x["train_args"]["optimizer"]="auto"
     try:validate_training_spec(x)
-    except GateError as e:assert e.code=="E5_OPTIMIZER_AUTO_FORBIDDEN"
+    except GateError as e:assert e.code=="E5_V2_OPTIMIZER_MUST_BE_ADJUDICATED_MUSGD"
     else:raise AssertionError
 
 def test_null_workers_rejected():
@@ -124,7 +124,7 @@ def test_eval_conf_explicit():
     assert candidate()["eval_args"]["conf"]==0.001
 
 def test_eval_max_det_explicit():
-    assert candidate()["eval_args"]["max_det"]==300
+    assert candidate()["eval_args"]["max_det"]==100
 
 def test_effective_args_mismatch():
     class X: a=1
@@ -146,7 +146,9 @@ def test_parse_utc_naive_rejected():
 
 def test_security_policy_no_holdout_input():
     p=json.loads((ROOT/"config/t1gr_e5_security_policy.json").read_text())
+    assert p["schema"]=="t1gr-e5-security-policy-v2"
     assert p["final_holdout_sealed_artifact_is_not_an_E5_input"] is True
+    assert p["private_failure_traceback_max_bytes"]==candidate()["runtime"]["private_traceback_max_bytes"]
 
 def test_runner_has_no_scientific_cli_overrides():
     s=(ROOT/"scripts/t1gr_e5_run_step1.py").read_text()
@@ -155,7 +157,7 @@ def test_runner_has_no_scientific_cli_overrides():
 
 def test_runner_formal_requires_fixed_smoke():
     s=(ROOT/"scripts/t1gr_e5_run_step1.py").read_text()
-    assert 'reports/step4_t1gr/e5_step1_smoke_public.json' in s
+    assert 'reports/step4_t1gr/e5_v2_step1_smoke_public.json' in s
     assert 'if a.mode=="formal"' in s
 
 def test_eval_no_holdout_arg():
@@ -242,6 +244,12 @@ def test_frozen_config_sha_pins_present():
     assert FROZEN_E5_TRAINING_SPEC_SHA256 in s
     assert FROZEN_E5_SECURITY_POLICY_SHA256 in s
 
+def test_frozen_config_sha_pins_match_files():
+    spec_hash=hashlib.sha256((ROOT/"config/t1gr_e5_training_spec.frozen.json").read_bytes()).hexdigest()
+    security_hash=hashlib.sha256((ROOT/"config/t1gr_e5_security_policy.json").read_bytes()).hexdigest()
+    assert spec_hash==FROZEN_E5_TRAINING_SPEC_SHA256
+    assert security_hash==FROZEN_E5_SECURITY_POLICY_SHA256
+
 def test_operational_public_inputs_fixed():
     names={
       "t1gr_e5_freeze_recipe.py","t1gr_e5_build_rgb_view.py","t1gr_e5_preflight.py",
@@ -275,3 +283,67 @@ def test_posix_private_umask_present():
 def test_environment_pins_ultralytics_source_hashes():
     s=(ROOT/"src/multimodal/t1gr_e5_core.py").read_text()
     assert "ultralytics_source_sha256" in s and "trainer_py" in s and "default_yaml" in s
+
+def test_v2_optimizer_adjudication_is_explicit_and_truthful():
+    x=candidate();a=x["review_freeze"]["optimizer_adjudication"]
+    assert a["decision"]=="KEEP_PROJECT_FROZEN_MUSGD"
+    assert a["selected_optimizer"]=="MuSGD"
+    assert a["framework_auto_would_select"]=="AdamW"
+    assert a["framework_estimated_iterations"]==1920
+    assert a["not_auto_equivalent"] is True
+
+def test_v2_optimizer_adjudication_drift_rejected():
+    x=candidate();x["review_freeze"]["optimizer_adjudication"]["framework_estimated_iterations"]=30080
+    try:validate_training_spec(x)
+    except GateError as e:assert e.code=="E5_V2_OPTIMIZER_ADJUDICATION_DRIFT"
+    else:raise AssertionError
+
+def test_v2_max_det_drift_rejected():
+    x=candidate();x["eval_args"]["max_det"]=300
+    try:validate_training_spec(x)
+    except GateError as e:assert e.code=="E5_EVAL_MAX_DET_MUST_BE_100"
+    else:raise AssertionError
+
+def test_model_seed_occurs_before_detection_model_construction():
+    s=(ROOT/"src/multimodal/t1gr_e5_core.py").read_text()
+    start=s.index("def build_seeded_model")
+    body=s[start:s.index("def write_private_failure_report",start)]
+    assert body.index("init_seeds(effective_seed") < body.index("DetectionModel(definition")
+
+def test_preflight_and_runner_share_seeded_model_builder():
+    for name in ("t1gr_e5_preflight.py","t1gr_e5_run_step1.py"):
+        s=(ROOT/"scripts"/name).read_text()
+        assert "build_seeded_model(ck,recipe)" in s
+
+def test_initial_state_sha_pinned_across_gates():
+    runner=(ROOT/"scripts/t1gr_e5_run_step1.py").read_text()
+    audit=(ROOT/"scripts/t1gr_e5_final_audit.py").read_text()
+    assert "E5_MODEL_INITIAL_STATE_NOT_REPRODUCIBLE" in runner
+    assert "E5_TRAINING_START_STATE_DRIFT" in runner
+    assert "initial_state_preflight_smoke_pin" in audit
+    assert "initial_state_preflight_formal_pin" in audit
+    assert "formal_training_start_state_pin" in audit
+
+def test_private_failure_report_is_local_and_bounded():
+    with tempfile.TemporaryDirectory() as d:
+        try:raise RuntimeError("synthetic-private-trace")
+        except RuntimeError as exc:
+            p=write_private_failure_report(Path(d),exc,"synthetic_phase",65536)
+        x=json.loads(p.read_text(encoding="utf-8"))
+        assert x["phase"]=="synthetic_phase"
+        assert x["exception_type"]=="RuntimeError"
+        assert "synthetic-private-trace" in x["traceback"]
+        assert x["public_pass_issued"] is False
+
+def test_runner_catches_base_exception_for_private_traceback():
+    s=(ROOT/"scripts/t1gr_e5_run_step1.py").read_text()
+    assert "except BaseException as exc" in s
+    assert "E5_PRIVATE_FAILURE.json" in (ROOT/"src/multimodal/t1gr_e5_core.py").read_text()
+
+def test_v2_output_names_do_not_collide_with_v1():
+    operational=(ROOT/"scripts/t1gr_e5_run_step1.py").read_text()
+    assert "STEP1_RGB_SMOKE_V2" in operational and "STEP1_RGB_BASELINE_V2" in operational
+    for name in ("t1gr_e5_freeze_recipe.py","t1gr_e5_build_rgb_view.py","t1gr_e5_preflight.py",
+                 "t1gr_e5_run_step1.py","t1gr_e5_eval_step1.py","t1gr_e5_final_audit.py"):
+        s=(ROOT/"scripts"/name).read_text()
+        assert "e5_v2" in s

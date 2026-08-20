@@ -1,7 +1,7 @@
 {
-  "schema": "t1gr-e5-training-spec-v1",
+  "schema": "t1gr-e5-training-spec-v2",
   "status": "CANDIDATE_REQUIRES_REVIEW",
-  "notes": "Known project choices: epochs=80,batch=4,imgsz=640,seed=20260812,end2end=true. Other values are explicit Ultralytics v8.4.56 defaults, except optimizer is resolved from auto to explicit MuSGD for >10000 iterations and warmup_bias_lr=0.0 to match that auto branch. Review workers/device before setting status=REVIEWED_FROZEN.",
+  "notes": "Candidate copy of the E5 v2 adjudicated recipe. Set status=REVIEWED_FROZEN_V2 only after review; MuSGD is a deliberate project choice and is not auto-equivalent.",
   "architecture": "yolo26s",
   "model_yaml": "yolo26s.yaml",
   "num_classes": 12,
@@ -63,7 +63,7 @@
     "split": "val",
     "conf": 0.001,
     "iou": 0.7,
-    "max_det": 300,
+    "max_det": 100,
     "half": false,
     "dnn": false,
     "plots": false,
@@ -76,6 +76,28 @@
     "formal_timeout_seconds": 43200,
     "eval_timeout_seconds": 3600,
     "lock_wait_seconds": 5.0,
-    "lock_stale_seconds": 900.0
+    "lock_stale_seconds": 900.0,
+    "private_traceback_max_bytes": 1048576
+  },
+  "review_freeze": {
+    "date": "2026-08-20",
+    "basis": "project-original E5 recipe retained after v2 optimizer adjudication",
+    "workers_device_policy": "workers=8 and device=0 are frozen; no CLI override",
+    "authority": "E5 Step1 mother baseline; subsequent matched comparisons inherit all non-treatment settings",
+    "optimizer_adjudication": {
+      "decision": "KEEP_PROJECT_FROZEN_MUSGD",
+      "selected_optimizer": "MuSGD",
+      "framework_auto_would_select": "AdamW",
+      "train_sample_count": 1504,
+      "nominal_batch": 4,
+      "nbs": 64,
+      "epochs": 80,
+      "framework_iteration_formula": "ceil(train_sample_count/max(nominal_batch,nbs))*epochs",
+      "framework_estimated_iterations": 1920,
+      "auto_threshold_iterations": 10000,
+      "not_auto_equivalent": true,
+      "rationale": "Preserve the already frozen mother-baseline optimizer and downstream comparison continuity. The scientific choice is explicit MuSGD, not runtime auto-selection."
+    },
+    "evaluation_detection_cap": 100
   }
 }

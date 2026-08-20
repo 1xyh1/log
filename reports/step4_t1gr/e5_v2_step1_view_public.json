@@ -1,0 +1,27 @@
+{
+  "any_raw_sample_id_present": false,
+  "dataset_yaml_sha256": "2d1d1260ced430b3a4cabd2a90f9050401db45d702b0b617b5147debca6071ef",
+  "dev_count": 198,
+  "extension_counts": {
+    "dev_jpg": 27,
+    "dev_png": 171,
+    "train_jpg": 91,
+    "train_png": 1413
+  },
+  "final_holdout_count": 298,
+  "final_holdout_ids_available_to_view": false,
+  "ids_commitments": {
+    "dev": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+    "final_holdout": "222ec90f6eccd4b8546832475f486e7597183df54c0f514fd9057e3f1d8aef00",
+    "train": "3244fd85cf5e2e4572f135d2670d87dc0a4876cdf3e0c88f4d9d5b4e859d311b"
+  },
+  "mapping_commitment": "ba0ace3e9f3004bd28dd5e4b4ab391af9c01a446c4dd80d96da35a93743d9efc",
+  "payload_sha256": "f798dcf0cf6d8a7d9e12a805c32e2f051720ff61a90350d6e9daf35b46ae18b7",
+  "recipe_public_sha256": "c603ac3ffea27a0f82ec65c9a1bbf14a7db2432a456db781521e7282e21cc671",
+  "request_fingerprint": "bb69647f92242b86277cf55d8949480f0e029c98b7e63f46b54045ff958bf2c5",
+  "schema": "t1gr-e5-v2-step1-view-public-v2",
+  "script_version": "t1gr-e5-v2-build-rgb-view-hardened-v2",
+  "train_count": 1504,
+  "view_gate_passed": true,
+  "view_manifest_private_sha256": "cc06572ee443f630d85e87966a5389a19b5914969e514b751535ae9cd53fd494"
+}

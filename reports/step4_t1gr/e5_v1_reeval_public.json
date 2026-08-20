@@ -1,0 +1,71 @@
+{
+  "schema": "e5-v1-reeval-public-v1",
+  "authority": "HISTORICAL_V1_DEV_DIAGNOSTIC",
+  "v2_equivalent_semantics": true,
+  "results": {
+    "last": {
+      "checkpoint": "E:\\google\\t1gr_runs\\step1\\STEP1_RGB_BASELINE\\weights\\last.pt",
+      "checkpoint_sha256": "ba7d28db97cfd6565cf8fdc7cbe9ed16460ee7b583928b4857a6e2b19565c365",
+      "physical_head_nc": 12,
+      "head_end2end": true,
+      "map50": 0.5877120706121527,
+      "map50_95": 0.34631384423782113,
+      "per_class_map50_95": [
+        0.40772256148417185,
+        0.3744764309764309,
+        0.40495526387023767,
+        0.3334949282816575,
+        0.27998179242030574,
+        0.313463233357051,
+        0.44035109444646603,
+        0.18752677611367127,
+        0.42124973016570333,
+        0.3519697785874256,
+        0.3435745411507325,
+        0.297
+      ],
+      "n_images": 198,
+      "eval_semantics": {
+        "split": "DEV_ONLY",
+        "max_det": 100,
+        "conf": 0.001,
+        "iou": 0.7,
+        "imgsz": 640,
+        "authority": "HISTORICAL_V1_DEV_DIAGNOSTIC",
+        "note": "v1 runner had max_det=300 and no seed-before-head construction; these numbers are diagnostic only, NOT the E5 v2 baseline."
+      }
+    },
+    "best": {
+      "checkpoint": "E:\\google\\t1gr_runs\\step1\\STEP1_RGB_BASELINE\\weights\\best.pt",
+      "checkpoint_sha256": "cf29dbb1ecf4febd21f7332d17a3129a082a0045ad826a5a9033df602bcc081c",
+      "physical_head_nc": 12,
+      "head_end2end": true,
+      "map50": 0.5891012773734838,
+      "map50_95": 0.34580428686401077,
+      "per_class_map50_95": [
+        0.40602005734512725,
+        0.36884419381787803,
+        0.4001022456303958,
+        0.3469864913169585,
+        0.29082479688604024,
+        0.3373548006987041,
+        0.4394283898888197,
+        0.139125,
+        0.4238867020095416,
+        0.3496280470508731,
+        0.30095071772379073,
+        0.3465
+      ],
+      "n_images": 198,
+      "eval_semantics": {
+        "split": "DEV_ONLY",
+        "max_det": 100,
+        "conf": 0.001,
+        "iou": 0.7,
+        "imgsz": 640,
+        "authority": "HISTORICAL_V1_DEV_DIAGNOSTIC",
+        "note": "v1 runner had max_det=300 and no seed-before-head construction; these numbers are diagnostic only, NOT the E5 v2 baseline."
+      }
+    }
+  }
+}

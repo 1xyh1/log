@@ -15,7 +15,7 @@ from multimodal.t1gr_e5_core import (
  environment_probe,payload_ok,private_umask,ultralytics_offline_guard,verify_view_tree,wall_clock_watchdog
 )
 
-SCRIPT_VERSION="t1gr-e5-step1-dev-eval-hardened-v1"
+SCRIPT_VERSION="t1gr-e5-v2-step1-dev-eval-hardened-v2"
 
 def private_run_root(path:Path,repo:Path)->Path:
     p=path.expanduser().resolve(strict=False)
@@ -27,12 +27,12 @@ def run(a):
     repo=ROOT.resolve(strict=True)
     secp=ensure_repo_input(repo,"config/t1gr_e5_security_policy.json","config")
     if sha256_file(secp)!=FROZEN_E5_SECURITY_POLICY_SHA256: fail("E5_SECURITY_POLICY_SHA_DRIFT")
-    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v1")
-    rp=ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_recipe_public.json","reports/step4_t1gr")
-    vpubp=ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_view_public.json","reports/step4_t1gr")
-    runp=ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_formal_run_public.json","reports/step4_t1gr")
+    sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v2")
+    rp=ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_recipe_public.json","reports/step4_t1gr")
+    vpubp=ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_view_public.json","reports/step4_t1gr")
+    runp=ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_formal_run_public.json","reports/step4_t1gr")
     td_p=ensure_private_input(Path(a.train_dev_access),repo);vm_p=ensure_private_input(Path(a.view_manifest),repo)
-    out=ensure_public_output(repo,"reports/step4_t1gr/e5_step1_eval_public.json",sec["public_output_prefix"])
+    out=ensure_public_output(repo,"reports/step4_t1gr/e5_v2_step1_eval_public.json",sec["public_output_prefix"])
     recipe=read_json_bounded(rp,int(sec["max_public_json_bytes"]),SCHEMA_RECIPE)
     vpub=read_json_bounded(vpubp,int(sec["max_public_json_bytes"]),SCHEMA_VIEW_PUBLIC)
     rr=read_json_bounded(runp,int(sec["max_public_json_bytes"]),SCHEMA_RUN)
@@ -42,7 +42,7 @@ def run(a):
     if rr.get("mode")!="formal" or rr.get("run_gate_passed") is not True or rr.get("dev_eval_authorized") is not True:
         fail("E5_FORMAL_RUN_NOT_EVALUABLE")
     run_root=private_run_root(Path(a.run_root),repo)
-    run_dir=run_root/"STEP1_RGB_BASELINE";last=run_dir/"weights"/"last.pt"
+    run_dir=run_root/"STEP1_RGB_BASELINE_V2";last=run_dir/"weights"/"last.pt"
     if not last.is_file():fail("E5_FORMAL_LAST_PT_MISSING")
     deadline=Deadline(float(recipe["runtime"]["eval_timeout_seconds"]))
     with file_lock(out.with_suffix(out.suffix+".lock"),float(recipe["runtime"]["lock_wait_seconds"]),float(recipe["runtime"]["lock_stale_seconds"])):
@@ -66,7 +66,7 @@ def run(a):
             from ultralytics import YOLO
         except Exception:fail("E5_EVAL_IMPORT_FAIL")
         if str(ultralytics.__version__)!=recipe["environment"]["ultralytics_version"]:fail("E5_EVAL_ULTRALYTICS_DRIFT")
-        eval_dir=run_root/"STEP1_RGB_DEV_EVAL"
+        eval_dir=run_root/"STEP1_RGB_DEV_EVAL_V2"
         if eval_dir.exists(): fail("E5_EVAL_DIRECTORY_ALREADY_EXISTS")
         offline_state={};permission_state={}
         with ultralytics_offline_guard(bypass_amp_download_check=False) as og, private_umask() as pg:
@@ -88,7 +88,7 @@ def run(a):
             offline_state.update(og);permission_state.update(pg)
             with wall_clock_watchdog(float(recipe["runtime"]["eval_timeout_seconds"]),"E5_EVAL_TIMEOUT"):
                 result=y.val(data=str(vr["dataset_yaml"]),split="val",device=recipe["runtime"]["device"],
-                             project=str(run_root),name="STEP1_RGB_DEV_EVAL",exist_ok=False,verbose=False,**ea)
+                             project=str(run_root),name="STEP1_RGB_DEV_EVAL_V2",exist_ok=False,verbose=False,**ea)
         box=getattr(result,"box",None)
         if box is None:fail("E5_EVAL_BOX_METRICS_MISSING")
         maps=[float(x) for x in getattr(box,"maps",[])]

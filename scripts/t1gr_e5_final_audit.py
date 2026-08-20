@@ -12,24 +12,24 @@ from multimodal.t1gr_e5_core import (
  FROZEN_E5_SECURITY_POLICY_SHA256,FROZEN_E5_TRAINING_SPEC_SHA256,
  SCHEMA_EVAL,SCHEMA_FINAL,SCHEMA_PREFLIGHT,SCHEMA_RECIPE,SCHEMA_RUN,SCHEMA_VIEW_PUBLIC,payload_ok,parse_utc
 )
-SCRIPT_VERSION="t1gr-e5-final-audit-hardened-v1"
+SCRIPT_VERSION="t1gr-e5-v2-final-audit-hardened-v2"
 
 def run(a):
  repo=ROOT.resolve(strict=True)
  secp=ensure_repo_input(repo,"config/t1gr_e5_security_policy.json","config")
  if sha256_file(secp)!=FROZEN_E5_SECURITY_POLICY_SHA256: fail("E5_SECURITY_POLICY_SHA_DRIFT")
- sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v1")
+ sec=read_json_bounded(secp,1<<20,"t1gr-e5-security-policy-v2")
  paths={
   "e4_freeze":ensure_repo_input(repo,"reports/step4_t1gr/e4_split_freeze_public.json","reports/step4_t1gr"),
   "e4_verify":ensure_repo_input(repo,"reports/step4_t1gr/e4_seal_verification_public.json","reports/step4_t1gr"),
-  "recipe":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_recipe_public.json","reports/step4_t1gr"),
-  "view":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_view_public.json","reports/step4_t1gr"),
-  "preflight":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_preflight_public.json","reports/step4_t1gr"),
-  "smoke":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_smoke_public.json","reports/step4_t1gr"),
-  "formal":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_formal_run_public.json","reports/step4_t1gr"),
-  "eval":ensure_repo_input(repo,"reports/step4_t1gr/e5_step1_eval_public.json","reports/step4_t1gr"),
+  "recipe":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_recipe_public.json","reports/step4_t1gr"),
+  "view":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_view_public.json","reports/step4_t1gr"),
+  "preflight":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_preflight_public.json","reports/step4_t1gr"),
+  "smoke":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_smoke_public.json","reports/step4_t1gr"),
+  "formal":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_formal_run_public.json","reports/step4_t1gr"),
+  "eval":ensure_repo_input(repo,"reports/step4_t1gr/e5_v2_step1_eval_public.json","reports/step4_t1gr"),
  }
- out=ensure_public_output(repo,"reports/step4_t1gr/e5_final_audit_public.json",sec["public_output_prefix"])
+ out=ensure_public_output(repo,"reports/step4_t1gr/e5_v2_final_audit_public.json",sec["public_output_prefix"])
  with file_lock(out.with_suffix(out.suffix+".lock"),5.0,900.0):
   obj={k:read_json_bounded(p,int(sec["max_public_json_bytes"])) for k,p in paths.items()}
   if obj["recipe"].get("schema")!=SCHEMA_RECIPE or obj["view"].get("schema")!=SCHEMA_VIEW_PUBLIC or obj["preflight"].get("schema")!=SCHEMA_PREFLIGHT:
@@ -58,6 +58,12 @@ def run(a):
    "formal_view_pin":obj["formal"].get("view_public_sha256")==view_sha,
    "formal_preflight_pin":obj["formal"].get("preflight_public_sha256")==pre_sha,
    "formal_smoke_pin":obj["formal"].get("smoke_report_sha256")==smoke_sha,
+   "initial_state_preflight_smoke_pin":isinstance(obj["preflight"].get("model_preflight",{}).get("model_initial_state_sha256"),str) and obj["preflight"].get("model_preflight",{}).get("model_initial_state_sha256")==obj["smoke"].get("model_initial_state_sha256"),
+   "initial_state_preflight_formal_pin":isinstance(obj["preflight"].get("model_preflight",{}).get("model_initial_state_sha256"),str) and obj["preflight"].get("model_preflight",{}).get("model_initial_state_sha256")==obj["formal"].get("model_initial_state_sha256"),
+   "smoke_training_start_state_pin":obj["smoke"].get("model_initial_state_sha256")==obj["smoke"].get("training_start_state_sha256"),
+   "formal_training_start_state_pin":obj["formal"].get("model_initial_state_sha256")==obj["formal"].get("training_start_state_sha256"),
+   "untransferred_state_preflight_smoke_pin":isinstance(obj["preflight"].get("model_preflight",{}).get("untransferred_initial_state_sha256"),str) and obj["preflight"].get("model_preflight",{}).get("untransferred_initial_state_sha256")==obj["smoke"].get("untransferred_initial_state_sha256"),
+   "untransferred_state_preflight_formal_pin":isinstance(obj["preflight"].get("model_preflight",{}).get("untransferred_initial_state_sha256"),str) and obj["preflight"].get("model_preflight",{}).get("untransferred_initial_state_sha256")==obj["formal"].get("untransferred_initial_state_sha256"),
    "formal_exact_epochs":obj["formal"].get("epochs_completed")==obj["formal"].get("epochs_expected")==obj["recipe"]["train_args"]["epochs"],
    "eval_pass":obj["eval"].get("eval_gate_passed") is True and obj["eval"].get("authority")=="DEV_ONLY_DIAGNOSTIC_BASELINE",
    "eval_recipe_pin":obj["eval"].get("recipe_public_sha256")==recipe_sha,
@@ -84,7 +90,7 @@ def run(a):
    "final_holdout_open_authorized":False,
    "t1gr_design_entry_authorized":passed,
    "t1gr_multiseed_training_authorized":False,
-   "next_action":"freeze T1-GR G0-G1-G2 multi-seed design; FINAL HOLDOUT remains sealed" if passed else "fix E5 evidence gates",
+   "next_action":"freeze T1-GR G0/G1/G2 multi-seed design; FINAL HOLDOUT remains sealed" if passed else "fix E5 evidence gates",
   }
   assert_public_safe(report)
   sh,reuse=atomic_json_write(out,report,private=False,request_fingerprint=request_fp)
