@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-20T03:03:55.536418+08:00",
+  "generated_at_local": "2026-08-20T15:09:13.238303+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -884,11 +884,11 @@
       "canonical_lf_sha256": "8a30358342a1c5f4e5594a1d4b2fb9b5a59214f9b12c981cc69dda4a4f7214df",
       "source_eol": "crlf"
     },
-    "reports/step4_t1gr/e5_step1_formal_run_public.json.lock": {
-      "sha256": "f86d8fdabd91ac8b7f820492206301a45a070d80554002acd60b4026623079e7",
-      "size_bytes": 50,
-      "mtime_ns": 1787166152825120500,
-      "canonical_lf_sha256": "f86d8fdabd91ac8b7f820492206301a45a070d80554002acd60b4026623079e7",
+    "reports/step4_t1gr/e5_step1_formal_run_public.json": {
+      "sha256": "84e4e5de4afc607c0419bb73531f30b5833b05e9babf18c4b2902147c7d9efda",
+      "size_bytes": 4975,
+      "mtime_ns": 1787205070492730600,
+      "canonical_lf_sha256": "84e4e5de4afc607c0419bb73531f30b5833b05e9babf18c4b2902147c7d9efda",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/e5_step1_preflight_public.json": {
@@ -5877,29 +5877,7 @@
     }
   },
   "changed_in_this_sync": [
-    "config/t1gr_e5_security_policy.json",
-    "config/t1gr_e5_training_spec.candidate.json",
-    "config/t1gr_e5_training_spec.frozen.json",
-    "config/t1gr_e5_training_spec.template.json",
-    "docs/step4_t1gr/E5_DESIGN_FREEZE.md",
-    "docs/step4_t1gr/E5_RECIPE_ADJUDICATION.md",
-    "docs/step4_t1gr/E5_SECURITY_REVIEW.md",
-    "reports/step4_t1gr/e5_static_audit.json",
-    "reports/step4_t1gr/e5_step1_formal_run_public.json.lock",
-    "reports/step4_t1gr/e5_step1_preflight_public.json",
-    "reports/step4_t1gr/e5_step1_recipe_public.json",
-    "reports/step4_t1gr/e5_step1_smoke_public.json",
-    "reports/step4_t1gr/e5_step1_view_public.json",
-    "reports/step4_t1gr/e5_synthetic_gate.json",
-    "scripts/t1gr_e5_build_rgb_view.py",
-    "scripts/t1gr_e5_eval_step1.py",
-    "scripts/t1gr_e5_final_audit.py",
-    "scripts/t1gr_e5_freeze_recipe.py",
-    "scripts/t1gr_e5_preflight.py",
-    "scripts/t1gr_e5_run_step1.py",
-    "scripts/t1gr_e5_static_audit.py",
-    "scripts/t1gr_e5_synthetic_gate.py",
-    "src/multimodal/t1gr_e5_core.py",
-    "tests/test_t1gr_e5_hardened.py"
+    "reports/step4_t1gr/e5_step1_formal_run_public.json",
+    "reports/step4_t1gr/e5_step1_formal_run_public.json.lock (deleted)"
   ]
 }
