@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-21T02:42:43.365255+08:00",
+  "generated_at_local": "2026-08-21T11:29:08.329536+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -1106,6 +1106,97 @@
       "size_bytes": 1700,
       "mtime_ns": 1787239256090370800,
       "canonical_lf_sha256": "892335dc809a9fb362554ea317a6d0e1c0140f72e73a238e9a369a60877f22af",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G0_N/args.yaml": {
+      "sha256": "f076ada6c3f6fb85294d1987309f31e545dbf39b462969cc0a68f1671d9eafeb",
+      "size_bytes": 1776,
+      "mtime_ns": 1787282916107650100,
+      "canonical_lf_sha256": "a824fc8d59330635f18762e44cbbbedaf69d7e196fea702977b7103879781b23",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G0_N/results.csv": {
+      "sha256": "299c35dae3bb18f7da8dcc39ae976eced1679b15b5aa36ade2a2ca8a5a68e471",
+      "size_bytes": 13861,
+      "mtime_ns": 1787282916089513500,
+      "canonical_lf_sha256": "421aa4db861e3430210abe76e3c914a00df6cfe029e358e9d3b8898aaeba498a",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G1_P/args.yaml": {
+      "sha256": "cdc7c91d11b45884887d449f34c48cd353a6eef91d508068368bce3a9145d251",
+      "size_bytes": 1776,
+      "mtime_ns": 1787282916231928200,
+      "canonical_lf_sha256": "6f73de24d36ab9df8934d5c4e756950a15a2148ec16fca8f0f82544c48576c44",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G1_P/results.csv": {
+      "sha256": "d62778bda00268e35c0acb25febf84479c59cc7e1a8b6ec81e7a800d9fcaf3a8",
+      "size_bytes": 13872,
+      "mtime_ns": 1787282916208425900,
+      "canonical_lf_sha256": "58c61c415d1065b190ad39a1e42d38f95485effc97b16b611600e754e085f052",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G2_S/args.yaml": {
+      "sha256": "f792e15d7eb9b602f443958ca8338a11ab653fa4ab62eea5d11dfd43d2dfa8c0",
+      "size_bytes": 1776,
+      "mtime_ns": 1787282916370253700,
+      "canonical_lf_sha256": "d5dccb0c7befd8c87d83bc6dc13789d96717f206db8e35f8550b7a2a04f2de2b",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G2_S/results.csv": {
+      "sha256": "6f732baba4891dbebd4274d3244bdff98fc2eeabf01a332fefe0bf9552bf90fd",
+      "size_bytes": 13874,
+      "mtime_ns": 1787282916351542500,
+      "canonical_lf_sha256": "cf2bf668e10df9c44295f6524ddd52c1efb5c83cda99753735239b3cc6de20cb",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260813_G1_P/args.yaml": {
+      "sha256": "e0882b4c18ba9eb8aba6558446f6f2ad7c6eaeca041d5637b78e45ad2baf6c10",
+      "size_bytes": 1776,
+      "mtime_ns": 1787282916473634800,
+      "canonical_lf_sha256": "c34c8d697cd85c5a9d8470f3377ac8bbd05bdf76d9367adf2c489db51c04d5fa",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260813_G1_P/results.csv": {
+      "sha256": "71f0e34667f36e77865a61cf359feab068cf3da518994e78097a47ab834923d2",
+      "size_bytes": 13870,
+      "mtime_ns": 1787282916463268200,
+      "canonical_lf_sha256": "41e0782e828078b40c29026c2e4c32ed630ebc1cc6f693fcca278157761a5e94",
+      "source_eol": "crlf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g0_n_public.json": {
+      "sha256": "de6030aa95f5b60cae0d9e45a3997708e849518bff05a6a90d4dc81e8655f208",
+      "size_bytes": 45885,
+      "mtime_ns": 1787259083522629000,
+      "canonical_lf_sha256": "de6030aa95f5b60cae0d9e45a3997708e849518bff05a6a90d4dc81e8655f208",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g1_p_public.json": {
+      "sha256": "22564b6b216fb048e1cbe3097aed66c0494b26e1442c7ce83804d2b61a027b65",
+      "size_bytes": 45992,
+      "mtime_ns": 1787266950617672500,
+      "canonical_lf_sha256": "22564b6b216fb048e1cbe3097aed66c0494b26e1442c7ce83804d2b61a027b65",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g2_s_public.json": {
+      "sha256": "6404887e31f7181f61d43e561e158c8395dd6eddcb2e8980f0b5cc16b6e79bab",
+      "size_bytes": 45754,
+      "mtime_ns": 1787274729377755900,
+      "canonical_lf_sha256": "6404887e31f7181f61d43e561e158c8395dd6eddcb2e8980f0b5cc16b6e79bab",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260813_g1_p_public.json": {
+      "sha256": "c019d3208fddc44e8e784ebca06f5b8f85394e1d807e2fdce124e217d25d0e4d",
+      "size_bytes": 45995,
+      "mtime_ns": 1787282717823247000,
+      "canonical_lf_sha256": "c019d3208fddc44e8e784ebca06f5b8f85394e1d807e2fdce124e217d25d0e4d",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260813_g2_s_public.json.lock": {
+      "sha256": "18f117c1966b208afabe2ecf1bc8eb143770b21ba1616dd919c86e20dbe3583b",
+      "size_bytes": 49,
+      "mtime_ns": 1787282726020453300,
+      "canonical_lf_sha256": "18f117c1966b208afabe2ecf1bc8eb143770b21ba1616dd919c86e20dbe3583b",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/t1gr_g_implementation_preflight_public.json": {
@@ -6276,6 +6367,18 @@
     }
   },
   "changed_in_this_sync": [
-    "tests/test_t1gr_g_implementation.py"
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G0_N/args.yaml",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G0_N/results.csv",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G1_P/args.yaml",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G1_P/results.csv",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G2_S/args.yaml",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G2_S/results.csv",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260813_G1_P/args.yaml",
+    "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260813_G1_P/results.csv",
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g0_n_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260812_g2_s_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260813_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260813_g2_s_public.json.lock"
   ]
 }
