@@ -1,0 +1,191 @@
+{
+  "schema": "t1gr-u6-design-freeze-v1",
+  "status": "FROZEN_BEFORE_SERVER_PREFLIGHT",
+  "experiment": "T1-U6-G0-G3",
+  "purpose": "DEV-only same-architecture comparison of RGB, paired IR, balanced wrong IR, and paired IR plus qualified Depth using the already frozen TRAIN/DEV split",
+  "upstream": {
+    "minimum_main_commit": "e55b28dd97758d1e521affc63e72794bdb85ca33",
+    "e5_v2_baseline_commit": "6f14392358b6fdb35b9b9e4a6e1c814a90442902",
+    "historical_6ch_reference_commit": "643d281711db588ec8e6afaca061008420da54af",
+    "legacy_g_design_commit": "3b0a304",
+    "legacy_g_implementation_commit": "0926521",
+    "existing_train_dev_split_reused": true,
+    "resplit_forbidden": true
+  },
+  "history_adjudication": {
+    "historical_6ch_was_real": true,
+    "step4_p5_transition_was_deliberate_mechanism_experiment": true,
+    "u6_is_new_e5_v2_descendant_not_claimed_as_no_code_change_continuation": true
+  },
+  "legacy_g3_adjudication": {
+    "old_g3_fe_merged": false,
+    "old_g3_fe_meaning": "freeze separate P5 auxiliary encoder and buffers while retaining a trainable zero-initialized fusion projection",
+    "reason": "NOT_REPRESENTABLE_IN_PURE_EARLY_FUSION_WITHOUT_CHANGING_THE_QUESTION",
+    "new_g3_id": "G3-D",
+    "new_g3_meaning": "paired IR plus qualified Depth and validity mask"
+  },
+  "channel_contract": {
+    "raw_before_format": ["visible_B", "visible_G", "visible_R", "IR_scalar", "log_depth", "valid_mask"],
+    "model_after_format": ["R", "G", "B", "IR_scalar", "log_depth", "valid_mask"],
+    "channels": 6,
+    "ir_scalar": "OpenCV IMREAD_GRAYSCALE, matching the formal T1-GR scalar IR policy",
+    "visible_padding_value": 114,
+    "aux_padding_value": 0
+  },
+  "arms": {
+    "G0-N": {
+      "train_ir": "ZERO_IR",
+      "dev_native_ir": "ZERO_IR",
+      "depth_enabled": false,
+      "input": "RGB+ZERO_IR+ZERO_DEPTH+ZERO_MASK"
+    },
+    "G1-P": {
+      "train_ir": "CORRECT_PAIRED_IR",
+      "dev_native_ir": "CORRECT_PAIRED_IR",
+      "depth_enabled": false,
+      "input": "RGB+PAIRED_IR+ZERO_DEPTH+ZERO_MASK"
+    },
+    "G2-S": {
+      "train_ir": "BALANCED_FULLY_WRONG_IR",
+      "dev_native_ir": "CORRECT_PAIRED_IR",
+      "depth_enabled": false,
+      "input": "RGB+EPOCH_DERANGED_IR+ZERO_DEPTH+ZERO_MASK during training; paired IR on native DEV"
+    },
+    "G3-D": {
+      "train_ir": "CORRECT_PAIRED_IR",
+      "dev_native_ir": "CORRECT_PAIRED_IR",
+      "depth_enabled": true,
+      "input": "RGB+PAIRED_IR+QUALIFIED_LOG_DEPTH+VALID_MASK"
+    }
+  },
+  "depth_policy": {
+    "metric_png": {
+      "required_storage": "uint16 HxW",
+      "valid_mm_min": 300,
+      "valid_mm_max": 19999,
+      "encoding": "(log(mm)-log(300))/(log(19999)-log(300)) for valid pixels",
+      "emitted_uint8_range_before_formatter": [0, 255],
+      "invalid_depth_value": 0,
+      "valid_mask_values_before_formatter": [0, 255]
+    },
+    "unknown_scale_jpg": {
+      "observed_storage": "uint8 HxWx3 gray-derived",
+      "treatment": "QUARANTINE_AS_MISSING",
+      "log_depth": 0,
+      "valid_mask": 0,
+      "millimeter_reconstruction_forbidden": true
+    },
+    "resize": "validity-weighted numerator/denominator with linear interpolation; nearest binary mask",
+    "mask_zero_implies_depth_zero": true,
+    "control_arm_io_optimization": "G0/G1/G2 do not decode Depth after the signed sidecar has been fully verified"
+  },
+  "wrong_ir_policy": {
+    "train_only": true,
+    "seed_keyed_order": true,
+    "epoch_shift": "1 + epoch mod (N-1)",
+    "bijection_each_epoch": true,
+    "zero_self_match_each_epoch": true,
+    "each_donor_once_each_epoch": true,
+    "claim_boundary": "80 distinct wrong donors per recipient; not all 1503 donors"
+  },
+  "augmentation": {
+    "inherit_e5_v2_visible_distribution": true,
+    "single_recipient_keyed_geometry": true,
+    "visible_photometric_only": true,
+    "ir_depth_mask_photometric": "NONE",
+    "same_seed_cross_arm_visible_bitwise_identity_required": true,
+    "g1_g3_ir_bitwise_identity_required": true,
+    "post_transform_mask_binary_required": true,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0
+  },
+  "model": {
+    "architecture": "YOLO26s E5-v2 end-to-end physical six-channel early fusion",
+    "physical_first_conv_in_channels": 6,
+    "first_conv_initialization": "[W_R,W_G,W_B,0,0,0] from the same seeded E5-v2 reference",
+    "rgb_zero_aux_equivalence_required": true,
+    "same_seed_complete_initial_state_across_four_arms_required": true,
+    "same_parameter_count_across_arms_required": true,
+    "rgb_backbone_trainable": true,
+    "loss": "Ultralytics E2ELoss",
+    "new_attention_or_gate": false,
+    "initialization_claim": "AUDITABLE_INITIALIZATION_ONLY",
+    "numerical_repeatability_claim": false
+  },
+  "seeds": [20260812, 20260813, 20260814],
+  "training": {
+    "inherit_e5_v2": true,
+    "optimizer": "MuSGD",
+    "epochs": 80,
+    "smoke_epochs": 1,
+    "batch": 4,
+    "nbs": 64,
+    "imgsz": 640,
+    "lr0": 0.01,
+    "momentum": 0.9,
+    "primary_checkpoint": "last.pt",
+    "best_checkpoint_role": "DIAGNOSTIC_ONLY",
+    "run_count": 12,
+    "server_lane_count": 3,
+    "server_lane_rule": "one seed per visible GPU; four arms sequential within that lane"
+  },
+  "launch_design": {
+    "name": "CYCLIC_INCOMPLETE_LATIN_RECTANGLE_3x4",
+    "full_four_position_balance_possible_with_three_seeds": false,
+    "disclosure": "each arm occurs once per seed and misses exactly one of four lane positions"
+  },
+  "launch_rows": [
+    {"position": 0, "lane_position": 0, "seed": 20260812, "arm": "G0-N"},
+    {"position": 1, "lane_position": 1, "seed": 20260812, "arm": "G1-P"},
+    {"position": 2, "lane_position": 2, "seed": 20260812, "arm": "G2-S"},
+    {"position": 3, "lane_position": 3, "seed": 20260812, "arm": "G3-D"},
+    {"position": 4, "lane_position": 0, "seed": 20260813, "arm": "G1-P"},
+    {"position": 5, "lane_position": 1, "seed": 20260813, "arm": "G2-S"},
+    {"position": 6, "lane_position": 2, "seed": 20260813, "arm": "G3-D"},
+    {"position": 7, "lane_position": 3, "seed": 20260813, "arm": "G0-N"},
+    {"position": 8, "lane_position": 0, "seed": 20260814, "arm": "G2-S"},
+    {"position": 9, "lane_position": 1, "seed": 20260814, "arm": "G3-D"},
+    {"position": 10, "lane_position": 2, "seed": 20260814, "arm": "G0-N"},
+    {"position": 11, "lane_position": 3, "seed": 20260814, "arm": "G1-P"}
+  ],
+  "evaluation": {
+    "split": "DEV",
+    "metric": "mAP50-95",
+    "max_det": 100,
+    "checkpoint": "last.pt",
+    "native_all_arms": true,
+    "common_rgb_only_all_arms": true,
+    "paired_ir_zero_depth_all_arms": true,
+    "wrong_ir_diagnostic_arms": ["G1-P", "G2-S"],
+    "lofo_candidate_arms": ["G0-N", "G1-P", "G3-D"],
+    "depth_domain_arms": ["G1-P", "G3-D"],
+    "fold_count": 5
+  },
+  "decision": {
+    "ir_candidate": "G1-P versus G0-N",
+    "depth_candidate": "G3-D versus G1-P",
+    "eligibility_rule": {
+      "positive_seed_count_at_least": 2,
+      "mean_delta_positive": true,
+      "median_delta_positive": true,
+      "modality_dependency_positive_seed_count_at_least": 2,
+      "worst_seed_delta_at_least": -0.01,
+      "positive_lofo_count_at_least": 9,
+      "lofo_total": 15
+    },
+    "selection_order": "G3-D if Depth eligible; else G1-P if IR eligible; else G0-N",
+    "g2_role": "diagnostic control only; never automatically selected",
+    "g2_outperformance_action": "manual review warning",
+    "interpretation": "operational contest selection, not statistical significance or universal causality"
+  },
+  "authority": {
+    "server_preflight_entry_authorized": true,
+    "smoke_training_authorized_before_preflight": false,
+    "formal_training_authorized_before_smoke_audit": false,
+    "legacy_primary_g_suite_mutation_authorized": false,
+    "final_holdout_open_authorized": false,
+    "production_go": false
+  },
+  "payload_sha256": "1e660b841de9ecc3ea965bdca34c7e257a135d40d54be7883882238ae7e5786a"
+}
