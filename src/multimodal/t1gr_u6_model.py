@@ -201,7 +201,12 @@ def assert_same_seed_arm_identity(identities: list[dict]) -> dict:
         "end2end",
         "loss_class",
     )
-    drift = {field: [row.get(field) for row in identities] for field in fields if identities[0].get(field) != identities[1].get(field)}
+    reference = identities[0]
+    drift = {
+        field: [row.get(field) for row in identities]
+        for field in fields
+        if any(row.get(field) != reference.get(field) for row in identities[1:])
+    }
     if drift:
         raise RuntimeError(f"T1GR_U6_INITIAL_IDENTITY_DRIFT:{sorted(drift)}")
     return {

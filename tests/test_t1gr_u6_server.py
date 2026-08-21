@@ -179,6 +179,37 @@ class T1GRU6ServerTests(unittest.TestCase):
         self.assertNotIn("TSeriesP5Model", source)
         self.assertNotIn("t1gr_g_model", source)
 
+    def test_four_arm_identity_rejects_g3_drift(self):
+        path = ROOT / "src/multimodal/t1gr_u6_model.py"
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        function = next(
+            node
+            for node in tree.body
+            if isinstance(node, ast.FunctionDef) and node.name == "assert_same_seed_arm_identity"
+        )
+        namespace = {"ARMS": ARMS}
+        module = ast.fix_missing_locations(ast.Module(body=[function], type_ignores=[]))
+        exec(compile(module, filename=str(path), mode="exec"), namespace)
+        check = namespace["assert_same_seed_arm_identity"]
+        common = {
+            "seed": int(SEEDS[0]),
+            "model_class": "DetectionModel",
+            "reference_initial_state_sha256": "a" * 64,
+            "complete_initial_state_sha256": "b" * 64,
+            "state_dict_keys_sha256": "c" * 64,
+            "trainable_parameter_count": 1,
+            "total_parameter_count": 1,
+            "stem": {"physical_in_channels": 6},
+            "physical_head_nc": 12,
+            "end2end": True,
+            "loss_class": "E2ELoss",
+        }
+        rows = [{**common, "arm": arm} for arm in ARMS]
+        self.assertTrue(check(rows)["all_identity_fields_equal"])
+        rows[-1] = {**rows[-1], "complete_initial_state_sha256": "d" * 64}
+        with self.assertRaisesRegex(RuntimeError, "T1GR_U6_INITIAL_IDENTITY_DRIFT"):
+            check(rows)
+
     def test_dataset_geometry_and_io_policy(self):
         source = (ROOT / "src/multimodal/t1gr_u6_dataset.py").read_text(encoding="utf-8")
         self.assertIn("resize_depth_valid", source)
