@@ -1,0 +1,13 @@
+{
+  "cross_seed_summary_payload_sha256": "0fdb5664dd56e5afd923172aab63911028ca9c00936924c5f153458cb8e0e7e0",
+  "decision": "INCONCLUSIVE_REPLICATION",
+  "depth_go": false,
+  "dev_only": true,
+  "final_holdout_accessed": false,
+  "final_holdout_open_authorized": false,
+  "next_action": "do not open FINAL HOLDOUT",
+  "paired_training_generalization_supported": false,
+  "payload_sha256": "0d8f101ce5ebd62c67ea31742e18777d0b17783d61f7cba331d8db93f2449b96",
+  "production_go": false,
+  "schema": "t1gr-g-summary-v1"
+}

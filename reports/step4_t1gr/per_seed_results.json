@@ -1,0 +1,349 @@
+{
+  "authority": "DEV_ONLY_ZERO_IR_PRIMARY",
+  "checkpoint": "last.pt",
+  "final_holdout_accessed": false,
+  "final_holdout_open_authorized": false,
+  "fold_count": 5,
+  "fold_unit": "E3_LEAKAGE_COMPONENT",
+  "inference_ir": "ZERO_IR",
+  "max_det": 100,
+  "metric": "mAP50-95",
+  "payload_sha256": "0062c8721224b401fc9c04dc841fd4b02fc5fb812843bac3e126abcc66dc46cf",
+  "request_fingerprint": "58dfbf167bed07ec8f423dc36a2bfccb9c1f6610c7f5966e6ffee67669dac020",
+  "rows": [
+    {
+      "arm": "G0-N",
+      "dev_map50_95": 0.34569321419230764,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "19b52f9f406bbefe14d46572d80c9f386502a99c96219230628f1ba5eeec7eaa",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.34301081678463485,
+        "fold_1": 0.36983235781039964,
+        "fold_2": 0.3484351687315355,
+        "fold_3": 0.3544915755254314,
+        "fold_4": 0.34734084044490793
+      },
+      "run_manifest_sha256": "de6030aa95f5b60cae0d9e45a3997708e849518bff05a6a90d4dc81e8655f208",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "dev_map50_95": 0.34502276458269965,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "c48e9d4d63e35b883754f7b51db6e763fe940072094bd9be464a4d5a03e2da76",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.33964662540444357,
+        "fold_1": 0.373557517452007,
+        "fold_2": 0.3391833315632464,
+        "fold_3": 0.36142829997301257,
+        "fold_4": 0.3495066702148823
+      },
+      "run_manifest_sha256": "22564b6b216fb048e1cbe3097aed66c0494b26e1442c7ce83804d2b61a027b65",
+      "seed": 20260812
+    },
+    {
+      "arm": "G2-S",
+      "dev_map50_95": 0.364295726290882,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "d096cd5a4e183239d73dfe92d3e19f4add9de48a45134e231948f274c65b8420",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3454492758585262,
+        "fold_1": 0.3963441434457955,
+        "fold_2": 0.3676216057902194,
+        "fold_3": 0.37837299773697347,
+        "fold_4": 0.3680241421582388
+      },
+      "run_manifest_sha256": "6404887e31f7181f61d43e561e158c8395dd6eddcb2e8980f0b5cc16b6e79bab",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "dev_map50_95": 0.363469148019833,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "1b59e07c16d447b42bcbf36350f973302b6d7de217b185ef91e6753611ab8076",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3516457317352632,
+        "fold_1": 0.3873393737790262,
+        "fold_2": 0.3643047399349636,
+        "fold_3": 0.3763527821014479,
+        "fold_4": 0.3651149755272988
+      },
+      "run_manifest_sha256": "c019d3208fddc44e8e784ebca06f5b8f85394e1d807e2fdce124e217d25d0e4d",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "dev_map50_95": 0.3582442018593564,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "be9825ac98ec9e2dd47008e33f9c280e51a6a2883216b53ff87db730f8a76ca1",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3403068802998328,
+        "fold_1": 0.4023169547200062,
+        "fold_2": 0.36308797595285036,
+        "fold_3": 0.3662217027364413,
+        "fold_4": 0.3631950837634955
+      },
+      "run_manifest_sha256": "b754ab09579f6133bffc0411b67eeea59937cb6ba9364961fcce1b46a6908129",
+      "seed": 20260813
+    },
+    {
+      "arm": "G0-N",
+      "dev_map50_95": 0.3551752822568512,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "0ba3c4d39e1f12c10ec6371bc6225641cbf3c561ecb89a286bc4c30d976ff3b5",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.33770241968345827,
+        "fold_1": 0.38145996307028557,
+        "fold_2": 0.36209545444246943,
+        "fold_3": 0.3684763133621078,
+        "fold_4": 0.3562705351784519
+      },
+      "run_manifest_sha256": "f9b3dbac6eed6fe6cbb95788c9d9cc5d5b84e288b5fbd5cccd7db0264ef1e69c",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "dev_map50_95": 0.3542575619924164,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "c774cf5725b40816453463c12aa23fc1a88711a6592b8aac570eb6f20cc3cdaf",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3476082929303422,
+        "fold_1": 0.38256669707057717,
+        "fold_2": 0.3512267248076208,
+        "fold_3": 0.365591527456697,
+        "fold_4": 0.35591779120161643
+      },
+      "run_manifest_sha256": "9e62698f44d7d27f5bc3c5bf048e9167ff4ba4e3d291b278ae43396877cea272",
+      "seed": 20260814
+    },
+    {
+      "arm": "G0-N",
+      "dev_map50_95": 0.3456749255330326,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "eb352438eed854a305dbe601e91ff4ddfe3c6ce7c2a6bffd4efbe10e765e2623",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3400063706682034,
+        "fold_1": 0.37149868359420174,
+        "fold_2": 0.34973375500634957,
+        "fold_3": 0.3562696091079484,
+        "fold_4": 0.3475647416046472
+      },
+      "run_manifest_sha256": "f39146f2547b3ce2db062e4dce6bc48d02dcc69bc0d673b63b3edd0f00a341bc",
+      "seed": 20260814
+    },
+    {
+      "arm": "G1-P",
+      "dev_map50_95": 0.3515826385623129,
+      "full_dev_ids_commitment": "c894d9bc194b04196b3e3dc1fb35c4d9578d3676f71b70c60d9368b3b766d9ed",
+      "last_checkpoint_sha256": "cf6ad4d420ea32d5a08d338815d466cfff5acfd8b2b60aef152ee5a312438136",
+      "lofo_evidence": {
+        "fold_0": {
+          "ids_commitment": "fdc9c39ac4568ba4c4b189bfdeb70a916e6e4eccced95db3a730ef3f0c179fd6",
+          "sample_count": 158
+        },
+        "fold_1": {
+          "ids_commitment": "7ea90a720707d3724997f395199ca4af8c565a47afd19102d5d66532b9dfefbd",
+          "sample_count": 138
+        },
+        "fold_2": {
+          "ids_commitment": "c1812ffdec031fdc00dd397e073f14fdfabbcae777fc0293a14585898ff01094",
+          "sample_count": 166
+        },
+        "fold_3": {
+          "ids_commitment": "4b3938ec06b91240f6a8690bb0d83673c75fdfbc5d12ed2751bc6e1c63cb32f1",
+          "sample_count": 167
+        },
+        "fold_4": {
+          "ids_commitment": "f8c84491a7ff53b4110342a72dbcf38a819555ad5ab95d172f9cecb8375147fe",
+          "sample_count": 163
+        }
+      },
+      "lofo_map50_95": {
+        "fold_0": 0.3403563989277218,
+        "fold_1": 0.3713674168433827,
+        "fold_2": 0.3574606089703206,
+        "fold_3": 0.3637484191046964,
+        "fold_4": 0.35274918459150334
+      },
+      "run_manifest_sha256": "01c528ad07e22398406f978df72f8af4cd11bc2e98ad4a168d7b216c88cda6a5",
+      "seed": 20260814
+    }
+  ],
+  "schema": "t1gr-g-per-seed-results-v1"
+}

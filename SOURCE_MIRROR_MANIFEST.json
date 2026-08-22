@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-21T16:20:55.359479+08:00",
+  "generated_at_local": "2026-08-22T10:00:06.318462+08:00",
   "source_root": "C:/Users/xyh23/Documents/ChatGPT/多模态模型/multimodal_yolo26_qaf_v0_3",
   "files": {
     "T1GR_E2_E5_IMPLEMENTATION_VALIDATION.json": {
@@ -898,6 +898,13 @@
       "canonical_lf_sha256": "c905b57e93c5134753b64250d9566eb86a1440f0d265f40f720630bb30d531e8",
       "source_eol": "crlf"
     },
+    "reports/step4_t1gr/cross_seed_summary.json": {
+      "sha256": "4498c1b2c997f31feae93ab577f5f9b53032dc782bd03a0c07270c3a9aa37a5b",
+      "size_bytes": 4252,
+      "mtime_ns": 1787363918502920200,
+      "canonical_lf_sha256": "4498c1b2c997f31feae93ab577f5f9b53032dc782bd03a0c07270c3a9aa37a5b",
+      "source_eol": "lf"
+    },
     "reports/step4_t1gr/dataset_probe.json": {
       "sha256": "3066025f77610de47fcc0801a29df16204335e310fd5d0bd3d921d63fe196805",
       "size_bytes": 603,
@@ -1101,6 +1108,13 @@
       "canonical_lf_sha256": "7bd2b276622bc7155e16640cb5e4f3d5e14c5a753cb363db53e2dfab85aa6a74",
       "source_eol": "lf"
     },
+    "reports/step4_t1gr/per_seed_results.json": {
+      "sha256": "3bfbf3557566ad4571dc93b0339965ca4a007b387d984cc1acadff4bf3942221",
+      "size_bytes": 13472,
+      "mtime_ns": 1787333085828539800,
+      "canonical_lf_sha256": "3bfbf3557566ad4571dc93b0339965ca4a007b387d984cc1acadff4bf3942221",
+      "source_eol": "lf"
+    },
     "reports/step4_t1gr/split_candidate_public.json": {
       "sha256": "af50eecc90d17336e14a71aa486e5f3a52b24572aa72219ad68315f18c353159",
       "size_bytes": 3800,
@@ -1120,6 +1134,13 @@
       "size_bytes": 1700,
       "mtime_ns": 1787239256090370800,
       "canonical_lf_sha256": "892335dc809a9fb362554ea317a6d0e1c0140f72e73a238e9a369a60877f22af",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_eval_public.json": {
+      "sha256": "369012ba85542c0ddbf3222dee34b4c0b614c3f63bbec70e9d747c5d85eff580",
+      "size_bytes": 5478,
+      "mtime_ns": 1787333085837608000,
+      "canonical_lf_sha256": "369012ba85542c0ddbf3222dee34b4c0b614c3f63bbec70e9d747c5d85eff580",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/t1gr_g_formal_run_evidence/T1GR_G_FORMAL_S20260812_G0_N/args.yaml": {
@@ -1220,11 +1241,25 @@
       "canonical_lf_sha256": "b754ab09579f6133bffc0411b67eeea59937cb6ba9364961fcce1b46a6908129",
       "source_eol": "lf"
     },
-    "reports/step4_t1gr/t1gr_g_formal_s20260814_g2_s_public.json.lock": {
-      "sha256": "2543e5fe14c4b6d2ed6a321998b07384ebc224b03a070ad494763e2ea5a476e8",
-      "size_bytes": 50,
-      "mtime_ns": 1787299509070120400,
-      "canonical_lf_sha256": "2543e5fe14c4b6d2ed6a321998b07384ebc224b03a070ad494763e2ea5a476e8",
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g0_n_public.json": {
+      "sha256": "f39146f2547b3ce2db062e4dce6bc48d02dcc69bc0d673b63b3edd0f00a341bc",
+      "size_bytes": 45885,
+      "mtime_ns": 1787316351352283800,
+      "canonical_lf_sha256": "f39146f2547b3ce2db062e4dce6bc48d02dcc69bc0d673b63b3edd0f00a341bc",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g1_p_public.json": {
+      "sha256": "01c528ad07e22398406f978df72f8af4cd11bc2e98ad4a168d7b216c88cda6a5",
+      "size_bytes": 45995,
+      "mtime_ns": 1787324678747201600,
+      "canonical_lf_sha256": "01c528ad07e22398406f978df72f8af4cd11bc2e98ad4a168d7b216c88cda6a5",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g2_s_public.json": {
+      "sha256": "9e62698f44d7d27f5bc3c5bf048e9167ff4ba4e3d291b278ae43396877cea272",
+      "size_bytes": 45758,
+      "mtime_ns": 1787307982890154800,
+      "canonical_lf_sha256": "9e62698f44d7d27f5bc3c5bf048e9167ff4ba4e3d291b278ae43396877cea272",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/t1gr_g_implementation_preflight_public.json": {
@@ -1323,6 +1358,13 @@
       "size_bytes": 2553,
       "mtime_ns": 1787239225779372200,
       "canonical_lf_sha256": "7a1aa066a12180c1dfbdf785e1ea442a5e4b82f6f31314aa60ca2871014501ca",
+      "source_eol": "lf"
+    },
+    "reports/step4_t1gr/t1gr_summary.json": {
+      "sha256": "486f30b1e0fc42d0066fbb0d3221580947d3efdb3d4ee4827342ea422d37b70f",
+      "size_bytes": 516,
+      "mtime_ns": 1787363918506998500,
+      "canonical_lf_sha256": "486f30b1e0fc42d0066fbb0d3221580947d3efdb3d4ee4827342ea422d37b70f",
       "source_eol": "lf"
     },
     "reports/step4_t1gr/visual_leakage_public.json": {
@@ -6486,10 +6528,13 @@
     }
   },
   "changed_in_this_sync": [
-    "reports/step4_t1gr/t1gr_g_formal_s20260813_g0_n_public.json",
-    "reports/step4_t1gr/t1gr_g_formal_s20260814_g2_s_public.json.lock",
-    "src/multimodal/t1gr_u6_model.py",
-    "tests/test_t1gr_u6_server.py",
-    "reports/step4_t1gr/t1gr_g_formal_s20260813_g0_n_public.json.lock (deleted)"
+    "reports/step4_t1gr/cross_seed_summary.json",
+    "reports/step4_t1gr/per_seed_results.json",
+    "reports/step4_t1gr/t1gr_g_eval_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g0_n_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g1_p_public.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g2_s_public.json",
+    "reports/step4_t1gr/t1gr_summary.json",
+    "reports/step4_t1gr/t1gr_g_formal_s20260814_g2_s_public.json.lock (deleted)"
   ]
 }

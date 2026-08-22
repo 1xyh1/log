@@ -1,0 +1,123 @@
+{
+  "checkpoint": "last.pt",
+  "depth_go": false,
+  "design_file_sha256": "94af19188f1c2a6aff38acd6d94b071b1ec6fed042104d27097e43f2d44b209a",
+  "dev_component_map_private_sha256": "bec12e45f3b8178deae4b618096cbd1b8c2a68628aa85060aae05384040aa770",
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_runtime_version": "12.1",
+    "cudnn_version": 90100,
+    "device_compute_capability": "8.9",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "ultralytics_analytics_disabled_for_process": true,
+    "ultralytics_source_sha256": {
+      "default_yaml": "01c969e50e699320f06c88b126f08f602cde5a3d7836b4455ba24575abac1e15",
+      "events_py": "91fbbc8fe24a1bb74d9fc007364ca5527d60e1d73f8324dbe34832d925a4fe59",
+      "tasks_py": "ccaafe4101ba0fcb54983130d97a6ed99d0e7069d672f17256ace9de444837ea",
+      "trainer_py": "5232397fd8893c513dff824b52965de3394d75abea588a3b63a4b523de8f8111",
+      "yolo26_yaml": "b1d1fa0c69eced64f9939536038bd8d697c32e72200b34187a767de431af7ef0"
+    },
+    "ultralytics_version": "8.4.56"
+  },
+  "eval_gate_passed": true,
+  "evaluation_count": 54,
+  "external_network_integrations": {
+    "amp_download_probe_bypassed": false,
+    "analytics_disabled": true,
+    "integration_callbacks_disabled": true
+  },
+  "final_holdout_ids_available_to_evaluator": false,
+  "final_holdout_open_authorized": false,
+  "fold_assignment_commitment": "f3d714f167f8eff7fdd45492ca492fa5e60a9162efa419091c7a2dcbaa961a20",
+  "fold_counts": {
+    "fold_0": 40,
+    "fold_1": 60,
+    "fold_2": 32,
+    "fold_3": 31,
+    "fold_4": 35
+  },
+  "formal_run_evidence": [
+    {
+      "arm": "G0-N",
+      "report_sha256": "de6030aa95f5b60cae0d9e45a3997708e849518bff05a6a90d4dc81e8655f208",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "report_sha256": "22564b6b216fb048e1cbe3097aed66c0494b26e1442c7ce83804d2b61a027b65",
+      "seed": 20260812
+    },
+    {
+      "arm": "G2-S",
+      "report_sha256": "6404887e31f7181f61d43e561e158c8395dd6eddcb2e8980f0b5cc16b6e79bab",
+      "seed": 20260812
+    },
+    {
+      "arm": "G1-P",
+      "report_sha256": "c019d3208fddc44e8e784ebca06f5b8f85394e1d807e2fdce124e217d25d0e4d",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "report_sha256": "b754ab09579f6133bffc0411b67eeea59937cb6ba9364961fcce1b46a6908129",
+      "seed": 20260813
+    },
+    {
+      "arm": "G0-N",
+      "report_sha256": "f9b3dbac6eed6fe6cbb95788c9d9cc5d5b84e288b5fbd5cccd7db0264ef1e69c",
+      "seed": 20260813
+    },
+    {
+      "arm": "G2-S",
+      "report_sha256": "9e62698f44d7d27f5bc3c5bf048e9167ff4ba4e3d291b278ae43396877cea272",
+      "seed": 20260814
+    },
+    {
+      "arm": "G0-N",
+      "report_sha256": "f39146f2547b3ce2db062e4dce6bc48d02dcc69bc0d673b63b3edd0f00a341bc",
+      "seed": 20260814
+    },
+    {
+      "arm": "G1-P",
+      "report_sha256": "01c528ad07e22398406f978df72f8af4cd11bc2e98ad4a168d7b216c88cda6a5",
+      "seed": 20260814
+    }
+  ],
+  "full_dev_count": 198,
+  "implementation_source_hashes": {
+    "config/t1gr_g_implementation_spec.frozen.json": "e9f84bf8b06968c83bcd2c9b18b6eb74a040ecb8434b3aaf148a8e1720b724bb",
+    "scripts/t1gr_g_build_multimodal_view.py": "828aa62f61921207fe7184a59b9b29570325ed1cddeab8e5e9d044c78e304c6e",
+    "scripts/t1gr_g_eval_suite.py": "968f84f5af40017286acc578a5847c87a5fcbb0ece715f97f3739160f9e74b13",
+    "scripts/t1gr_g_implementation_preflight.py": "774440799e1c9a3e925620ecfcfb77c7a51c9565b5e58e19bd60677c1d78c03a",
+    "scripts/t1gr_g_run_formal_suite.py": "12c645d851f0e3d3939693305ff22a62b682d5d8cdb7a48b0859cba19d33ec76",
+    "scripts/t1gr_g_run_one.py": "312eee558f97d2827e11c6ec562612536fa9a8deb977309b479a3f2332a5c0ad",
+    "scripts/t1gr_g_run_smoke_suite.py": "1a83d959e6737c30b80a796d0ce51fef848504677037a4980069d4f8e98c6a0a",
+    "scripts/t1gr_g_smoke_audit.py": "db6a51f175d4c44e8e4338a64a1424f9ac4b46bfccb78813f7de1b115fe36061",
+    "scripts/t1gr_g_train_entry.py": "7853933585ef6a4eea80b62993be7a29cacc69f69306ea2155148e548a83a040",
+    "src/multimodal/t1gr_g_dataset.py": "b30783cc6667f979e85c352f4c99d425469e7668e861b916ce9f00c208b9bd8d",
+    "src/multimodal/t1gr_g_impl_core.py": "98841d8964c169ce27a8bf639b2e6b1480ac9c809f31a26494d5da032d9ed927",
+    "src/multimodal/t1gr_g_model.py": "1d77abc367404bc968cb17191559f92034f38b55bd9f70d7780965a9e19ba9f1",
+    "src/multimodal/t1gr_g_runtime.py": "4f7a70242e500a1771bc34e0c412ba7322be66a414984422c075a023ef2a646b",
+    "src/multimodal/t1gr_g_suite.py": "14470c5b6efc60022bf7855780a8117c0a65e5b41d6ce25d1447659b3bddfbc1"
+  },
+  "inference_ir": "ZERO_IR",
+  "max_det": 100,
+  "metric": "mAP50-95",
+  "next_action": "run the frozen cross-seed summarizer; keep FINAL HOLDOUT sealed",
+  "payload_sha256": "3c9477d051de1f054753a0ca02cf2cc077ce72fdb158e4b0aa2fc64aa8de2c8e",
+  "private_artifact_permissions": {
+    "posix_umask_applied": false,
+    "windows_acl_proven": false
+  },
+  "production_go": false,
+  "recipe_public_sha256": "c603ac3ffea27a0f82ec65c9a1bbf14a7db2432a456db781521e7282e21cc671",
+  "request_fingerprint": "58dfbf167bed07ec8f423dc36a2bfccb9c1f6610c7f5966e6ffee67669dac020",
+  "run_count": 9,
+  "schema": "t1gr-g-eval-public-v1",
+  "script_version": "t1gr-g-zero-ir-dev-eval-suite-v1",
+  "smoke_audit_sha256": "b93794986737107f86444c692ee2d62e09588662e015524d6f65031f99e92b86",
+  "view_manifest_private_sha256": "ae53b002a0ac0c00ab7491e2af79fd0d061c4a52f527d73706d94412d9922726"
+}
